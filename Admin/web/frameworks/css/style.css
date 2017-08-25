@@ -1,0 +1,272 @@
+/*general control*/
+.breadcrumb{
+    margin:0px;
+}
+
+ul{
+   list-style-type: none; 
+ }
+
+img{
+    width:100%;
+}
+
+hr {
+    border-color: #a5a5a5;
+}
+
+.border{
+    border-left-style: double;
+}
+
+.right{
+    text-align: right;
+}
+
+.tdcenter{
+    text-align: center;
+}
+ 
+.modal-header{
+    background-color: #3d5998;
+    color: #fff;
+}
+
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+
+/* Style the tab in navigation.jsp */
+.tab {
+    padding: 1%;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.tabselect {
+    display: block;
+    padding: 10%;
+}
+
+.tabselect:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    border: 1px solid #ccc;
+    border-left: none;
+}
+
+/*Pagination*/
+.pagi{
+    margin-top: 3%;
+    background-color: #f1f1f1;
+    padding: 1%;
+}
+
+.pg-normal {
+    color: #0000FF;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+ 
+.pg-normal:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pg-selected {
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+    background-color: #3d5998;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+
+.hreffect{
+    height: 10px;
+    box-shadow: 0 10px 10px -10px #3d5998 inset;
+}
+
+
+/*index.html*/
+.landing{
+    opacity: 0.9;
+    height: 768px;
+    background: url("../../resources/img/lan.jpg"); /*This image is edited*/
+    background-size: cover;
+}
+
+.loginwrap{
+    margin-top: 25%;
+}
+
+.login, .btnlog{
+    padding: 4%;
+    margin: 2%;
+    width:65%;
+}
+
+.signupa{
+    color: #3d5998;
+    font-size:12px;
+}
+
+.signup{
+   padding: 2%;
+   margin: 2%;
+   width:65%; 
+}
+
+
+/*profile*/
+#circle {
+  position: relative;
+  background-color: #3d5998;
+  margin: 20px auto;
+  width: 60%;
+  height: 100px;
+  border-radius: 200px;
+}
+
+#profile{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+#profile:hover{
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.panel{
+    text-align: center;
+}
+
+.panel-body{
+    font-size: 30px;
+    font-weight: bold;
+    padding: 40px;
+}
+
+.mprofile{
+    font-size: 20px;
+}
+
+
+/*showQuestion.jsp & updateQuestion.jsp*/
+.questioncontainer{
+    text-align: center;
+    background-color: #3d5998;
+    border: solid #3d5998;
+    color: #fff;
+}
+
+/*wrap up answer container and buttons*/
+.container2{
+    text-align: center;
+    align-content: center;
+    margin: 0% auto;
+    border-width: 5px;
+    border-style: solid;
+    -webkit-border-image: 
+      -webkit-gradient(linear, 0 0, 0 100%, from(#3d5998), to(rgba(0, 0, 0, 0))) 1 100%;
+    -webkit-border-image: 
+      -webkit-linear-gradient(#3d5998, rgba(0, 0, 0, 0)) 1 100%;
+    -moz-border-image:
+      -moz-linear-gradient(#3d5998, rgba(0, 0, 0, 0)) 1 100%;    
+    -o-border-image:
+      -o-linear-gradient(#3d5998, rgba(0, 0, 0, 0)) 1 100%;
+    border-image:
+      linear-gradient(to bottom, #3d5998, rgba(0, 0, 0, 0)) 1 100%;
+}
+
+.container3{
+    text-align: center;
+    width: 80%;
+    align-content: center;
+    margin: 0% auto;
+}
+
+.answercontainer{
+    padding: 0px;
+    text-align: left;
+    font-size:20px;
+}
+
+.choice{
+    border-style: double;
+    margin: 3% 15% 2% 15%;
+    color: #1E88E5;
+    text-align: center;
+    width: auto;
+}
+
+.hinticon{
+    font-size: 15px;
+}
+
+.lefttab{
+    padding-left: 5%;
+}
+
+.rowinput{
+    border: solid 1px #ffffff;
+    border-radius: 15px;
+    background: linear-gradient(to right, #ffffff, rgba(200, 210, 233, 0.5));
+    padding: 2%;
+    padding-left: 5%;
+    margin: 0.2% 0%;
+    width: 100%;
+    font-weight: normal;
+}
+
+.rowinput:hover{
+    border-style: inset;
+}
+
+.question{
+    margin-top: 1%;
+}
+
+
+/*video.jsp*/
+.videowrap{
+    border: solid 1px rgba(53, 134, 227, 0.5);
+    padding: 1%;
+    margin: 2% 0;
+    font-size: 15px;
+    width: 95%;
+}
+
+.videowrap p{
+    margin-top: 5%;
+}
+
+.btncreate, .btnlog, .btngoq{
+    border-width: 0;
+    background-color: rgba(53, 134, 227, 0.3);
+    color: #000000;
+}
+
+
+/*footer*/
+.footer, .faq{
+    background-color: #f1f1f1;
+    font-size: 12px;
+}
+
+.top{
+    padding-left: 7%;
+}
+
