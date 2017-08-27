@@ -1,0 +1,208 @@
+/** rewards section**/
+/*hangman*/
+.bonus1{
+    background-color: #8fea9e;
+    min-width: 100vw;
+    height: 100vh;
+} 
+
+.hangman{
+   font-family: Helvetica, sans-serif;
+}
+
+#alphabet {
+    width:65%;
+}
+
+#alphabet li {
+    float:left;
+    margin: 0 10px 10px 0;
+    list-style:none;
+    width: 6%;
+    padding: 1%;
+    background:#fff;
+    color: #8fea9e;
+    cursor: pointer;
+    border-radius: 5px; 
+    border: solid 1px #fff;
+    font-size: 16px;
+}
+
+#alphabet li:hover{
+      background: #8fea9e;
+      border: solid 1px #fff;
+      color: #fff;
+}
+
+canvas{
+    border: #000 dashed 2px;
+    padding: 1%;
+}
+
+#my-word li {
+    list-style: none;
+    display: inline-block;
+    padding: 10px;
+}
+
+.active {
+    opacity: 0.6;
+}
+
+#mylives, #my-word li{
+    font-size: 20px;
+}
+
+.hbutton{
+    background-color: #0aba59;
+}
+
+.hbutton2{
+    background-color: #0aba89;
+}
+
+.hbutton, .hbutton2{
+    margin-right: 1%;
+    border: 2px solid #fff;
+    color: #fff;
+    width: 200px;
+    font-size: 20px;
+}
+
+.heart{
+    width: 4%;
+}
+
+
+/*pusheen*/
+.food{
+    width: 20%;
+    margin-left: 5%;  
+}
+
+.bonus2{
+    background-color: #FDEFE6;
+    min-width: 100vw;
+    height: 100vh;
+}
+
+/*bubble*/
+.bubble{
+    margin-top: 2%;
+    margin-left: 45%;
+}
+
+p.thought {
+    position: relative;
+    width: 30%; 
+    padding: 5% 0%;
+    background:#FFF; /*fallback colour for non-supporting browsers*/
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFF), to(#4E2E28));
+    background:-moz-linear-gradient(#FFF, #F8C3C5);
+    background:-o-linear-gradient(#FFF, #F8C3C5);
+    background:linear-gradient(#FFF, #F8C3C5);
+    /**give the corners a large curve**/
+    -webkit-border-radius:180px;
+    -moz-border-radius:180px;
+    border-radius:180px;
+    /**shadow for the bubble**/
+    -webkit-box-shadow: -3px 4px 8px #989898;
+    -moz-box-shadow: -3px 4px 8px #989898;
+    box-shadow: -3px 4px 8px #989898;
+    font-size: 20px;
+}
+
+/*big circle*/
+p.thought:before {
+    content:"";
+    position:absolute; 
+    bottom:-40px; 
+    left:20px;
+    background:#f7adaf;
+    width:30px;
+    height:30px;
+    /*add a curve to the corners the same size as the height and width*/
+    -webkit-border-radius:30px;
+    -moz-border-radius:30px;
+    border-radius:30px;
+    /*shadow*/
+    -webkit-box-shadow: -3px 3px 4px #989898;
+    -moz-box-shadow: -3px 3px 4px #989898;
+    box-shadow: -3px 3px 8px #989898;
+}
+
+/*small circle*/
+p.thought:after {
+    content:"";
+    position:absolute;
+    bottom:-55px;
+    left:0;
+    width:15px;
+    height:15px;
+    background:#f2a2a5;
+    /*add a curve to the corners the same size as the height and width*/
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+    border-radius:15px;
+    /*shadow*/
+    -webkit-box-shadow: -3px 3px 4px #989898;
+    -moz-box-shadow: -3px 3px 4px #989898;
+    box-shadow: -3px 3px 8px #989898;
+}
+
+.instruct{
+    margin-top: 10%;
+    margin-left: -20%;
+}
+
+.feed{
+    margin-top: 3%;
+    background-color:#A52A2A;
+    border: 2px solid #fff;
+    color: #fff;
+    width: 300px;
+    font-size: 20px;
+}
+
+
+/*quote*/
+body.bonus3{
+    background-color: #FFFFCC;
+}
+    
+.quotewrapper {
+    background-color: #2c2c2c;
+    color: white;
+    width: 50%;
+    padding: 10%;
+    margin-bottom: 3%;
+}
+
+.quotewrapper .quotewrap {
+    border: 3px solid #FFFFCC;
+    padding: 8%;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.quote-icon {
+    color: #FFFFCC;
+    font-size: 100px;
+    background: #2c2c2c;
+    display:table;
+    margin: -30% auto 0;
+    padding: 15px;
+}
+
+.quote-quote{
+    margin-top: -20%;
+}
+
+.qbutton{
+    background-color: #2c2c2c;
+    color: #fff;
+    width: 25%;
+    font-size: 20px;
+}
