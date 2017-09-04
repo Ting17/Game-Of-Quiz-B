@@ -12,23 +12,18 @@
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;">
 <title>Play</title>
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 
-
-
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
-<link href="style.css" rel="stylesheet" />
-<link href="questionstyle.css" rel="stylesheet" />
-
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
+<link href="frameworks/css/style.css" rel="stylesheet" />
+<link href="frameworks/css/questionstyle.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -94,15 +89,15 @@
         
 <script src="frameworks/js/paginationMethod.js"></script> 
     
-    <div class="row"><!--1--> 
+    <div class="row" id="top"><!--1--> 
         <div class="col-xs-12 col-md-12 col-lg-12 parallax"> <!--1.1--> 
             
             <div class="row"><!--1.1.1--> 
-                <div class="col-xs-8 col-md-8 col-lg-8 title"><!--1.1.1.1--> 
+                <div class="col-xs-12 col-md-8 col-lg-8 title"><!--1.1.1.1--> 
                     <p>"Push yourself because no one else is going to do it for you"</p>
                 </div>
                 
-                <div class="col-xs-4 col-md-4 col-lg-4"><!--1.1.1.2--> 
+                <div class="col-xs-12 col-md-4 col-lg-4"><!--1.1.1.2--> 
                     <a data-toggle="modal" data-target="#myModal" >
                         <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
                     </a>
@@ -140,8 +135,8 @@
             </div> <!--close row 1.1.1-->
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->
-    <div class="row">
-        <div class="col-xs-12 col-md-12 col-lg-12 right">
+    <div class="row"> <!--close row 1a-->
+        <div class="col-xs-12 col-md-12 col-lg-12 right"> <!--close row 1a-->
             <div id="google_translate_element"></div>
 
             <script type="text/javascript">
@@ -151,7 +146,6 @@
             </script>
 
             <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
         </div>
     </div>
     
@@ -160,7 +154,7 @@
             while(res.next() ) {
         %>
     <div class="row wrap"><!--2--> 
-        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion"><!--2.1--> 
+        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion contentborder"><!--2.1--> 
             <video class="videoque" controls>
                 <source src="<%=res.getString("videoPath")%>" type="video/mp4">
             </video>
@@ -176,14 +170,16 @@
             <h3><%=res.getString("videoName") %></h3>
             <h4>Category << <%=res.getString("category") %> >></h4>
             <hr/>
-            <p><%=res.getString("videoDesc") %></p>
+            <p class="videodesc"><%=res.getString("videoDesc") %></p>
         </div> <!--close column 3.1-->
 
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Video</span></button></a>
             <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Play More Quiz</span></button></a>
-            <a href="profile.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Profile</span></button></a>
+            <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Accumulated Score</span></button></a>
             <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>
+            <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
+
         </div> <!--close column 3.2-->
         <%
            }
@@ -191,6 +187,7 @@
     </div> <!--close row 3-->
                   
     <div class="row wrap2"><!--4-->
+        <!--more video-->
         <div class="col-xs-12 col-md-9 col-lg-9 contentborder"><!--4.1--> 
             <h4>Related Videos</h4>
             <center>
@@ -222,8 +219,9 @@
             </a>
             </div>
             </center>
-        </div><!--end column 4.1--> 
+        </div><!--end of more video & end column 4.1--> 
         
+        <!--feedback form-->
         <div class="col-xs-12 col-md-3 col-lg-3 contentborder link"><!--4.2-->
             <hr class="normal">
             <center>
@@ -240,10 +238,9 @@
             </center>
             <hr class="normal">
         </div><!--end column 4.2-->
-    </div><!--end row 4--> 
+    </div><!--end of feedback form & end row 4--> 
     
 </div> <!--close container--> 
-
 
 
 <jsp:include page="footer.jsp"></jsp:include>

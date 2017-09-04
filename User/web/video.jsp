@@ -12,7 +12,7 @@
 <html>
 <head>              
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,9 +21,8 @@
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
-<link href="style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
+<link href="frameworks/css/style.css" rel="stylesheet" />
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -73,33 +72,33 @@
     <%  
         if (rs.next()) {
     %>
-    <div class="row">
+    <div class="row" id="top"><!--1-->
         <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1-->
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
                             <h3>EQUILIBRA</h3>
-                        </div>
+                    </div>
 
-                        <div class="navbar-header"> 
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button> 
-                        </div> 
+                    <div class="navbar-header"> 
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button> 
+                    </div> 
   
-                        <div class="navbar-collapse collapse" id="navbar-to-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="">HI  <%=rs.getString("username")%></a></li>
-                                <li><a href='index.html'>Log out</a></li>
-                            </ul> 
-                        </div><!--end navigation collapse-->        
-                    </div><!--close container-->
-                </nav>
-            </div><!--end column 1.1-->
-        </div><!--end row 1 & end of navigation-->
+                    <div class="navbar-collapse collapse" id="navbar-to-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="">HI  <%=rs.getString("username")%></a></li>
+                            <li><a href='index.html'>Log out</a></li>
+                        </ul> 
+                    </div><!--end navigation collapse-->        
+                </div><!--close container-->
+            </nav>
+        </div><!--end column 1.1-->
+    </div><!--end row 1 & end of navigation-->
     <%
         }else  {
             out.println(request.getAttribute("errorMessage"));
@@ -107,20 +106,20 @@
         }
     %>  
     
-        <div class="row subject"><!--2-->
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1-->
-                <a onclick="show('divEng')"><h4 >English</h4></a>
-            </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2-->
-                <a><h4>Mathematic</h4></a>
-            </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3-->
-                <a><h4>Technology</h4></a>
-            </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4-->
-                <a onclick="show('divBio')"><h4>Biology</h4></a>
-            </div>           
-        </div><!--end row 2-->
+    <div class="row subject"><!--2-->
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1-->
+            <a onclick="show('divEng')"><h4 >English</h4></a>
+        </div>
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2-->
+            <a><h4>Mathematic</h4></a>
+        </div>
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3-->
+            <a><h4>Technology</h4></a>
+        </div>
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4-->
+            <a onclick="show('divBio')"><h4>Biology</h4></a>
+        </div>           
+    </div><!--end row 2-->
     
     
     <!--Content section-->
@@ -181,7 +180,7 @@
         <%
             }
         %>
-            </div><!--end of divEng-->
+                </div><!--end of divEng-->
             </div><!--end column 3.1-->
         </div><!--end row 3--> 
     </div><!--close container--> 

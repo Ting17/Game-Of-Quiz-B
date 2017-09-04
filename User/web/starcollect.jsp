@@ -1,6 +1,6 @@
 <%-- 
-    Document   : question
-    Created on : Aug 25, 2017, 04:59:49 PM
+    Document   : starcollect
+    Created on : July 31, 2017, 04:59:49 PM
     Author     : tingting17
 --%>
 
@@ -25,8 +25,6 @@
             password = (String)session.getAttribute("pass");
 
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-
-
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 stm = conn.createStatement();
@@ -36,8 +34,6 @@
                     pstmt = conn.prepareStatement("UPDATE user SET result = ? WHERE username='" + username + "' and password='" + password + "'");
                     pstmt.setString(1,request.getParameter("star"));
                     pstmt.executeUpdate();
-
-          
                 }              
                 
             }catch(ClassNotFoundException cnfe){

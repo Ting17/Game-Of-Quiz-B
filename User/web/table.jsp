@@ -47,7 +47,7 @@
                         </video>
                         <div class="carousel-caption">
                             <h3><%=result.getString("videoName") %></h3>
-                            <button>Watch Now</button>
+                            <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn btn-primary">Watch Now</a>
                         </div> 
                     </div>
                 </div>

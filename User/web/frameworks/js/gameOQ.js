@@ -1,11 +1,5 @@
 var app = angular.module("myApp", ["ngRoute"]);
-app.config(["$routeProvider", function ($routeProvider) {
-    'use strict';
-    //for $routeprovider
-    $routeProvider
-        /*Page link*/
-        .when("/", {templateUrl: "topic.jsp"});
-}]);
+
 
 
 var currentDiv = document.getElementById("divEng");
@@ -39,12 +33,8 @@ function meowSound(){
     audio.play();
 } 
 
+//pusheen appear
 setTimeout(function() {
     document.getElementById("cateatgif").style.display="none";
     $("#catgiffinish").show();
 }, 10000); // appear after 10 seconds
-
-
-
-
-

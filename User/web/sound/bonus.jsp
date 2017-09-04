@@ -13,7 +13,7 @@
 <head>
         
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting, Kevin Pui -->
+<!-- Author: Ting Lee Ting -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,8 +22,9 @@
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
-<link href="frameworks/css/rewardstyle.css" rel="stylesheet" />
-
+<link href="rewardstyle.css" rel="stylesheet" />
+<!-- StyleSheet -->
+<link href="languages.min.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -56,7 +57,7 @@
     <% 
         } else{
     %>
-    <%@ include file="ascore.jsp"%>
+    <%@ include file="quote.jsp"%>
     <%  
         }}
     %>

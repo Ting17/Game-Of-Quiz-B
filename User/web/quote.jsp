@@ -1,6 +1,6 @@
 <%-- 
-    Document   : question
-    Created on : Apr 29, 2017, 11:59:49 PM
+    Document   : quote
+    Created on : July 31, 2017, 11:59:49 PM
     Author     : tingting17
 --%>
 
@@ -13,7 +13,7 @@
 <head>
         
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,9 +22,7 @@
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
-<link href="rewardstyle.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
+<link href="frameworks/css/rewardstyle.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -65,7 +63,7 @@
       <source src="sound/bonus3.mp3" type="audio/mpeg">
     </audio>
 
-
+    <center>
         <div class="row quotewrapper"><!--1-->
             <div class="col-xs-12 col-md-12 col-lg-12 quotewrap"><!--1.1-->
                 <div class="quote-icon">&#8220;</div>
@@ -82,9 +80,10 @@
         <div class="row"><!--2-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1-->
                 <a class="btn btn-primary btn-lg qbutton" href="video2.jsp">Back to Video page</a>
-                <a class="btn btn-default btn-lg qbutton" href="profile.jsp">Back to profile</a>
+                <a class="btn btn-default btn-lg qbutton" href="ascore.jsp">See Accumulated Score</a>
             </div><!--close column 2.1-->
         </div><!--close row 2-->
+    </center>
 
     
 <!-- jQuery – required for Bootstrap's JavaScript plugins) -->

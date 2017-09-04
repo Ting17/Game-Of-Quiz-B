@@ -1,5 +1,5 @@
 <%-- 
-    Document   : question
+    Document   : videoquestion
     Created on : Apr 29, 2017, 11:59:49 PM
     Author     : tingting17
 --%>
@@ -68,40 +68,37 @@
                             <div data-ng-if="'<%=result.getString("type")%>' === 'M'">
                                 <form name="form1">
                                     <div class="row"><!--2.2.1--> 
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice "><!--2.2.1.1--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice "><!--2.2.1.1--> 
                                             <label for="A">
                                                 A <input type="radio" data-ng-model="checkeds" value="A" id="A" name="multiradio" required/> <%=result.getString("input1") %>
                                             </label>
                                         </div>
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice"><!--2.2.1.2--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.2--> 
                                             <label for="B">
                                                 B <input type="radio" data-ng-model="checkeds" value="B" id="B" name="multiradio" /> <%=result.getString("input2") %>
                                             </label>
                                         </div>
-                                    </div> <!--close row 2.2.1-->
-
-                                    <div class="row"><!--2.2.2-->        
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice"><!--2.2.2.1--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.3--> 
                                             <label for="C">
                                                 C <input type="radio" data-ng-model="checkeds" value="C" id="C" name="multiradio" /> <%=result.getString("input3") %>
                                             </label>
                                         </div>
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice"><!--2.2.2.2--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.4--> 
                                             <label for="D">
                                                 D <input type="radio" data-ng-model="checkeds" value="D" id="D" name="multiradio" /> <%=result.getString("input4") %>
                                             </label>
                                         </div>
-                                    </div> <!--close row 2.2.2-->
+                                    </div> <!--close row 2.2.1-->
              
                                     <!-- button -->   
-                                    <div class="row button"><!--2.2.3-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--2.2.3.1-->
+                                    <div class="row button"><!--2.2.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--2.2.2.1-->
                                             <a  class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 2; count = count+1" data-ng-init="0" data-ng-disabled="form1.$invalid" onClick="checkansSound()">Check</a>
                                         </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.3.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2..2-->
                                             <a class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 3" onClick="giveupSound()">Give Up</a>
                                         </div> 
-                                    </div> <!--close row 2.2.3--> 
+                                    </div> <!--close row 2.2.2--> 
                                 </form>                                  
                 <center>                    
                 <!-- check answer-->
@@ -110,7 +107,6 @@
                     <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
                         <span class="yellow"><h3>Correct</h3></span>
                         <hr class="correct">
-                        
                         <div data-ng-if="<%=z %>%5 === 0">
                             <jsp:include page="starcollect.jsp"></jsp:include>       
                     <%
@@ -177,10 +173,10 @@
                         <span class="yellow"><h3>Correct</h3></span>
                         <hr class="correct">
                         
-                        <div data-ng-if="<%=z %>%5 === 0">
+                        <div data-ng-if="<%=y %>%5 === 0">
                             <jsp:include page="starcollect.jsp"></jsp:include>       
                     <%
-                        z++;
+                        y++;
                     %>
                         </div>
                         <div data-ng-if="count === 3 ">

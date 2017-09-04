@@ -8,11 +8,11 @@
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
-<html data-ng-app="myApp">
+<html>
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,9 +21,7 @@
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
-<link href="style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
+<link href="frameworks/css/style.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,15 +33,11 @@
 
 </head>
 
-
-    <body class="profile">
+<body class="profile">
         <%!
-            Connection conn,conn1;
-            PreparedStatement pstmt,pstmt1;
-            Statement stmt,st,stm;
-            ResultSet result,res,rs;
-            String category; 
-            Integer videoID; 
+            Connection conn;
+            Statement stm;
+            ResultSet rs;
             String username,password;
         %>
 
@@ -63,19 +57,18 @@
                 }catch(SQLException sqle){
                     out.println("SQL Query Exception:- " + sqle);
                 } 
-
         %>
         
 
     <center>
-        <div class="row">
-            <div class="col-sm-3 col-md-3 col-lg-3 prostar1">
+        <div class="row"> <!-- 1 -->
+            <div class="col-sm-3 col-md-3 col-lg-3 prostar1"> <!-- 1.1 -->
                 <img src="resources/img/s.gif"/>
-            </div>
+            </div> <!-- close column 1.1-->
             
-            <div class="col-sm-6 col-md-6 col-lg-6 title">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="col-sm-6 col-md-6 col-lg-6 title"> <!-- 1.2 -->
+                <div class="row"> <!-- 1.2.1 -->
+                    <div class="col-sm-12 col-md-12 col-lg-12"> <!-- 1.2.1.1 -->
                 <%  
                     if (rs.next()) {
                 %>
@@ -87,21 +80,24 @@
                     }
                 %> 
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+                </div> <!-- close row 1.2.1-->
+                <div class="row"> <!-- 1.2.2 -->
+                    <div class="col-sm-12 col-md-12 col-lg-12"> <!-- 1.2.2.1 -->
                         <a href="video2.jsp" class="btn btn-default btn-lg probutton">Back To Video</a>
+                        <a href="announ.jsp" class="btn btn-warning btn-lg probutton">Check Announcement</a>
                     </div>
-                </div>
-            </div>
+                </div> <!-- close row 1.2.2-->
+            </div> <!-- close column 1.2-->
                     
-            <div class="col-sm-3 col-md-3 col-lg-3 prostar2">
+            <div class="col-sm-3 col-md-3 col-lg-3 prostar2"> <!-- 1.3 -->
                 <img src="resources/img/s.gif"/>
-            </div> 
-        </div>
+            </div> <!-- close column 1.3-->
+        </div> <!-- close row 1-->
                     
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 prodesc">
+        <div class="row"> <!-- 2 -->
+            <div class="col-sm-12 col-md-12 col-lg-12 prodesc"> <!-- 2.1 -->
                 <p>Try to collect as many stars as possible by answering question correctly.</p>
                 <p>Stars collected will be token for future event.</p>
             </div>
-        </div>
+        </div> <!-- close row 2-->
     </center>

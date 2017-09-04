@@ -12,7 +12,7 @@
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,11 +21,8 @@
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
-<link href="style.css" rel="stylesheet" />
-<link href="questionstyle.css" rel="stylesheet" />
-
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
+<link href="frameworks/css/style.css" rel="stylesheet" />
+<link href="frameworks/css/questionstyle.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,10 +38,11 @@
 
         <%!
             Connection conn;
+            PreparedStatement pstmt;
             Statement stmt,st;
             ResultSet result,res;
-            Integer quizID, z=1, y=1;
-            String username,password,category; 
+            Integer quizID, a=1, b=1;
+            String username,password; 
         %>
 
         <%-- read function --%>    
@@ -72,11 +70,28 @@
                 }
             
             }
+            
+            if(request.getParameter("btnAdd") != null){
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    pstmt = conn.prepareStatement("INSERT INTO feedback(videoID, quizID, username, feedback, rdate) VALUES(?,?,?,?,NOW())");
+                    pstmt.setString(1,request.getParameter("txtVideoID"));
+                    pstmt.setInt(2,quizID);
+                    pstmt.setString(3,username);
+                    pstmt.setString(4,request.getParameter("txtfeedback"));
+                    pstmt.executeUpdate();
+
+                }catch(ClassNotFoundException cnfe){
+                    out.println("Class not Found Execption:-" + cnfe.toString());
+                }catch(SQLException sqle){
+                    out.println("SQL Query Exception:- " + sqle);
+                }  
+            }  
         %>
 
 <script src="frameworks/js/paginationMethod.js"></script> 
     
-<div class="row"><!--1--> 
+    <div class="row"><!--1--> 
         <div class="col-xs-12 col-md-12 col-lg-12 parallax"> <!--1.1--> 
             <div class="row"><!--1.1.1--> 
                 <div class="col-xs-8 col-md-8 col-lg-8 title"><!--1.1.1.1--> 
@@ -116,8 +131,8 @@
     
 <div class="container">
     <!--breadcrumb-->
-    <div class="row"><!--1.2.2-->
-        <div class="col-xs-12 col-md-12 col-lg-12 "><!--1.2.2.1-->
+    <div class="row"><!--2-->
+        <div class="col-xs-12 col-md-12 col-lg-12 "><!--2.1-->
         <%  
             if (res.next()) {
         %>
@@ -125,192 +140,200 @@
         <%
             }
         %>
-        </div><!--end column-->
-    </div><!--end row & end of breadcrumb-->
-        
-        
-    <div class="row"><!--1.2.2-->
-        <div class="col-xs-12 col-md-8 col-lg-8 "><!--1.2.2.1-->
-    
-    
-    <div class="table-responsive">
-        <table class="table table-stripped table-hover questiont" id="tablepaging">
-            <thead>
-                <tr>
-                    <th>
-                        <center>
-                            <div id="pgNum"></div>
-                        </center> 
-                    </th>
-                </tr>
-            </thead>       
-            <tbody>
-        <%
-            while(result.next() ) {
-             
-        %>
-                <tr>   
-                    <td>
-                        <!--display quiz question-->
-                        <div id="<%=result.getInt("questionID") %>" class="questioncontainer">
-                            <h4><%=result.getString("question") %></h4>
-                        </div> 
-
-                        <div class="container2">
-                            <!-- Format for multiple choice -->
-                            <div data-ng-if="'<%=result.getString("type")%>' === 'M'">
-                                <form name="form1">
-                                    <div class="row"><!--2.2.1--> 
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice "><!--2.2.1.1-->
-                                            A <input type="radio" data-ng-model="checkeds" value="A" name="multiradio" required/> <%=result.getString("input1") %>
-                                        </div>
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice"><!--2.2.1.2-->
-                                            B <input type="radio" data-ng-model="checkeds" value="B" name="multiradio" /> <%=result.getString("input2") %>
-                                        </div>
-                                    </div> <!--close row 2.2.1-->
-
-                                    <div class="row"><!--2.2.2-->        
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice"><!--2.2.2.1--> 
-                                            C <input type="radio" data-ng-model="checkeds" value="C" id="C" name="multiradio" /> <%=result.getString("input3") %>
-                                        </div>
-                                        <div class="col-xs-6 col-md-12 col-lg-12 multichoice"><!--2.2.2.2--> 
-                                            D <input type="radio" data-ng-model="checkeds" value="D" id="D" name="multiradio" /> <%=result.getString("input4") %>
-                                        </div>
-                                    </div> <!--close row 2.2.2-->
-             
-                                    <!-- button -->   
-                                    <div class="row button"><!--2.2.3-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--2.2.3.1-->
-                                            <a  class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1; count = count+1" data-ng-init="0" data-ng-disabled="form1.$invalid" onClick="checkansSound()">Check</a>
-                                        </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.3.2-->
-                                            <a class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</a>
-                                        </div> 
-                                    </div> <!--close row 2.2.3--> 
-                                </form>                                  
-                                      
-            <center>
-                <!-- check answer-->
-                <div data-ng-show="show === 1">
-                    <!-- correct -->
-                    <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
-                        <span class="yellow"><h3>Correct</h3></span>
-                        <hr class="correct">
-
-                        <div data-ng-if="<%=y %>%5 === 0">
-                            <jsp:include page="starcollect.jsp"></jsp:include>       
+        </div><!--end column 2.1-->
+    </div><!--end row 2& end of breadcrumb-->
+          
+    <div class="row"><!--3-->
+        <div class="col-xs-12 col-md-8 col-lg-8 "><!--3.1-->
+            <div class="table-responsive">
+                <table class="table table-stripped table-hover questiont" id="tablepaging">
+                    <thead>
+                        <tr>
+                            <th>
+                                <center>
+                                    <div id="pgNum"></div>
+                                </center> 
+                            </th>
+                        </tr>
+                    </thead>       
+                    <tbody>
                 <%
-                    y++;
-                %>          
-                        </div>  
-                        <div data-ng-if="count === 3 ">
-                            <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
-                        </div> 
-                    </div>
-                                
-                    <!-- incorrect -->
-                    <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
-                        <h3>Incorrect</h3>
-                        <hr class="normal">
-                    </div> 
-                </div>
-                        
-                <!-- Show answer -->
-                <div data-ng-show="show === 2">
-                    <b class="answer">Answer: <%=result.getString("checked")%></b>
-                </div> 
-            </center>
-                            </div> <!--end of multiple choice format-->
-                            
-                            
-                            <!-- Format for Fill in the Blank -->
-                            <div data-ng-if="'<%=result.getString("type")%>' === 'B'">
-                                <ul class="answercontainer">
-                                    <li>
-                                        <span><%=result.getString("input1") %></span>
-                                        <span class="tab"><%=result.getString("input2") %></span>
-                                        <span class="tab"><%=result.getString("input3") %></span>
-                                        <span class="tab"><%=result.getString("input4") %></span>
-                                    </li>
-                                </ul>
-                            </div> <!--end of fill in blank format-->
+                    while(result.next() ) {
 
-                            
-                            <!-- User input for Fill in the Blank & True False -->
-                            <div data-ng-if="'<%=result.getString("type")%>' === 'B' || '<%=result.getString("type")%>' === 'T'">
-                                <form name="form2">
-                                    <div class="useranswer">
-                                        <center>
-                                            <h4>Answer:</h4>
-                                            <input type="text" name="answer" data-ng-model="checkeds" size="80%" required/>
-                                        </center>
-                                    </div>
-                                                                                  
-                                    <div class="row"><!--2.2.1-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
-                                            <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1; count = count+1" data-ng-init="0" data-ng-disabled="form2.$invalid" onClick="checkansSound()">Check</button>
-                                        </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
-                                            <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
-                                        </div> 
-                                    </div> <!--close row 2.2.1-->                 
-                                </form>
-            <center>
-                <!-- check answer-->
-                <div data-ng-show="show === 1">
-                    <!-- correct -->
-                    <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
-                        <span class="yellow"><h3>Correct</h3></span>
-                        <hr class="correct">
+                %>
+                        <tr>   
+                            <td>
+                                <!--display quiz question-->
+                                <div id="<%=result.getInt("questionID") %>" class="questioncontainer">
+                                    <h4><%=result.getString("question") %></h4>
+                                </div> 
 
-                        <div data-ng-if="<%=y %>%5 === 0">
-                            <jsp:include page="starcollect.jsp"></jsp:include>       
-                <%
-                    y++;
-                %>          
-                        </div>  
-                        <div data-ng-if="count === 3 ">
-                            <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
+                                <div class="container2">
+                                    <!-- Format for multiple choice -->
+                                    <div data-ng-if="'<%=result.getString("type")%>' === 'M'">
+                                        <form name="form1">
+                                            <div class="row"><!--3.1.1--> 
+                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice "><!--3.1.1.1-->
+                                                    A <input type="radio" data-ng-model="checkeds" value="A" name="multiradio" required/> <%=result.getString("input1") %>
+                                                </div>
+                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--3.1.1.2-->
+                                                    B <input type="radio" data-ng-model="checkeds" value="B" name="multiradio" /> <%=result.getString("input2") %>
+                                                </div>       
+                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--3.1.1.3--> 
+                                                    C <input type="radio" data-ng-model="checkeds" value="C" id="C" name="multiradio" /> <%=result.getString("input3") %>
+                                                </div>
+                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--3.1.1.4--> 
+                                                    D <input type="radio" data-ng-model="checkeds" value="D" id="D" name="multiradio" /> <%=result.getString("input4") %>
+                                                </div>
+                                            </div> <!--close row 3.1.1-->
+
+                                            <!-- button -->   
+                                            <div class="row button"><!--3.1.2-->
+                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--3.1.2.1-->
+                                                    <a  class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1; count = count+1" data-ng-init="0" data-ng-disabled="form1.$invalid" onClick="checkansSound()">Check</a>
+                                                </div>
+                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--3.1.2.2-->
+                                                    <a class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</a>
+                                                </div> 
+                                            </div> <!--close row 3.1.2--> 
+                                        </form>                                  
+
+                    <center>
+                        <!-- check answer-->
+                        <div data-ng-show="show === 1">
+                            <!-- correct -->
+                            <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
+                                <span class="yellow"><h3>Correct</h3></span>
+                                <hr class="correct">
+
+                                <div data-ng-if="<%=a %>%5 === 0">
+                                    <jsp:include page="starcollect.jsp"></jsp:include>       
+                        <%
+                            a++;
+                        %>          
+                                </div>  
+                                <div data-ng-if="count === 3 ">
+                                    <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
+                                </div> 
+                            </div>
+
+                            <!-- incorrect -->
+                            <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
+                                <h3>Incorrect</h3>
+                                <hr class="normal">
+                            </div> 
+                        </div>
+
+                        <!-- Show answer -->
+                        <div data-ng-show="show === 2">
+                            <b class="answer">Answer: <%=result.getString("checked")%></b>
                         </div> 
-                    </div>
-                                
-                    <!-- incorrect -->
-                    <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
-                        <h3>Incorrect</h3>
-                        <hr class="normal">
-                    </div> 
-                </div>
-                        
-                <!-- Show answer -->
-                <div data-ng-show="show === 2">
-                    <b class="answer">Answer: <%=result.getString("checked")%></b>
-                </div> 
-            </center>
-                            </div> <!--end of Fill in the Blank & True False-->
-                                   
-                        </div> <!--close container2-->
-                    </td>
-                </tr>    
-        <%
-            }
-        %>
-            </tbody>
-        </table>
-    </div>
+                    </center>
+                                    </div> <!--end of multiple choice format-->
+
+
+                                    <!-- Format for Fill in the Blank -->
+                                    <div data-ng-if="'<%=result.getString("type")%>' === 'B'">
+                                        <ul class="answercontainer">
+                                            <li>
+                                                <span><%=result.getString("input1") %></span>
+                                                <span class="tab"><%=result.getString("input2") %></span>
+                                                <span class="tab"><%=result.getString("input3") %></span>
+                                                <span class="tab"><%=result.getString("input4") %></span>
+                                            </li>
+                                        </ul>
+                                    </div> <!--end of fill in blank format-->
+
+
+                                    <!-- User input for Fill in the Blank & True False -->
+                                    <div data-ng-if="'<%=result.getString("type")%>' === 'B' || '<%=result.getString("type")%>' === 'T'">
+                                        <form name="form2">
+                                            <div class="useranswer">
+                                                <center>
+                                                    <h4>Answer:</h4>
+                                                    <input type="text" name="answer" data-ng-model="checkeds" size="80%" required/>
+                                                </center>
+                                            </div>
+
+                                            <div class="row"><!--3.1.1-->
+                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
+                                                    <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1; count = count+1" data-ng-init="0" data-ng-disabled="form2.$invalid" onClick="checkansSound()">Check</button>
+                                                </div>
+                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
+                                                    <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
+                                                </div> 
+                                            </div> <!--close row 3.1.1-->                 
+                                        </form>
+                    <center>
+                        <!-- check answer-->
+                        <div data-ng-show="show === 1">
+                            <!-- correct -->
+                            <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
+                                <span class="yellow"><h3>Correct</h3></span>
+                                <hr class="correct">
+
+                                <div data-ng-if="<%=b %>%5 === 0">
+                                    <jsp:include page="starcollect.jsp"></jsp:include>       
+                        <%
+                            b++;
+                        %>          
+                                </div>  
+                                <div data-ng-if="count === 3 ">
+                                    <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
+                                </div> 
+                            </div>
+
+                            <!-- incorrect -->
+                            <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
+                                <h3>Incorrect</h3>
+                                <hr class="normal">
+                            </div> 
+                        </div>
+
+                        <!-- Show answer -->
+                        <div data-ng-show="show === 2">
+                            <b class="answer">Answer: <%=result.getString("checked")%></b>
+                        </div> 
+                    </center>
+                                    </div> <!--end of Fill in the Blank & True False-->
+
+                                </div> <!--close container2-->
+                            </td>
+                        </tr>    
+                 <%
+                    }
+                %>
+                    </tbody>
+                </table>
+            </div>
             
-        </div>
+        </div> <!--close column 3.1-->
             
-        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--2.2--> 
+        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--3.2--> 
             <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Quiz List</span></button></a>
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Video</span></button></a>
-            <a href="profile.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Profile</span></button></a>
+            <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Profile</span></button></a>
             <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>
-        </div><!--close column 2.2-->
- 
-</div>        
-
-       
-</div>
+        
+         <!--feedback form-->
+            <hr class="normal">
+            <center>
+                <h4>Game of Quiz</h4>
+                <div id="addfeedback" class="collapse">  
+                    <form id="addForm" action="" method="POST"> 
+                        <h5>FEEDBACK<h5/><hr/>
+                        <input type="hidden" name="txtVideoID" value="0"/> <br/><br/>
+                        <p>Just comment. We listen.</p>
+                        <textarea name="txtfeedback"></textarea><br/><br/>
+                        <button type="submit" name="btnAdd">Submit</button>
+                    </form>
+                </div>
+            </center>
+            <hr class="normal"><!--end of feedback form-->
+            
+        </div><!--close column 3.2-->
+    </div> <!--close row 3-->  
+</div> <!--close container-->   
         
         
 <jsp:include page="footer.jsp"></jsp:include>

@@ -10,7 +10,7 @@
     <div class="row footer"><!--4--> 
         <div class="col-xs-10 col-md-10 col-lg-10"><!--4.1-->
             <p class="lefttab"><b>Copyright &copy; 2017, Kch, Malaysia</b></p>
-            <p class="lefttab"><b>Created by: </b> <a href="mailto:4331451@students.swinburne.edu.my">Ting Lee Ting</a></p>
+            <p class="lefttab"><b>Created by: </b> <a href="mailto:4331451@students.swinburne.edu.my">Ting Lee Ting</a>, <a href="mailto:4320530@students.swinburne.edu.my">Kevin Pui</a></p>
         </div>
         
         <div class="col-xs-2 col-md-2 col-lg-2 top"><!--4.2-->
@@ -36,6 +36,7 @@
 
 <!-- Configuration -->
 <script src="frameworks/js/paginationCaller.js"></script> 
-    
+<script src="frameworks/js/paginationCaller2.js"></script>   
+
 </body>
 </html>
