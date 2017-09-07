@@ -91,7 +91,7 @@
   
                     <div class="navbar-collapse collapse" id="navbar-to-collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="">HI  <%=rs.getString("username")%></a></li>
+                            <li><a>HI  <%=rs.getString("username")%></a></li>
                             <li><a href='index.html'>Log out</a></li>
                         </ul> 
                     </div><!--end navigation collapse-->        

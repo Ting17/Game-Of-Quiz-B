@@ -195,7 +195,7 @@
                   vy = options.velocity.y;
                 }
                 else {
-                  vx = vy = options.speed
+                  vx = vy = options.speed;
                 }
  
                 sx = vx * dtx;
@@ -333,7 +333,7 @@
         globalEvents = {},
 
         // Opera Mobile must be handled differently
-        isOperaMobile = navigator.appName == 'Opera' &&
+        isOperaMobile = navigator.appName === 'Opera' &&
             supportsTouch &&
             navigator.userAgent.match('Presto'),
 
