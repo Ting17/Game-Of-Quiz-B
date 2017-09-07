@@ -14,7 +14,7 @@
         <div class="row"> <!--1-->
             <div class="col-xs-12 col-md-12 col-lg-12"> <!--1.1-->
                 <h1>Pusheen the cat is blocking your reward</h1>
-                <img src="resources/img/feedme.gif"/>  
+                <img src="resources/img/pusheenimg/feedme.gif"/>  
                 <br/>
                 <button class="btn btn-primary btn-lg feed" data-ng-click="cat=cat!==true" >Feed</button>
             </div> <!--close column 1.1-->
@@ -52,7 +52,7 @@
                     </p>
                 </div>
   
-                <img id="myImage" src="resources/img/waiting.gif" />
+                <img id="myImage" src="resources/img/pusheenimg/waiting.gif" />
             </div> <!--close column 1.1-->
                 
             <div class="col-xs-5 col-md-5 col-lg-5 instruct"> <!--1.2-->
@@ -65,19 +65,19 @@
                    
         <div class="row"> <!--2-->
             <div class="col-xs-3 col-md-3 col-lg-3"> <!--2.1-->
-                <input type="radio" data-ng-model="food" value="1" required/><img class="food" title="sushi" src="resources/img/fsushi.png" />
+                <input type="radio" data-ng-model="food" value="1" required/><img class="food" title="sushi" src="resources/img/pusheenimg/fsushi.png" />
             </div>
                     
             <div class="col-xs-3 col-md-3 col-lg-3"> <!--2.2-->
-                <input type="radio" data-ng-model="food" value="2" /><img class="food" title="pizza" src="resources/img/fpizza.png" />
+                <input type="radio" data-ng-model="food" value="2" /><img class="food" title="pizza" src="resources/img/pusheenimg/fpizza.png" />
             </div>
                     
             <div class="col-xs-3 col-md-3 col-lg-3"> <!--2.3-->
-                <input type="radio" data-ng-model="food" value="3" /><img class="food" title="cookie" src="resources/img/fcookie.png" />
+                <input type="radio" data-ng-model="food" value="3" /><img class="food" title="cookie" src="resources/img/pusheenimg/fcookie.png" />
             </div>
                     
             <div class="col-xs-3 col-md-3 col-lg-3"> <!--2.5-->
-                <input type="radio" data-ng-model="food" value="4" /><img class="food" title="fish" src="resources/img/ffish.png" />
+                <input type="radio" data-ng-model="food" value="4" /><img class="food" title="fish" src="resources/img/pusheenimg/ffish.png" />
             </div>         
         </div> <!--close row 2-->      
     </div>
@@ -93,19 +93,19 @@
                         <%
                             if(x==1){
                         %>
-                            <img class="food" src="resources/img/psushi.gif" />
+                            <img class="food" src="resources/img/pusheenimg/psushi.gif" />
                         <% 
                             } else{if(x==2){
                         %>
-                            <img class="food" src="resources/img/ppizza.gif" />
+                            <img class="food" src="resources/img/pusheenimg/ppizza.gif" />
                         <%  
                             }else{if(x==3){
                         %>
-                            <img class="food" src="resources/img/pcookie.gif" />
+                            <img class="food" src="resources/img/pusheenimg/pcookie.gif" />
                         <%  
                             }else{
                         %>
-                            <img class="food" src="resources/img/pfish.gif" />
+                            <img class="food" src="resources/img/pusheenimg/pfish.gif" />
                         <%  
                             }}}
                         %>
@@ -113,23 +113,26 @@
 
                     <!-- incorrect -->
                     <div data-ng-if="food !== '<%=x%>'">
-                        <img src="resources/img/angry.gif" />
+                        <img src="resources/img/pusheenimg/angry.gif" />
                     </div>  
                 </div>
 
                 <div id="catgiffinish" style="display:none;">
                     <!-- correct -->
                     <div data-ng-if="food === '<%=x%>'">
-                        <img src="resources/img/pthank.gif" />
+                        <img src="resources/img/pusheenimg/pthank.gif" />
                         <br/>
                         <a class="btn btn-success btn-lg feed" href="quote.jsp">Claim Quote</a>
                         <a class="btn btn-primary btn-lg feed" href="video2.jsp">Back to Video page</a>
-                        <a class="btn btn-default btn-lg feed" href="profile.jsp">Back to profile</a>
+                        <a class="btn btn-default btn-lg feed" href="ascore.jsp">Check Accumulated Score</a>
                     </div>
                     
                     <!-- incorrect -->
                     <div data-ng-if="food !== '<%=x%>'">
-                        <p>Wrong food for pusheen</p>
+                        <img src="resources/img/pusheenimg/angry.gif" />
+                        <p>Wrong food for Pusheen</p>
+                        <a class="btn btn-primary btn-lg feed" href="video2.jsp">Back to Video page</a>
+                        <a class="btn btn-default btn-lg feed" href="ascore.jsp">Check Accumulated Score</a>
                     </div>
                 </div>
             </div> <!--close column 1.1-->

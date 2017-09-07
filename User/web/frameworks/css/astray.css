@@ -1,0 +1,54 @@
+/*Astray*/
+body.bonus4{
+    background: #000;
+    min-width: 100vw;
+    height: 100vh;
+}
+            
+#instructions{
+    background-color: rgba(0,0,0,0.75);
+    color: white;
+    text-align: center;
+    padding: 32px;
+    margin: 0px;
+    display: inline;
+    border: 2px solid #fff;
+}
+
+#help {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    padding: 1%;
+    color: #fff;             
+}
+
+#level {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    color: #FFFF00;   
+    font-weight: bold;
+}
+
+#abutton {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    font-weight: bold;
+    padding-bottom: 2%;
+    width: 30%;
+}
+
+#abutton a{
+    color: #fff;   
+    text-decoration: none;
+    margin-right:10%;
+}
+
+#abutton a:hover{
+    size: 28px;
+    color: #FFFF66;   
+    text-decoration: none;
+    margin-right:10%;
+}

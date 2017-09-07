@@ -122,7 +122,7 @@
               
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--3.2--> 
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Video</span></button></a>
-            <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Profile</span></button></a>
+            <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Check Accumulated Score</span></button></a>
         </div><!--close column 3.2-->
     </div> <!--close row 3-->
     </div> <!--close container-->
