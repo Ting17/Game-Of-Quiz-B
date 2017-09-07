@@ -36,7 +36,7 @@
                 <button id="hint" class="btn btn-lg btn-success hbutton" data-toggle="modal" data-target="#modal">Hint</button>
                 <button id="reset" class="btn btn-lg btn-danger hbutton2">Play again</button>
                 <a href="video2.jsp" class="btn btn-lg btn-primary hbutton">Back to Video page</a>
-                <a href="ascore.jsp" class="btn btn-lg btn-default hbutton2">Check Score</a>
+                <a href="ascore.jsp" class="btn btn-lg btn-default hbutton2">See Accumulated score</a>
 
                 <!-- Hint Modal -->
                 <div class="modal fade " id="modal" role="dialog"> 

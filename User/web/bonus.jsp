@@ -41,7 +41,7 @@
     
     <%
         Random rand = new Random();
-        int n = rand.nextInt(5)+1;
+        int n = rand.nextInt(3)+1;
     %>
     <center>
     <%
@@ -49,38 +49,16 @@
     %>
     <%@ include file="hangman.jsp"%>
     <% 
-        } if(n==2){
+        } else{if(n==2){
     %>
     <%@ include file="pusheen.jsp"%>
    
     <% 
-        } if(n==3){
+        } else{
     %>
-    <%@ include file="quote.jsp"%>
-    <% 
-        } if(n==4){
-    %>
-    <div class="astray"> 
-            <div class="game"><!--2.1-->
-                <h1>Ready for a maze game?</h1><br/>
-                <a class="btn btn-success btn-lg" href="astray.jsp">Ready!</a>
-                <a class="btn btn-primary btn-lg" href="video2.jsp">Back to Video page</a>
-            </div>
-    </div>
-    <% 
-        } if(n==5){
-    %>
-    <div class="tetris"> 
-        <img src="resources/img/tetris.png"/>
-        <div class="tetrisf game">
-            <h1>Ready for a tetris?</h1><br/>
-            <a class="btn btn-success btn-lg" href="tetris.jsp">Ready!</a>
-            <a class="btn btn-primary btn-lg" href="video2.jsp">Back to Video page</a>
-        </div>
-    </div>
-     
+    <%@ include file="ascore.jsp"%>
     <%  
-        }
+        }}
     %>
     </center>
 

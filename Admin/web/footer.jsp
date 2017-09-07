@@ -41,15 +41,12 @@
 <!-- Angular-route-->
 <script src="frameworks/js/angular-route.min.js"></script>   
 
-<!-- Configuration -->
-<script src="frameworks/js/gameOQ.js"></script>   
-
 <!-- sort table-->                  
 <script src="frameworks/js/sorttable.js"></script> 
 
 <!-- pagination caller; java--> 
 <script src="frameworks/js/paginationCaller.js"></script> 
-<script src="frameworks/js/paginationCaller1.js"></script> 
+
 
 </body>
 </html>

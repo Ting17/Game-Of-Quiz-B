@@ -1,5 +1,5 @@
 <%-- 
-    Document   : quote
+    Document   : starcollect
     Created on : July 31, 2017, 04:59:49 PM
     Author     : tingting17
 --%>

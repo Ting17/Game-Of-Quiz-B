@@ -29,9 +29,9 @@
 }
 
 #alphabet li:hover{
-    background: #8fea9e;
-    border: solid 1px #fff;
-    color: #fff;
+      background: #8fea9e;
+      border: solid 1px #fff;
+      color: #fff;
 }
 
 canvas{
@@ -191,7 +191,7 @@ body.bonus3{
     color: #FFFFCC;
     font-size: 100px;
     background: #2c2c2c;
-    display: table;
+    display:table;
     margin: -30% auto 0;
     padding: 15px;
 }
@@ -206,43 +206,3 @@ body.bonus3{
     width: 25%;
     font-size: 20px;
 }
-
-.astray{
-    background-image: url("../../resources/img/astrayimg/astraybg.png");
-    min-width: 100vw;
-    height: 100vh;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-}
-
-.tetris{
-    background-color: #000;
-    min-width: 100vw;
-    height: 100vh;
-    text-align: center;
-}
-
-.tetris img{
-    width: 50%;
-}
-
-.tetrisf{
-    margin-top: -25%;  
-}
-
-.game {
-    padding-top: 18%;
-    color: white;
-}
-
-.game a{
-    background-color: #989898;
-    margin: 1%;
-    color: #fff;
-    width: 25%;
-}
-
-
