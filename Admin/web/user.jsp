@@ -85,14 +85,14 @@
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.2.1-->
-                <h2>User List</h2>
+                <h2>User Profile List</h2>
                 <div class="table-responsive">
                     <table class="table table-stripped table-hover sortable" id="tablepaging">
                         <thead>
                             <tr>
                                 <th id="no" scope="col">No.</th>
                                 <th id="user" scope="col">User</th>
-                                <th id="res" scope="col">Result</th>
+                                <th id="res" scope="col">Score</th>
                                 <th id="del" scope="col" class="tdcenter">Delete</th>
                             </tr>
                         </thead>                      

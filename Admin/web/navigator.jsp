@@ -9,11 +9,11 @@
   
             <a href="video.jsp" class="tabselect">Videos <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="quiz.jsp" class="tabselect">Quizzes <span class="glyphicon glyphicon-menu-right"></span></a>
-            <a href="reward.jsp" class="tabselect">Rewards <span class="glyphicon glyphicon-menu-right"></span></a>
-            <a href="user.jsp" class="tabselect">Users <span class="glyphicon glyphicon-menu-right"></span></a>
-            <a href="feedback.jsp" class="tabselect">User Feedbacks <span class="glyphicon glyphicon-menu-right"></span></a>
+            <a href="reward.jsp" class="tabselect">Quote Rewards <span class="glyphicon glyphicon-menu-right"></span></a>
+            <a href="user.jsp" class="tabselect">Users Profile <span class="glyphicon glyphicon-menu-right"></span></a>
+            <a href="feedback.jsp" class="tabselect">Content Feedback <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="announ.jsp" class="tabselect">Announcements <span class="glyphicon glyphicon-menu-right"></span></a>
-            <a href="help.jsp" class="tabselect">Helps <span class="glyphicon glyphicon-menu-right"></span></a>
+            <a href="help.jsp" class="tabselect">Help <span class="glyphicon glyphicon-menu-right"></span></a>
         </div><!--end column 1.1 & close tab-->
         
         <div class="col-xs-10 col-md-10 col-lg-10"><!--1.2--> 
@@ -21,6 +21,9 @@
             <div class="row" id="top"><!--1.2.1-->
                 <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.1.1-->
                     <img src="resources/img/banner.jpg" alt="banner" />
+                    <div class="right version">
+                        <p>Ver 3.0</p>
+                    </div>
                     <nav class="navbar navbar-default">
                     <div class="container-fluid">
                     <div class="navbar-header">

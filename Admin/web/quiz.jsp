@@ -24,7 +24,8 @@
 <link href="frameworks/css/style.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="languages.min.css" rel="stylesheet" />
-
+<!-- Rich Text -->
+<script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -105,7 +106,7 @@
                             <th id="no" scope="col">No.</th>
                             <th id="quiz" scope="col">Quiz</th>
                             <th id="cato" scope="col">Category</th>
-                            <th id="vid" scope="col">Video</th>
+                            <th id="vid" scope="col">VideoID</th>
                             <th id="adddate" scope="col">Created on</th>
                             <th id="updatedate" scope="col">Last Updated</th>
                             <th id="luBY" scope="col">Last Updated by</th>
@@ -152,7 +153,7 @@
                     <hr class="hreffect"/>
                 <form id="addForm" action="addQuiz.jsp" method="POST">
                     <label>New Quiz:</label>
-                    <input type="text" name="txtQuiz" size="70"/> 
+                    <textarea name="txtQuiz" class="form-control"></textarea>
                     
                 <div class="form-group">  
                     <label>Category:</label>
@@ -180,6 +181,7 @@
                 <div class="form-group">  
                     <label>Quiz for video:</label>
                     <select name="txtVideo">
+                        <option value="0">none</option>
                 <%
                     while(res.next()) { 
                 %>                
@@ -198,6 +200,11 @@
                 </div><!--close collapse--> 
             </div><!--end column 1.2.4.1-->
         </div><!--end row 1.2.4 & end of content section-->
+      
+    <script>
+        CKEDITOR.replace('txtQuiz');
+    </script>    
+        
         
     <jsp:include page="footer.jsp"></jsp:include>
    

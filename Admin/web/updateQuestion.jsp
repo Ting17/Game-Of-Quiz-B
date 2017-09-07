@@ -23,7 +23,8 @@
 <link href="frameworks/css/style.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="languages.min.css" rel="stylesheet" />
-    
+<!-- Rich Text -->
+<script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>    
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -193,8 +194,7 @@
                 <form id="updForm" action="" method="POST">
                     <h4 for="que">Question</h4>
                     <input type="hidden" id="que" name="hiddenId" id="hiddenId" value="<%=result.getInt("questionID")%>"/>
-                    <textarea type="text" name="txtquestion" class="form-control" cols="70"><%=result.getString("question") %></textarea>
-                    
+                    <textarea name="txtquestion" class="form-control"><%=result.getString("question") %></textarea>
                 <!-- Format for multiple choice-->
                 <%
                     if(result.getString("type").equals("M")){
@@ -262,4 +262,8 @@
             </div><!--end column 1.2.4.2-->
         </div><!--end row 1.2.4 & end of content section-->
     
-        <jsp:include page="footer.jsp"></jsp:include>
+    <script>
+        CKEDITOR.replace('txtquestion');
+    </script>
+    
+<jsp:include page="footer.jsp"></jsp:include>

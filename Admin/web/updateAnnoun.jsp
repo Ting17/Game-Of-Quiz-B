@@ -1,6 +1,6 @@
 <%-- 
-    Document   : updateReward
-    Created on : Jul 7, 2017, 1:54:55 PM
+    Document   : updateAnnoun
+    Created on : Aug 28, 2017, 1:54:55 PM
     Author     : tingting17
 --%>
 
@@ -41,7 +41,7 @@
             PreparedStatement pstmt, pstmt2;
             Statement stmt;
             ResultSet result, rs;
-            Integer rewardID;
+            Integer announID;
             String username, password;
         %>
         
@@ -53,14 +53,15 @@
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
             if(request.getParameter("btnUpd")!=null){
-                rewardID = Integer.parseInt(request.getParameter("hiddenId"));
+                announID = Integer.parseInt(request.getParameter("hiddenId"));
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("UPDATE reward SET reward = ?, udate = NOW() WHERE rewardID = ?");
-                    pstmt.setString(1, request.getParameter("txtReward"));
-                    pstmt.setInt(2, rewardID);
+                    pstmt = conn.prepareStatement("UPDATE announcement SET announcement = ?, content = ?, udate = NOW() WHERE announID = ?");
+                    pstmt.setString(1, request.getParameter("txtAnnoun"));
+                    pstmt.setString(2, request.getParameter("txtContent"));
+                    pstmt.setInt(3, announID);
                     pstmt.executeUpdate();
-                    response.sendRedirect("./reward.jsp");
+                    response.sendRedirect("./announ.jsp");
                 
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
@@ -70,11 +71,10 @@
             }
             
             if(request.getParameter("id") != null && request.getParameter("id")!= ""){  
-                rewardID = Integer.parseInt(request.getParameter("id"));
+                announID = Integer.parseInt(request.getParameter("id"));
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("SELECT * FROM reward WHERE rewardID = ?");
-                    pstmt.setInt(1,rewardID);
+                    pstmt = conn.prepareStatement("SELECT * FROM announcement WHERE announID = '" + announID +"'");
                     result = pstmt.executeQuery();
                     result.first();
 
@@ -108,10 +108,14 @@
         
         <!--content section-->
         <div class="row"><!--1.2.2--> 
-            <h4>Update Reward</h4><br/>
-            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.2.1-->  
-                <p>Current Reward:</p>
-                <b><%=result.getString("reward")%></b>
+            <h4>Update Announcement</h4><br/>
+            <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.2.1--> 
+                <p>Current Announcement Title:</p>
+                <b><%=result.getString("announcement")%></b>
+            </div>
+            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->  
+                <p>Current Announcement Content:</p>
+                <b><%=result.getString("content")%></b>
             </div>
             <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.2.2-->
                 <p>Created on:</p> 
@@ -127,16 +131,18 @@
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1--> 
                 <hr/>
                 <form id="updForm" action="" method="POST">
-                    <input type="hidden" name="hiddenId" id="hiddenId" value="<%=rewardID%>"/>
-                    <label>Update reward:</label>
-                    <textarea name="txtReward"><%=result.getString("reward")%></textarea>
+                    <input type="hidden" name="hiddenId" id="hiddenId" value="<%=announID%>"/>
+                    <label>Update Announcement Title:</label>
+                    <input type="text" name="txtAnnoun" id="txtAnnoun" size="70" value="<%=result.getString("announcement")%>"/> <br/><br/>
+                    <label>Update Announcement Content:</label>
+                    <textarea name="txtContent"><%=result.getString("content")%></textarea>
                     <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Reward</button>
                 </form>     
             </div><!--end column 1.2.3.1-->
         </div><!--end row 1.2.3 & end of content section-->                        
 
     <script>
-        CKEDITOR.replace('txtReward');
+        CKEDITOR.replace('txtContent');
     </script>  
     
 <jsp:include page="footer.jsp"></jsp:include>

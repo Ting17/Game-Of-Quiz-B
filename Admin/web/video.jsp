@@ -37,8 +37,10 @@
     <%!
         Connection conn;
         Statement stmt, st;
-        ResultSet result,rs;
+        ResultSet result,rs, resultq,resultq2;
         String username,password;
+        Integer quizID, videoID, quizID2,videoID2;
+        Boolean check;
     %>
 
     <%-- READ function for videos--%>
@@ -50,8 +52,14 @@
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             st=conn.createStatement();
-            result = st.executeQuery("SELECT * FROM video");
+            resultq = st.executeQuery("SELECT * FROM quiz");
             
+            st=conn.createStatement();
+            resultq2 = st.executeQuery("SELECT * FROM quiz");
+            
+            st=conn.createStatement();
+            result = st.executeQuery("SELECT * FROM video");          
+                      
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");
         
@@ -95,8 +103,24 @@
                 <div id="divBio">
                 <h3>Biology</h3>
         <%
-            while(result.next() && (result.getString("category").equalsIgnoreCase("biology"))) {          
+            while(result.next() && (result.getString("category").equalsIgnoreCase("biology"))) {
+                check=false;          
         %>
+            <%
+                    while(resultq2.next()) {
+                        videoID2 = resultq2.getInt("videoID");
+                        quizID2 = resultq2.getInt("quizID");
+            %>    
+            <%
+                if(Integer.parseInt(result.getString("videoID")) == videoID2) {
+            %>
+            <%
+                check=true;    
+                break;}
+                %>
+            <%
+                }
+            %>
                 <div class="videowrap">       
                     <div class="row"><!--1.2.4.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.4.1.1.1-->
@@ -109,15 +133,25 @@
                             
                     <h4><%=result.getString("videoName") %></h4>
                             <p><%=result.getString("videoDesc") %></p>
-                        </div>            
-
-                            <!-- this ned discuss-->
-                            <!--3.2.1.3
-                            <div class="col-xs-2 col-md-2 col-lg-2 quizbtn"> 
-                                <a href="topic.jsp"><button class="btn-lg btncreate">Create quiz</button></a>
-                            </div>-->
+                        </div>    
+                        <div class="col-xs-2 col-md-2 col-lg-2 quizbtn1"> 
+                                <a href="quiz.jsp"><button class="btn-lg btncreate2"><span>Create quiz</span></button></a>
+                        </div>
+                    <% 
+                        if (videoID2 == Integer.parseInt(result.getString("videoID")) && check==true) {
+                    %>                                   
+                            <div class="col-xs-2 col-md-2 col-lg-2 quizbtn2"> 
+                                    <a href="updateQuiz.jsp?quiz=<%=quizID2%>&video=<%=result.getString("videoID")%>"><button class="btn-lg btncreate2">Edit quiz</button></a>
+                            </div>                      
+                            <div class="col-xs-2 col-md-2 col-lg-2 quizbtn3"> 
+                                    <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg btncreate2">Take quiz</button></a>
+                            </div>
+                    <%
+                        }
+                    %>         
                     </div>
                 </div>
+                    
         <%
             }
         %>
@@ -127,7 +161,24 @@
                   <h3>English</h3>
         <%
             while(result.next() && (result.getString("category").equalsIgnoreCase("english"))) {
+                check=false;
+            
         %>
+            <%
+                    while(resultq.next()) {
+                        videoID = resultq.getInt("videoID");
+                        quizID = resultq.getInt("quizID");
+            %>    
+            <%
+                if(Integer.parseInt(result.getString("videoID")) == videoID) {
+            %>
+            <%
+                check=true;    
+                break;}
+                %>
+            <%
+                }
+            %>
                 <div class="videowrap">
                     <h4><%=result.getString("videoName") %></h4> 
                     <div class="row"><!--1.2.4.1.1-->
@@ -140,14 +191,25 @@
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1.1.2-->
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
-
-                        <!-- this ned discuss-->
-                        <!--3.2.1.3
-                        <div class="col-xs-2 col-md-2 col-lg-2 quizbtn"> 
-                            <a href="topic.jsp"><button class="btn-lg btncreate">Create quiz</button></a>
-                        </div>-->
+                        
+                        <div class="col-xs-2 col-md-2 col-lg-2 quizbtn11"> 
+                                <a href="quiz.jsp"><button class="btn-lg btncreate2"><span>Create quiz</span></button></a>
+                        </div>
+                <% 
+                    if (videoID == Integer.parseInt(result.getString("videoID"))&&check==true) {
+                %>
+                        <div class="col-xs-2 col-md-2 col-lg-2 quizbtn22"> 
+                                <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=result.getString("videoID")%>"><button class="btn-lg btncreate2">Edit quiz</button></a>
+                        </div>                      
+                        <div class="col-xs-2 col-md-2 col-lg-2 quizbtn33"> 
+                                <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg btncreate2">Take quiz</button></a>
+                        </div>
+                <%
+                    }
+                %>         
                     </div>
                 </div>
+                        
         <%
             }
         %>

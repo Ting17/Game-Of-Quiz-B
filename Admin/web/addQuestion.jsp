@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>     
+
 <!-- Description: Game of Quiz -->
 <!-- Author: Ting Lee Ting -->
 <!-- Last update: 2017-->
@@ -19,12 +20,14 @@
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/frameworks/css/bootstrap.min.css" rel="stylesheet" media="screen">
-
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="languages.min.css" rel="stylesheet" />
+<!-- Rich Text -->
+<script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -127,14 +130,10 @@
                 <form id="addForm" action="" method="POST">
                     <!--quiz question add here-->
                     <div class="questioncontainer">
-                        <div class="row"><!--1.2.3.1.1--> 
-                        <div class="col-xs-4 col-md-4 col-lg-4 question"><!--1.2.3.1.1.1--> 
-                            <b>Question:</b>  
-                        </div>
-                        <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.1.2--> 
-                            <textarea name="txtquestion" class="form-control" placeholder="question"></textarea>
-                        </div>
-                        </div><!--end row 1.2.3.1.1-->
+                        <b>Question:</b>  
+                        
+                        <textarea name="txtquestion" class="form-control" placeholder="question"></textarea>
+                        
                     </div>
 
                 <div class="container2">
@@ -216,7 +215,7 @@
                                     <p><b>Explanation:</b></p>  
                                 </div>
                                 <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.3.2--> 
-                                    <p><textarea name="txtexplain" class="form-control"></textarea></p>
+                                    <textarea name="txtexplain" class="form-control"></textarea>
                                 </div>
                             </div><!--end row 1.2.3.1.2.1.3 & end of explanation-->
                             <br/>
@@ -227,9 +226,13 @@
                 </div> <!--close container 2--> 
                 </form>
             </div><!--end column 1.2.3.1-->   
+
         </div><!--end row 1.2.3 & end of content section-->
 
+        
 <script>
+    CKEDITOR.replace('txtquestion');
+   
     var currentDiv = document.getElementById("divM");
     function show(divID) {
         var div = document.getElementById(divID);

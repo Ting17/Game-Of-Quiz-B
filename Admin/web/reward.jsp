@@ -15,7 +15,7 @@
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Reward List</title>
+<title>Quote Reward List</title>
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
@@ -23,7 +23,8 @@
 <link href="frameworks/css/style.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="languages.min.css" rel="stylesheet" />
-
+<!-- Rich Text -->
+<script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,10 +86,10 @@
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->
-                <h2>Reward List</h2>
+                <h2>Quotes List</h2>
             </div>
             <div class="col-xs-6 col-md-6 col-lg-6 right"><!--1.2.2.2-->
-                <a class="glyphicon glyphicon-plus-sign" href="#addreward" data-toggle="collapse" data-target="#addreward"> New Reward</a>
+                <a class="glyphicon glyphicon-plus-sign" href="#addreward" data-toggle="collapse" data-target="#addreward"> New Quote</a>
             </div>
         </div><!--end row 1.2.2-->
         
@@ -99,7 +100,7 @@
                     <thead>
                         <tr>
                             <th id="no" scope="col">No.</th>
-                            <th id="quiz" scope="col">Reward</th>
+                            <th id="quiz" scope="col">Quote</th>
                             <th id="adddate" scope="col">Created on</th>
                             <th id="updatedate" scope="col">Last Update</th>
                             <th id="luBY" scope="col">Last Update by</th>
@@ -143,7 +144,7 @@
                     <hr class="hreffect"/>
                 <form id="addForm" action="addReward.jsp" method="POST">
                     <label>New Reward:</label>
-                    <input type="text" name="txtReward" id="txtReward" size="70"/> 
+                    <textarea name="txtReward"></textarea>
                     
                     <div class="right">
                         <button class="btn btn-primary" type="submit" name="btnAdd" id="btnAdd">Add Reward</button>
@@ -154,5 +155,9 @@
                 </div><!--close collapse--> 
             </div><!--end column 1.2.4.1-->
         </div><!--end row 1.2.4 & end of content section-->
+        
+    <script>
+        CKEDITOR.replace('txtReward');
+    </script>  
             
     <jsp:include page="footer.jsp"></jsp:include>

@@ -16,7 +16,7 @@
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Help/FAQ Page</title>
+<title>Help Page</title>
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
@@ -82,39 +82,52 @@
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.2.1-->
-                <h2>Help Center/FAQ</h2>
-                <i>Well no one has asked us them yet.... but just in case</i>
+                <h2>Admin Guide</h2>
                 <hr/>
             </div><!--end column 1.2.2.1-->
         </div><!--end row 1.2.2 & end of content section-->
         
         <div class="row"><!--1.2.3-->
             <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1-->
-                <a data-toggle="collapse" data-target="#1"><h4>FAQ 1: Layout display change after leave it for a period of time without using</h4></a>
+                <a data-toggle="collapse" data-target="#1" ><h4>FAQ 1: How to create quiz?</h4></a>
+                <div id="1" class="collapse">
+                    <hr/>
+                    <p>=.= </p>
+                    <hr class="hreffect"/>
+                </div><!--close collapse--> 
+                
+                <a data-toggle="collapse" data-target="#1"><h4>FAQ 2: Layout display change after leave it for a period of time without using</h4></a>
                 <div id="1" class="collapse">
                     <hr/>
                     <p>Logout and login again.</p>
                     <hr class="hreffect"/>
                 </div><!--close collapse--> 
                
-                <a data-toggle="collapse" data-target="#2"><h4>FAQ 2: Upload, Edit, Delete Video</h4></a>
+                <a data-toggle="collapse" data-target="#2"><h4>FAQ 3: Upload, Edit, Delete Video</h4></a>
                 <div id="2" class="collapse"> 
                     <hr/>
                     <p>Login to <b>ATHENA</b></p>
                     <hr class="hreffect"/>
                 </div><!--close collapse--> 
                 
-                <a data-toggle="collapse" data-target="#3"><h4>FAQ 3: Check feedback post by user</h4></a>
+                <a data-toggle="collapse" data-target="#3"><h4>FAQ 4: Check feedback post by user</h4></a>
                 <div id="3" class="collapse"> 
                     <hr/>
                     <p>Contact database person in charge.</p>
                     <hr class="hreffect"/>
                 </div><!--close collapse--> 
                 
-                <a data-toggle="collapse" data-target="#4"><h4>FAQ 4: Change the pagination number view per page</h4></a>
+                <a data-toggle="collapse" data-target="#4"><h4>FAQ 5: Change the pagination number view per page</h4></a>
                 <div id="4" class="collapse"> 
                     <hr/>
                     <p>Contact developer team and provide a reason.</p>
+                    <hr class="hreffect"/>
+                </div><!--close collapse--> 
+                
+                <a data-toggle="collapse" data-target="#4"><h4>FAQ 6: VideoID 0 = Phantom video?</h4></a>
+                <div id="4" class="collapse"> 
+                    <hr/>
+                    <p>If videoID = 0 means the it is a quiz without video.</p>
                     <hr class="hreffect"/>
                 </div><!--close collapse--> 
             </div><!--end column 1.2.3.1-->

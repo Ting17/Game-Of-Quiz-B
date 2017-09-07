@@ -24,7 +24,8 @@
 <link href="frameworks/css/style.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="languages.min.css" rel="stylesheet" />
-
+<!-- Rich Text -->
+<script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -119,7 +120,7 @@
                             <td headers="admin"><%=result.getString("admin") %></td>
                             <th headers="cdate"><%=result.getString("cdate") %></th>
                             <th headers="udate"><%=result.getString("udate") %></th>
-                            <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateAnnoun.jsp"></a></td>
+                            <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateAnnoun.jsp?id=<%=result.getInt("announID")%>"></a></td>
                             <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteAnnoun.jsp?id=<%=result.getInt("announID")%>" onclick="return confirm('Once confirm, announcement selected will be removed. Confirm to delete?')"></a></td>
                         </tr>
         <%
@@ -143,10 +144,10 @@
                     <h3>New Announcement</h3>
                     <hr class="hreffect"/>
                 <form id="addForm" action="addAnnoun.jsp" method="POST">
-                    <label>New Announcement</label>
+                    <label>New Announcement: </label>
                     <input type="text" name="txtAnnoun" id="txtAnnoun" size="70"/> <br/><br/>
-                    <label>Content</label>
-                    <textarea name="txtContent" placeholder="Add content here...." rows="4" cols="70"></textarea><br/>
+                    <label>Content: </label>
+                    <textarea name="txtContent" placeholder="Add content here...."></textarea><br/>
                     
                     <div class="right">
                         <button class="btn btn-primary " type="submit" name="btnAdd">Add Announcement</button>
@@ -158,6 +159,8 @@
             </div><!--end column 1.2.4.1-->
         </div><!--end row 1.2.4 & end of content section-->
         
-        
+    <script>
+        CKEDITOR.replace('txtContent');
+    </script>  
         
     <jsp:include page="footer.jsp"></jsp:include>

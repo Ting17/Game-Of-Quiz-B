@@ -23,6 +23,12 @@ hr {
     text-align: right;
 }
 
+.version{
+    margin-top: -3%;
+    color: #fff;
+    margin-right: 1%;
+}
+
 .tdcenter{
     text-align: center;
 }
@@ -170,10 +176,12 @@ table.sortable thead {
     background-color: #3d5998;
     border: solid #3d5998;
     color: #fff;
+    padding: 2%;
 }
 
 /*wrap up answer container and buttons*/
 .container2{
+    padding: 2%;
     text-align: center;
     align-content: center;
     margin: 0% auto;
@@ -257,6 +265,7 @@ table.sortable thead {
     border-width: 0;
     background-color: rgba(53, 134, 227, 0.3);
     color: #000000;
+    font-size: 16px;
 }
 
 
@@ -270,3 +279,53 @@ table.sortable thead {
     padding-left: 7%;
 }
 
+
+.quizbtn1 {
+    text-align: right;
+    margin-top: 2%;
+}
+
+.quizbtn2 {
+    margin-top: 2%;
+    text-align: right;
+}
+
+.quizbtn3 {
+    margin-top: 2%;
+    text-align: right;
+    float: right;
+}
+
+.quizbtn11 {
+    text-align: right;
+}
+
+.quizbtn22 {
+    margin-top: 1%;
+    text-align: right;
+}
+
+.quizbtn33 {
+    margin-top: 1%;
+    text-align: right;
+    float: right;
+}
+
+.btncreate2{
+    border-width: 0;
+    background-color: rgba(53, 134, 227, 0.3);
+    color: #000000;
+    font-size: 16px;
+    width: 100%;
+}
+
+.videoquestion{
+   padding-left: 0px;
+   padding-right: 0px; 
+}
+
+.questiont thead th, .lol{
+   background-color: #000080;
+   font-size: 14px;
+   color: white;
+}

@@ -86,7 +86,7 @@
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.2.1-->
-                <h2>Feedback List</h2>
+                <h2>User Feedback List</h2>
                 <div class="table-responsive">
                     <table class="table table-stripped table-hover sortable" id="tablepaging">
                         <thead>
@@ -110,7 +110,8 @@
                                 <td headers="user"><%=result.getString("username") %></td>
                                 <td headers="fb"><%=result.getString("feedback") %></td>
                                 <td headers="rdate"><%=result.getString("rdate") %></td>
-                                <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash"></a></td>                          
+                                <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteFeedback.jsp?id=<%=result.getInt("feedbackID")%>" onclick="return confirm('Once confirm, this feedback will be removed. Confirm to delete?')"></a></td>
+
                             </tr>     
                     <%
                             quizNo++;
