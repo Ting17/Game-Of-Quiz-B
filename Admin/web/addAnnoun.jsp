@@ -18,7 +18,7 @@
             ResultSet rs;
         %>
         
-        <%-- CREATE function for adding announcement--%>
+        <%-- CREATE function for new announcement--%>
         <%
             username = (String)session.getAttribute("uname");
             

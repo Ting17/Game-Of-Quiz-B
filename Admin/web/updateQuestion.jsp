@@ -12,7 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <title>Update Question</title>
@@ -44,7 +44,7 @@
             
         %>
         
-        <%-- READ function--%>
+        <%-- READ & UPDATE function--%>
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
@@ -79,16 +79,14 @@
             if(request.getParameter("btnUpd")!=null){
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("UPDATE question SET question = ?, hints= ?, input1= ?, input2= ?, input3= ?, input4= ?, checked= ?, explanation= ? , udate= NOW() WHERE questionID = ?");
+                    pstmt = conn.prepareStatement("UPDATE question SET question = ?, input1= ?, input2= ?, input3= ?, input4= ?, checked= ?, udate= NOW() WHERE questionID = ? and quizID='" + quizID + "'and videoID='" + videoID + "'");
                     pstmt.setString(1,request.getParameter("txtquestion"));
-                    pstmt.setString(2,request.getParameter("txthints"));
-                    pstmt.setString(3,request.getParameter("txtinput1"));
-                    pstmt.setString(4,request.getParameter("txtinput2"));
-                    pstmt.setString(5,request.getParameter("txtinput3"));
-                    pstmt.setString(6,request.getParameter("txtinput4")); 
-                    pstmt.setString(7,request.getParameter("txtchecked"));
-                    pstmt.setString(8,request.getParameter("txtexplain"));
-                    pstmt.setInt(9, questionno);
+                    pstmt.setString(2,request.getParameter("txtinput1"));
+                    pstmt.setString(3,request.getParameter("txtinput2"));
+                    pstmt.setString(4,request.getParameter("txtinput3"));
+                    pstmt.setString(5,request.getParameter("txtinput4")); 
+                    pstmt.setString(6,request.getParameter("txtchecked"));
+                    pstmt.setInt(7, questionno);
                     pstmt.executeUpdate();
                     response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);
                     return;
@@ -178,13 +176,9 @@
                 }
             %> 
 
-                <!-- Show hint-->
-                <p><span class="hinticon glyphicon glyphicon-search"></span><b>Hint:</b> <%=result.getString("hints") %></p>
-
                 <!-- Show answer -->
                 <div class="checkshowanswer">
                     <p><b>Answer: </b> <%=result.getString("checked")%><br/></p>
-                    <p><b>Explanation in detail:</b> <%=result.getString("explanation")%></p>
                 </div>
                 </div><!--close container2-->         
             </div><!--end column 1.2.4.1-->
@@ -240,16 +234,10 @@
                     <input type="hidden" class="form-control" name="txtinput4" value="<%=result.getString("input4") %>"/>               
                 <%
                     }
-                %>                
-                    <h4>Hints</h4>
-                    <input type="text" name="txthints" class="form-control" value="<%=result.getString("hints") %>"/>
-
+                %>  
                     <h4>Answer</h4>
                     <input type="text" name="txtchecked" class="form-control" value="<%=result.getString("checked") %>"/>
-                        
-                    <h4>Explanation</h4></li>
-                    <input type="text" name="txtexplain" class="form-control" value="<%=result.getString("explanation") %>"/>
-
+                    
                     <div class="form-group">
                         <br/>
                         <button class="btn btn-primary" type="submit" name="btnUpd" id="btnUpd">Update Question</button>
@@ -257,7 +245,6 @@
                         <button class="btn btn-primary" type="reset">Reset</button>
                     </div>        
                 
-              <!-- maybe add reset?-->
                 </form>        
             </div><!--end column 1.2.4.2-->
         </div><!--end row 1.2.4 & end of content section-->

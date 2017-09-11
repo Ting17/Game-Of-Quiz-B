@@ -12,7 +12,7 @@
 <head>     
 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -91,7 +91,7 @@
             }
         %>
         
-            <div class="container">
+    <div class="container">
         <%  
             if (rs.next()) {
         %>

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : question
+    Document   : video
     Created on : Apr 29, 2017, 11:59:49 PM
     Author     : tingting17
 --%>
@@ -12,7 +12,7 @@
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,8 +22,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -90,16 +88,16 @@
     <jsp:include page="navigator.jsp"></jsp:include> 
 
         <!--Content section-->
-        <div class="row"><!--1.2.3-->
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
+        <div class="row"><!--1.2.2-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.2.1-->
                 <b>Video Topic:</b> 
                 <a onclick="show('divBio')">Biology |</a>
                 <a onclick="show('divEng')">English |</a>
-            </div><!--end column 1.2.3.1-->
-        </div><!--end row 1.2.3--> 
+            </div><!--end column 1.2.2.1-->
+        </div><!--end row 1.2.2--> 
 
-        <div class="row"><!--1.2.4-->
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.4.1-->
+        <div class="row"><!--1.2.3-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
                 <div id="divBio">
                 <h3>Biology</h3>
         <%
@@ -119,34 +117,33 @@
                 }
             %>
                 <div class="videowrap">       
-                    <div class="row"><!--1.2.4.1.1-->
-                        <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.4.1.1.1-->
+                    <div class="row"><!--1.2.3.1.1-->
+                        <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
                             <video width="100%" controls>
                                 <source src="<%=result.getString("videoPath")%>" type="video/mp4">
                             </video>
                         </div>
 
-                        <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1.1.2-->
-                            
-                    <h4><%=result.getString("videoName") %></h4>
+                        <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
+                            <h4><%=result.getString("videoName") %></h4>
                             <p><%=result.getString("videoDesc") %></p>
                         </div>    
-                        <div class="col-xs-2 col-md-2 col-lg-2 quizbtn1"> 
-                                <a href="quiz.jsp"><button class="btn-lg btncreate2"><span>Create quiz</span></button></a>
+                        <div class="col-xs-2 col-md-2 col-lg-2"> <!--1.2.3.1.1.3-->
+                                <a href="quiz.jsp"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
                         </div>
                     <% 
                         if (videoID2 == Integer.parseInt(result.getString("videoID")) && check==true) {
                     %>                                   
-                            <div class="col-xs-2 col-md-2 col-lg-2 quizbtn2"> 
-                                    <a href="updateQuiz.jsp?quiz=<%=quizID2%>&video=<%=result.getString("videoID")%>"><button class="btn-lg btncreate2">Edit quiz</button></a>
+                            <div class="col-xs-2 col-md-2 col-lg-2"> 
+                                    <a href="updateQuiz.jsp?quiz=<%=quizID2%>&video=<%=result.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
                             </div>                      
-                            <div class="col-xs-2 col-md-2 col-lg-2 quizbtn3"> 
-                                    <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg btncreate2">Take quiz</button></a>
+                            <div class="col-xs-2 col-md-2 col-lg-2"> 
+                                    <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
                             </div>
                     <%
                         }
                     %>         
-                    </div>
+                    </div> <!-- end of row 1.2.3.1.1-->
                 </div>
                     
         <%
@@ -159,23 +156,17 @@
         <%
             while(result.next() && (result.getString("category").equalsIgnoreCase("english"))) {
                 check=false;
-            
-        %>
-            <%
-                    while(resultq.next()) {
-                        videoID = resultq.getInt("videoID");
-                        quizID = resultq.getInt("quizID");
-            %>    
-            <%
-                if(Integer.parseInt(result.getString("videoID")) == videoID) {
-            %>
-            <%
-                check=true;    
-                break;}
-                %>
-            <%
+  
+                while(resultq.next()) {
+                    videoID = resultq.getInt("videoID");
+                    quizID = resultq.getInt("quizID");
+          
+                    if(Integer.parseInt(result.getString("videoID")) == videoID) {
+                        check=true;    
+                        break;
+                    }
                 }
-            %>
+        %>
                 <div class="videowrap">
                     <div class="row"><!--1.2.4.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.4.1.1.1-->
@@ -189,7 +180,7 @@
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
                         
-                        <div class="col-xs-2 col-md-2 col-lg-2"> 
+                        <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
                             <a href="quiz.jsp"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
                 <% 
                     if (videoID == Integer.parseInt(result.getString("videoID"))&&check==true) {
@@ -200,7 +191,7 @@
                     }
                 %> 
                         </div>
-                    </div>
+                    </div><!--end of row 1.2.4.1.1-->
                 </div>      
         <%
             }
@@ -226,7 +217,7 @@
 </script>
 
     
-<!-- footer -->
+    <!-- footer -->
     <jsp:include page="footer.jsp"></jsp:include>
 
 

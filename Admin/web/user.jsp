@@ -12,7 +12,7 @@
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -92,7 +92,7 @@
                             <tr>
                                 <th id="no" scope="col">No.</th>
                                 <th id="user" scope="col">User</th>
-                                <th id="res" scope="col">Score</th>
+                                <th id="res" scope="col">Accumulated Score</th>
                                 <th id="del" scope="col" class="tdcenter">Delete</th>
                             </tr>
                         </thead>                      
@@ -120,4 +120,7 @@
             </div><!--end column 1.2.2.1-->
         </div><!--end row 1.2.2 & end of content section-->
         
+    <!-- pagination caller; java--> 
+    <script src="frameworks/js/paginationCaller.js"></script> 
+
     <jsp:include page="footer.jsp"></jsp:include>

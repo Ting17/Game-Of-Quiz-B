@@ -94,14 +94,14 @@
         <%
             while(res.next() ) {
         %>
-    <div class="row wrap"><!--2--> 
-        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion contentborder"><!--2.1--> 
+    <div class="row wrap"><!--1.2.1--> 
+        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion contentborder"><!--1.2.1.1--> 
             <video class="videoque" controls>
                 <source src="<%=res.getString("videoPath")%>" type="video/mp4">
             </video>
         </div>
         
-        <div class="col-xs-12 col-md-4 col-lg-4 videoquestion" ><!--2.2--> 
+        <div class="col-xs-12 col-md-4 col-lg-4 videoquestion" ><!--1.2.1.2--> 
             <%@ include file="videoquestion.jsp"%>
         </div> 
     </div> <!--close row 2-->
@@ -112,6 +112,8 @@
 
 
  
+    <!-- pagination caller; java--> 
+    <script src="frameworks/js/paginationCaller1.js"></script> 
     
-<!-- footer -->
+    <!-- footer -->
     <jsp:include page="footer.jsp"></jsp:include>

@@ -17,6 +17,7 @@
             Integer userID;
         %>
         
+        <!--delete function remove end user-->
         <%
             if(request.getParameter("id") != null && request.getParameter("id")!= ""){
                 userID = Integer.parseInt(request.getParameter("id"));

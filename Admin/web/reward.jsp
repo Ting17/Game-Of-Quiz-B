@@ -11,7 +11,7 @@
 <html>
 <head>
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,8 +21,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
 <!-- Rich Text -->
 <script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
@@ -159,5 +157,8 @@
     <script>
         CKEDITOR.replace('txtReward');
     </script>  
-            
+    
+    <!-- pagination caller; java--> 
+    <script src="frameworks/js/paginationCaller.js"></script> 
+       
     <jsp:include page="footer.jsp"></jsp:include>

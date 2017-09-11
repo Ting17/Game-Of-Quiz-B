@@ -17,7 +17,7 @@
             String username;
         %>
         
-        <%-- CREATE function--%>
+        <%-- CREATE function for reward--%>
         <%
             username = (String)session.getAttribute("uname");
             

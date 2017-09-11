@@ -1,5 +1,5 @@
 <%-- 
-    Document   : deleteAnnoun.jsp
+    Document   : deleteAnnoun
     Created on : Jul 13, 2017, 4:07:50 PM
     Author     : tingting17
 --%>
@@ -16,6 +16,7 @@
             PreparedStatement pstmt;
             Integer announID;
         %>
+        <!--delete function remove announcement-->
         <%
             if(request.getParameter("id") != null && request.getParameter("id")!= ""){
                 announID = Integer.parseInt(request.getParameter("id"));

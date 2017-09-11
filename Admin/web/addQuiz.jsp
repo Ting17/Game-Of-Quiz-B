@@ -1,5 +1,5 @@
 <%-- 
-    Document   : addTopic
+    Document   : addQuiz
     Created on : Apr 24, 2017, 11:12:32 PM
     Author     : tingting17
 --%>
@@ -16,7 +16,7 @@
             String username;
         %>
         
-        <%-- CREATE function--%>
+        <%-- CREATE function for new quiz--%>
         <%
             username = (String)session.getAttribute("uname");
             

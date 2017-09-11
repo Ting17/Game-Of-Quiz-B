@@ -15,6 +15,7 @@
             PreparedStatement pstmt;
             Integer rewardID;
         %>
+        <!--delete function remove quote reward-->
         <%
             if(request.getParameter("id") != null && request.getParameter("id")!= ""){
                 rewardID = Integer.parseInt(request.getParameter("id"));

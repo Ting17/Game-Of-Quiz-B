@@ -15,7 +15,7 @@
             Connection conn;
             PreparedStatement pstmt;
         %>
-                <%-- CREATE function--%>
+        <%-- CREATE function for new admin--%>
         <%
             if(request.getParameter("signup") != null){
                 try{

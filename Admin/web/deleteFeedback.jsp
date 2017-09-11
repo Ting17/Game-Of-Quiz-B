@@ -16,7 +16,7 @@
             PreparedStatement pstmt;
             Integer feedbackID;
         %>
-        
+        <!--delete function remove feedback-->
         <%
             if(request.getParameter("id") != null && request.getParameter("id")!= ""){
                 feedbackID = Integer.parseInt(request.getParameter("id"));

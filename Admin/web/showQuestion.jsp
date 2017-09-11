@@ -12,7 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <title>Preview Question</title>
@@ -21,8 +21,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />   
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
     
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +51,7 @@
                  
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("SELECT * FROM question WHERE questionID = ?");
+                    pstmt = conn.prepareStatement("SELECT * FROM question WHERE questionID = ? and quizID='" + quizID + "'");
                     pstmt.setInt(1,questionNo);
                     result = pstmt.executeQuery();
                     result.first();
@@ -144,13 +142,10 @@
         <%
             }
         %> 
-                <!-- Show hint-->
-                <p><span class="hinticon glyphicon glyphicon-search"></span><b>Hint:</b> <%=result.getString("hints") %></p>     
-
+                
             <!-- Show answer -->
             <div class="checkshowanswer">
                 <p><b>Answer: </b> <%=result.getString("checked")%><br/></p>
-                <p><b>Explanation in detail:</b> <%=result.getString("explanation")%></p>
             </div>
             </div><!--close container2-->
             </div><!--end column 1.2.4.1-->
@@ -192,9 +187,7 @@
         <%
             }
         %>
-                <p><b>Hint:</b> <%=result.getString("hints") %></p>     
                 <p><b>Answer: </b> <%=result.getString("checked")%><br/></p>
-                <p><b>Explanation in detail:</b> <%=result.getString("explanation")%></p>
                 <hr/>
                 <center>
                 <div class="form-group">

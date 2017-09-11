@@ -15,6 +15,7 @@
             PreparedStatement pstmt;
             Integer questionID, quizID, videoID;
         %>
+        <!--delete function remove question-->
         <%
             if(request.getParameter("question") != null && request.getParameter("question")!= ""){
                 questionID = Integer.parseInt(request.getParameter("question"));
@@ -24,7 +25,7 @@
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-                    pstmt = conn.prepareStatement("DELETE FROM question WHERE questionID = '" +questionID+ "'");
+                    pstmt = conn.prepareStatement("DELETE FROM question WHERE questionID = '" +questionID+ "'and quizID='" + quizID + "'and videoID='" + videoID + "'");
                     pstmt.executeUpdate();
                     response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);
                 

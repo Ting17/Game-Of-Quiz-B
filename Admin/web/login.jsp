@@ -12,7 +12,7 @@
 <head>
 <meta charset="UTF-8">       
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui-->
 <!-- Last update: 2017-->
     
 <title>Game of Quiz</title>
@@ -21,8 +21,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />   
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -205,6 +203,6 @@
             </div><!--end column 1.2.3.3-->
         </div><!--end row 1.2.3 & end of content section--> 
         
-        <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="footer.jsp"></jsp:include>
 
 

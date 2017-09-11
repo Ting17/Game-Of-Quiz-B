@@ -1,5 +1,5 @@
 <%-- 
-    Document   : question
+    Document   : updateQuiz
     Created on : Apr 25, 2017, 10:48:31 PM
     Author     : tingting17
 --%>
@@ -12,7 +12,7 @@
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui  -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,8 +22,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -85,7 +83,7 @@
                     pstmt.setString(2,request.getParameter("txtCate"));
                     pstmt.setString(3,request.getParameter("txtVideo"));
                     pstmt.setString(4,username);
-                    pstmt.setInt(5, quizID);
+                    pstmt.setInt(5,quizID);
            
                     pstmt.executeUpdate();
                     response.sendRedirect("./quiz.jsp");

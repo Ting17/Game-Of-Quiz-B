@@ -22,8 +22,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
 <!-- Rich Text -->
 <script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
@@ -205,6 +203,8 @@
         CKEDITOR.replace('txtQuiz');
     </script>    
         
-        
+    <!-- pagination caller; java--> 
+    <script src="frameworks/js/paginationCaller.js"></script>  
+    
     <jsp:include page="footer.jsp"></jsp:include>
    

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : deleteTopic
+    Document   : deleteQuiz
     Created on : Apr 25, 2017, 12:09:43 AM
     Author     : tingting17
 --%>
@@ -16,6 +16,7 @@
             PreparedStatement pstmt;
             Integer quizID;
         %>
+        <!--delete function remove Quizr-->
         <%
             if(request.getParameter("id") != null && request.getParameter("id")!= ""){
                 quizID = Integer.parseInt(request.getParameter("id"));
