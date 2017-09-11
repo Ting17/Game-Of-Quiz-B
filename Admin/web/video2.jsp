@@ -1,6 +1,6 @@
 <%-- 
-    Document   : video
-    Created on : Jul 23, 2017, 10:55:23 AM
+    Document   : video2
+    Created on : Aug 12, 2017, 9:53:19 PM
     Author     : tingting17
 --%>
 
@@ -39,17 +39,13 @@
             Statement stmt,stm;
             ResultSet result,rs;
             String username,password;
-            Integer userID; 
         %>
 
 
     <%-- login function & read function for videos--%>    
     <%
-        username = request.getParameter("username");    
-        password = request.getParameter("password");
-
-        session.setAttribute("uname",username);
-        session.setAttribute("pass",password);
+        username = (String)session.getAttribute("uname");
+        password = (String)session.getAttribute("pass");
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -72,33 +68,33 @@
     <%  
         if (rs.next()) {
     %>
-    <div class="row" id="top"><!--1-->
-        <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1-->
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
+        <div class="row" id="top"><!--1-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1-->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
                             <h3>EQUILIBRA</h3>
-                    </div>
+                        </div>
 
-                    <div class="navbar-header"> 
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button> 
-                    </div> 
-  
-                    <div class="navbar-collapse collapse" id="navbar-to-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a>HI  <%=rs.getString("username")%></a></li>
-                            <li><a href='index.html'>Log out</a></li>
-                        </ul> 
-                    </div><!--end navigation collapse-->        
-                </div><!--close container-->
-            </nav>
-        </div><!--end column 1.1-->
-    </div><!--end row 1 & end of navigation-->
+                        <div class="navbar-header"> 
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button> 
+                        </div>
+
+                        <div class="navbar-collapse collapse" id="navbar-to-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a>HI  <%=rs.getString("username")%></a></li>
+                                <li><a href='index.html'>Log out</a></li>
+                            </ul> 
+                        </div><!--end navigation collapse-->        
+                    </div><!--close container-->
+                </nav>
+            </div><!--end column 1.1-->
+        </div><!--end row 1 & end of navigation-->
     <%
         }else  {
             out.println(request.getAttribute("errorMessage"));
@@ -106,21 +102,20 @@
         }
     %>  
     
-    <div class="row subject"><!--2-->
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1-->
-            <a onclick="show('divEng')"><h4 >English</h4></a>
-        </div>
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2-->
-            <a><h4>Mathematic</h4></a>
-        </div>
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3-->
-            <a><h4>Technology</h4></a>
-        </div>
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4-->
-            <a onclick="show('divBio')"><h4>Biology</h4></a>
-        </div>           
-    </div><!--end row 2-->
-    
+        <div class="row subject"><!--2-->
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1-->
+                <a onclick="show('divEng')"><h4 >English</h4></a>
+            </div>
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2-->
+                <a><h4>Mathematic</h4></a>
+            </div>
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3-->
+                <a><h4>Technology</h4></a>
+            </div>
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4-->
+                <a onclick="show('divBio')"><h4>Biology</h4></a>
+            </div>           
+        </div><!--end row 2-->
     
     <!--Content section-->
     <div class="container">    
@@ -140,7 +135,7 @@
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
-                            <h3><%=result.getString("videoName") %></h3>
+                            <h4><%=result.getString("videoName") %></h4>
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
 
@@ -168,7 +163,7 @@
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
-                            <h3><%=result.getString("videoName") %></h3> 
+                            <h4><%=result.getString("videoName") %></h4> 
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
                         

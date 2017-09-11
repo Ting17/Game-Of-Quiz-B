@@ -1,6 +1,6 @@
 <%-- 
-    Document   : announcement
-    Created on : Jul 10, 2017, 7:58:51 PM
+    Document   : announ
+    Created on : Sep 3, 2017, 1:34:54 PM
     Author     : tingting17
 --%>
 
@@ -12,7 +12,7 @@
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,10 +22,8 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
-<!-- Rich Text -->
-<script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
+<link href="frameworks/css/questionstyle.css" rel="stylesheet" />
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,7 +54,7 @@
                 result = st.executeQuery("SELECT * FROM announcement");
               
                 stmt = conn.createStatement();
-                rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");       
+                rs = stmt.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");       
                  
             }catch(ClassNotFoundException cnfe){
                 out.println("Class not Found Execption:-" + cnfe.toString());
@@ -65,102 +63,97 @@
             } 
         %>
         
-<script src="frameworks/js/paginationMethod.js"></script> 
-
-    <div class="container">
-        <%     
-            if (rs.next()) {
-        %>
-
-        <div class="row"><!--1-->  
-            <!-- tab -->
-            <div class="col-xs-2 col-md-2 col-lg-2 tab"><!--1.1--> 
-                <div id="circle">
-                    <a href="profile.jsp" id="profile"><%=rs.getString("username")%></a>
-                </div>
-        <%
-            }
-        %>
+<script src="frameworks/js/paginationMethod2.js"></script> 
         
-        <jsp:include page="navigator.jsp"></jsp:include>
-        
+    <%  
+        if (rs.next()) {
+    %>
+        <div class="row" id="top"><!--1-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1-->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h3>EQUILIBRA</h3>
+                        </div>
+
+                        <div class="navbar-header"> 
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button> 
+                        </div>
+
+                        <div class="navbar-collapse collapse" id="navbar-to-collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="">HI  <%=rs.getString("username")%></a></li>
+                                <li><a href='index.html'>Log out</a></li>
+                            </ul> 
+                        </div><!--end navigation collapse-->        
+                    </div><!--close container-->
+                </nav>
+            </div><!--end column 1.1-->
+        </div><!--end row 1 & end of navigation-->
+    <%
+        }else  {
+            out.println(request.getAttribute("errorMessage"));
+        response.sendRedirect("index.html");
+        }
+    %>   
+    
+    <div class="container ">   
         <!--Content section-->
         <div class="row"><!--1.2.2-->
-            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->
+            <div class="col-xs-12 col-md-9 col-lg-9 contentborder"><!--1.2.2.1-->
                 <h2>Announcement</h2>
-                </div>
-            <div class="col-xs-6 col-md-6 col-lg-6 right"><!--1.2.2.2-->
-                <a class="glyphicon glyphicon-plus-sign" href="#addannoun" data-toggle="collapse" data-target="#addannoun"> New Announcement</a>
-            </div>
-        </div><!--end row 1.2.2-->
-        
-        <div class="row"><!--1.2.3-->
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->    
+             
                 <div class="table-responsive">
-                <table class="table table-stripped table-hover sortable" id="tablepaging">
+                <table class="table table-stripped table-hover sortable" id="tablepaging2">
                     <thead>
                         <tr>
-                            <th id="no" scope="col" >No.</th>
-                            <th id="announ" scope="col" >Announcement</th>
-                            <th id="admin" scope="col">Created by</th>
-                            <th id="cdate" scope="col" class="tdcenter">Created on</th>
-                            <th id="udate" scope="col" class="tdcenter">Last Updated</th>
-                            <th id="edit" scope="col" class="tdcenter">Edit</th>
-                            <th id="delete" scope="col" class="tdcenter">Delete</th>
+                            <th id="announ" scope="col">Announcement</th>
                         </tr>
                     </thead>                      
                     <tbody>      
         <%
-            announ = 1;
             while(result.next()) { 
         %>
                         <tr>
-                            <td headers="no"><%=announ%></td>
-                            <td headers="announ"><%=result.getString("announcement") %></td>
-                            <td headers="admin"><%=result.getString("admin") %></td>
-                            <th headers="cdate"><%=result.getString("cdate") %></th>
-                            <th headers="udate"><%=result.getString("udate") %></th>
-                            <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateAnnoun.jsp?id=<%=result.getInt("announID")%>"></a></td>
-                            <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteAnnoun.jsp?id=<%=result.getInt("announID")%>" onclick="return confirm('Once confirm, announcement selected will be removed. Confirm to delete?')"></a></td>
+                            <td headers="announ">
+                                <div class="row"><!--1.2.3-->
+                                    <div class="col-xs-10 col-md-10 col-lg-10">
+                                        <h3><%=result.getString("announcement") %></h3>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2 col-lg-2">
+                                        <%=result.getString("udate") %>
+                                    </div>
+                                </div>
+                                
+                                <div class="row"><!--1.2.3-->
+                                    <div class="col-xs-12 col-md-12 col-lg-12">
+                                        <%=result.getString("content") %>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
         <%
-                announ++;
             }
         %>
                     </tbody>
                 </table>
-                <center class="pagi">    
-                    <div id="pgNum"></div>
-                </center>
                 </div>
-            </div><!--end column 1.2.3.1-->
-        </div><!--end row 1.2.3-->
-        
-        
-        <div class="row"><!--1.2.4-->
-            <div class="col-xs-12 col-md-12 col-lg-12" ><!--1.2.4.1-->
-                <div id="addannoun" class="collapse"> 
-                    <hr class="hreffect"/>
-                    <h3>New Announcement</h3>
-                    <hr class="hreffect"/>
-                <form id="addForm" action="addAnnoun.jsp" method="POST">
-                    <label>New Announcement: </label>
-                    <input type="text" name="txtAnnoun" id="txtAnnoun" size="70"/> <br/><br/>
-                    <label>Content: </label>
-                    <textarea name="txtContent" placeholder="Add content here...."></textarea><br/>
-                    
-                    <div class="right">
-                        <button class="btn btn-primary " type="submit" name="btnAdd">Add Announcement</button>
-                    </div>
-                    <hr class="hreffect"/>
-                </form>
-                    
-                </div><!--close collapse--> 
-            </div><!--end column 1.2.4.1-->
-        </div><!--end row 1.2.4 & end of content section-->
-        
-    <script>
-        CKEDITOR.replace('txtContent');
-    </script>  
+                <center class="pagi">    
+                    <div id="pgNum2"></div>
+                </center>
+            </div>
+                
+            <div class="col-xs-12 col-md-3 col-lg-3 contentborder link"><!--3.2--> 
+                <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Video</span></button></a>
+                <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Play More Quiz</span></button></a>
+                <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Accumulated Score</span></button></a>
+            </div> <!--close column 3.2-->
+        </div><!--end column 1.2.3.1-->
+    </div> 
         
     <jsp:include page="footer.jsp"></jsp:include>

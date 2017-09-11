@@ -1,6 +1,6 @@
 <%-- 
     Document   : signup
-    Created on : Jun 14, 2017, 8:29:47 PM
+    Created on : Sep 4, 2017, 3:28:22 PM
     Author     : tingting17
 --%>
 
@@ -15,17 +15,17 @@
             Connection conn;
             PreparedStatement pstmt;
         %>
-        <%-- CREATE function for new admin--%>
+        
+        <%-- CREATE function--%>
         <%
             if(request.getParameter("signup") != null){
                 try{
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-                pstmt = conn.prepareStatement("INSERT INTO admin(username, name, department, password) VALUES(?,?,?,?)");
+                pstmt = conn.prepareStatement("INSERT INTO user(username, password, result) VALUES(?,?,?)");
                 pstmt.setString(1,request.getParameter("username"));
-                pstmt.setString(2,request.getParameter("name"));
-                pstmt.setString(3,request.getParameter("department"));
-                pstmt.setString(4,request.getParameter("password"));
+                pstmt.setString(2,request.getParameter("password"));
+                pstmt.setString(3,request.getParameter("result"));
                 pstmt.executeUpdate();
                 response.sendRedirect("./index.html");
                 }catch(ClassNotFoundException cnfe){
