@@ -37,9 +37,9 @@
         <%!
             Connection conn;
             PreparedStatement pstmt, pstmt2;
-            Statement stmt;
-            ResultSet result, rs;
-            Integer announID;
+            Statement stmt, stat;
+            ResultSet result, rs, rst;
+            Integer announID,adminID;
             String username, password;
         %>
         
@@ -47,6 +47,7 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
+            adminID = (Integer)session.getAttribute("aid");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
@@ -54,10 +55,10 @@
                 announID = Integer.parseInt(request.getParameter("hiddenId"));
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("UPDATE announcement SET announcement = ?, content = ?, udate = NOW() WHERE announID = ?");
+                    pstmt = conn.prepareStatement("UPDATE announcement SET announcement = ?, content = ?, adminID = ?, udate = NOW() WHERE announID = '" + announID +"'");
                     pstmt.setString(1, request.getParameter("txtAnnoun"));
                     pstmt.setString(2, request.getParameter("txtContent"));
-                    pstmt.setInt(3, announID);
+                    pstmt.setInt(3, adminID);
                     pstmt.executeUpdate();
                     response.sendRedirect("./announ.jsp");
                 
@@ -105,29 +106,38 @@
         <jsp:include page="navigator.jsp"></jsp:include>  
         
         <!--content section-->
+        <div class="row"><!--1.2.3-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
+                <h2>Update Announcement</h2>
+                <i>Press "Update Quiz" to commit</i>
+                <hr/>
+            </div><!--end column 1.2.3.1-->
+        </div><!--end row 1.2.3-->
+        
         <div class="row"><!--1.2.2--> 
-            <h4>Update Announcement</h4><br/>
-            <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.2.1--> 
+            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1--> 
+                <p class="right">(Original)</p>
+                
+                <p>Created on: <b><%=result.getString("cdate") %></b></p> 
+                <p>Last updated on: <b><%=result.getString("udate") %></b></p> 
+        <%
+            stat=conn.createStatement();
+            rst = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
+            while(rst.next()) {
+        %>         
+                <p>Last updated by: <b><%=rst.getString("username") %></b></p> 
+        <%
+            }
+        %>
                 <p>Current Announcement Title:</p>
                 <b><%=result.getString("announcement")%></b>
-            </div>
-            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->  
                 <p>Current Announcement Content:</p>
                 <b><%=result.getString("content")%></b>
+        
             </div>
-            <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.2.2-->
-                <p>Created on:</p> 
-                <b><%=result.getString("cdate") %></b>
-            </div>
-            <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.2.3-->
-                <p>Last updated on:</p>
-                <b><%=result.getString("udate") %></b>
-            </div>
-        </div> <!--end row 1.2.2-->   
-            
-        <div class="row"><!--1.2.3--> 
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1--> 
-                <hr/>
+    
+            <div class="col-xs-6 col-md-6 col-lg-6 border"><!--1.2.4.2-->
+                <p>(Update here)</p>
                 <form id="updForm" action="" method="POST">
                     <input type="hidden" name="hiddenId" id="hiddenId" value="<%=announID%>"/>
                     <label>Update Announcement Title:</label>

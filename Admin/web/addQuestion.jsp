@@ -23,8 +23,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
 <!-- Rich Text -->
 <script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
@@ -41,7 +39,7 @@
             Connection conn;
             PreparedStatement pstmt;
             ResultSet result,res, rs;
-            Integer quizID,videoID;
+            Integer quizID,videoID,adminID;
             Statement stmt, st;
             String username,password,questionID;
         %>
@@ -50,7 +48,8 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass"); 
- 
+            adminID = (Integer)session.getAttribute("aid");
+            
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             if(request.getParameter("quiz") != null && request.getParameter("quiz")!= "" ){  
                 quizID = Integer.parseInt(request.getParameter("quiz"));
@@ -65,19 +64,17 @@
                 if(request.getParameter("btnAdd") != null){
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
-                        pstmt = conn.prepareStatement("INSERT INTO question(quizID, videoID, question, type, hints, input1, input2, input3, input4, checked, explanation, cdate, udate,lupdateBY) VALUES(?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),?)");
+                        pstmt = conn.prepareStatement("INSERT INTO question(quizID, videoID, question, type, input1, input2, input3, input4, checked, cdate, udate,adminID) VALUES(?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),?)");
                         pstmt.setInt(1, quizID);
                         pstmt.setInt(2, videoID);
                         pstmt.setString(3,request.getParameter("txtquestion"));
                         pstmt.setString(4,request.getParameter("txttype"));
-                        pstmt.setString(5,request.getParameter("txthints"));
-                        pstmt.setString(6,request.getParameter("txtinput1"));
-                        pstmt.setString(7,request.getParameter("txtinput2"));
-                        pstmt.setString(8,request.getParameter("txtinput3"));
-                        pstmt.setString(9,request.getParameter("txtinput4")); 
-                        pstmt.setString(10,request.getParameter("txtchecked"));
-                        pstmt.setString(11,request.getParameter("txtexplain"));
-                        pstmt.setString(12,username);
+                        pstmt.setString(5,request.getParameter("txtinput1"));
+                        pstmt.setString(6,request.getParameter("txtinput2"));
+                        pstmt.setString(7,request.getParameter("txtinput3"));
+                        pstmt.setString(8,request.getParameter("txtinput4")); 
+                        pstmt.setString(9,request.getParameter("txtchecked"));
+                        pstmt.setInt(10,adminID);
                         pstmt.executeUpdate();
                         response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);           
                     }catch(ClassNotFoundException cnfe){
@@ -199,28 +196,9 @@
                             <br/>
                         </div><!-- close divB --> 
 
-                            <!-- hint-->
-                            <div class="row"><!--1.2.3.1.2.1.2--> 
-                                <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.2.1-->
-                                    <p><span class="hinticon glyphicon glyphicon-search"></span><b>Hint:</b></p>  
-                                </div>
-                                <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.2.2-->
-                                    <p><input type="text" name="txthints" class="form-control"/></p>
-                                </div>
-                            </div><!--end row 1.2.3.1.2.1.2 & end of hint-->
-
-                            <!-- explanation -->
-                            <div class="row"><!--1.2.3.1.2.1.3--> 
-                                <p><div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.3.1-->
-                                    <p><b>Explanation:</b></p>  
-                                </div>
-                                <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.3.2--> 
-                                    <textarea name="txtexplain" class="form-control"></textarea>
-                                </div>
-                            </div><!--end row 1.2.3.1.2.1.3 & end of explanation-->
                             <br/>
                             <button type="submit" name="btnAdd" class="btn btn-primary">Save</button>
-                            <a class="btn btn-primary" href="question.jsp?id=<%=quizID%>">Cancel</a>
+                            <a class="btn btn-primary" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Cancel</a>
                         </div><!--end column 1.2.3.1.2.1-->
                     </div><!--end row 1.2.3.1.2-->
                 </div> <!--close container 2--> 

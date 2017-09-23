@@ -16,26 +16,24 @@
             String username;
             Statement stmt;
             ResultSet rs;
+            Integer adminID;
         %>
         
         <%-- CREATE function for new announcement--%>
         <%
-            username = (String)session.getAttribute("uname");
+            adminID = (Integer)session.getAttribute("aid");
             
             if(request.getParameter("btnAdd") != null){
                 try{
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-
-                pstmt = conn.prepareStatement("INSERT INTO announcement(announcement, content, admin, cdate, udate) VALUES(?,?,?, NOW(), NOW())");
+              
+                pstmt = conn.prepareStatement("INSERT INTO announcement(announcement, content, adminID, cdate, udate) VALUES(?,?,?, NOW(), NOW())");
                 pstmt.setString(1,request.getParameter("txtAnnoun"));
                 pstmt.setString(2,request.getParameter("txtContent"));
-                pstmt.setString(3,username);
+                pstmt.setInt(3,adminID);
                 pstmt.executeUpdate();
-                
-                stmt = conn.createStatement();
-                rs = stmt.executeQuery("select * from admin where username='" + username + "'");       
-                
+                  
                 response.sendRedirect("./announ.jsp");
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());

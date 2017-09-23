@@ -36,9 +36,9 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt, stm,st;
-            ResultSet result, rs, res, re;
-            Integer quizID, videoID;
+            Statement stmt, stm, st, stat;
+            ResultSet result, rs, res, re, ress, rst;
+            Integer quizID, videoID, adminID;
             String username, password;
         %>
         
@@ -46,6 +46,7 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
+            adminID = (Integer)session.getAttribute("aid");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
@@ -67,6 +68,7 @@
                     
                     stmt = conn.createStatement();
                     rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");
+                    
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){
@@ -78,11 +80,11 @@
                 quizID = Integer.parseInt(request.getParameter("hiddenId"));
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("UPDATE quiz SET quizTopic = ?, category = ?, videoID = ?, udate = NOW(), lupdateBY = ? WHERE quizID = ?");
+                    pstmt = conn.prepareStatement("UPDATE quiz SET quizTopic = ?, category = ?, videoID = ?, udate = NOW(), adminID = ? WHERE quizID = ?");
                     pstmt.setString(1, request.getParameter("txtName1"));
                     pstmt.setString(2,request.getParameter("txtCate"));
                     pstmt.setString(3,request.getParameter("txtVideo"));
-                    pstmt.setString(4,username);
+                    pstmt.setInt(4,adminID);
                     pstmt.setInt(5,quizID);
            
                     pstmt.executeUpdate();
@@ -128,21 +130,26 @@
         <div class="row"><!--1.2.4-->
             <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1-->
                 <p class="right">(Original)</p>
-                
+        <%
+            stat=conn.createStatement();
+            rst = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
+            while(rst.next()) {
+        %> 
                 <p>Created on: <b><%=result.getString("cdate") %></b></p>
                 <p>Last updated on: <b><%=result.getString("udate") %></b></p>
-                <p>Last updated by: <b><%=result.getString("lupdateBY") %></b></p>
+                <p>Last updated by: <b><%=rst.getString("username") %></b></p>
                 <p>Current Quiz named: <b><%=result.getString("quizTopic")%></b></p>
                 <p>Category: <b><%=result.getString("category")%></b></p>
                 <p>Video related to this quiz:
-                <%
-                    while(re.next()) { 
-                %>                
-                        <b><%=re.getString("videoName")%></b>
-                <% 
-                    }
-                %>
+        <%
+            while(re.next()) { 
+        %>       
+               <b><%=re.getString("videoName")%></b>
+        <% 
+            }}
+        %>
                 </p>
+                
                 
             </div><!--end column 1.2.4.1-->
             
@@ -157,7 +164,7 @@
                     
                     <select name="txtCate">
                         <optgroup label="Language">
-                            <option value="Eng">English</option>
+                            <option value="English">English</option>
                             <option value="BM">Bahasa Malaysia</option>
                             <option value="Mand">Mandarin</option>
                         </optgroup>
@@ -171,12 +178,14 @@
                             <option value="MathT">Math T</option>
                         </optgroup>
                         <optgroup label="Other">
-                            <option value="Geo">Geography</option>
+                            <option value="Geography">Geography</option>
+                            <option value="History">History</option>
                         </optgroup>
                     </select><br/><br/>
                     
                     <label>Video related to this quiz:</label>
                     <select name="txtVideo">
+                        <option value="0">none</option>
                 <%
                     while(res.next()) { 
                 %>                

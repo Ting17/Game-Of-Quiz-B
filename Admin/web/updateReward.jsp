@@ -22,7 +22,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<link href="languages.min.css" rel="stylesheet" />
 <!-- Rich Text -->
 <script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
@@ -38,9 +37,9 @@
         <%!
             Connection conn;
             PreparedStatement pstmt, pstmt2;
-            Statement stmt;
-            ResultSet result, rs;
-            Integer rewardID;
+            Statement stmt, stat;
+            ResultSet result, rs, ress;
+            Integer rewardID, adminID;
             String username, password;
         %>
         
@@ -48,6 +47,7 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
+            adminID = (Integer)session.getAttribute("aid");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
@@ -55,9 +55,10 @@
                 rewardID = Integer.parseInt(request.getParameter("hiddenId"));
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("UPDATE reward SET reward = ?, udate = NOW() WHERE rewardID = ?");
+                    pstmt = conn.prepareStatement("UPDATE reward SET reward = ?, udate = NOW(),adminID = ? WHERE rewardID = ?");
                     pstmt.setString(1, request.getParameter("txtReward"));
                     pstmt.setInt(2, rewardID);
+                    pstmt.setInt(3, adminID);
                     pstmt.executeUpdate();
                     response.sendRedirect("./reward.jsp");
                 
@@ -106,25 +107,36 @@
         <jsp:include page="navigator.jsp"></jsp:include>  
         
         <!--content section-->
+        <div class="row"><!--1.2.3-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
+                <h2>Update Reward</h2>
+                <i>Press "Update Quiz" to commit</i>
+                <hr/>
+            </div><!--end column 1.2.3.1-->
+        </div><!--end row 1.2.3-->
+        
+        
         <div class="row"><!--1.2.2--> 
-            <h4>Update Reward</h4><br/>
-            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.2.1-->  
+            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->  
+                <p class="right">(Original)</p>
+                
+                <p>Created on: <b><%=result.getString("cdate") %></b></p>
+                <p>Last updated on: <b><%=result.getString("udate") %></b></p>
+        <%
+            stat=conn.createStatement();
+            ress = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
+            while(ress.next()) {
+        %>        
+                <p>Last updated by: <b><%=ress.getString("username") %></b></p>
+        <%
+            }
+        %>
                 <p>Current Reward:</p>
                 <b><%=result.getString("reward")%></b>
             </div>
-            <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.2.2-->
-                <p>Created on:</p> 
-                <b><%=result.getString("cdate") %></b>
-            </div>
-            <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.2.3-->
-                <p>Last updated on:</p>
-                <b><%=result.getString("udate") %></b>
-            </div>
-        </div> <!--end row 1.2.2-->   
-            
-        <div class="row"><!--1.2.3--> 
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1--> 
-                <hr/>
+     
+            <div class="col-xs-6 col-md-6 col-lg-6 border"><!--1.2.4.2-->
+                <p>(Update here)</p>
                 <form id="updForm" action="" method="POST">
                     <input type="hidden" name="hiddenId" id="hiddenId" value="<%=rewardID%>"/>
                     <label>Update reward:</label>

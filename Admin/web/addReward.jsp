@@ -14,20 +14,20 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            String username;
+            Integer adminID;
         %>
         
         <%-- CREATE function for reward--%>
         <%
-            username = (String)session.getAttribute("uname");
+            adminID = (Integer)session.getAttribute("aid");
             
             if(request.getParameter("btnAdd") != null){
                 try{
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-                pstmt = conn.prepareStatement("INSERT INTO reward(reward, cdate, udate,lupdateBY) VALUES(?, NOW(), NOW(),?)");
+                pstmt = conn.prepareStatement("INSERT INTO reward(reward, cdate, udate,adminID) VALUES(?, NOW(), NOW(),?)");
                 pstmt.setString(1,request.getParameter("txtReward"));
-                pstmt.setString(2,username);
+                pstmt.setInt(2,adminID);
                 pstmt.executeUpdate();
                 
                 response.sendRedirect("./reward.jsp");

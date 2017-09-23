@@ -43,9 +43,11 @@
     <%
         username = request.getParameter("username");    
         password = request.getParameter("password");
+        
      
         session.setAttribute("uname",username);
         session.setAttribute("pass",password);
+      
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -91,15 +93,15 @@
                 <a href="profile.jsp" id="profile"><%=rs.getString("username")%></a>
             </div>
      <%
+           session.setAttribute("aid",rs.getInt("adminID"));
         }else  {
             out.println(request.getAttribute("errorMessage"));
         response.sendRedirect("index.html");
         }
     %>   
   
-     
         <jsp:include page="navigator.jsp"></jsp:include>            
-                    
+       
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->

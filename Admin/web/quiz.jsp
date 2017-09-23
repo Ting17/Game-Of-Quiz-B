@@ -12,7 +12,7 @@
 <head>
                 
 <!-- Description: Game of Quiz -->
-<!-- Author: Ting Lee Ting -->
+<!-- Author: Ting Lee Ting, Kevin Pui -->
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,9 +36,9 @@
 <body>
         <%!
             Connection conn;
-            Statement stmt, st, stm;
-            ResultSet result, rs, res;
-            Integer quizID, videoID;
+            Statement stmt, st, stm,stat;
+            ResultSet result, rs, res, rst;
+            Integer quizID, videoID,adminID;
             String username, password, video;
         %>
         
@@ -46,6 +46,7 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
+            adminID = (Integer)session.getAttribute("aid");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             try{
@@ -57,8 +58,8 @@
                 rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");       
                 
                 stm=conn.createStatement();
-                res = stm.executeQuery("SELECT * FROM video");
-            
+                rst = stm.executeQuery("SELECT * FROM video");
+
             }catch(ClassNotFoundException cnfe){
                 out.println("Class not Found Execption:-" + cnfe.toString());
             }catch(SQLException sqle){
@@ -91,7 +92,7 @@
                 <h2>Quiz List</h2>
             </div>
             <div class="col-xs-6 col-md-6 col-lg-6 right"><!--1.2.2.2-->
-                <a class="glyphicon glyphicon-plus-sign" href="#addquiz" data-toggle="collapse" data-target="#addquiz"> New Quiz</a>
+                <a class="glyphicon glyphicon-plus-sign" href="#addquiz?quiz=<%=quizID%>&video=<%=videoID%>" data-toggle="collapse" data-target="#addquiz"> New Quiz</a>
             </div>
         </div><!--end row 1.2.2-->
         
@@ -118,6 +119,10 @@
                     while(result.next()) {
                         quizID = result.getInt("quizID");
                         videoID = result.getInt("videoID");
+                          
+                        stat=conn.createStatement();
+                        res = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
+                        while(res.next()) {
                 %>
                         <tr>
                             <td headers="no"><%=quizNo%></td>
@@ -126,13 +131,15 @@
                             <td headers="vid"><%=result.getString("videoID") %></td>
                             <td headers="adddate"><%=result.getString("cdate") %></td>
                             <td headers="updatedate"><%=result.getString("udate") %></td>  
-                            <td headers="luBY"><%=result.getString("lupdateBY") %></td> 
+                      
+                            <td headers="luBY"><%=res.getString("username") %></td> 
+                     
                             <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=videoID%>"></a></td>
                             <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteQuiz.jsp?quiz=<%=quizID%>" onclick="return confirm('Once confirm, this topic <%=result.getString("quizTopic") %> will be removed. Confirm to delete?')"></a></td>
                         </tr>     
                 <%
                         quizNo++;
-                    }
+                    }}
                 %>
                     </tbody>
                 </table>
@@ -181,9 +188,9 @@
                     <select name="txtVideo">
                         <option value="0">none</option>
                 <%
-                    while(res.next()) { 
+                    while(rst.next()) { 
                 %>                
-                        <option value="<%=res.getInt("videoID")%>"><%=res.getString("videoName")%></option>
+                        <option value="<%=rst.getInt("videoID")%>"><%=rst.getString("videoName")%></option>
                         
                 <% 
                     }

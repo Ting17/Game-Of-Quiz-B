@@ -13,22 +13,22 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            String username;
+            Integer adminID;
         %>
         
         <%-- CREATE function for new quiz--%>
         <%
-            username = (String)session.getAttribute("uname");
+            adminID = (Integer)session.getAttribute("aid");
             
             if(request.getParameter("btnAdd") != null){
                 try{
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-                pstmt = conn.prepareStatement("INSERT INTO quiz(quizTopic, category, videoID, cdate, udate, lupdateBY) VALUES(?,?,?,NOW(),NOW(),?)");
+                pstmt = conn.prepareStatement("INSERT INTO quiz(quizTopic, category, videoID, cdate, udate, adminID) VALUES(?,?,?,NOW(),NOW(),?)");
                 pstmt.setString(1,request.getParameter("txtQuiz"));
                 pstmt.setString(2,request.getParameter("txtCate"));
                 pstmt.setString(3,request.getParameter("txtVideo"));
-                pstmt.setString(4,username);
+                pstmt.setInt(4,adminID);
                 pstmt.executeUpdate();
                 
                 response.sendRedirect("./quiz.jsp");

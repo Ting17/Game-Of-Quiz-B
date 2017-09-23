@@ -33,10 +33,10 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            ResultSet result,res,rs;
+            ResultSet result,res,rs,ress;
             Integer questionNo,quizID,videoID; 
             String username,password;
-            Statement stmt, st;
+            Statement stmt, st,stat;
         %>
         
         <%
@@ -156,10 +156,15 @@
                 <p><b>Under Topic:</b> <%=res.getString("quizTopic")%></p>
                 <p><b>Created on:</b> <%=result.getString("cdate") %></p>
                 <p><b>Last Updated:</b> <%=result.getString("udate") %></p>
-                <p><b>Last Updated By:</b> <%=result.getString("lupdateBY") %></p>
+        <%
+            stat=conn.createStatement();
+            ress = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
+            while(ress.next()) {
+        %>
+                <p><b>Last Updated By:</b> <%=ress.getString("username") %></p>
                 <p><b>Question:</b> <%=result.getString("question") %></p>
         <%
-            if(result.getString("type").equals("M")){
+            }if(result.getString("type").equals("M")){
         %> 
                 <p><b>Question type:</b> Multiple Choice</p>
                 <b>Multiple Choices:</b>

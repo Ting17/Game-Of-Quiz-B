@@ -36,8 +36,8 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt;
-            ResultSet result,rs;
+            Statement stmt, stat;
+            ResultSet result,rs, rst;
             String username,password;
         %>
         
@@ -45,6 +45,7 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
+            
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             try{
                 Class.forName("com.mysql.jdbc.Driver");
@@ -53,7 +54,7 @@
                 
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");
-
+                
             }catch(ClassNotFoundException cnfe){
                 out.println("Class not Found Execption:-" + cnfe.toString());
             }catch(SQLException sqle){
@@ -110,19 +111,22 @@
                 <%
                     Integer reward = 1;
                     while(result.next()) {
+                        stat=conn.createStatement();
+                        rst = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
+                        while(rst.next()) {
                 %>
                         <tr>
                             <td headers="no"><%=reward%></td>
                             <td headers="reward"><%=result.getString("reward") %></td>
                             <td headers="adddate"><%=result.getString("cdate") %></td>
                             <td headers="updatedate"><%=result.getString("udate") %></td>
-                            <td headers="luBY"><%=result.getString("lupdateBY") %></td>
+                            <td headers="luBY"><%=rst.getString("username") %></td>
                             <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateReward.jsp?id=<%=result.getInt("rewardID")%>"></a></td>
                             <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteReward.jsp?id=<%=result.getInt("rewardID")%>" onclick="return confirm('Once confirm, this quote reward will be removed. Confirm to delete?')"></a></td>
                          </tr> 
                 <%
                         reward++;
-                    }
+                    }}
                 %>
                     </tbody>
                    

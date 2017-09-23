@@ -21,8 +21,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />   
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- StyleSheet -->
-<link href="languages.min.css" rel="stylesheet" />
 <!-- Rich Text -->
 <script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>    
 
@@ -39,7 +37,7 @@
             PreparedStatement pstmt;
             Statement stmt,st;
             ResultSet result,res,rs;
-            Integer quizID,questionno,videoID;
+            Integer quizID,questionno,videoID,adminID;
             String username,password;
             
         %>
@@ -48,7 +46,8 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
-            
+            adminID = (Integer)session.getAttribute("aid");           
+           
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             questionno = Integer.parseInt(request.getParameter("question"));
             quizID = Integer.parseInt(request.getParameter("quiz"));
@@ -79,14 +78,14 @@
             if(request.getParameter("btnUpd")!=null){
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("UPDATE question SET question = ?, input1= ?, input2= ?, input3= ?, input4= ?, checked= ?, udate= NOW() WHERE questionID = ? and quizID='" + quizID + "'and videoID='" + videoID + "'");
+                    pstmt = conn.prepareStatement("UPDATE question SET question = ?, input1= ?, input2= ?, input3= ?, input4= ?, checked= ?, udate= NOW(), adminID= ? WHERE questionID ='" + questionno +"' and quizID='" + quizID + "'and videoID='" + videoID + "'");
                     pstmt.setString(1,request.getParameter("txtquestion"));
                     pstmt.setString(2,request.getParameter("txtinput1"));
                     pstmt.setString(3,request.getParameter("txtinput2"));
                     pstmt.setString(4,request.getParameter("txtinput3"));
                     pstmt.setString(5,request.getParameter("txtinput4")); 
                     pstmt.setString(6,request.getParameter("txtchecked"));
-                    pstmt.setInt(7, questionno);
+                    pstmt.setInt(7, adminID);
                     pstmt.executeUpdate();
                     response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);
                     return;
@@ -119,7 +118,8 @@
         <!--breadcrumb-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-12 col-md-12 col-lg-12 "><!--1.2.2.1-->
-        <%  if (res.next()) {
+        <%  
+            if (res.next()) {
         %>
                 <b>Quiz:</b> 
                 <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Question List</a> > Update
