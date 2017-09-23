@@ -39,8 +39,8 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt,st;
-            ResultSet result,res;
+            Statement stmt,stm,st;
+            ResultSet result,res,r;
             Integer quizID, a=1, b=1;
             String username,password; 
         %>
@@ -130,21 +130,39 @@
     </div> <!--close row 1-->    
     
 <div class="container">
-    <!--breadcrumb-->
+    
     <div class="row"><!--2-->
-        <div class="col-xs-12 col-md-12 col-lg-12 "><!--2.1-->
+        <!--breadcrumb-->
+        <div class="col-xs-10 col-md-10 col-lg-10 "><!--2.1-->
         <%  
             if (res.next()) {
         %>
             <h3>Quiz: <%=res.getString("quizTopic")%></h3>
-        <%
-            }
-        %>
+
         </div><!--end column 2.1-->
-    </div><!--end row 2& end of breadcrumb-->
+        
+        <!--Translate function; google traslate-->
+        <div class="col-xs-2 col-md-2 col-lg-2"> <!--2.2-->
+            <div id="google_translate_element"></div>
+
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+            </script>
+
+            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </div><!--close column 2.2-->
+    </div><!--end row 2& end of breadcrumb & Translate function; google traslate-->
           
     <div class="row"><!--3-->
-        <div class="col-xs-12 col-md-8 col-lg-8 "><!--3.1-->
+        <div class="col-xs-12 col-md-7 col-lg-7 contentborder"><!--3.1-->
+        <p><%=res.getString("note") %></p>
+    <%
+        }
+    %>              
+        </div>
+        <div class="col-xs-12 col-md-5 col-lg-5 "><!--3.1-->
             <div class="table-responsive">
                 <table class="table table-stripped table-hover questiont" id="tablepaging">
                     <thead>
@@ -159,7 +177,6 @@
                     <tbody>
                 <%
                     while(result.next() ) {
-
                 %>
                         <tr>   
                             <td>
@@ -300,21 +317,25 @@
                                 </div> <!--close container2-->
                             </td>
                         </tr>    
-                 <%
+                <%
                     }
                 %>
                     </tbody>
                 </table>
             </div>
-            
         </div> <!--close column 3.1-->
-            
-        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--3.2--> 
+    </div> <!--close row 3-->
+
+    <div class="row"><!--4-->
+        <div class="col-xs-12 col-md-7 col-lg-7 contentborder link"> <!--4.1--> 
             <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Quiz List</span></button></a>
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Video</span></button></a>
             <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Check Accumulated Score</span></button></a>
-            <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>
-        
+            <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
+            <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-1 icon-forward"><span>Feedback</span></button></a>
+        </div>
+         
+        <div class="col-xs-12 col-md-5 col-lg-5 contentborder link">     
          <!--feedback form-->
             <hr class="normal">
             <center>
@@ -331,11 +352,12 @@
             </center>
             <hr class="normal"><!--end of feedback form-->
             
-        </div><!--close column 3.2-->
+     <!--close column 3.2-->
     </div> <!--close row 3-->  
 </div> <!--close container-->   
         
-        
+</div>
+                
 <jsp:include page="footer.jsp"></jsp:include>
             
             

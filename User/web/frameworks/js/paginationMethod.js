@@ -54,7 +54,7 @@ function Pager(tableName, itemsPerPage) {
             pagerHtml += ' <span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> | ';
            
         element.innerHTML = pagerHtml;
-    };
+    }; 
 }
 
 

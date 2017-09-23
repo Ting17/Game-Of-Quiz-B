@@ -53,7 +53,7 @@
                 }
             %> 
                 <label for="collect">
-                    <span class="glyphicon glyphicon-star yellow"></span>
+                    <span class="glyphicon glyphicon-star yellow" title="Collect Me"></span>
                     <input type="submit" id="collect" name="btnCollect" style="display:none" onClick="collectSound()"/>
                 </label>
             </form>   

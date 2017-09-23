@@ -110,11 +110,6 @@
                             }}}
                         %>
                     </div>
-
-                    <!-- incorrect -->
-                    <div data-ng-if="food !== '<%=x%>'">
-                        <img src="resources/img/pusheenimg/angry.gif" />
-                    </div>  
                 </div>
 
                 <div id="catgiffinish" style="display:none;">

@@ -1,5 +1,6 @@
 body{
     background: url('../../resources/img/bg.jpg') repeat;
+
 }
 
 .yellow, hr.correct{
@@ -16,7 +17,7 @@ body{
 }
 
 .right{
-    margin-left: 80%;
+    margin-left: 90%;
 }
 
 ul{

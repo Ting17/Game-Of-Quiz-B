@@ -135,8 +135,15 @@
             </div> <!--close row 1.1.1-->
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->
-    <div class="row"> <!--close row 1a-->
-        <div class="col-xs-12 col-md-12 col-lg-12 right"> <!--close row 1a-->
+    
+<div class="container">    
+    <div class="row"><!--1a-->
+        <!-- empty space here; can be use in future-->
+        <div class="col-xs-10 col-md-10 col-lg-10 "><!--1a.1-->
+        </div><!--end column 1a.1-->
+        
+        <!--Translate function; google traslate-->
+        <div class="col-xs-2 col-md-2 col-lg-2"> <!--1a.2-->
             <div id="google_translate_element"></div>
 
             <script type="text/javascript">
@@ -146,10 +153,9 @@
             </script>
 
             <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        </div>
-    </div>
-    
-<div class="container">
+        </div><!--close column 1a.2-->
+    </div><!--end row 1a & Translate function; google traslate-->
+     
         <%
             while(res.next() ) {
         %>
@@ -170,20 +176,23 @@
             <h3><%=res.getString("videoName") %></h3>
             <h4>Category << <%=res.getString("category") %> >></h4>
             <hr/>
-            <p class="videodesc"><%=res.getString("videoDesc") %></p>
+            <p class="videodesc"><%=res.getString("videoDesc") %></p>        
+            <a data-toggle="collapse" data-target="#transcript"><button class="btn btn-default btn-sm right">Transcript</button></a>
+            <div id="transcript" class="collapse">  
+                <hr/>
+               <p><%=res.getString("transcript") %></p>
+            </div>
         </div> <!--close column 3.1-->
-
+        <%
+           }
+        %>
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Video</span></button></a>
             <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Play More Quiz</span></button></a>
             <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Check Accumulated Score</span></button></a>
-            <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>
             <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
-
+            <a data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>  
         </div> <!--close column 3.2-->
-        <%
-           }
-        %>
     </div> <!--close row 3-->
                   
     <div class="row wrap2"><!--4-->

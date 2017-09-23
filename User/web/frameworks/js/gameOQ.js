@@ -1,7 +1,5 @@
 var app = angular.module("myApp", ["ngRoute"]);
 
-
-
 var currentDiv = document.getElementById("divEng");
     function show(divID) {
         var div = document.getElementById(divID);
