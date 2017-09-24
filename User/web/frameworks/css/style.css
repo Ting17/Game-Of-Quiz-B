@@ -159,6 +159,10 @@ video.videopg{
     display: none;
 }
 
+#divSci{
+    display: none;
+}
+
 .videowrap{
     border: 1px solid rgba(53, 134, 227, 0.5);
     padding: 1%;
