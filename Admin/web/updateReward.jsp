@@ -16,7 +16,7 @@
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Update Reward</title>
+<title>Update Quote</title>
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
@@ -109,8 +109,8 @@
         <!--content section-->
         <div class="row"><!--1.2.3-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
-                <h2>Update Reward</h2>
-                <i>Press "Update Quiz" to commit</i>
+                <h2>Update Quote</h2>
+                <i>Press "Update Quote" to commit</i>
                 <hr/>
             </div><!--end column 1.2.3.1-->
         </div><!--end row 1.2.3-->
@@ -131,7 +131,7 @@
         <%
             }
         %>
-                <p>Current Reward:</p>
+                <p>Current Quote:</p>
                 <b><%=result.getString("reward")%></b>
             </div>
      
@@ -139,9 +139,9 @@
                 <p>(Update here)</p>
                 <form id="updForm" action="" method="POST">
                     <input type="hidden" name="hiddenId" id="hiddenId" value="<%=rewardID%>"/>
-                    <label>Update reward:</label>
+                    <label>Update Quote:</label>
                     <textarea name="txtReward"><%=result.getString("reward")%></textarea>
-                    <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Reward</button>
+                    <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Quote</button>
                 </form>     
             </div><!--end column 1.2.3.1-->
         </div><!--end row 1.2.3 & end of content section-->                        

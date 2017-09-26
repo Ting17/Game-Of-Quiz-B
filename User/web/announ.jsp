@@ -149,7 +149,8 @@
             </div>
                 
             <div class="col-xs-12 col-md-3 col-lg-3 contentborder link"><!--3.2--> 
-                <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Video</span></button></a>
+                <button class="btn btn-primary btn-1 icon-backward" onclick="history.back()"><span>Back</span></button>
+                <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
                 <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Play More Quiz</span></button></a>
                 <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Accumulated Score</span></button></a>
             </div> <!--close column 3.2-->

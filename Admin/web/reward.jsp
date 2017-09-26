@@ -142,14 +142,16 @@
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.4.1-->
                 <div id="addreward" class="collapse"> 
                     <hr class="hreffect"/>
-                    <h3>New Reward</h3>
+                    <h3><u>New Quote</u></h3>
+                    <p>1. Fill in <b>Quote Content</b>.</p>
+                    <p>2. Click <b>Add Quote</b> button to add quotes.</p>
                     <hr class="hreffect"/>
                 <form id="addForm" action="addReward.jsp" method="POST">
-                    <label>New Reward:</label>
+                    <label>Quote Content:</label>
                     <textarea name="txtReward"></textarea>
                     
                     <div class="right">
-                        <button class="btn btn-primary" type="submit" name="btnAdd" id="btnAdd">Add Reward</button>
+                        <button class="btn btn-primary" type="submit" name="btnAdd" id="btnAdd">Add Quote</button>
                     </div>
                     <hr class="hreffect"/>
                 </form>

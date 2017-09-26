@@ -40,6 +40,7 @@
             ResultSet result, rs, res, rst;
             Integer quizID, videoID,adminID;
             String username, password, video;
+            String temp;
         %>
         
         <%-- READ function--%>
@@ -154,11 +155,18 @@
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.4.1-->
                 <div id="addquiz" class="collapse"> 
                     <hr class="hreffect"/>
-                    <h3>New Quiz</h3>
+                    <h3><u>New Quiz</u></h3>
+                    <p>1. Fill in <b>Quiz Topic.</b></p>
+                    <p>2. Fill in <b>Note/Video Transcript</b>. (Optional)</p>
+                    <p>3. Select <b>Category</b>.</p>
+                    <p>4. Select <b>Quiz for Video</b> to include quiz or select <b>none</b> for non-video quiz.</p>
+                    <p>5. Click <b>Add Quiz</b> button to add quiz.</p>
                     <hr class="hreffect"/>
                 <form id="addForm" action="addQuiz.jsp" method="POST">
-                    <label>New Quiz:</label>
-                    <textarea name="txtQuiz" class="form-control"></textarea>
+                    <label>Quiz Topic:</label>
+                    <input name="txtQuiz" class="form-control"/>
+                    <label>Note/Video Transcript:</label>
+                    <textarea name="txtNote" class="form-control"></textarea>
                     
                 <div class="form-group">  
                     <label>Category:</label>
@@ -182,7 +190,6 @@
                         </optgroup>
                     </select>
                 </div>
-         
                 <div class="form-group">  
                     <label>Quiz for video:</label>
                     <select name="txtVideo">
@@ -190,8 +197,7 @@
                 <%
                     while(rst.next()) { 
                 %>                
-                        <option value="<%=rst.getInt("videoID")%>"><%=rst.getString("videoName")%></option>
-                        
+                        <option value="<%=rst.getInt("videoID")%>"><%=rst.getString("videoName")%></option>                        
                 <% 
                     }
                 %>
@@ -207,7 +213,7 @@
         </div><!--end row 1.2.4 & end of content section-->
       
     <script>
-        CKEDITOR.replace('txtQuiz');
+        CKEDITOR.replace('txtNote');
     </script>    
         
     <!-- pagination caller; java--> 

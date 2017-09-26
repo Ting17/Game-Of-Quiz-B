@@ -145,12 +145,15 @@
             <div class="col-xs-12 col-md-12 col-lg-12" ><!--1.2.4.1-->
                 <div id="addannoun" class="collapse"> 
                     <hr class="hreffect"/>
-                    <h3>New Announcement</h3>
+                    <h3><u>New Announcement</u></h3>
+                    <p>1. Fill in <b>Announcement Title</b>.</p>
+                    <p>1. Fill in <b>Announcement Content</b>.</p>
+                    <p>2. Click <b>Add Announcement</b> button to add announcement.</p>
                     <hr class="hreffect"/>
                 <form id="addForm" action="addAnnoun.jsp" method="POST">
-                    <label>New Announcement: </label>
+                    <label>Announcement Title: </label>
                     <input type="text" name="txtAnnoun" id="txtAnnoun" size="70"/> <br/><br/>
-                    <label>Content: </label>
+                    <label>Announcement Content: </label>
                     <textarea name="txtContent" placeholder="Add content here...."></textarea><br/>
                     
                     <div class="right">

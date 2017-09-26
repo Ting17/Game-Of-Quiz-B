@@ -83,8 +83,9 @@
                 </div> <!-- close row 1.2.1-->
                 <div class="row"> <!-- 1.2.2 -->
                     <div class="col-sm-12 col-md-12 col-lg-12"> <!-- 1.2.2.1 -->
-                        <a href="video2.jsp" class="btn btn-default btn-lg probutton">Back To Video</a>
-                        <a href="announ.jsp" class="btn btn-warning btn-lg probutton">Check Announcement</a>
+                        <a href="video2.jsp" class="btn btn-warning btn-lg probutton">Play More Quiz</a>
+                        <a class="btn btn-default btn-lg probutton" onclick="history.back()">Back</a>
+                        
                     </div>
                 </div> <!-- close row 1.2.2-->
             </div> <!-- close column 1.2-->

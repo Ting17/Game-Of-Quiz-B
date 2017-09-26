@@ -23,7 +23,6 @@
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
 
-
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -39,7 +38,7 @@
             Statement stmt, stm, st, stat;
             ResultSet result, rs, res, re, ress, rst;
             Integer quizID, videoID, adminID;
-            String username, password;
+            String username, password, videoPath, videoName, videoNamecheck;
         %>
         
         <%-- READ & UPDATE function--%>
@@ -138,27 +137,62 @@
                 <p>Created on: <b><%=result.getString("cdate") %></b></p>
                 <p>Last updated on: <b><%=result.getString("udate") %></b></p>
                 <p>Last updated by: <b><%=rst.getString("username") %></b></p>
-                <p>Current Quiz named: <b><%=result.getString("quizTopic")%></b></p>
+                <p>Current Quiz title: <b><%=result.getString("quizTopic")%></b></p>
                 <p>Category: <b><%=result.getString("category")%></b></p>
-                <p>Video related to this quiz:
+                
         <%
             while(re.next()) { 
         %>       
-               <b><%=re.getString("videoName")%></b>
         <% 
-            }}
-        %>
-                </p>
-                
-                
+            videoName = re.getString("videoName");}
+            }       
+        %>             
+                <%
+                    res.first();
+                %>
+                <%  
+                            while(res.next()) {
+                                videoNamecheck = res.getString("videoName");
+                                if(res.getString("videoName").equals(videoName)) {
+                                    videoPath = res.getString("videoPath");
+                                    break;
+                                }
+                            }   
+               %>
+               <p>Video related to this quiz:<a href="<%=videoPath%>" class="video_layer" target="_blank"><b><%=videoName%></b></a></p> 
+                <script>
+                $('.video_layer').colorbox({iframe:true});
+                </script>             
             </div><!--end column 1.2.4.1-->
             
+           
+
+    <script>
+
+        jQuery('.youtube-player').each(function(){
+            jQuery(this).on('click', '.youtube-link-start', function(){
+                jQuery(this).parent().addClass('active');
+
+                var loc = $(this).siblings('iframe').attr('src');
+                var startloc = loc + "?autoplay=1";
+                $(this).siblings('iframe').attr('src', startloc);
+            });
+
+            jQuery(this).on('click', '.youtube-link-stop', function(){
+                jQuery(this).parent().removeClass('active');
+
+                var loc = $(this).siblings('iframe').attr('src');
+                var stoploc = loc.replace("?autoplay=1", "");
+                $(this).siblings('iframe').attr('src', stoploc);
+            });
+        });
+    </script>
             <div class="col-xs-6 col-md-6 col-lg-6 border"><!--1.2.4.2-->
                 <p>(Update here)</p>
                 
                 <form id="updForm" action="" method="POST">
                     <input type="hidden" name="hiddenId" id="hiddenId" value="<%=quizID%>"/>
-                    <label>Update quiz name:</label>
+                    <label>Update quiz title:</label>
                     <input type="text" name="txtName1" id="txtName" value="<%=result.getString("quizTopic")%>" size="40"/><br/><br/>
                     <label>Category:</label>
                     

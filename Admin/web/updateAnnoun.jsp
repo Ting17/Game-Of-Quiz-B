@@ -16,7 +16,7 @@
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Update Reward</title>
+<title>Update Announcement</title>
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
@@ -109,7 +109,7 @@
         <div class="row"><!--1.2.3-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
                 <h2>Update Announcement</h2>
-                <i>Press "Update Quiz" to commit</i>
+                <i>Press "Update Announcement" to commit</i>
                 <hr/>
             </div><!--end column 1.2.3.1-->
         </div><!--end row 1.2.3-->
@@ -144,7 +144,7 @@
                     <input type="text" name="txtAnnoun" id="txtAnnoun" size="70" value="<%=result.getString("announcement")%>"/> <br/><br/>
                     <label>Update Announcement Content:</label>
                     <textarea name="txtContent"><%=result.getString("content")%></textarea>
-                    <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Reward</button>
+                    <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Announcement</button>
                 </form>     
             </div><!--end column 1.2.3.1-->
         </div><!--end row 1.2.3 & end of content section-->                        
