@@ -39,6 +39,7 @@
             ResultSet result, rs, res, re, ress, rst;
             Integer quizID, videoID, adminID;
             String username, password, videoPath, videoName, videoNamecheck;
+            boolean checkvideo;
         %>
         
         <%-- READ & UPDATE function--%>
@@ -133,6 +134,7 @@
             stat=conn.createStatement();
             rst = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
             while(rst.next()) {
+                checkvideo = false;
         %> 
                 <p>Created on: <b><%=result.getString("cdate") %></b></p>
                 <p>Last updated on: <b><%=result.getString("udate") %></b></p>
@@ -141,11 +143,18 @@
                 <p>Category: <b><%=result.getString("category")%></b></p>
                 
         <%
-            while(re.next()) { 
+            while(re.next()) {
+                if(videoID == 0){
+                    checkvideo = false;
+                }
+                else {
+                    videoName = re.getString("videoName");
+                    checkvideo = true;
+                }
+            }
         %>       
         <% 
-            videoName = re.getString("videoName");}
-            }       
+            }   
         %>             
                 <%
                     res.first();
@@ -159,10 +168,16 @@
                                 }
                             }   
                %>
+               <%
+                   if(checkvideo == true){
+               %>
                <p>Video related to this quiz:<a href="<%=videoPath%>" class="video_layer" target="_blank"><b><%=videoName%></b></a></p> 
                 <script>
                 $('.video_layer').colorbox({iframe:true});
-                </script>             
+                </script>     
+                <%
+                    }
+                %>
             </div><!--end column 1.2.4.1-->
             
            
