@@ -12,8 +12,8 @@ body{
     word-spacing: 0.8px;
     font-size: 20px;
     font-style: italic;
-    margin-top: 7%;
     color: #fff;
+    padding-left: 15%;
 }
 
 .right{
@@ -27,6 +27,10 @@ ul{
 .contentborder{
     border: solid 1px #f1f1f1;
     background-color: #fff;
+}
+
+.contentborder img{
+    width: 100%
 }
 
 .pagi{
@@ -183,32 +187,6 @@ video.videopg{
     background-color: rgba(53, 134, 227, 0.3);
     color: #000000;
 }
-
-
-/*profile.jsp*/
-body.profile{
-    background-color: #000;
-} 
-
-.prostar1 img{
-    margin-left: 6%;
-}
-
-.prostar2 img{
-    margin-right: 5%;
-}
-
-.probutton{
-    margin-top: 5%;
-    width: 50%;
-    background-color: #252525;
-    color: #fff;
-}
-
-.prodesc{
-    color: #7e7e7e;
-}
-
 
 /*footer*/
 .footer{

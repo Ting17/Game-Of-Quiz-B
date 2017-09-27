@@ -64,7 +64,7 @@
                 if(request.getParameter("btnAdd") != null){
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
-                        pstmt = conn.prepareStatement("INSERT INTO question(quizID, videoID, question, type, input1, input2, input3, input4, checked, cdate, udate,adminID) VALUES(?,?,?,?,?,?,?,?,?,?,?,NOW(),NOW(),?)");
+                        pstmt = conn.prepareStatement("INSERT INTO question(quizID, videoID, question, type, input1, input2, input3, input4, checked, cdate, udate,adminID) VALUES(?,?,?,?,?,?,?,?,?,NOW(),NOW(),?)");
                         pstmt.setInt(1, quizID);
                         pstmt.setInt(2, videoID);
                         pstmt.setString(3,request.getParameter("txtquestion"));

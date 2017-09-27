@@ -2,18 +2,15 @@
 .parallax {
     background-image: url('../../resources/img/parallexbg1.jpg');
     width: 100%;
-    height: 250px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;   
-    text-align: center; 
+   
 }
 
-.cat{
-    width:200px; 
-    height:200px;  
+.parallax img{
+    padding-left: 15%;
 }
 
 .catnote{
@@ -39,6 +36,10 @@
   
 .container{
     padding: 2%;
+}
+
+.vwrap{
+    margin: 0 1% 0% 1%;
 }
 
 .wrap{
@@ -136,6 +137,19 @@ video.videoque{
       linear-gradient(to bottom, #3d5998, rgba(0, 0, 0, 0)) 1 100%;
 }
 
+.type{
+    color: #1E88E5;
+    margin-top: -3%;
+}
+
+.type:hover{
+    color: #FFF;
+}
+
+.nonote{
+    height: 60vh;
+}
+
 .multichoice{
     text-align: left;
     padding: 2%;
@@ -192,6 +206,7 @@ hr.correct, hr.normal{
     margin: 3%;
     padding: 1%;
     font-size: 18px;
+    width: 95%;
 }
 
 .tab{
@@ -271,11 +286,20 @@ button.btn-1 span,button.btn-2 span {
     transition: 0.3s;
 }
 
+.icon-up span:after {
+    content: '\2191';
+    position: absolute;
+    opacity: 0;
+    top: 0px;
+    bottom: -20px;
+    transition: 0.3s;
+}
+
 button.btn-1.icon-backward:hover span {
     padding-left: 30px;
 }
 
-button.btn-1.icon-forward:hover span, button.btn-2.icon-down:hover span {
+button.btn-1.icon-forward:hover span, button.btn-2.icon-down:hover span, button.btn-2.icon-up:hover span {
     padding-right: 30px;
 }
 
@@ -284,7 +308,7 @@ button.btn-1.icon-backward:hover span:after{
     left: 0;
 }
 
-button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:after{
+button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:after, button.btn-2.icon-up:hover span:after{
     opacity: 1;
     right: 0;
 }

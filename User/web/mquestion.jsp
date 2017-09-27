@@ -40,7 +40,7 @@
             Connection conn;
             PreparedStatement pstmt;
             Statement stmt,stm,st;
-            ResultSet result,res,r;
+            ResultSet result,res,r,rs;
             Integer quizID, a=1, b=1;
             String username,password; 
         %>
@@ -62,6 +62,9 @@
                     
                     stmt = conn.createStatement();
                     result = stmt.executeQuery("SELECT * FROM question WHERE videoID = 0 AND quizID ='"+ quizID +"' ORDER BY RAND ( ) LIMIT 10");
+   
+                    stm = conn.createStatement();
+                    rs = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");
 
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
@@ -94,12 +97,11 @@
     <div class="row"><!--1--> 
         <div class="col-xs-12 col-md-12 col-lg-12 parallax"> <!--1.1--> 
             <div class="row"><!--1.1.1--> 
-                <div class="col-xs-8 col-md-8 col-lg-8 title"><!--1.1.1.1--> 
+                <div class="col-xs-7 col-md-7 col-lg-7 title"><!--1.1.1.1--> 
                     <p>"The purpose of the quiz is not to shame or embarrass anyone, but to make sure everyone is on the same page"</p>
-                    <p class="right">- Mark Goulston</p>
                 </div>
                 
-                <div class="col-xs-4 col-md-4 col-lg-4"><!--1.1.1.2--> 
+                <div class="col-xs-2 col-md-2 col-lg-2"><!--1.1.1.2--> 
                     <a data-toggle="modal" data-target="#myModal" >
                         <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
                     </a>
@@ -125,6 +127,19 @@
                     </div>
                     </div> <!--close modal-->
                 </div> <!--close column 1.1.1.2-->
+                
+                <!--Translate function; google traslate-->
+                <div class="col-xs-3 col-md-3 col-lg-3"> <!--1.1.1.3-->
+                    <div id="google_translate_element"></div>
+
+                    <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                    }
+                    </script>
+
+                    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                </div><!--close column 1.1.1.3 & end of translate function/google translate-->
             </div> <!--close row 1.1.1-->
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->    
@@ -138,31 +153,28 @@
             if (res.next()) {
         %>
             <h3>Quiz: <%=res.getString("quizTopic")%></h3>
-
         </div><!--end column 2.1-->
-        
-        <!--Translate function; google traslate-->
-        <div class="col-xs-2 col-md-2 col-lg-2"> <!--2.2-->
-            <div id="google_translate_element"></div>
-
-            <script type="text/javascript">
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-            }
-            </script>
-
-            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        </div><!--close column 2.2-->
-    </div><!--end row 2& end of breadcrumb & Translate function; google traslate-->
+    </div><!--end row 2& end of breadcrumb-->
           
     <div class="row"><!--3-->
-        <div class="col-xs-12 col-md-7 col-lg-7 contentborder"><!--3.1-->
+        <div class="col-xs-12 col-md-7 col-lg-7 videoquestion contentborder"><!--3.1-->
+        <%
+            if(res.getString("note").isEmpty()){     
+        %> 
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-lg-12 parallax title nonote">
+            <center>Chill will upload soon</center>
+        </div>
+        </div>
+        <%    
+            }else{
+        %>
         <p><%=res.getString("note") %></p>
     <%
-        }
+        }}
     %>              
         </div>
-        <div class="col-xs-12 col-md-5 col-lg-5 "><!--3.1-->
+        <div class="col-xs-12 col-md-5 col-lg-5 videoquestion"><!--3.1-->
             <div class="table-responsive">
                 <table class="table table-stripped table-hover questiont" id="tablepaging">
                     <thead>
@@ -183,6 +195,9 @@
                                 <!--display quiz question-->
                                 <div id="<%=result.getInt("questionID") %>" class="questioncontainer">
                                     <h4><%=result.getString("question") %></h4>
+                                    <div data-ng-if="'<%=result.getString("type")%>' === 'M'"><p class="right type" title="It's Multiple Choice"><%=result.getString("type")%></p></div>
+                                    <div data-ng-if="'<%=result.getString("type")%>' === 'B'"><p class="right type" title="Fill in the Blank with choices below"><%=result.getString("type")%></p></div>
+                                    <div data-ng-if="'<%=result.getString("type")%>' === 'T'"><p class="right type" title="True or False?"><%=result.getString("type")%></p></div>
                                 </div> 
 
                                 <div class="container2">
@@ -268,7 +283,7 @@
                                             <div class="useranswer">
                                                 <center>
                                                     <h4>Answer:</h4>
-                                                    <input type="text" name="answer" data-ng-model="checkeds" size="80%" required/>
+                                                    <input type="text" name="answer" data-ng-model="checkeds" size="50%" required/>
                                                 </center>
                                             </div>
 
@@ -330,7 +345,28 @@
         <div class="col-xs-12 col-md-7 col-lg-7 contentborder link"> <!--4.1--> 
             <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Quiz List</span></button></a>
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
-            <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Check Accumulated Score</span></button></a>
+            <a data-toggle="modal" data-target="#ascore"><button class="btn btn-primary btn-2 icon-up"><span>Check Accumulated Score</span></button></a>
+            <!-- Modal -->
+            <%  
+                if (rs.next()) {
+            %>        
+                <div class="modal fade" id="ascore" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <center>
+                    <h3><b><%=rs.getString("username")%></b></h3>
+                    <br/>
+                    <h4>You have collected</h4>
+                    <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                    <br/>
+                    <p><i>**Collect more start as token for future event**</i></p>
+                </center> 
+                </div>
+                </div>
+                </div> <!--close modal-->
+            <%
+                }
+            %> 
             <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
             <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-1 icon-forward"><span>Feedback</span></button></a>
         </div>

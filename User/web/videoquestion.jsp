@@ -61,6 +61,9 @@
                         <!--display quiz question-->
                         <div id="<%=result.getInt("questionID") %>" class="questioncontainer">
                             <h4><%=result.getString("question") %></h4>
+                            <div data-ng-if="'<%=result.getString("type")%>' === 'M'"><p class="right type" title="It's Multiple Choice"><%=result.getString("type")%></p></div>
+                            <div data-ng-if="'<%=result.getString("type")%>' === 'B'"><p class="right type" title="Fill in the Blank with choices below"><%=result.getString("type")%></p></div>
+                            <div data-ng-if="'<%=result.getString("type")%>' === 'T'"><p class="right type" title="True or False?"><%=result.getString("type")%></p></div>
                         </div> 
 
                         <div class="container2">
@@ -151,8 +154,10 @@
                             <div data-ng-if="'<%=result.getString("type")%>' === 'B' || '<%=result.getString("type")%>' === 'T'">
                                 <form name="form2">
                                     <div class="useranswer">
-                                        <h4>Answer:</h4>
-                                        <input type="text" name="answer" data-ng-model="checkeds" required/>
+                                        <center>
+                                            <h4>Answer:</h4>
+                                            <input type="text" name="answer" data-ng-model="checkeds" size="40%" required/>
+                                        </center>                                    
                                     </div>
                                                                                   
                                     <div class="row"><!--2.2.1-->

@@ -43,7 +43,6 @@
             Boolean check = false;
         %>
 
-
     <%-- login function & read function for videos--%>    
     <%
         username = request.getParameter("username");    
@@ -87,7 +86,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                            <h3>EQUILIBRA</h3>
+                        <h3>EQUILIBRA</h3>
                     </div>
 
                     <div class="navbar-header"> 
@@ -137,11 +136,9 @@
             <div class="col-xs-12 col-md-12 col-lg-12"><!--3.1-->
                 <div id="divBio">
                 <h2>Biology</h2>
-                <%
-                    result.previous();
-                %>
-        <%
-            while(result.next() && (result.getString("category").equalsIgnoreCase("biology"))) {
+            <%
+                result.previous();
+                while(result.next() && (result.getString("category").equalsIgnoreCase("biology"))) {
             %>
                 <div class="videowrap">       
                     <div class="row"><!--3.1.1-->
@@ -155,44 +152,37 @@
                             <h3><%=result.getString("videoName") %></h3>
                             <p><%=result.getString("videoDesc") %></p>
                         </div>  
-                        <%
-                            resultq.first();
-                        %>
-                        <%
-                            check=false;
-  
-                            while(resultq.next()) {
-                                videoID = resultq.getString("videoID");
-                                if(result.getString("videoID").equals(videoID)) {
-                                    check=true;    
-                                    break;
-                                }
-                            }   
-                        %>
-                        <%
-                            if(check == true){
-                        %>
+            <%
+                resultq.first();
+                check=false;
+                while(resultq.next()) {
+                    videoID = resultq.getString("videoID");
+                    if(result.getString("videoID").equals(videoID)) {
+                        check=true;    
+                        break;
+                    }
+                }   
+                if(check == true){
+            %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
                             <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
                         </div>
-                        <%
-                               }
-                        %>
+            <%
+                }
+            %>
                     </div><!--end row 3.1.1-->
                 </div><!--close video wrap-->
-        <%
-            }
-        %>
+            <%
+                }
+            %>
                 </div><!--end of divBio-->
                 
                 <div id="divEng">
                   <h2>English</h2>
-                <%
-                    result.previous();
-                %>
-        <%
-            while(result.next() && (result.getString("category").equalsIgnoreCase("english"))) {
-        %>
+            <%
+                result.previous();
+                while(result.next() && (result.getString("category").equalsIgnoreCase("english"))) {
+            %>
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
@@ -205,45 +195,37 @@
                             <h3><%=result.getString("videoName") %></h3> 
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
-                        <%
-                            resultq2.first();
-                        %>
-                        <%
-                            check=false;
-  
-                            while(resultq2.next()) {
-                                videoID = resultq2.getString("videoID");
-                                if(result.getString("videoID").equals(videoID)) {
-                                    check=true;    
-                                    break;
-                                }
-                            }   
-                        %>
-                        <%
-                            if(check == true){
-                        %>
+            <%
+                resultq2.first();
+                check=false;
+                while(resultq2.next()) {
+                    videoID = resultq2.getString("videoID");
+                    if(result.getString("videoID").equals(videoID)) {
+                        check=true;    
+                        break;
+                    }
+                } 
+                if(check == true){
+            %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
                             <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
                         </div>
-                        <%
-                               }
-                        %>
-
+            <%
+                }
+            %>
                     </div><!--end row 1.2.3.1.1-->
                 </div><!--close video wrap-->
-        <%
-            }
-        %>
+            <%
+                }
+            %>
                 </div><!--end of divEng-->
                 
                 <div id="divSci">
                   <h2>Science & Technology</h2>
-                <%
-                    result.previous();
-                %>
-        <%
-            while(result.next() && (result.getString("category").equalsIgnoreCase("science & techn"))) {
-        %>
+            <%
+                result.previous();
+                while(result.next() && (result.getString("category").equalsIgnoreCase("science & techn"))) {
+            %>
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
@@ -256,34 +238,29 @@
                             <h3><%=result.getString("videoName") %></h3> 
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
-                        <%
-                            resultq3.first();
-                        %>
-                        <%
-                            check=false;
-  
-                            while(resultq3.next()) {
-                                videoID = resultq3.getString("videoID");
-                                if(result.getString("videoID").equals(videoID)) {
-                                    check=true;    
-                                    break;
-                                }
-                            }   
-                        %>
-                        <%
-                            if(check == true){
-                        %>
+            <%
+                resultq3.first();
+                check=false;
+                while(resultq3.next()) {
+                    videoID = resultq3.getString("videoID");
+                    if(result.getString("videoID").equals(videoID)) {
+                        check=true;    
+                        break;
+                    }
+                }   
+                if(check == true){
+            %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
                             <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
                         </div>
-                        <%
-                            }
-                        %>
+            <%
+                }
+            %>
                     </div><!--end row 1.2.3.1.1-->
                 </div><!--close video wrap-->
-        <%
-            }
-        %>
+            <%
+                }
+            %>
                 </div><!--end of divSci-->
             </div><!--end column 3.1-->
         </div><!--end row 3--> 

@@ -18,8 +18,9 @@
         %>
         <!--delete function remove Quizr-->
         <%
-            if(request.getParameter("id") != null && request.getParameter("id")!= ""){
-                quizID = Integer.parseInt(request.getParameter("id"));
+            if(request.getParameter("quiz") != null && request.getParameter("quiz")!= ""){
+                quizID = Integer.parseInt(request.getParameter("quiz"));
+  
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");

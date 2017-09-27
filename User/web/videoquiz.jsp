@@ -39,8 +39,8 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt;
-            ResultSet res;
+            Statement stmt,stm;
+            ResultSet res,rs;
             String category, username,password;
             Integer videoID; 
         %>
@@ -58,13 +58,16 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     stmt=conn.createStatement();
                     res = stmt.executeQuery("SELECT * FROM video WHERE videoID = '"+ videoID +"'");
+                    
+                    stm = conn.createStatement();
+                    rs = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");
+
        
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){
                     out.println("SQL Query Exception:- " + sqle);
                 } 
-                
                 
                 if(request.getParameter("btnAdd") != null){
                     try{
@@ -91,13 +94,12 @@
     
     <div class="row" id="top"><!--1--> 
         <div class="col-xs-12 col-md-12 col-lg-12 parallax"> <!--1.1--> 
-            
             <div class="row"><!--1.1.1--> 
-                <div class="col-xs-12 col-md-8 col-lg-8 title"><!--1.1.1.1--> 
+                <div class="col-xs-7 col-md-7 col-lg-7 title"><!--1.1.1.1--> 
                     <p>"Push yourself because no one else is going to do it for you"</p>
                 </div>
                 
-                <div class="col-xs-12 col-md-4 col-lg-4"><!--1.1.1.2--> 
+                <div class="col-xs-2 col-md-2 col-lg-2"><!--1.1.1.2--> 
                     <a data-toggle="modal" data-target="#myModal" >
                         <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
                     </a>
@@ -132,34 +134,29 @@
                     </div>
                     </div> <!--close modal-->
                 </div> <!--close column 1.1.1.2-->
+                
+                <!--Translate function; google traslate-->
+                <div class="col-xs-3 col-md-3 col-lg-3"> <!--1.1.1.3-->
+                    <div id="google_translate_element"></div>
+
+                    <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                    }
+                    </script>
+
+                    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                </div><!--close column 1.1.1.3 & end of translate function/google translate-->
             </div> <!--close row 1.1.1-->
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->
     
 <div class="container">    
-    <div class="row"><!--1a-->
-        <!-- empty space here; can be use in future-->
-        <div class="col-xs-10 col-md-10 col-lg-10 "><!--1a.1-->
-        </div><!--end column 1a.1-->
-        
-        <!--Translate function; google traslate-->
-        <div class="col-xs-2 col-md-2 col-lg-2"> <!--1a.2-->
-            <div id="google_translate_element"></div>
 
-            <script type="text/javascript">
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-            }
-            </script>
-
-            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        </div><!--close column 1a.2-->
-    </div><!--end row 1a & Translate function; google traslate-->
-     
         <%
             while(res.next() ) {
         %>
-    <div class="row wrap"><!--2--> 
+    <div class="row vwrap"><!--2--> 
         <div class="col-xs-12 col-md-8 col-lg-8 videoquestion contentborder"><!--2.1--> 
             <video class="videoque" controls>
                 <source src="<%=res.getString("videoPath")%>" type="video/mp4">
@@ -189,8 +186,28 @@
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
             <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Play More Quiz</span></button></a>
-            <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Check Accumulated Score</span></button></a>
-            <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
+            <a data-toggle="modal" data-target="#ascore"><button class="btn btn-primary btn-2 icon-up"><span>Check Accumulated Score</span></button></a>
+            <!-- Modal -->
+            <%  
+                if (rs.next()) {
+            %>        
+                <div class="modal fade" id="ascore" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <center>
+                    <h3><b><%=rs.getString("username")%></b></h3>
+                    <br/>
+                    <h4>You have collected</h4>
+                    <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                    <br/>
+                    <p><i>**Collect more start as token for future event**</i></p>
+                </center> 
+                </div>
+                </div>
+                </div> <!--close modal-->
+            <%
+                }
+            %>             <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
             <a data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>  
         </div> <!--close column 3.2-->
     </div> <!--close row 3-->
