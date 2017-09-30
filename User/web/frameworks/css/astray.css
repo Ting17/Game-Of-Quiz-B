@@ -33,7 +33,7 @@ body.bonus4{
 
 #abutton {
     position: fixed;
-    right: 0px;
+    left: 80%;
     bottom: 0px;
     font-weight: bold;
     padding-bottom: 2%;

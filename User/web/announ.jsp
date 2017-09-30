@@ -36,8 +36,8 @@
 <body>
         <%!
             Connection conn;
-            Statement stmt, st;
-            ResultSet result, rs;
+            Statement stmt, st, stm;
+            ResultSet result, rs, rst;
             Integer announ;
             String username, password;
         %>
@@ -53,6 +53,9 @@
                 st=conn.createStatement();
                 result = st.executeQuery("SELECT * FROM announcement");
               
+                stm = conn.createStatement();
+                rst = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");       
+
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");       
                  
@@ -152,7 +155,28 @@
                 <button class="btn btn-primary btn-1 icon-backward" onclick="history.back()"><span>Back</span></button>
                 <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
                 <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Play More Quiz</span></button></a>
-                <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Accumulated Score</span></button></a>
+                <a data-toggle="modal" data-target="#ascore"><button class="btn btn-primary btn-2 icon-up"><span>Check Accumulated Score</span></button></a>
+            <!-- Modal -->
+            <%  
+                if (rst.next()) {
+            %>        
+                <div class="modal fade" id="ascore" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <center>
+                    <h3><b><%=rst.getString("username")%></b></h3>
+                    <br/>
+                    <h4>You have collected</h4>
+                    <h2 class="yellow"><%=rst.getString("result")%> Stars</h2>
+                    <br/>
+                    <p><i>**Collect more start as token for future event**</i></p>
+                </center> 
+                </div>
+                </div>
+                </div> <!--close modal-->
+            <%
+                }
+            %>             
             </div> <!--close column 3.2-->
         </div><!--end column 1.2.3.1-->
     </div> 

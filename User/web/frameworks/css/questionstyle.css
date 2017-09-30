@@ -148,6 +148,13 @@ video.videoque{
 
 .nonote{
     height: 60vh;
+    display:table;
+}
+
+.nonote center{
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
 }
 
 .multichoice{

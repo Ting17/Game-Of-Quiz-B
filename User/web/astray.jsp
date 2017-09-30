@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<%@page import="java.util.*" %>
+
 <!DOCTYPE html>
 
 <html> 
@@ -29,7 +32,7 @@
 </head>
    
 <body class="bonus4">
-    
+
     <div id="instructions">
         <p>How to play Astray:</p>
         <br><br>
@@ -46,11 +49,9 @@
         <p>Level 1</p>
     </div>
     
-    <div id="abutton">
-        <a class="btn btn-primary btn-lg" href="video2.jsp">Back to Video page</a>
-        <a class="btn btn-default btn-lg" href="ascore.jsp">Check Accumulated Score</a>
+    <div id="abutton" class="right">
+        <a href="video2.jsp">Back to Video page</a> 
     </div>
- 
+
 </body>
 </html>
-

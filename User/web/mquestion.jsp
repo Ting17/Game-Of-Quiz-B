@@ -163,7 +163,7 @@
         %> 
         <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12 parallax title nonote">
-            <center>Chill will upload soon</center>
+            <center>Chill, will upload soon</center>
         </div>
         </div>
         <%    
@@ -341,7 +341,7 @@
         </div> <!--close column 3.1-->
     </div> <!--close row 3-->
 
-    <div class="row"><!--4-->
+    <div class="row wrap"><!--4-->
         <div class="col-xs-12 col-md-7 col-lg-7 contentborder link"> <!--4.1--> 
             <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Quiz List</span></button></a>
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
@@ -369,9 +369,9 @@
             %> 
             <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
             <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-1 icon-forward"><span>Feedback</span></button></a>
-        </div>
+        </div> <!--close column 4.1-->
          
-        <div class="col-xs-12 col-md-5 col-lg-5 contentborder link">     
+        <div class="col-xs-12 col-md-5 col-lg-5 contentborder link"><!--4.2-->
          <!--feedback form-->
             <hr class="normal">
             <center>
@@ -387,12 +387,10 @@
                 </div>
             </center>
             <hr class="normal"><!--end of feedback form-->
-            
-     <!--close column 3.2-->
-    </div> <!--close row 3-->  
+        </div> <!--close column 4.2-->
+    </div> <!--close row 4-->  
 </div> <!--close container-->   
         
-</div>
                 
 <jsp:include page="footer.jsp"></jsp:include>
             

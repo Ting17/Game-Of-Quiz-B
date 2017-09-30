@@ -119,7 +119,6 @@
                         <br/>
                         <a class="btn btn-success btn-lg feed" href="quote.jsp">Claim Quote</a>
                         <a class="btn btn-primary btn-lg feed" href="video2.jsp">Back to Video page</a>
-                        <a class="btn btn-default btn-lg feed" href="ascore.jsp">Check Accumulated Score</a>
                     </div>
                     
                     <!-- incorrect -->
@@ -127,7 +126,6 @@
                         <img src="resources/img/pusheenimg/angry.gif" />
                         <p>Wrong food for Pusheen</p>
                         <a class="btn btn-primary btn-lg feed" href="video2.jsp">Back to Video page</a>
-                        <a class="btn btn-default btn-lg feed" href="ascore.jsp">Check Accumulated Score</a>
                     </div>
                 </div>
             </div> <!--close column 1.1-->

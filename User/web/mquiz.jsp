@@ -121,10 +121,8 @@
         </div> <!--end column 3.1-->
               
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--3.2--> 
-            
             <button class="btn btn-primary btn-1 icon-backward" onclick="history.back()"><span>Back</span></button>
             <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
-            <a href="ascore.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Check Accumulated Score</span></button></a>
         </div><!--close column 3.2-->
     </div> <!--close row 3-->
     </div> <!--close container-->

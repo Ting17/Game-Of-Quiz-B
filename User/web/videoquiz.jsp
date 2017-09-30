@@ -207,7 +207,8 @@
                 </div> <!--close modal-->
             <%
                 }
-            %>             <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
+            %>             
+            <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
             <a data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>  
         </div> <!--close column 3.2-->
     </div> <!--close row 3-->
@@ -265,7 +266,7 @@
             <hr class="normal">
         </div><!--end column 4.2-->
     </div><!--end of feedback form & end row 4--> 
-    
+  
 </div> <!--close container--> 
 
 

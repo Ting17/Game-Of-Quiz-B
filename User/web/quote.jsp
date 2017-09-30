@@ -80,7 +80,6 @@
         <div class="row"><!--2-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1-->
                 <a class="btn btn-primary btn-lg qbutton" href="video2.jsp">Back to Video page</a>
-                <a class="btn btn-default btn-lg qbutton" href="ascore.jsp">See Accumulated Score</a>
             </div><!--close column 2.1-->
         </div><!--close row 2-->
     </center>
