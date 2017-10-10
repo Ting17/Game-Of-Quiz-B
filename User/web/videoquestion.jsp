@@ -189,13 +189,22 @@
                         
                         <div data-ng-if="<%=y %>%5 === 0">
                             <jsp:include page="starcollect.jsp"></jsp:include>       
-                    <%
-                        y++;
-                    %>
+                        </div>
+                        <div data-ng-if="count === 1 ">
+                            <h1 class="countdown3">3</h1>
+                        </div>
+                        <div data-ng-if="count === 2 ">
+                            <h1 class="countdown2">2</h1>
                         </div>
                         <div data-ng-if="count === 3 ">
+                            <h1 class="countdown1">1</h1>
+                        </div>
+                        <div data-ng-if="count === 4 ">
                             <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
                         </div>
+                        <%
+                            y++;
+                        %>
                     </div>
                                 
                     <!-- incorrect -->
