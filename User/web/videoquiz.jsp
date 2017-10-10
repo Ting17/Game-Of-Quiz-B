@@ -42,7 +42,7 @@
             Statement stmt,stm;
             ResultSet res,rs;
             String category, username,password;
-            Integer videoID; 
+            Integer videoID, quizID; 
         %>
 
         <%-- READ function for question--%>
@@ -53,6 +53,7 @@
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             if(request.getParameter("id") != null && request.getParameter("id")!= ""){  
                 videoID = Integer.parseInt(request.getParameter("id"));
+                quizID = Integer.parseInt(request.getParameter("quiz"));
                 category = request.getParameter("categ");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
@@ -62,7 +63,6 @@
                     stm = conn.createStatement();
                     rs = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");
 
-       
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){
@@ -72,13 +72,14 @@
                 if(request.getParameter("btnAdd") != null){
                     try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("INSERT INTO feedback(videoID, username, feedback, rdate) VALUES(?,?,?,NOW())");
+                    pstmt = conn.prepareStatement("INSERT INTO feedback(videoID, quizID, username, feedback, rdate) VALUES(?,?,?,?,NOW())");
                     pstmt.setInt(1,videoID);
-                    pstmt.setString(2,username);
-                    pstmt.setString(3,request.getParameter("txtfeedback"));
+                    pstmt.setInt(2,quizID);
+                    pstmt.setString(3,username);
+                    pstmt.setString(4,request.getParameter("txtfeedback"));
                     pstmt.executeUpdate();
 
-                    response.sendRedirect("./videoquiz.jsp?id=" + videoID + "&categ=" + category);
+                    response.sendRedirect("./videoquiz.jsp?id=" + videoID + "&quiz=" + quizID +"&categ=" + category);
                     }catch(ClassNotFoundException cnfe){
                         out.println("Class not Found Execption:-" + cnfe.toString());
                     }catch(SQLException sqle){
