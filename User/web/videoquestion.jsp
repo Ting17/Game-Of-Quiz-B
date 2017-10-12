@@ -14,7 +14,8 @@
             Statement stmt;
             ResultSet result;
             Integer videoID, z=1, y=1;
-            String username,password,category; 
+            String username,password,category;
+            Boolean btnclicked = false;
         %>
 
         <%-- read function --%>    
@@ -108,26 +109,60 @@
                 <div data-ng-show="show === 2">
                     <!-- correct -->
                     <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
+                        <%
+                            btnclicked = false;
+                        %>
+                        <script>
+                            function changeImage1() {
+                                document.getElementById("imgClickAndChange1").src = "resources/img/chestopen.png";
+                            }
+                            function changeImage2() {
+                                document.getElementById("imgClickAndChange2").src = "resources/img/chestopen.png";
+                            }
+                            function changeImage3() {
+                                document.getElementById("imgClickAndChange3").src = "resources/img/chestopen.png";
+                            }
+                            
+                        </script>                                                                  
+                        
                         <span class="yellow"><h3>Correct</h3></span>
                         <hr class="correct">
-                        <div data-ng-if="<%=z %>%5 === 0">
-                            <jsp:include page="starcollect.jsp"></jsp:include>       
+                        <div>
+                        <button class="chestbtn" onclick="changeImage1()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
+                        <button class="chestbtn" onclick="changeImage2()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
+                        <button class="chestbtn" onclick="changeImage3()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
                         </div>
-                        <div data-ng-if="count === 1 ">
-                            <h1 class="countdown3">3</h1>
+                        <div data-ng-if="btnclicked ===1" class="chestreward">
+                            <%
+                                Random rand = new Random();
+                                int n1 = rand.nextInt(4)+1;
+                                int n2 = rand.nextInt(4)+1;
+                                int n3 = rand.nextInt(4)+1;
+                            %>
+                            <%
+                                if(n1==1){
+                            %>
+                            <p>Congratulations!</p>
+                            <p>You got 1 Star! <i>Click the star to collect it!</i></p>
+                            <jsp:include page="starcollect.jsp"></jsp:include>
+                            <% 
+                                } if(n1==2){
+                            %>
+                            <p>Congratulations!</p>
+                            <p>You got 3 Star! <i>Click the star to collect it!</i></p>
+                            <jsp:include page="starcollect3.jsp"></jsp:include>
+                            <% 
+                                } if(n1==3){
+                            %>
+                            <p>Too bad. Try Again Next Time</p>
+                            <% 
+                                } if(n1==4){
+                            %>
+                            <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                            <% 
+                                }
+                            %>
                         </div>
-                        <div data-ng-if="count === 2 ">
-                            <h1 class="countdown2">2</h1>
-                        </div>
-                        <div data-ng-if="count === 3 ">
-                            <h1 class="countdown1">1</h1>
-                        </div>
-                        <div data-ng-if="count === 4 ">
-                            <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
-                        </div>
-                        <%
-                            z++;
-                        %>
                     </div>
                                 
                     <!-- incorrect -->

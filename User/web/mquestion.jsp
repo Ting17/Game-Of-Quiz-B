@@ -244,7 +244,7 @@
                                 <span class="yellow"><h3>Correct</h3></span>
                                 <hr class="correct">
 
-                                <div data-ng-if="<%=a %>%5 === 0">
+                                <div data-ng-if="<%=a %>%6 === 0">
                                     <jsp:include page="starcollect.jsp"></jsp:include>                
                                 </div>  
                             <div data-ng-if="count === 1 ">

@@ -138,13 +138,12 @@ video.videoque{
 }
 
 .type{
-    color: #d6ecff;
-
+    color: #1E88E5;
+    margin-top: -3%;
 }
 
 .type:hover{
     color: #FFF;
-    font-size: 18px;
 }
 
 .nonote{
@@ -203,7 +202,6 @@ video.videoque{
 .glyphicon-star{
     font-size: 40px;
 }
-
 
 .glyphicon-star:hover{
     -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
@@ -578,4 +576,15 @@ button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:af
 }
 .bluebtn { 
     background:hsl(176,59%,59%); 
+}
+
+.chestbtn{
+    border: none;
+    float: left;
+    padding: 1px 1px;
+}
+
+.chestreward{
+    width: 50%;
+    display: inline-block;
 }
