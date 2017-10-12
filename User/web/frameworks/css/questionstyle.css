@@ -533,3 +533,47 @@ button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:af
     right: 0;
 }
 
+#buttonlayout { 
+    text-align: center;
+    font-size:1.1em; 
+    padding:8px 26px; 
+    display:inline-block; 
+    margin:5px; 
+    border-radius:6px; 
+    border:solid rgba(0,0,0,0.2); 
+    border-width:1px 1px 5px; 
+    box-shadow:0 5px 0 rgba(0,0,0,0.1), inset 0 0 3px rgba(255,255,255,0.3); 
+    cursor:pointer; 
+    transition:0.4s ease; 
+}
+
+#buttonlayout:hover { 
+    transform:translateY(-3px); 
+    box-shadow:0 6px 0 rgba(0,0,0,0.1), inset 0 0 1px rgba(255,255,255,0.4); 
+    border-bottom-width:8px; 
+}
+
+#buttonlayout:active { 
+    transform:translateY(4px); 
+    box-shadow:0 2px 0 rgba(0,0,0,0.1), inset 0 0 5px rgba(255,255,255,0.4); 
+    border-bottom-width:2px; 
+    transition:0.1s ease; 
+}
+
+.redbtn { 
+    background:hsl(8,59%,59%); 
+    color:rgba(255,255,255,0.95); 
+    text-shadow:-1px -1px 1px rgba(0,0,0,0.1); 
+}
+.orangebtn { 
+    background:hsl(41,76%,65%); 
+}
+.yellowbtn { 
+    background:hsl(50,81%,65%); 
+}
+.greenbtn { 
+    background:hsl(104,51%,62%); 
+}
+.bluebtn { 
+    background:hsl(176,59%,59%); 
+}

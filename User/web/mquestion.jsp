@@ -145,7 +145,13 @@
     </div> <!--close row 1-->    
     
 <div class="container">
-    
+    <div class="col-xs-12 col-md-12 col-lg-12 ">
+            <ol class="breadcrumb breadcrumb-arrow">
+                    <li><a href="video2.jsp">Home</a></li>
+                    <li><a onclick="history.back()" href="#">More Quiz</a></li>
+                    <li class="active"><span>Quiz Question</span></li>
+            </ol>
+    </div>
     <div class="row"><!--2-->
         <!--breadcrumb-->
         <div class="col-xs-10 col-md-10 col-lg-10 "><!--2.1-->
@@ -242,16 +248,7 @@
                                     <jsp:include page="starcollect.jsp"></jsp:include>                
                                 </div>  
                             <div data-ng-if="count === 1 ">
-                                <h1 class="countdown3">3</h1>
-                            </div>
-                            <div data-ng-if="count === 2 ">
-                                <h1 class="countdown2">2</h1>
-                            </div>
-                            <div data-ng-if="count === 3 ">
-                                <h1 class="countdown1">1</h1>
-                            </div>
-                            <div data-ng-if="count === 4 ">
-                                <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
+                                <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
                             </div>
                             <%
                                 a++;
@@ -317,16 +314,7 @@
                                     <jsp:include page="starcollect.jsp"></jsp:include>                
                                 </div>  
                             <div data-ng-if="count === 1 ">
-                                <h1 class="countdown3">3</h1>
-                            </div>
-                            <div data-ng-if="count === 2 ">
-                                <h1 class="countdown2">2</h1>
-                            </div>
-                            <div data-ng-if="count === 3 ">
-                                <h1 class="countdown1">1</h1>
-                            </div>
-                            <div data-ng-if="count === 4 ">
-                                <a href="bonus.jsp" class="btnbonus">Bonus Time!!</a>
+                                <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
                             </div>
                             <%
                                 b++;
@@ -361,9 +349,9 @@
 
     <div class="row wrap"><!--4-->
         <div class="col-xs-12 col-md-7 col-lg-7 contentborder link"> <!--4.1--> 
-            <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Quiz List</span></button></a>
-            <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
-            <a data-toggle="modal" data-target="#ascore"><button class="btn btn-primary btn-2 icon-up"><span>Check Accumulated Score</span></button></a>
+            <a href="video2.jsp" class="redbtn" id="buttonlayout"><span>Back to Main Video Page</span></a>
+            <a href="mquiz1.jsp" class="orangebtn" id="buttonlayout"><span>Play More Quiz</span></a>
+            <a data-toggle="modal" data-target="#ascore" class="yellowbtn" id="buttonlayout"><span>Check Accumulated Score</span></a>
             <!-- Modal -->
             <%  
                 if (rs.next()) {
@@ -377,16 +365,16 @@
                     <h4>You have collected</h4>
                     <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
                     <br/>
-                    <p><i>**Collect more start as token for future event**</i></p>
+                    <p><i>**Collect more star as token for future event**</i></p>
                 </center> 
                 </div>
                 </div>
                 </div> <!--close modal-->
             <%
                 }
-            %> 
-            <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
-            <a href="#addfeedback" data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-1 icon-forward"><span>Feedback</span></button></a>
+            %>
+            <a href="announ1.jsp" class="greenbtn" id="buttonlayout"><span>Announcement</span></a>
+            <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn" id="buttonlayout"><span>Feedback</span></a>
         </div> <!--close column 4.1-->
          
         <div class="col-xs-12 col-md-5 col-lg-5 contentborder link"><!--4.2-->

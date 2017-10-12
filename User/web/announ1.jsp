@@ -109,7 +109,7 @@
         <div class="col-xs-12 col-md-12 col-lg-12 ">
             <ol class="breadcrumb breadcrumb-arrow">
                     <li><a href="video2.jsp">Home</a></li>
-                    <li><a onclick="history.back()" href="#">Video Quiz</a></li>
+                    <li><a onclick="history.back()" href="#">Quiz Question</a></li>
                     <li class="active"><span>Announcement</span></li>
             </ol>
         </div>
@@ -182,7 +182,7 @@
                 </div> <!--close modal-->
             <%
                 }
-            %>            
+            %>             
             </div> <!--close column 3.2-->
         </div><!--end column 1.2.3.1-->
     </div> 

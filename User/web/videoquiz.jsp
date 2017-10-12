@@ -91,7 +91,7 @@
         %>
         
 <script src="frameworks/js/paginationMethod.js"></script> 
-    
+
     <div class="row" id="top"><!--1--> 
         <div class="col-xs-12 col-md-12 col-lg-12 parallax"> <!--1.1--> 
             <div class="row"><!--1.1.1--> 
@@ -123,8 +123,8 @@
                         <ul>
                             <li><p>If confident enough go play more quiz, take the challenge.</p></li>
                             <li><p>If found any mistake, click on feedback button.</p></li>
-                            <li><p>Answer the last question correctly to collect star.</p></li>
-                            <li><p>Answer correctly click the CHECK button for exactly III times for bonus time!!!!</p></li>
+                            <li><p>Answer the questions correctly to collect a star.</p></li>
+                            <li><p>Answer the <b>Last</b> question correctly for game time!!!!</p></li>
                         </ul>
                         <br/>    
                         <div class="catpawn">
@@ -152,7 +152,12 @@
     </div> <!--close row 1-->
     
 <div class="container">    
-
+    <div class="col-xs-12 col-md-12 col-lg-12 ">
+        <ol class="breadcrumb breadcrumb-arrow">
+                    <li><a href="video2.jsp">Home</a></li>
+                    <li class="active"><span>Video Quiz</span></li>
+            </ol>
+    </div>
         <%
             while(res.next() ) {
         %>
@@ -184,9 +189,9 @@
            }
         %>
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
-            <a href="video2.jsp"><button class="btn btn-primary btn-1 icon-backward"><span>Back to Main Video Page</span></button></a>
-            <a href="mquiz.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Play More Quiz</span></button></a>
-            <a data-toggle="modal" data-target="#ascore"><button class="btn btn-primary btn-2 icon-up"><span>Check Accumulated Score</span></button></a>
+            <a href="video2.jsp" class="redbtn" id="buttonlayout"><span>Back to Main Video Page</span></a>
+            <a href="mquiz.jsp" class="orangebtn" id="buttonlayout"><span>Play More Quiz</span></a>
+            <a data-toggle="modal" data-target="#ascore" class="yellowbtn" id="buttonlayout"><span>Check Accumulated Score</span></a>
             <!-- Modal -->
             <%  
                 if (rs.next()) {
@@ -200,16 +205,16 @@
                     <h4>You have collected</h4>
                     <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
                     <br/>
-                    <p><i>**Collect more start as token for future event**</i></p>
+                    <p><i>**Collect more star as token for future event**</i></p>
                 </center> 
                 </div>
                 </div>
                 </div> <!--close modal-->
             <%
                 }
-            %>             
-            <a href="announ.jsp"><button class="btn btn-primary btn-1 icon-forward"><span>Announcement</span></button></a>
-            <a data-toggle="collapse" data-target="#addfeedback"><button class="btn btn-primary btn-2 icon-down"><span>Feedback</span></button></a>  
+            %>
+            <a href="announ.jsp" class="greenbtn" id="buttonlayout"><span>Announcement</span></a>
+            <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn" id="buttonlayout"><span>Feedback</span></a> 
         </div> <!--close column 3.2-->
     </div> <!--close row 3-->
                   

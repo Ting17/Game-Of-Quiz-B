@@ -151,7 +151,7 @@
                                     <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=result.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
                             </div>                      
                             <div class="col-xs-2 col-md-2 col-lg-2"> 
-                                    <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                                    <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg videobtn">Test quiz</button></a>
                             </div>   
                         <%
                             }
@@ -212,7 +212,7 @@
                     if (check==true) {
                 %>
                             <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=result.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
-                            <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                            <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>"><button class="btn-lg videobtn">Test quiz</button></a>
                 <%
                     }
                 %> 
@@ -271,7 +271,7 @@
                     if (check==true) {
                 %>
                             <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=result.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
-                            <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                            <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>"><button class="btn-lg videobtn">Test quiz</button></a>
                 <%
                     }
                 %> 
