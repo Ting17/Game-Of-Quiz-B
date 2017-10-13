@@ -124,7 +124,7 @@
                             <li><p>If confident enough go play more quiz, take the challenge.</p></li>
                             <li><p>If found any mistake, click on feedback button.</p></li>
                             <li><p>Answer the questions correctly to collect a star.</p></li>
-                            <li><p>Answer the <b>Last</b> question correctly for game time!!!!</p></li>
+                            <li><p>Answer the <b>Last</b> question correctly for a <u>random chest reward</u>.</p></li>
                         </ul>
                         <br/>    
                         <div class="catpawn">

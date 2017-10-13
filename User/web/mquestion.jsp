@@ -116,8 +116,8 @@
                         <br/>
                         <p><b>Cat's Advise:</b></p>
                         <ul>
-                            <li><p>Answer the last question correctly to collect star.</p></li>
-                            <li><p>Answer correctly click the CHECK button for exactly III times for bonus time!!!!</p></li>
+                            <li><p>Answer the questions correctly to collect a star.</p></li>
+                            <li><p>Answer the <b>Last</b> question correctly for a <u>random chest reward</u>.</p></li>
                         </ul>
                         <br/>    
                         <div class="catpawn">
@@ -180,6 +180,18 @@
         }}
     %>              
         </div>
+        <script>
+                            function changeImage1() {
+                                document.getElementById("imgClickAndChange1").src = "resources/img/chestopen.png";
+                            }
+                            function changeImage2() {
+                                document.getElementById("imgClickAndChange2").src = "resources/img/chestopen.png";
+                            }
+                            function changeImage3() {
+                                document.getElementById("imgClickAndChange3").src = "resources/img/chestopen.png";
+                            }
+                            
+                        </script>
         <div class="col-xs-12 col-md-5 col-lg-5 videoquestion"><!--3.1-->
             <div class="table-responsive">
                 <table class="table table-stripped table-hover questiont" id="tablepaging">
@@ -244,15 +256,42 @@
                                 <span class="yellow"><h3>Correct</h3></span>
                                 <hr class="correct">
 
-                                <div data-ng-if="<%=a %>%6 === 0">
-                                    <jsp:include page="starcollect.jsp"></jsp:include>                
-                                </div>  
-                            <div data-ng-if="count === 1 ">
-                                <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
-                            </div>
-                            <%
-                                a++;
-                            %>
+                                <div>
+                                <button class="chestbtnm" onclick="changeImage1()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
+                                <button class="chestbtnm" onclick="changeImage2()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
+                                <button class="chestbtnm" onclick="changeImage3()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
+                                </div>
+                                <div data-ng-if="btnclicked ===1" class="chestreward">
+                                    <%
+                                        Random rand = new Random();
+                                        int n1 = rand.nextInt(4)+1;
+                                        int n2 = rand.nextInt(4)+1;
+                                        int n3 = rand.nextInt(4)+1;
+                                    %>
+                                    <%
+                                        if(n1==1){
+                                    %>
+                                    <p>Congratulations!</p>
+                                    <p>You got 1 Star! <i>Click the star to collect it!</i></p>
+                                    <jsp:include page="starcollect.jsp"></jsp:include>
+                                    <% 
+                                        } if(n1==2){
+                                    %>
+                                    <p>Congratulations!</p>
+                                    <p>You got 3 Star! <i>Click the star to collect it!</i></p>
+                                    <jsp:include page="starcollect3.jsp"></jsp:include>
+                                    <% 
+                                        } if(n1==3){
+                                    %>
+                                    <p>Too bad. Try Again Next Time</p>
+                                    <% 
+                                        } if(n1==4){
+                                    %>
+                                    <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                                    <% 
+                                        }
+                                    %>
+                                </div>
                             </div>
 
                             <!-- incorrect -->
@@ -310,15 +349,36 @@
                                 <span class="yellow"><h3>Correct</h3></span>
                                 <hr class="correct">
 
-                                <div data-ng-if="<%=b %>%5 === 0">
-                                    <jsp:include page="starcollect.jsp"></jsp:include>                
-                                </div>  
-                            <div data-ng-if="count === 1 ">
-                                <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
-                            </div>
-                            <%
-                                b++;
-                            %> 
+                                <div>
+                                <button class="chestbtnm" onclick="changeImage1()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
+                                <button class="chestbtnm" onclick="changeImage2()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
+                                <button class="chestbtnm" onclick="changeImage3()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
+                                </div>
+                                <div data-ng-if="btnclicked ===1" class="chestreward">
+                                    <%
+                                        if(n1==1){
+                                    %>
+                                    <p>Congratulations!</p>
+                                    <p>You got 1 Star! <i>Click the star to collect it!</i></p>
+                                    <jsp:include page="starcollect.jsp"></jsp:include>
+                                    <% 
+                                        } if(n1==2){
+                                    %>
+                                    <p>Congratulations!</p>
+                                    <p>You got 3 Star! <i>Click the star to collect it!</i></p>
+                                    <jsp:include page="starcollect3.jsp"></jsp:include>
+                                    <% 
+                                        } if(n1==3){
+                                    %>
+                                    <p>Too bad. Try Again Next Time</p>
+                                    <% 
+                                        } if(n1==4){
+                                    %>
+                                    <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                                    <% 
+                                        }
+                                    %>
+                                </div>
                             </div>
 
                             <!-- incorrect -->

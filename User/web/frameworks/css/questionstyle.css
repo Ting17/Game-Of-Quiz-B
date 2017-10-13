@@ -584,6 +584,11 @@ button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:af
     padding: 1px 1px;
 }
 
+.chestbtnm{
+    border: none;
+    padding: 1px 1px;
+}
+
 .chestreward{
     width: 50%;
     display: inline-block;
