@@ -139,14 +139,16 @@
                             <%
                                 if(n1==1){
                             %>
-                            <p>Congratulations!</p>
-                            <p>You got 1 Star! <i>Click the star to collect it!</i></p>
+                            <div class="congrats" >CONGRATULATIONS!</div>
+                            <p>You got 1 Star!</p> 
+                            <p><i>Click on the star to collect it.</i></p>
                             <jsp:include page="starcollect.jsp"></jsp:include>
                             <% 
                                 } if(n1==2){
                             %>
-                            <p>Congratulations!</p>
-                            <p>You got 3 Star! <i>Click the star to collect it!</i></p>
+                            <div class='congrats' >CONGRATULATIONS!</div>
+                            <p>You got 3 Star!</p> 
+                            <p><i>Click on the star to collect it.</i></p>
                             <jsp:include page="starcollect3.jsp"></jsp:include>
                             <% 
                                 } if(n1==3){
@@ -228,14 +230,16 @@
                             <%
                                 if(n1==1){
                             %>
-                            <p>Congratulations!</p>
-                            <p>You got 1 Star! <i>Click the star to collect it!</i></p>
+                            <div class='congrats' >CONGRATULATIONS!</div>
+                            <p>You got 1 Star!</p> 
+                            <p><i>Click on the star to collect it.</i></p>
                             <jsp:include page="starcollect.jsp"></jsp:include>
                             <% 
                                 } if(n1==2){
                             %>
-                            <p>Congratulations!</p>
-                            <p>You got 3 Star! <i>Click the star to collect it!</i></p>
+                            <div class='congrats' >CONGRATULATIONS!</div>
+                            <p>You got 3 Star!</p> 
+                            <p><i>Click on the star to collect it.</i></p>
                             <jsp:include page="starcollect3.jsp"></jsp:include>
                             <% 
                                 } if(n1==3){

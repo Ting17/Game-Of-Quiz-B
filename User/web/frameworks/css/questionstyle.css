@@ -593,3 +593,42 @@ button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:af
     width: 50%;
     display: inline-block;
 }
+
+div.congrats {
+ font-weight:bold;
+ color:#4794D3;
+ margin:10px auto;
+
+ -webkit-animation: zoom-in-out 2s linear 0s infinite normal ;
+ animation: zoom-in-out 2s linear 0s infinite normal ;
+}
+
+@-webkit-keyframes zoom-in-out {
+  0%{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+  }
+  50%{
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+  }
+  100%{
+	-webkit-transform: scale(1);
+	transform: scale(1);
+  }
+}
+
+@keyframes zoom-in-out {
+  0%{
+	-ms-transform: scale(1);
+	transform: scale(1);
+  }
+  50%{
+	-ms-transform: scale(1.2);
+	transform: scale(1.2);
+  }
+  100%{
+	-ms-transform: scale(1);
+	transform: scale(1);
+  }
+}
