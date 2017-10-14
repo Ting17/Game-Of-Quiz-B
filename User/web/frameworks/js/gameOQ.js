@@ -12,12 +12,12 @@ var currentDiv = document.getElementById("divEng");
     
 
 function checkansSound(){
-    var audio = new Audio('sound/Bing-sound.mp3');
+    var audio = new Audio('sound/success.mp3');
     audio.play();
 }
 
 function giveupSound(){
-    var audio = new Audio('sound/Fail-trombone.mp3');
+    var audio = new Audio('sound/Chime.mp3');
     audio.play();
 }
 
@@ -27,7 +27,7 @@ function collectSound(){
 }
 
 function meowSound(){
-    var audio = new Audio('sound/Cat-meow-sound-2.mp3');
+    var audio = new Audio('sound/Blop.mp3');
     audio.play();
 } 
 
