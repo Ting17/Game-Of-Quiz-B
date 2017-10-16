@@ -38,7 +38,7 @@
             Connection conn;
             Statement stmt, st, stm;
             ResultSet result, rs, rst;
-            Integer announ;
+            Integer announ, videoID;
             String username, password;
         %>
         
@@ -48,6 +48,8 @@
             password = (String)session.getAttribute("pass");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
+            videoID = Integer.parseInt(request.getParameter("videoID"));
+            
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 st=conn.createStatement();
@@ -55,7 +57,6 @@
               
                 stm = conn.createStatement();
                 rst = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");       
-
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");       
                  
@@ -106,20 +107,27 @@
     %>   
     
     <div class="container ">   
-        <div class="col-xs-12 col-md-12 col-lg-12 ">
-            <ol class="breadcrumb breadcrumb-arrow">
-                    <li><a href="video2.jsp">Home</a></li>
-                    <li><a onclick="history.back()" href="#">Video Quiz</a></li>
-                    <li class="active"><span>Announcement</span></li>
-            </ol>
-        </div>
         <!--Content section-->
         <div class="row"><!--1.2.2-->
-            <div class="col-xs-12 col-md-9 col-lg-9 contentborder"><!--1.2.2.1-->
-                <h2>Announcement</h2>
+            <div class="col-xs-12 col-md-9 col-lg-9 videoquestion contentborder"><!--1.2.2.1-->
+                <ol class="breadcrumb breadcrumb-arrow">
+                    <li><a href="video2.jsp">Home</a></li>
+            <% 
+                if(videoID ==0){
+            %>
+                    <li><a onclick="history.back()" href="#">Quiz Question</a></li>
+            <%
+                } else{
+            %>
+                    <li><a onclick="history.back()" href="#">Video Quiz</a></li>
+            <%
+                }
+            %>
+                    <li class="active"><span>Announcement</span></li>
+                </ol>
              
                 <div class="table-responsive">
-                <table class="table table-stripped table-hover sortable" id="tablepaging2">
+                <table class="table" id="tablepaging2">
                     <thead>
                         <tr>
                             <th id="announ" scope="col">Announcement</th>
@@ -130,21 +138,12 @@
             while(result.next()) { 
         %>
                         <tr>
-                            <td headers="announ">
-                                <div class="row"><!--1.2.3-->
-                                    <div class="col-xs-10 col-md-10 col-lg-10">
-                                        <h3><%=result.getString("announcement") %></h3>
-                                    </div>
-                                    <div class="col-xs-2 col-md-2 col-lg-2">
-                                        <%=result.getString("udate") %>
-                                    </div>
-                                </div>
-                                
-                                <div class="row"><!--1.2.3-->
-                                    <div class="col-xs-12 col-md-12 col-lg-12">
-                                        <%=result.getString("content") %>
-                                    </div>
-                                </div>
+                            <td class="announ">
+                                <h4><b><%=result.getString("announcement") %></b></h4>
+                                <%=result.getString("udate") %>
+                                <br/><br/><br/>
+                                <%=result.getString("content") %>
+                                <hr/>
                             </td>
                         </tr>
         <%
@@ -153,36 +152,47 @@
                     </tbody>
                 </table>
                 </div>
-                <center class="pagi">    
-                    <div id="pgNum2"></div>
+                <center >    
+                    <div id="pgNum"></div>
                 </center>
             </div>
                 
-            <div class="col-xs-12 col-md-3 col-lg-3 contentborder link"><!--3.2--> 
-                <a onclick="history.back()" class="redbtn" id="buttonlayout"><span>Back</span></a>
-                <a href="video2.jsp" class="orangebtn" id="buttonlayout"><span>Back to Main Video Page</span></a>
-                <a data-toggle="modal" data-target="#ascore" class="yellowbtn" id="buttonlayout"><span>Check Accumulated Score</span></a>
+            <div class="col-xs-12 col-md-3 col-lg-3 videoquestion link"><!--3.2--> 
+                <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
+                <a href="video2.jsp" class="orangebtn buttonlayout"><span>Back to Main Video Page</span></a>
+                <a data-toggle="modal" data-target="#ascore" class="yellowbtn buttonlayout"><span>Check Accumulated Score</span></a>
             <!-- Modal -->
-            <%  
+             <%  
                 if (rst.next()) {
             %>        
                 <div class="modal fade" id="ascore" role="dialog">
                 <div class="modal-dialog">
-                <div class="modal-content">
-                <center>
-                    <h3><b><%=rst.getString("username")%></b></h3>
-                    <br/>
-                    <h4>You have collected</h4>
-                    <h2 class="yellow"><%=rst.getString("result")%> Stars</h2>
-                    <br/>
-                    <p><i>**Collect more star as token for future event**</i></p>
-                </center> 
+                <div class="modal-content modalbg">
+                    <!--Content-->
+                    <div class="estrellas">
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                    </div>   
+                    <center class="ascore">
+                        <h3><b><%=rst.getString("username")%></b></h3>
+                        <br/>
+                        <h4>You have collected</h4>
+                        <h2 class="yellow"><%=rst.getString("result")%> Stars</h2>
+                        <br/>
+                        <p><i>**Collect more star as token for future event**</i></p>
+                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                    </center> 
                 </div>
                 </div>
                 </div> <!--close modal-->
             <%
                 }
-            %>            
+            %>
             </div> <!--close column 3.2-->
         </div><!--end column 1.2.3.1-->
     </div> 

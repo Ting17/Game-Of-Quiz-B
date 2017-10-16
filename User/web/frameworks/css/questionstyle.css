@@ -35,20 +35,26 @@
 }
   
 .container{
-    padding: 2%;
-}
-
-.vwrap{
-    margin: 0 1% 0% 1%;
+    padding: 1%;
 }
 
 .wrap{
-    margin: 1%;
+   margin-top: 1%; 
+}
+
+.interwrap{
+  background: #3bafda; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #3bafda , #D9D9D8); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #3bafda, #D9D9D8); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #3bafda, #CBCCC7); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #3bafda , #D9D9D8); /* Standard syntax */
+  color: #000;
 }
 
 .videoquestion{
    padding-left: 0px;
    padding-right: 0px; 
+   
 }
 
 
@@ -59,11 +65,11 @@
 
 .link a{
    width: 100%;
-   margin: 1%;
+   margin: 2% 1% 2% 1%;
 }
 
 .wrap2{
-    margin: 3% 1% 0% 1%;
+    padding: 3%;
 }
 
 .videodesc{
@@ -83,12 +89,11 @@
 }
 
 .questiont tbody tr  {
-   height: 413px;
+   min-height: 65vh;
 }
 
 video.videoque{  
     width: 100%;
-    height: 450px;
 }
 
 /*Pagination*/
@@ -205,15 +210,14 @@ video.videoque{
 
 .glyphicon-star:hover{
     -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
-  -webkit-mask-size: 200%;
-  animation: shine 0.7s infinite;
+    -webkit-mask-size: 200%;
+    animation: shine 0.7s infinite;
 }
 
 @-webkit-keyframes shine {
   from {
     -webkit-mask-position: 150%;
   }
-  
   to {
     -webkit-mask-position: -50%;
   }
@@ -421,6 +425,9 @@ hr.correct, hr.normal{
     width: 80%;
 }
 
+.normal{
+    color: #fff;
+}
 .answercontainer{
     border-style: double;
     margin: 3%;
@@ -463,97 +470,25 @@ input{
 }
 
 /*button animation*/
-button.btn-1, button.btn-2 {
-    transition: all 0.3s;
-    cursor: pointer;
-    width: 100%;
-    text-transform: uppercase;
-    margin: 1% 0;
-    position: relative;
-}
-
-button.btn-1 span,button.btn-2 span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.3s;
-}
-
-.icon-backward span:after {
-    content: '\2190';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    left: -20px;
-    transition: 0.3s;
-}
-
-.icon-forward span:after {
-    content: '\2192';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.3s;
-}
-
-.icon-down span:after {
-    content: '\2193';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    bottom: -20px;
-    transition: 0.3s;
-}
-
-.icon-up span:after {
-    content: '\2191';
-    position: absolute;
-    opacity: 0;
-    top: 0px;
-    bottom: -20px;
-    transition: 0.3s;
-}
-
-button.btn-1.icon-backward:hover span {
-    padding-left: 30px;
-}
-
-button.btn-1.icon-forward:hover span, button.btn-2.icon-down:hover span, button.btn-2.icon-up:hover span {
-    padding-right: 30px;
-}
-
-button.btn-1.icon-backward:hover span:after{
-    opacity: 1;
-    left: 0;
-}
-
-button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:after, button.btn-2.icon-up:hover span:after{
-    opacity: 1;
-    right: 0;
-}
-
-#buttonlayout { 
+.buttonlayout { 
     text-align: center;
-    font-size:1.1em; 
-    padding:8px 26px; 
-    display:inline-block; 
-    margin:5px; 
-    border-radius:6px; 
-    border:solid rgba(0,0,0,0.2); 
-    border-width:1px 1px 5px; 
-    box-shadow:0 5px 0 rgba(0,0,0,0.1), inset 0 0 3px rgba(255,255,255,0.3); 
-    cursor:pointer; 
-    transition:0.4s ease; 
+    padding: 8px 26px; 
+    display: inline-block;  
+    border-radius: 6px; 
+    border: solid rgba(0,0,0,0.2); 
+    border-width: 1px 1px 5px; 
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1), inset 0 0 3px rgba(255,255,255,0.3); 
+    cursor: pointer; 
+    transition: 0.4s ease; 
 }
 
-#buttonlayout:hover { 
-    transform:translateY(-3px); 
-    box-shadow:0 6px 0 rgba(0,0,0,0.1), inset 0 0 1px rgba(255,255,255,0.4); 
-    border-bottom-width:8px; 
+.buttonlayout:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 0 rgba(0,0,0,0.1), inset 0 0 1px rgba(255,255,255,0.4); 
+    border-bottom-width: 8px; 
 }
 
-#buttonlayout:active { 
+.buttonlayout:active { 
     transform:translateY(4px); 
     box-shadow:0 2px 0 rgba(0,0,0,0.1), inset 0 0 5px rgba(255,255,255,0.4); 
     border-bottom-width:2px; 
@@ -561,24 +496,27 @@ button.btn-1.icon-forward:hover span:after, button.btn-2.icon-down:hover span:af
 }
 
 .redbtn { 
-    background:hsl(8,59%,59%); 
-    color:rgba(255,255,255,0.95); 
-    text-shadow:-1px -1px 1px rgba(0,0,0,0.1); 
+    background: hsl(8,59%,59%); 
+    color: #fff; 
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.1); 
 }
 .orangebtn { 
-    background:hsl(41,76%,65%); 
+    background: hsl(41,76%,65%); 
 }
 .yellowbtn { 
-    background:hsl(50,81%,65%); 
+    background: hsl(50,81%,65%); 
+    color: #000; 
 }
 .greenbtn { 
-    background:hsl(104,51%,62%); 
+    background: hsl(104,51%,62%); 
 }
 .bluebtn { 
-    background:hsl(176,59%,59%); 
+    background: hsl(176,59%,59%); 
+    color: #fff; 
 }
 
 .chestbtn{
+    margin-left: 3%;
     border: none;
     float: left;
     padding: 1px 1px;
@@ -631,4 +569,62 @@ div.congrats {
 	-ms-transform: scale(1);
 	transform: scale(1);
   }
+}
+
+
+/*modal for checking accumulate score*/
+.estrellas {
+    transform: rotate(-103deg);
+    margin-top: 50%;
+    margin-right: 85%;
+}
+
+.estrellas span {
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    height: 260px;
+    text-align: center;
+    line-height: 70px;
+    transform-origin: bottom center;
+}
+
+.estrellas span:nth-of-type(1)  {
+  transform: rotate(25deg);
+}
+.estrellas span:nth-of-type(2)  {
+  transform: rotate(51deg);
+}
+.estrellas span:nth-of-type(3)  {
+  transform: rotate(78deg);
+}
+.estrellas span:nth-of-type(4)  {
+  transform: rotate(103deg);
+}
+.estrellas span:nth-of-type(5)  {
+  transform: rotate(129deg);
+}
+.estrellas span:nth-of-type(6)  {
+  transform: rotate(154deg);
+}
+.estrellas span:nth-of-type(7)  {
+  transform: rotate(180deg);
+}
+
+.ascore{
+    margin-top: -15%;
+}
+
+.modalbg{
+  background: #4CA1AF; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(bottom, #4CA1AF , #C4E0E5); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, #C4E0E5, #4CA1AF); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, #C4E0E5, #4CA1AF); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, #2c3e50, #3498db); /* Standard syntax */
+  color: #fff;
+  padding: 1%;
+}
+
+.announ{
+    padding: 2%;
 }

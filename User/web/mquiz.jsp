@@ -37,17 +37,16 @@
 <body>
         <%!
             Connection conn;
-            PreparedStatement pstmt;
             Statement stmt,st;
             ResultSet result,rs; 
-            String category, username,password;
-            Integer videoID,quizID; 
+            String username,password;
+            Integer quizID, videoID; 
         %>
- <%-- READ function--%>
+        <%-- READ function--%>
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
-            
+            videoID = Integer.parseInt(request.getParameter("videoID"));
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
@@ -96,7 +95,17 @@
         <div class="col-xs-12 col-md-12 col-lg-12 ">
             <ol class="breadcrumb breadcrumb-arrow">
                     <li><a href="video2.jsp">Home</a></li>
+            <% 
+                if(videoID ==0){
+            %>
+                    <li><a onclick="history.back()" href="#">Quiz Question</a></li>
+            <%
+                } else{
+            %>
                     <li><a onclick="history.back()" href="#">Video Quiz</a></li>
+            <%
+                }
+            %>
                     <li class="active"><span>More Quiz</span></li>
             </ol>
         </div>
@@ -128,8 +137,8 @@
         </div> <!--end column 3.1-->
               
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--3.2--> 
-            <a onclick="history.back()" class="redbtn" id="buttonlayout"><span>Back</span></a>
-            <a href="video2.jsp" class="orangebtn" id="buttonlayout"><span>Back to Main Video Page</span></a>
+            <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
+            <a href="video2.jsp" class="orangebtn buttonlayout"><span>Back to Main Video Page</span></a>
         </div><!--close column 3.2-->
     </div> <!--close row 3-->
     </div> <!--close container-->

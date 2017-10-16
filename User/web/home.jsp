@@ -1,5 +1,5 @@
 <%-- 
-    Document   : home
+    Document   : video
     Created on : Jul 23, 2017, 10:55:23 AM
     Author     : tingting17
 --%>
@@ -47,7 +47,6 @@
     <%
         username = request.getParameter("username");    
         password = request.getParameter("password");
-
         session.setAttribute("uname",username);
         session.setAttribute("pass",password);
         
@@ -111,7 +110,7 @@
     <%
         }else  {
             out.println(request.getAttribute("errorMessage"));
-        response.sendRedirect("index.html");
+            response.sendRedirect("index.html");
         }
     %>  
     
@@ -152,24 +151,24 @@
                             <h3><%=result.getString("videoName") %></h3>
                             <p><%=result.getString("videoDesc") %></p>
                         </div>  
-            <%
-                resultq.first();
-                check=false;
-                while(resultq.next()) {
-                    videoID = resultq.getString("videoID");
-                    if(result.getString("videoID").equals(videoID)) {
-                        check=true;    
-                        break;
-                    }
-                }   
-                if(check == true){
-            %>
+                <%
+                    resultq.first();
+                    check=false;
+                    while(resultq.next()) {
+                        videoID = resultq.getString("videoID");
+                        if(result.getString("videoID").equals(videoID)) {
+                            check=true;    
+                            break;
+                        }
+                    }   
+                    if(check == true){
+                %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
-                            <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
+                            <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&quiz=<%=resultq.getString("quizID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
                         </div>
-            <%
-                }
-            %>
+                <%
+                    }
+                %>
                     </div><!--end row 3.1.1-->
                 </div><!--close video wrap-->
             <%
@@ -195,24 +194,24 @@
                             <h3><%=result.getString("videoName") %></h3> 
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
-            <%
-                resultq2.first();
-                check=false;
-                while(resultq2.next()) {
-                    videoID = resultq2.getString("videoID");
-                    if(result.getString("videoID").equals(videoID)) {
-                        check=true;    
-                        break;
-                    }
-                } 
-                if(check == true){
-            %>
+                <%
+                    resultq2.first();
+                    check=false;
+                    while(resultq2.next()) {
+                        videoID = resultq2.getString("videoID");
+                        if(result.getString("videoID").equals(videoID)) {
+                            check=true;    
+                            break;
+                        }
+                    } 
+                    if(check == true){
+                %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
-                            <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
+                            <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&quiz=<%=resultq2.getString("quizID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
                         </div>
-            <%
-                }
-            %>
+                <%
+                    }
+                %>
                     </div><!--end row 1.2.3.1.1-->
                 </div><!--close video wrap-->
             <%
@@ -238,24 +237,24 @@
                             <h3><%=result.getString("videoName") %></h3> 
                             <p><%=result.getString("videoDesc") %></p>
                         </div>            
-            <%
-                resultq3.first();
-                check=false;
-                while(resultq3.next()) {
-                    videoID = resultq3.getString("videoID");
-                    if(result.getString("videoID").equals(videoID)) {
-                        check=true;    
-                        break;
-                    }
-                }   
-                if(check == true){
-            %>
+                <%
+                    resultq3.first();
+                    check=false;
+                    while(resultq3.next()) {
+                        videoID = resultq3.getString("videoID");
+                        if(result.getString("videoID").equals(videoID)) {
+                            check=true;    
+                            break;
+                        }
+                    }   
+                    if(check == true){
+                %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
-                            <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
+                            <a href="videoquiz.jsp?id=<%=result.getInt("videoID")%>&quiz=<%=resultq3.getString("quizID")%>&categ=<%=result.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
                         </div>
-            <%
-                }
-            %>
+                <%
+                    }
+                %>
                     </div><!--end row 1.2.3.1.1-->
                 </div><!--close video wrap-->
             <%

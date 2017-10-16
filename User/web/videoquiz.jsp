@@ -1,5 +1,5 @@
 <%-- 
-    Document   : question
+    Document   : videoquiz
     Created on : Apr 29, 2017, 11:59:49 PM
     Author     : tingting17
 --%>
@@ -61,7 +61,6 @@
                     
                     stm = conn.createStatement();
                     rs = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");
-
        
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
@@ -77,7 +76,6 @@
                     pstmt.setString(2,username);
                     pstmt.setString(3,request.getParameter("txtfeedback"));
                     pstmt.executeUpdate();
-
                     response.sendRedirect("./videoquiz.jsp?id=" + videoID + "&categ=" + category);
                     }catch(ClassNotFoundException cnfe){
                         out.println("Class not Found Execption:-" + cnfe.toString());
@@ -97,7 +95,7 @@
             <div class="row"><!--1.1.1--> 
                 <div class="col-xs-7 col-md-7 col-lg-7 title"><!--1.1.1.1--> 
                     <p>"Push yourself because no one else is going to do it for you"</p>
-                </div>
+                </div> <!--close column 1.1.1.1-->
                 
                 <div class="col-xs-2 col-md-2 col-lg-2"><!--1.1.1.2--> 
                     <a data-toggle="modal" data-target="#myModal" >
@@ -151,18 +149,16 @@
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->
     
-<div class="container">    
-    <div class="col-xs-12 col-md-12 col-lg-12 ">
-        <ol class="breadcrumb breadcrumb-arrow">
-                    <li><a href="video2.jsp">Home</a></li>
-                    <li class="active"><span>Video Quiz</span></li>
-            </ol>
-    </div>
+<div class="container"> 
         <%
             while(res.next() ) {
         %>
     <div class="row vwrap"><!--2--> 
         <div class="col-xs-12 col-md-8 col-lg-8 videoquestion contentborder"><!--2.1--> 
+            <ol class="breadcrumb-arrow">
+                <li><a href="video2.jsp">Home</a></li>
+                <li class="active"><span>Video Quiz</span></li>
+            </ol>
             <video class="videoque" controls>
                 <source src="<%=res.getString("videoPath")%>" type="video/mp4">
             </video>
@@ -174,103 +170,154 @@
     </div> <!--close row 2-->
     
     <div class="row wrap"><!--3--> 
-        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1--> 
-            <h3><%=res.getString("videoName") %></h3>
-            <h4>Category << <%=res.getString("category") %> >></h4>
-            <hr/>
-            <p class="videodesc"><%=res.getString("videoDesc") %></p>        
-            <a data-toggle="collapse" data-target="#transcript"><button class="btn btn-default btn-sm right">Transcript</button></a>
-            <div id="transcript" class="collapse">  
-                <hr/>
-               <p><%=res.getString("transcript") %></p>
-            </div>
-        </div> <!--close column 3.1-->
+        <!--video description and transcript-->
+        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1-->
+            <div class="row"><!--3.1.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--3.1.1.1--> 
+                    <h3><%=res.getString("videoName") %></h3>
+                    <h5>Category << <%=res.getString("category") %> >></h5>
+                    <hr/>
+                </div><!--close column 3.1.1.1--> 
+            </div><!--close row 3.1.1-->  
+            
+            <div class="row"><!--3.1.2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 wrap2"><!--3.1.2.1--> 
+                    <p class="videodesc"><%=res.getString("videoDesc") %></p>        
+                    <a data-toggle="collapse" data-target="#transcript"><button class="btn btn-default btn-sm right" title="click here for transcript">Transcript</button></a>
+                    <div id="transcript" class="collapse">  
+                        <hr/>
+                       <p><%=res.getString("transcript") %></p>
+                    </div>
+                </div> <!--close column 3.1.2.1--> 
+            </div> <!--close row 3.1.2--> 
+        </div> <!--end of video description and transcript and end of column 3.1-->
         <%
            }
         %>
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
-            <a href="video2.jsp" class="redbtn" id="buttonlayout"><span>Back to Main Video Page</span></a>
-            <a href="mquiz.jsp" class="orangebtn" id="buttonlayout"><span>Play More Quiz</span></a>
-            <a data-toggle="modal" data-target="#ascore" class="yellowbtn" id="buttonlayout"><span>Check Accumulated Score</span></a>
+            <a href="video2.jsp" class="redbtn buttonlayout"><span>Back to Main Video Page</span></a>
+            <a href="mquiz.jsp?videoID=<%=videoID %>" class="orangebtn buttonlayout"><span>Play More Quiz</span></a>
+            <a data-toggle="modal" data-target="#ascore" class="yellowbtn buttonlayout"><span>Check Accumulated Score</span></a>
             <!-- Modal -->
             <%  
                 if (rs.next()) {
             %>        
                 <div class="modal fade" id="ascore" role="dialog">
                 <div class="modal-dialog">
-                <div class="modal-content">
-                <center>
-                    <h3><b><%=rs.getString("username")%></b></h3>
-                    <br/>
-                    <h4>You have collected</h4>
-                    <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
-                    <br/>
-                    <p><i>**Collect more star as token for future event**</i></p>
-                </center> 
+                <div class="modal-content modalbg">
+                    <!--Content-->
+                    <div class="estrellas">
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                    </div>   
+                    <center class="ascore">
+                        <h3><b><%=rs.getString("username")%></b></h3>
+                        <br/>
+                        <h4>You have collected</h4>
+                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                        <br/>
+                        <p><i>**Collect more star as token for future event**</i></p>
+                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                    </center> 
                 </div>
                 </div>
                 </div> <!--close modal-->
             <%
                 }
             %>
-            <a href="announ.jsp" class="greenbtn" id="buttonlayout"><span>Announcement</span></a>
-            <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn" id="buttonlayout"><span>Feedback</span></a> 
+            <a href="announ.jsp?videoID=<%=videoID %>" class="greenbtn buttonlayout"><span>Announcement</span></a>
+            <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout"><span>Feedback</span></a> 
         </div> <!--close column 3.2-->
     </div> <!--close row 3-->
                   
-    <div class="row wrap2"><!--4-->
+    <div class="row wrap"><!--4-->
         <!--more video-->
-        <div class="col-xs-12 col-md-9 col-lg-9 contentborder"><!--4.1--> 
-            <h4>Related Videos</h4>
-            <center>
-            <div id="myCarousel" class="carousel slide " data-interval="false">
-          
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="item active">
-                   <jsp:include page="table.jsp"></jsp:include>
-                </div>
+        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--4.1--> 
+            <div class="row"><!--4.1.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.1.1.1-->
+                    <h4>Related Videos <span class="glyphicon glyphicon-facetime-video"></span></h4>
+                </div> <!--close column 4.1.1.1--> 
+            </div> <!--close row 4.1.1--> 
+            <div class="row"><!--4.1.2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12"> <!--4.1.2.1-->       
+                    <center>
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
-                <div class="item">
-                    <jsp:include page="table.jsp"></jsp:include>
-                </div>  
-                    
-                <div class="item">
-                    <jsp:include page="table.jsp"></jsp:include>
-                </div>
-            </div>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                           <jsp:include page="table.jsp"></jsp:include>
+                        </div>
 
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            </div>
-            </center>
+                        <div class="item">
+                            <jsp:include page="table.jsp"></jsp:include>
+                        </div>  
+
+                        <div class="item">
+                            <jsp:include page="table.jsp"></jsp:include>
+                        </div>
+                    </div>
+
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    </div>
+                    </center>
+                </div> <!--close column 4.1.2.1--> 
+            </div><!--close row 4.1.2--> 
         </div><!--end of more video & end column 4.1--> 
         
         <!--feedback form-->
-        <div class="col-xs-12 col-md-3 col-lg-3 contentborder link"><!--4.2-->
-            <hr class="normal">
-            <center>
-                <h4>Game of Quiz</h4>
-                
-                <div id="addfeedback" class="collapse">  
-                    <form id="addForm" action="" method="POST"> 
-                        <h5>FEEDBACK<h5/><hr/>
-                        <p>Just comment. We listen.</p>
-                        <textarea name="txtfeedback"></textarea><br/><br/>
-                        <button type="submit" name="btnAdd">Submit</button>
-                    </form>
-                </div>
-            </center>
-            <hr class="normal">
-        </div><!--end column 4.2-->
-    </div><!--end of feedback form & end row 4--> 
+        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--4.2-->
+            <div class="row"><!--4.2.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
+                    <hr class="normal">
+                    <center>
+                        <h4>Game of Quiz</h4>
+                    </center>
+                    <br/>
+                </div> <!--close column 4.2.1.1--> 
+            </div> <!--close row 4.2.1--> 
+            <div class="row"><!--4.2.2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12"><!--4.2.2.1--> 
+                    <center>
+                        <div id="addfeedback" class="collapse">  
+                            <form id="addForm" action="" method="POST"> 
+                                <h5>FEEDBACK<h5/><hr/>
+                                <p>Just comment. We listen.</p>
+                                <textarea name="txtfeedback"></textarea><br/><br/>
+                                <button type="submit" name="btnAdd">Submit</button>
+                            </form>
+                        </div>
+                    </center>
+                </div> <!--close column 4.2.2.1--> 
+            </div> <!--close row 4.2.2--> 
+          <div class="row"><!--4.2.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
+                    
+                    <hr class="normal">
+                </div> <!--close column 4.2.1.1--> 
+            </div> <!--close row 4.2.1--> 
+        </div><!--end of feedback form & end column 4.2-->
+    </div><!--close row 4--> 
   
 </div> <!--close container--> 
 

@@ -40,8 +40,8 @@
             Connection conn;
             PreparedStatement pstmt;
             Statement stmt,stm,st;
-            ResultSet result,res,r,rs;
-            Integer quizID, a=1, b=1;
+            ResultSet result,res,rs;
+            Integer quizID, a=1, b=1, c=1;
             String username,password; 
         %>
 
@@ -49,7 +49,6 @@
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
-
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
           
             if(request.getParameter("quizID") != null && request.getParameter("quizID")!= ""){  
@@ -65,7 +64,6 @@
    
                     stm = conn.createStatement();
                     rs = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");
-
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){
@@ -83,7 +81,6 @@
                     pstmt.setString(3,username);
                     pstmt.setString(4,request.getParameter("txtfeedback"));
                     pstmt.executeUpdate();
-
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){
@@ -105,7 +102,6 @@
                     <a data-toggle="modal" data-target="#myModal" >
                         <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
                     </a>
-
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog">
@@ -131,13 +127,11 @@
                 <!--Translate function; google traslate-->
                 <div class="col-xs-3 col-md-3 col-lg-3"> <!--1.1.1.3-->
                     <div id="google_translate_element"></div>
-
                     <script type="text/javascript">
                     function googleTranslateElementInit() {
                       new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
                     }
                     </script>
-
                     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                 </div><!--close column 1.1.1.3 & end of translate function/google translate-->
             </div> <!--close row 1.1.1-->
@@ -145,54 +139,33 @@
     </div> <!--close row 1-->    
     
 <div class="container">
-    <div class="col-xs-12 col-md-12 col-lg-12 ">
-            <ol class="breadcrumb breadcrumb-arrow">
-                    <li><a href="video2.jsp">Home</a></li>
-                    <li><a onclick="history.back()" href="#">More Quiz</a></li>
-                    <li class="active"><span>Quiz Question</span></li>
-            </ol>
-    </div>
-    <div class="row"><!--2-->
-        <!--breadcrumb-->
-        <div class="col-xs-10 col-md-10 col-lg-10 "><!--2.1-->
         <%  
             if (res.next()) {
         %>
-            <h3>Quiz: <%=res.getString("quizTopic")%></h3>
-        </div><!--end column 2.1-->
-    </div><!--end row 2& end of breadcrumb-->
-          
-    <div class="row"><!--3-->
-        <div class="col-xs-12 col-md-7 col-lg-7 videoquestion contentborder"><!--3.1-->
+  
+    <div class="row"><!--2-->
+        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion "><!--3.1-->
+            <ol class="breadcrumb-arrow">
+                <li><a href="video2.jsp">Home</a></li>
+                <li><a onclick="history.back()" href="#">More Quiz</a></li>
+                <li class="active"><span>Quiz Question</span></li>
+            </ol>
         <%
             if(res.getString("note").isEmpty()){     
         %> 
-        <div class="row">
-        <div class="col-xs-12 col-md-12 col-lg-12 parallax title nonote">
+        <div class="parallax title nonote">
             <center>Chill, will upload soon</center>
-        </div>
         </div>
         <%    
             }else{
         %>
         <p><%=res.getString("note") %></p>
-    <%
-        }}
-    %>              
+        <%
+            }
+        %>              
         </div>
-        <script>
-                            function changeImage1() {
-                                document.getElementById("imgClickAndChange1").src = "resources/img/chestopen.png";
-                            }
-                            function changeImage2() {
-                                document.getElementById("imgClickAndChange2").src = "resources/img/chestopen.png";
-                            }
-                            function changeImage3() {
-                                document.getElementById("imgClickAndChange3").src = "resources/img/chestopen.png";
-                            }
-                            
-                        </script>
-        <div class="col-xs-12 col-md-5 col-lg-5 videoquestion"><!--3.1-->
+   
+        <div class="col-xs-12 col-md-4 col-lg-4 videoquestion"><!--3.1-->
             <div class="table-responsive">
                 <table class="table table-stripped table-hover questiont" id="tablepaging">
                     <thead>
@@ -205,264 +178,417 @@
                         </tr>
                     </thead>       
                     <tbody>
-                <%
-                    while(result.next() ) {
-                %>
-                        <tr>   
-                            <td>
-                                <!--display quiz question-->
-                                <div id="<%=result.getInt("questionID") %>" class="questioncontainer">
-                                    <h4><%=result.getString("question") %></h4>
-                                    <div data-ng-if="'<%=result.getString("type")%>' === 'M'"><p class="right type" title="It's Multiple Choice"><%=result.getString("type")%></p></div>
-                                    <div data-ng-if="'<%=result.getString("type")%>' === 'B'"><p class="right type" title="Fill in the Blank with choices below"><%=result.getString("type")%></p></div>
-                                    <div data-ng-if="'<%=result.getString("type")%>' === 'T'"><p class="right type" title="True or False?"><%=result.getString("type")%></p></div>
-                                </div> 
-
-                                <div class="container2">
-                                    <!-- Format for multiple choice -->
-                                    <div data-ng-if="'<%=result.getString("type")%>' === 'M'">
-                                        <form name="form1">
-                                            <div class="row"><!--3.1.1--> 
-                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice "><!--3.1.1.1-->
-                                                    A <input type="radio" data-ng-model="checkeds" value="A" name="multiradio" required/> <%=result.getString("input1") %>
-                                                </div>
-                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--3.1.1.2-->
-                                                    B <input type="radio" data-ng-model="checkeds" value="B" name="multiradio" /> <%=result.getString("input2") %>
-                                                </div>       
-                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--3.1.1.3--> 
-                                                    C <input type="radio" data-ng-model="checkeds" value="C" id="C" name="multiradio" /> <%=result.getString("input3") %>
-                                                </div>
-                                                <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--3.1.1.4--> 
-                                                    D <input type="radio" data-ng-model="checkeds" value="D" id="D" name="multiradio" /> <%=result.getString("input4") %>
-                                                </div>
-                                            </div> <!--close row 3.1.1-->
-
-                                            <!-- button -->   
-                                            <div class="row button"><!--3.1.2-->
-                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--3.1.2.1-->
-                                                    <a  class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1; count = count+1" data-ng-init="0" data-ng-disabled="form1.$invalid" onClick="checkansSound()">Check</a>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--3.1.2.2-->
-                                                    <a class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</a>
-                                                </div> 
-                                            </div> <!--close row 3.1.2--> 
-                                        </form>                                  
-
-                    <center>
-                        <!-- check answer-->
-                        <div data-ng-show="show === 1">
-                            <!-- correct -->
-                            <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
-                                <span class="yellow"><h3>Correct</h3></span>
-                                <hr class="correct">
-
-                                <div>
-                                <button class="chestbtnm" onclick="changeImage1()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
-                                <button class="chestbtnm" onclick="changeImage2()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
-                                <button class="chestbtnm" onclick="changeImage3()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
-                                </div>
-                                <div data-ng-if="btnclicked ===1" class="chestreward">
-                                    <%
-                                        Random rand = new Random();
-                                        int n1 = rand.nextInt(4)+1;
-                                        int n2 = rand.nextInt(4)+1;
-                                        int n3 = rand.nextInt(4)+1;
-                                    %>
-                                    <%
-                                        if(n1==1){
-                                    %>
-                                    <div class='congrats' >CONGRATULATIONS!</div>
-                                    <p>You got 1 Star!</p> 
-                                    <p><i>Click on the star to collect it.</i></p>
-                                    <jsp:include page="starcollect.jsp"></jsp:include>
-                                    <% 
-                                        } if(n1==2){
-                                    %>
-                                    <div class='congrats' >CONGRATULATIONS!</div>
-                                    <p>You got 3 Star!</p> 
-                                    <p><i>Click on the star to collect it.</i></p>
-                                    <jsp:include page="starcollect3.jsp"></jsp:include>
-                                    <% 
-                                        } if(n1==3){
-                                    %>
-                                    <p>Too bad. Try Again Next Time</p>
-                                    <% 
-                                        } if(n1==4){
-                                    %>
-                                    <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
-                                    <% 
-                                        }
-                                    %>
-                                </div>
-                            </div>
-
-                            <!-- incorrect -->
-                            <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
-                                <h3>Incorrect</h3>
-                                <hr class="normal">
-                            </div> 
-                        </div>
-
-                        <!-- Show answer -->
-                        <div data-ng-show="show === 2">
-                            <b class="answer">Answer: <%=result.getString("checked")%></b>
+        <%
+            while(result.next() ) {
+        %>
+                <tr>   
+                    <td>
+                        <!--display quiz question-->
+                        <div id="<%=result.getInt("questionID") %>" class="questioncontainer">
+                            <h4><%=result.getString("question") %></h4>
+                            <div data-ng-if="'<%=result.getString("type")%>' === 'MC'"><p class="right type" title="It's Multiple Choice">MC</p></div>
+                            <div data-ng-if="'<%=result.getString("type")%>' === 'BL'"><p class="right type" title="Fill in the Blank with choices below">BL</p></div>
+                            <div data-ng-if="'<%=result.getString("type")%>' === '2C'"><p class="right type" title="It's two choice selection">2C</p></div>
                         </div> 
-                    </center>
-                                    </div> <!--end of multiple choice format-->
 
+                        <div class="container2">
+                            <!-- Format for multiple choice -->
+                            <div data-ng-if="'<%=result.getString("type")%>' === 'MC'">
+                                <form name="form1">
+                                    <div class="row"><!--2.2.1--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice "><!--2.2.1.1--> 
+                                            <label for="A">
+                                                A <input type="radio" data-ng-model="checkeds" value="A" id="A" name="multiradio" required/> <%=result.getString("input1") %>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.2--> 
+                                            <label for="B">
+                                                B <input type="radio" data-ng-model="checkeds" value="B" id="B" name="multiradio" /> <%=result.getString("input2") %>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.3--> 
+                                            <label for="C">
+                                                C <input type="radio" data-ng-model="checkeds" value="C" id="C" name="multiradio" /> <%=result.getString("input3") %>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.4--> 
+                                            <label for="D">
+                                                D <input type="radio" data-ng-model="checkeds" value="D" id="D" name="multiradio" /> <%=result.getString("input4") %>
+                                            </label>
+                                        </div>
+                                    </div> <!--close row 2.2.1-->
+             
+                                    <!-- button -->   
+                                    <div class="row button"><!--2.2.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--2.2.2.1-->
+                                            <a class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form1.$invalid" onClick="checkansSound()">Check</a>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2..2-->
+                                            <a class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</a>
+                                        </div> 
+                                    </div> <!--close row 2.2.2--> 
+                                </form>                                  
+        <center>          
+                    
+        <!-- check answer-->
+        <div data-ng-show="show ===1">
+            <!-- correct -->
+            <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
+                <span class="yellow"><h3>Correct</h3></span>
+                <hr class="correct yellow">
+                
+                <!--chest box for 5th question-->
+                <div data-ng-if="<%=a %>%5 === 0">
+                    <button class="chestbtn" onclick="changeImage1()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
+                    <button class="chestbtn" onclick="changeImage2()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
+                    <button class="chestbtn" onclick="changeImage3()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
 
-                                    <!-- Format for Fill in the Blank -->
-                                    <div data-ng-if="'<%=result.getString("type")%>' === 'B'">
-                                        <ul class="answercontainer">
-                                            <li>
-                                                <span><%=result.getString("input1") %></span>
-                                                <span class="tab"><%=result.getString("input2") %></span>
-                                                <span class="tab"><%=result.getString("input3") %></span>
-                                                <span class="tab"><%=result.getString("input4") %></span>
-                                            </li>
-                                        </ul>
-                                    </div> <!--end of fill in blank format-->
+                    <div data-ng-if="btnclicked === 3" class="chestreward">
+                    <%
+                        Random rand = new Random();
+                        int n1 = rand.nextInt(4)+1;
+                        int n2 = rand.nextInt(4)+1;
+                        int n3 = rand.nextInt(4)+1;
 
+                        if(n1==1){
+                    %>
+                        <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                    <% 
+                        } if(n1==2){
+                    %>
+                        <jsp:include page="starcollect3.jsp"></jsp:include>
+                    <% 
+                        } if(n1==3){
+                    %>
+                        <p>Too bad. Try Again Next Time</p>
+                    <% 
+                        }
+                    %>
+                    </div> 
+                </div><!-- end of chest box for 5th question-->
+                
+                <!--star for every question except for the 5th-->
+                <div data-ng-if="<%=a %>%5 !== 0">
+                    <jsp:include page="starcollect.jsp"></jsp:include>  
+                </div><!--end of star for every question except for the 5th-->
+                
+            </div> <!-- end of correct answer-->
+            <%
+                a++;
+            %>
+                         
+            <!-- incorrect -->
+            <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
+                <h3>Incorrect</h3>
+                <hr class="normal">
+            </div> <!-- end of incorrect answer-->
+        </div> <!-- end of check answer-->        
+                        
+        <!-- Show answer -->
+        <div data-ng-show="show === 2">
+            <b class="answer">Answer: <%=result.getString("checked")%></b>
+        </div> <!-- end of showing answer-->  
+                
+        </center> 
+                            </div> <!--end of multiple choice format-->
 
-                                    <!-- User input for Fill in the Blank & True False -->
-                                    <div data-ng-if="'<%=result.getString("type")%>' === 'B' || '<%=result.getString("type")%>' === 'T'">
-                                        <form name="form2">
-                                            <div class="useranswer">
-                                                <center>
-                                                    <h4>Answer:</h4>
-                                                    <input type="text" name="answer" data-ng-model="checkeds" size="50%" required/>
-                                                </center>
-                                            </div>
+                            
+                            <!-- Format for Fill in the Blank -->
+                            <div data-ng-if="'<%=result.getString("type")%>' === 'BL'">
+                                <form name="form2">
+                                    <ul class="answercontainer">
+                                        <li>
+                                            <span><%=result.getString("input1") %></span>
+                                            <span class="tab"><%=result.getString("input2") %></span>
+                                            <span class="tab"><%=result.getString("input3") %></span>
+                                            <span class="tab"><%=result.getString("input4") %></span>
+                                        </li>
+                                    </ul>
+                                    
+                                    <center>
+                                        <h4>Answer:</h4>
+                                        <input type="text" name="answer" data-ng-model="checkeds" size="40%" required/>
+                                    </center> 
+                                                                                  
+                                    <div class="row"><!--2.2.1-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
+                                            <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form2.$invalid" onClick="checkansSound()">Check</button>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
+                                            <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
+                                        </div> 
+                                    </div> <!--close row 2.2.1-->                 
+                                </form>
+        <center>          
+                    
+        <!-- check answer-->
+        <div data-ng-show="show === 1">
+            <!-- correct -->
+            <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
+                <span class="yellow"><h3>Correct</h3></span>
+                <hr class="correct yellow">
+                
+                <!--chest box for 5th question-->
+                <div data-ng-if="<%=b %>%5 === 0">
+                    <button class="chestbtn" onclick="changeImage1()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
+                    <button class="chestbtn" onclick="changeImage2()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
+                    <button class="chestbtn" onclick="changeImage3()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
 
-                                            <div class="row"><!--3.1.1-->
-                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
-                                                    <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1; count = count+1" data-ng-init="0" data-ng-disabled="form2.$invalid" onClick="checkansSound()">Check</button>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
-                                                    <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
-                                                </div> 
-                                            </div> <!--close row 3.1.1-->                 
-                                        </form>
-                    <center>
-                        <!-- check answer-->
-                        <div data-ng-show="show === 1">
-                            <!-- correct -->
-                            <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
-                                <span class="yellow"><h3>Correct</h3></span>
-                                <hr class="correct">
+                    <div data-ng-if="btnclicked === 3" class="chestreward">
+                    <%
+                        Random rand2 = new Random();
+                        int m1 = rand2.nextInt(4)+1;
+                        int m2 = rand2.nextInt(4)+1;
+                        int m3 = rand2.nextInt(4)+1;
 
-                                <div>
-                                <button class="chestbtnm" onclick="changeImage1()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
-                                <button class="chestbtnm" onclick="changeImage2()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
-                                <button class="chestbtnm" onclick="changeImage3()" data-ng-click="btnclicked = 1"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
-                                </div>
-                                <div data-ng-if="btnclicked ===1" class="chestreward">
-                                    <%
-                                        if(n1==1){
-                                    %>
-                                    <div class='congrats' >CONGRATULATIONS!</div>
-                                    <p>You got 1 Star!</p> 
-                                    <p><i>Click on the star to collect it.</i></p>
-                                    <jsp:include page="starcollect.jsp"></jsp:include>
-                                    <% 
-                                        } if(n1==2){
-                                    %>
-                                    <div class='congrats' >CONGRATULATIONS!</div>
-                                    <p>You got 3 Star!</p> 
-                                    <p><i>Click on the star to collect it.</i></p>
-                                    <jsp:include page="starcollect3.jsp"></jsp:include>
-                                    <% 
-                                        } if(n1==3){
-                                    %>
-                                    <p>Too bad. Try Again Next Time</p>
-                                    <% 
-                                        } if(n1==4){
-                                    %>
-                                    <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
-                                    <% 
-                                        }
-                                    %>
-                                </div>
-                            </div>
+                        if(m1==1){
+                    %>
+                        <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                    <% 
+                        } if(m1==2){
+                    %>
+                        <jsp:include page="starcollect3.jsp"></jsp:include>
+                    <% 
+                        } if(m1==3){
+                    %>
+                        <p>Too bad. Try Again Next Time</p>
+                    <% 
+                        }
+                    %>
+                    </div> 
+                </div><!-- end of chest box for 5th question-->
+                
+                <!--star for every question except for the 5th-->
+                <div data-ng-if="<%=b %>%5 !== 0">
+                    <jsp:include page="starcollect.jsp"></jsp:include>  
+                </div><!--end of star for every question except for the 5th-->
+                
+            </div> <!-- end of correct answer-->
+            <%
+                b++;
+            %>
+                         
+            <!-- incorrect -->
+            <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
+                <h3>Incorrect</h3>
+                <hr class="normal">
+            </div> <!-- end of incorrect answer-->
+        </div> <!-- end of check answer-->        
+                        
+        <!-- Show answer -->
+        <div data-ng-show="show === 2">
+            <b class="answer">Answer: <%=result.getString("checked")%></b>
+        </div> <!-- end of showing answer-->  
+                
+        </center>         
+                            </div> <!--end of Fill in the Blank -->
 
-                            <!-- incorrect -->
-                            <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
-                                <h3>Incorrect</h3>
-                                <hr class="normal">
-                            </div> 
-                        </div>
+                            <!-- User input for two choice selection -->
+                            <div data-ng-if="'<%=result.getString("type")%>' === '2C'">
+                                <form name="form3">
+                                    <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
+                                        <label for="A">
+                                            <input type="radio" data-ng-model="checkeds" value="A" id="A" name="multiradio" required/> <%=result.getString("input1") %>
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
+                                        <label for="B">
+                                            <input type="radio" data-ng-model="checkeds" value="B" id="B" name="multiradio" /> <%=result.getString("input2") %>
+                                        </label>
+                                    </div>
+                                    <div class="row"><!--2.2.1-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
+                                            <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form3.$invalid" onClick="checkansSound()">Check</button>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
+                                            <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
+                                        </div> 
+                                    </div> <!--close row 2.2.1-->                 
+                                </form>
+        <center>          
+                    
+        <!-- check answer-->
+        <div data-ng-show="show === 1">
+            <!-- correct -->
+            <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
+                <span class="yellow"><h3>Correct</h3></span>
+                <hr class="correct yellow">
+                
+                <!--chest box for 5th question-->
+                <div data-ng-if="<%=c %>%5 === 0">
+                    <button class="chestbtn" onclick="changeImage1()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
+                    <button class="chestbtn" onclick="changeImage2()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
+                    <button class="chestbtn" onclick="changeImage3()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
 
-                        <!-- Show answer -->
-                        <div data-ng-show="show === 2">
-                            <b class="answer">Answer: <%=result.getString("checked")%></b>
-                        </div> 
-                    </center>
-                                    </div> <!--end of Fill in the Blank & True False-->
+                    <div data-ng-if="btnclicked === 3" class="chestreward">
+                    <%
+                        Random rand3 = new Random();
+                        int o1 = rand3.nextInt(4)+1;
+                        int o2 = rand3.nextInt(4)+1;
+                        int o3 = rand3.nextInt(4)+1;
 
-                                </div> <!--close container2-->
-                            </td>
-                        </tr>    
-                <%
-                    }
-                %>
-                    </tbody>
+                        if(o1==1){
+                    %>
+                        <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                    <% 
+                        } if(o1==2){
+                    %>
+                        <jsp:include page="starcollect3.jsp"></jsp:include>
+                    <% 
+                        } if(o1==3){
+                    %>
+                        <p>Too bad. Try Again Next Time</p>
+                    <% 
+                        }
+                    %>
+                    </div> 
+                </div><!-- end of chest box for 5th question-->
+                
+                <!--star for every question except for the 5th-->
+                <div data-ng-if="<%=c %>%5 !== 0">
+                    <jsp:include page="starcollect.jsp"></jsp:include>  
+                </div><!--end of star for every question except for the 5th-->
+                
+            </div> <!-- end of correct answer-->
+            <%
+                c++;
+            %>
+                         
+            <!-- incorrect -->
+            <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
+                <h3>Incorrect</h3>
+                <hr class="normal">
+            </div> <!-- end of incorrect answer-->
+        </div> <!-- end of check answer-->        
+                        
+        <!-- Show answer -->
+        <div data-ng-show="show === 2">
+            <b class="answer">Answer: <%=result.getString("checked")%></b>
+        </div> <!-- end of showing answer-->  
+                
+        </center>         
+                            </div> <!--end of User input for two choice selection-->
+  
+                        </div> <!--close container2-->
+                    </td>
+                </tr>    
+        <%
+            }
+        %>
+            </tbody>
                 </table>
             </div>
         </div> <!--close column 3.1-->
     </div> <!--close row 3-->
 
-    <div class="row wrap"><!--4-->
-        <div class="col-xs-12 col-md-7 col-lg-7 contentborder link"> <!--4.1--> 
-            <a href="video2.jsp" class="redbtn" id="buttonlayout"><span>Back to Main Video Page</span></a>
-            <a href="mquiz1.jsp" class="orangebtn" id="buttonlayout"><span>Play More Quiz</span></a>
-            <a data-toggle="modal" data-target="#ascore" class="yellowbtn" id="buttonlayout"><span>Check Accumulated Score</span></a>
+    <div class="row wrap"><!--3--> 
+        <!--video description and transcript-->
+        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1-->
+            <div class="row"><!--3.1.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--3.1.1.1--> 
+                    <h3>Quiz: <%=res.getString("quizTopic")%></h3>
+                    <h5>Category << <%=res.getString("category") %> >></h5>
+                    <hr/>
+                </div><!--close column 3.1.1.1--> 
+            </div><!--close row 3.1.1-->  
+            
+            <div class="row"><!--3.1.2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 wrap2"><!--3.1.2.1--> 
+                    <p class="">DESCRIPTION</p>        
+                    
+                </div> <!--close column 3.1.2.1--> 
+            </div> <!--close row 3.1.2--> 
+        </div> <!--end of video description and transcript and end of column 3.1-->
+        <%
+           }
+        %>
+        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
+            <a href="video2.jsp" class="redbtn buttonlayout"><span>Back to Main Video Page</span></a>
+            <a href="mquiz.jsp?videoID=0" class="orangebtn buttonlayout"><span>Play More Quiz</span></a>
+            <a data-toggle="modal" data-target="#ascore" class="yellowbtn buttonlayout"><span>Check Accumulated Score</span></a>
             <!-- Modal -->
             <%  
                 if (rs.next()) {
             %>        
                 <div class="modal fade" id="ascore" role="dialog">
                 <div class="modal-dialog">
-                <div class="modal-content">
-                <center>
-                    <h3><b><%=rs.getString("username")%></b></h3>
-                    <br/>
-                    <h4>You have collected</h4>
-                    <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
-                    <br/>
-                    <p><i>**Collect more star as token for future event**</i></p>
-                </center> 
+                <div class="modal-content modalbg">
+                    <!--Content-->
+                    <div class="estrellas">
+                      <span class="glyphicon glyphicon-star yellow"></span>
+                      <span class="glyphicon glyphicon-star yellow"></span>
+                      <span class="glyphicon glyphicon-star yellow"></span>
+                      <span class="glyphicon glyphicon-star yellow"></span>
+                      <span class="glyphicon glyphicon-star yellow"></span>
+                      <span class="glyphicon glyphicon-star yellow"></span>
+                      <span class="glyphicon glyphicon-star yellow"></span>
+                    </div>   
+                    <center class="ascore">
+                        <h3><b><%=rs.getString("username")%></b></h3>
+                        <br/>
+                        <h4>You have collected</h4>
+                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                        <br/>
+                        <p><i>**Collect more star as token for future event**</i></p>
+                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                    </center> 
                 </div>
                 </div>
                 </div> <!--close modal-->
             <%
                 }
             %>
-            <a href="announ1.jsp" class="greenbtn" id="buttonlayout"><span>Announcement</span></a>
-            <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn" id="buttonlayout"><span>Feedback</span></a>
-        </div> <!--close column 4.1-->
-         
-        <div class="col-xs-12 col-md-5 col-lg-5 contentborder link"><!--4.2-->
-         <!--feedback form-->
-            <hr class="normal">
-            <center>
-                <h4>Game of Quiz</h4>
-                <div id="addfeedback" class="collapse">  
-                    <form id="addForm" action="" method="POST"> 
-                        <h5>FEEDBACK<h5/><hr/>
-                        <input type="hidden" name="txtVideoID" value="0"/> <br/><br/>
-                        <p>Just comment. We listen.</p>
-                        <textarea name="txtfeedback"></textarea><br/><br/>
-                        <button type="submit" name="btnAdd">Submit</button>
-                    </form>
-                </div>
-            </center>
-            <hr class="normal"><!--end of feedback form-->
-        </div> <!--close column 4.2-->
-    </div> <!--close row 4-->  
+            <a href="announ.jsp?videoID=0" class="greenbtn buttonlayout"><span>Announcement</span></a>
+            <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout"><span>Feedback</span></a> 
+        </div> <!--close column 3.2-->
+    </div> <!--close row 3-->
+                  
+    <div class="row wrap"><!--4-->
+        <!--more video-->
+        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--4.1--> 
+            <div class="row"><!--4.1.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.1.1.1-->
+                    <!--Future purpose; anything can be add here-->
+                </div> <!--close column 4.1.1.1--> 
+            </div> <!--close row 4.1.1--> 
+            
+        </div><!--end of more video & end column 4.1--> 
+        
+        <!--feedback form-->
+        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--4.2-->
+            <div class="row"><!--4.2.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
+                    <hr class="normal">
+                    <center>
+                        <h4>Game of Quiz</h4>
+                    </center>
+                    <br/>
+                </div> <!--close column 4.2.1.1--> 
+            </div> <!--close row 4.2.1--> 
+            <div class="row"><!--4.2.2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12"><!--4.2.2.1--> 
+                    <center>
+                        <div id="addfeedback" class="collapse">  
+                            <form id="addForm" action="" method="POST"> 
+                                <h5>FEEDBACK<h5/><hr/>
+                                <p>Just comment. We listen.</p>
+                                <textarea name="txtfeedback"></textarea><br/><br/>
+                                <button type="submit" name="btnAdd">Submit</button>
+                            </form>
+                        </div>
+                    </center>
+                </div> <!--close column 4.2.2.1--> 
+            </div> <!--close row 4.2.2--> 
+          <div class="row"><!--4.2.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
+                    
+                    <hr class="normal">
+                </div> <!--close column 4.2.1.1--> 
+            </div> <!--close row 4.2.1--> 
+        </div><!--end of feedback form & end column 4.2-->
+    </div><!--close row 4--> 
 </div> <!--close container-->   
         
                 
 <jsp:include page="footer.jsp"></jsp:include>
             
-            
-      

@@ -25,7 +25,7 @@
 </head>
 
 <body>
-
+    <center>
     <div class="row" id="tetris">
         <div class="col-sm-8 col-md-8 col-lg-8" >
             <canvas id="canvas">
@@ -42,7 +42,7 @@
             </div>
         </div>  
     </div>
-    <center>
+
     <div class="row">
         <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1-->
             <a class="btn btn-primary btn-lg qbutton" href="video2.jsp">Back to Video page</a>

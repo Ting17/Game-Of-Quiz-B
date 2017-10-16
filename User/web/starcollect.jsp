@@ -43,7 +43,10 @@
             } 
         %>
         
-   
+            <div class="congrats" >CONGRATULATIONS!</div>
+            <p>You got 1 Star!</p> 
+            <p><i>Click on the star to collect it.</i></p>
+                        
             <form action="" method="POST">
             <%  
                 while(rs.next()) {
