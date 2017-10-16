@@ -8,8 +8,8 @@
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
-<html>
-<head>     
+<html data-ng-app="myApp">
+<head >     
 
 <!-- Description: Game of Quiz -->
 <!-- Author: Ting Lee Ting, Kevin Pui -->
@@ -128,98 +128,97 @@
                     <!--quiz question add here-->
                     <div class="questioncontainer">
                         <b>Question:</b>  
-                        
                         <textarea name="txtquestion" class="form-control" placeholder="question"></textarea>
-                        
                     </div>
 
                 <div class="container2">
-                    <div class="row"><!--1.2.3.1.2--> 
-                        <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1.2.1--> 
-                            <em>Select a type for question and continue</em>
-                            <br/>
-                            <span><input type="radio" name="txttype" value="M" onclick="show('divM')" checked="checked"/> Multiple choice</span>
-                            <span class="lefttab"><input type="radio" name="txttype" value="T" onclick="show('divT')" /> True or false</span>
-                            <span class="lefttab"><input type="radio" name="txttype" value="B" onclick="show('divB')" /> Fill in Blank</span>
-                            <br/><br/>
-                        <!-- Format for multiple choice -->                                
-                        <div id="divM">
-                            <p><b>Multiple Choices:</b></p>
-                            <p><input class="form-control" type="text" name="txtinput1" placeholder="A"/>
-                            <input class="form-control" type="text" name="txtinput2" placeholder="B"/>
-                            <input class="form-control" type="text" name="txtinput3" placeholder="C"/>
-                            <input class="form-control" type="text" name="txtinput4" placeholder="D"/>
-                            <br/>
-                                
-                            <!-- answer -->
-                            <div class="row"><!--1.2.3.1.2.1.1--> 
-                                <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
-                                    <p><b>Answer:</b></p> 
-                                </div>
-                                <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2--> 
-                                    <p><input class="form-control" type="text" name="txtchecked" placeholder="A? B? C? D?"/></p>
-                                </div>
-                            </div>
-                        </div><!-- close divM --> 
-
-                        <!-- Format for fill in the blank -->
-                        <div id="divT" style="display:none;">
-                            <!-- answer -->
-                            <div class="row"><!--1.2.3.1.2.1.1-->
-                               <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
-                                    <p><b>Answer:</b></p> 
-                                </div>
-                                <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2-->  
-                                    <p><input class="form-control" type="text" name="txtchecked" placeholder="True? False?" /></p>
-                                </div>
-                            </div>
-                            <br/>                           
-                        </div><!-- close divT --> 
+                <div class="row"><!--1.2.3.1.2--> 
+                    <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1.2.1--> 
+                        <em>Select a type for question and continue</em>
+                        <br/>
+                        <span><input type="radio" name="txttype" value="MC" data-ng-click="show = 1" /> Multiple choice</span>
+                        <span class="lefttab"><input type="radio" name="txttype" value="2C" data-ng-click="show = 2" /> True or false</span>
+                        <span class="lefttab"><input type="radio" name="txttype" value="BL" data-ng-click="show = 3" /> Fill in Blank</span>
+                    <br/><br/>
                             
-                        <!-- Format for fill in the blank -->
-                        <div id="divB" style="display:none;">
-                            <p><b>Choices:</b></p>
-                            <input class="form-control" type="text" name="txtinput1" placeholder="Choice 1"/>
-                            <input class="form-control" type="text" name="txtinput2" placeholder="Choice 2"/>
-                            <input class="form-control" type="text" name="txtinput3" placeholder="Choice 3"/>
-                            <input class="form-control" type="text" name="txtinput4" placeholder="Choice 4"/>
-                                
-                            <!-- answer -->
-                            <div class="row"><!--1.2.3.1.2.1.1-->
-                                <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
-                                    <p><b>Answer:</b></p> 
-                                </div>
-                                <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2-->
-                                    <p><input class="form-control" type="text" name="txtchecked" placeholder="..." /></p>
-                                </div>
+                    <!--Multiple Choice-->
+                    <div data-ng-if="show===1">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                <p><i>Fill in rows below for A, B, C, D</i></p>
+                                <p><i>Fill in the right answer in answer column</i></p>
+                                <input class="form-control" type="text" id="a" name="txtinput1" placeholder="A"/>
+                                <input class="form-control" type="text" id="b" name="txtinput2" placeholder="B"/>
+                                <input class="form-control" type="text" id="c" name="txtinput3" placeholder="C"/>
+                                <input class="form-control" type="text" id="d" name="txtinput4" placeholder="D"/>
                             </div>
-                            <br/>
-                        </div><!-- close divB --> 
-
-                            <br/>
-                            <button type="submit" name="btnAdd" class="btn btn-primary">Save</button>
-                            <a class="btn btn-primary" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Cancel</a>
-                        </div><!--end column 1.2.3.1.2.1-->
-                    </div><!--end row 1.2.3.1.2-->
+                        </div>
+                        <!-- answer -->
+                        <div class="row wrap3"><!--1.2.3.1.2.1.1--> 
+                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
+                                <p><b>Answer:</b></p> 
+                            </div>
+                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2--> 
+                                <p><input class="form-control" type="text" name="txtchecked" placeholder="A? B? C? D?"/></p>
+                            </div>
+                        </div>
+                    </div><!-- end of Multiple Choice-->
+                     
+                    <!--2 choice selection-->
+                    <div data-ng-if="show===2">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12">
+                                <p><i>Fill in the first row (1) and second row (2) below; it can be True or False, Yes or No,etc....</i></p>
+                                <p><i>Fill in the right answer in answer column</i></p>
+                                <input class="form-control" type="text" id="a" name="txtinput1" placeholder="True? Yes? etc..."/>
+                                <input class="form-control" type="text" id="b" name="txtinput2" placeholder="False? No? etc..."/>
+                                <input class="form-control" type="hidden" id="c" name="txtinput3" placeholder=""/>
+                                <input class="form-control" type="hidden" id="d" name="txtinput4" placeholder=""/>
+                            </div>
+                        </div>
+                        <!-- answer -->
+                        <div class="row wrap3"><!--1.2.3.1.2.1.1--> 
+                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
+                                <p><b>Answer:</b></p> 
+                            </div>
+                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2--> 
+                                <p><input class="form-control" type="text" name="txtchecked" placeholder="1? 2?"/></p>
+                            </div>
+                        </div>
+                    </div> <!-- end of 2 choice selection-->
+                    
+                    <!--Fill in Blank-->
+                    <div data-ng-if="show===3">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-12 col-lg-12 wrap3">
+                                <p><i>Fill in rows below for Choice 1, 2, 3, 4.</i></p>
+                                <p><i>Fill in the right answer in answer column</i></p>
+                                <input class="form-control" type="text" id="a" name="txtinput1" placeholder="Choice 1"/>
+                                <input class="form-control" type="text" id="b" name="txtinput2" placeholder="Choice 2"/>
+                                <input class="form-control" type="text" id="c" name="txtinput3" placeholder="Choice 3"/>
+                                <input class="form-control" type="text" id="d" name="txtinput4" placeholder="Choice 4"/>
+                            </div>
+                        </div>
+                        <!-- answer -->
+                        <div class="row wrap3"><!--1.2.3.1.2.1.1--> 
+                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
+                                <p><b>Answer:</b></p> 
+                            </div>
+                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2--> 
+                                <p><input class="form-control" type="text" name="txtchecked" placeholder="1? 2? 3? 4?"/></p>
+                            </div>
+                        </div>
+                    </div><!--end of Fill in Blank-->
+                                
+                        <br/>
+                        <button type="submit" name="btnAdd" class="btn btn-primary">Save</button>
+                        <a class="btn btn-primary" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Cancel</a>
+                    </div><!--end column 1.2.3.1.2.1-->
+                </div><!--end row 1.2.3.1.2-->
                 </div> <!--close container 2--> 
                 </form>
             </div><!--end column 1.2.3.1-->   
 
         </div><!--end row 1.2.3 & end of content section-->
-
-        
-<script>
-    CKEDITOR.replace('txtquestion');
-   
-    var currentDiv = document.getElementById("divM");
-    function show(divID) {
-        var div = document.getElementById(divID);
-
-        currentDiv.style.display = "none";
-        div.style.display = "block";
-
-        currentDiv = div;
-    }
-</script>
 
         <jsp:include page="footer.jsp"></jsp:include>

@@ -59,7 +59,6 @@
                     pstmt.setInt(1,quizID);
                     result = pstmt.executeQuery();
                     result.first();
-
                     stm=conn.createStatement();
                     res = stm.executeQuery("SELECT * FROM video");
                     
@@ -105,7 +104,6 @@
         <%  
             if (rs.next()) {
         %>
-
         <div class="row"><!--1--> 
             <!-- tab -->
             <div class="col-xs-2 col-md-2 col-lg-2 tab"><!--1.1--> 
@@ -141,36 +139,27 @@
                 <p>Last updated by: <b><%=rst.getString("username") %></b></p>
                 <p>Current Quiz title: <b><%=result.getString("quizTopic")%></b></p>
                 <p>Category: <b><%=result.getString("category")%></b></p>
-                
         <%
-            while(re.next()) {
-                if(videoID == 0){
-                    checkvideo = false;
+                while(re.next()) {
+                    if(videoID == 0){
+                        checkvideo = false;
+                    }
+                    else {
+                        videoName = re.getString("videoName");
+                        checkvideo = true;
+                    }
                 }
-                else {
-                    videoName = re.getString("videoName");
-                    checkvideo = true;
-                }
-            }
-        %>       
-        <% 
             }   
-        %>             
-                <%
-                    res.first();
-                %>
-                <%  
-                            while(res.next()) {
-                                videoNamecheck = res.getString("videoName");
-                                if(res.getString("videoName").equals(videoName)) {
-                                    videoPath = res.getString("videoPath");
-                                    break;
-                                }
-                            }   
-               %>
-               <%
-                   if(checkvideo == true){
-               %>
+            res.first();
+            while(res.next()) {
+                videoNamecheck = res.getString("videoName");
+                if(res.getString("videoName").equals(videoName)) {
+                    videoPath = res.getString("videoPath");
+                    break;
+                }
+            }   
+            if(checkvideo == true){
+        %>
                <p>Video related to this quiz:<a href="<%=videoPath%>" class="video_layer" target="_blank"><b><%=videoName%></b></a></p> 
                 <script>
                 $('.video_layer').colorbox({iframe:true});
@@ -179,23 +168,16 @@
                     }
                 %>
             </div><!--end column 1.2.4.1-->
-            
-           
-
     <script>
-
         jQuery('.youtube-player').each(function(){
             jQuery(this).on('click', '.youtube-link-start', function(){
                 jQuery(this).parent().addClass('active');
-
                 var loc = $(this).siblings('iframe').attr('src');
                 var startloc = loc + "?autoplay=1";
                 $(this).siblings('iframe').attr('src', startloc);
             });
-
             jQuery(this).on('click', '.youtube-link-stop', function(){
                 jQuery(this).parent().removeClass('active');
-
                 var loc = $(this).siblings('iframe').attr('src');
                 var stoploc = loc.replace("?autoplay=1", "");
                 $(this).siblings('iframe').attr('src', stoploc);

@@ -151,7 +151,7 @@
                 <div class="container2"> 
             <!-- Format for multiple choice -->
             <%
-                if(result.getString("type").equals("M")){
+                if(result.getString("type").equals("MC")){
             %>
                     <ul class="answercontainer">
                         <li class="rowinput" ><%=result.getString("input1") %></li>
@@ -162,7 +162,7 @@
 
             <!-- Format for Fill in the Blank -->
             <%
-                }else if(result.getString("type").equals("B")){
+                }else if(result.getString("type").equals("BL")){
             %>
                     <ul class="choice answercontainer">
                         <li>
@@ -171,6 +171,13 @@
                             <span class="lefttab"><%=result.getString("input3") %></span>
                             <span class="lefttab"><%=result.getString("input4") %></span>
                         </li>
+                    </ul>
+            <%
+                }else if(result.getString("type").equals("2C")){
+            %>
+                    <ul class="answercontainer">
+                        <li class="rowinput" ><%=result.getString("input1") %></li>
+                        <li class="rowinput" ><%=result.getString("input2") %></li>
                     </ul>
             <%
                 }
@@ -191,7 +198,7 @@
                     <textarea name="txtquestion" class="form-control"><%=result.getString("question") %></textarea>
                 <!-- Format for multiple choice-->
                 <%
-                    if(result.getString("type").equals("M")){
+                    if(result.getString("type").equals("MC")){
                 %>      
                     <h4>Multiple choice</h4>
                     <div class="form-group">
@@ -215,7 +222,7 @@
                     
                 <!-- Format for Fill in the Blank -->
                 <%
-                    }else if(result.getString("type").equals("B")){
+                    }else if(result.getString("type").equals("BL")){
                 %>
                     <h4>Fill in Blank</h4>
                     <input type="text" name="txtinput1" class="form-control" value="<%=result.getString("input1") %>"/>
@@ -223,15 +230,21 @@
                     <input type="text" name="txtinput3" class="form-control" value="<%=result.getString("input3") %>"/>
                     <input type="text" name="txtinput4" class="form-control" value="<%=result.getString("input4") %>"/>
             
-                <!-- Format for true/false -->
+                <!-- Format for 2 choice selection -->
                 <%
-                    }else{
+                    }else if(result.getString("type").equals("2C")){
                 %>    
-                    <h4>True or False</h4>
-                    <input type="hidden" class="form-control" name="txtinput1" value="<%=result.getString("input1") %>"/>
-                    <input type="hidden" class="form-control" name="txtinput2" value="<%=result.getString("input2") %>"/>
-                    <input type="hidden" class="form-control" name="txtinput3" value="<%=result.getString("input3") %>"/>
-                    <input type="hidden" class="form-control" name="txtinput4" value="<%=result.getString("input4") %>"/>               
+                    <h4>2 Choice selection</h4>
+                        <label for="A" class="col-sm-1">1. </label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" name="txtinput1" value="<%=result.getString("input1") %>"/>
+                        </div>
+                        <label for="B" class="col-sm-1">2. </label>
+                        <div class="col-sm-11">
+                            <input type="text" class="form-control" name="txtinput2" value="<%=result.getString("input2") %>"/>
+                        </div>
+                            <input type="hidden" class="form-control" name="txtinput3" value="<%=result.getString("input3") %>"/>
+                            <input type="hidden" class="form-control" name="txtinput4" value="<%=result.getString("input4") %>"/>               
                 <%
                     }
                 %>  
@@ -243,8 +256,7 @@
                         <button class="btn btn-primary" type="submit" name="btnUpd" id="btnUpd">Update Question</button>
                         <a class="btn btn-primary" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Cancel</a>
                         <button class="btn btn-primary" type="reset">Reset</button>
-                    </div>        
-                
+                    </div>   
                 </form>        
             </div><!--end column 1.2.4.2-->
         </div><!--end row 1.2.4 & end of content section-->
