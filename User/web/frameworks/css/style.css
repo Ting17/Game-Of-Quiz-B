@@ -272,3 +272,179 @@ video.videopg{
     border-left: 11px solid #fff;
 }
 
+.navvideo ul {
+  list-style: none;
+  background-color: #3d5998;
+  text-align: center;
+  padding: 0;
+  margin: 0 386px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top: 3px #7e9fc6 dashed;
+}
+.navvideo li {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+ 
+.navvideo a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+ }
+ 
+.navvideo a:hover {
+  background-color: #3a455d;
+}
+ 
+.navvideo a.active {
+  background-color: #fff;
+  color: #444;
+  cursor: default;
+}
+
+@media screen and (min-width: 600px) {
+  .navvideo li {
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+ 
+  /* Option 1 - Display Inline */
+  .navvideo li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+}
+
+.playmore{
+    width: 250px;
+}
+
+.playmore a {
+      transition: .3s background-color;
+      border-bottom-left-radius: 100px;
+}
+
+.playmore a:hover {
+    border-bottom-left-radius: 100px;
+}
+
+.checkscore{
+    border-left: #fff double;
+    width: 250px;
+}
+
+.checkscore a:hover {
+    cursor: pointer;
+}
+
+.announcement{
+    border-left: #fff double;
+    width: 247px;
+}
+
+.announcement a {
+      transition: .3s background-color;
+      border-bottom-right-radius: 100px;
+}
+
+.announcement a:hover {
+    border-bottom-right-radius: 100px;
+}
+
+.videoquizmenu{
+    background-image: url('../../resources/img/parallexbg1.jpg') ;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover; 
+}
+
+.announcemenu {
+    list-style: none;
+  background-color: #3d5998;
+  text-align: center;
+  padding: 0;
+  margin: 0 386px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+  border-top: 3px #7e9fc6 dashed;
+}
+
+.glyphicon-star{
+    font-size: 40px;
+}
+
+.glyphicon-star:hover{
+    -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
+    -webkit-mask-size: 200%;
+    animation: shine 0.7s infinite;
+}
+
+@-webkit-keyframes shine {
+  from {
+    -webkit-mask-position: 150%;
+  }
+  to {
+    -webkit-mask-position: -50%;
+  }
+}
+
+/*modal for checking accumulate score*/
+.estrellas {
+    transform: rotate(-103deg);
+    margin-top: 50%;
+    margin-right: 85%;
+}
+
+.estrellas span {
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    height: 260px;
+    text-align: center;
+    line-height: 70px;
+    transform-origin: bottom center;
+}
+
+.estrellas span:nth-of-type(1)  {
+  transform: rotate(25deg);
+}
+.estrellas span:nth-of-type(2)  {
+  transform: rotate(51deg);
+}
+.estrellas span:nth-of-type(3)  {
+  transform: rotate(78deg);
+}
+.estrellas span:nth-of-type(4)  {
+  transform: rotate(103deg);
+}
+.estrellas span:nth-of-type(5)  {
+  transform: rotate(129deg);
+}
+.estrellas span:nth-of-type(6)  {
+  transform: rotate(154deg);
+}
+.estrellas span:nth-of-type(7)  {
+  transform: rotate(180deg);
+}
+
+.ascore{
+    margin-top: -15%;
+}
+
+.modalbg{
+  background: #4CA1AF; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(bottom, #4CA1AF , #C4E0E5); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, #C4E0E5, #4CA1AF); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, #C4E0E5, #4CA1AF); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, #2c3e50, #3498db); /* Standard syntax */
+  color: #fff;
+  padding: 1%;
+}

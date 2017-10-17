@@ -138,6 +138,47 @@
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->    
     
+    <div class="navvideo">
+            <ul class="videoquizmenu">
+              <li class="playmore"><a href="video2.jsp">Video Quiz</a></li>
+              <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
+            <!-- Modal -->
+            <%  
+                rs.previous();
+                if (rs.next()) {
+            %>        
+                <div class="modal fade" id="ascore" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content modalbg">
+                    <!--Content-->
+                    <div class="estrellas">
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                    </div>   
+                    <center class="ascore">
+                        <h3><b><%=rs.getString("username")%></b></h3>
+                        <br/>
+                        <h4>You have collected</h4>
+                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                        <br/>
+                        <p><i>**Collect more star as token for future event**</i></p>
+                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                    </center> 
+                </div>
+                </div>
+                </div> <!--close modal-->
+            <%
+                }
+            %>              
+              <li class="announcement"><a href="announ.jsp?videoID=0">Announcement</a></li>
+            </ul>
+       </div>
+    
 <div class="container">
         <%  
             if (res.next()) {
@@ -246,9 +287,9 @@
                     <div data-ng-if="btnclicked === 3" class="chestreward">
                     <%
                         Random rand = new Random();
-                        int n1 = rand.nextInt(4)+1;
-                        int n2 = rand.nextInt(4)+1;
-                        int n3 = rand.nextInt(4)+1;
+                        int n1 = rand.nextInt(3)+1;
+                        int n2 = rand.nextInt(3)+1;
+                        int n3 = rand.nextInt(3)+1;
 
                         if(n1==1){
                     %>
@@ -337,9 +378,9 @@
                     <div data-ng-if="btnclicked === 3" class="chestreward">
                     <%
                         Random rand2 = new Random();
-                        int m1 = rand2.nextInt(4)+1;
-                        int m2 = rand2.nextInt(4)+1;
-                        int m3 = rand2.nextInt(4)+1;
+                        int m1 = rand2.nextInt(3)+1;
+                        int m2 = rand2.nextInt(3)+1;
+                        int m3 = rand2.nextInt(3)+1;
 
                         if(m1==1){
                     %>
@@ -423,9 +464,9 @@
                     <div data-ng-if="btnclicked === 3" class="chestreward">
                     <%
                         Random rand3 = new Random();
-                        int o1 = rand3.nextInt(4)+1;
-                        int o2 = rand3.nextInt(4)+1;
-                        int o3 = rand3.nextInt(4)+1;
+                        int o1 = rand3.nextInt(3)+1;
+                        int o2 = rand3.nextInt(3)+1;
+                        int o3 = rand3.nextInt(3)+1;
 
                         if(o1==1){
                     %>
@@ -504,41 +545,6 @@
         %>
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
             <a href="video2.jsp" class="redbtn buttonlayout"><span>Back to Main Video Page</span></a>
-            <a href="mquiz.jsp?videoID=0" class="orangebtn buttonlayout"><span>Play More Quiz</span></a>
-            <a data-toggle="modal" data-target="#ascore" class="yellowbtn buttonlayout"><span>Check Accumulated Score</span></a>
-            <!-- Modal -->
-            <%  
-                if (rs.next()) {
-            %>        
-                <div class="modal fade" id="ascore" role="dialog">
-                <div class="modal-dialog">
-                <div class="modal-content modalbg">
-                    <!--Content-->
-                    <div class="estrellas">
-                      <span class="glyphicon glyphicon-star yellow"></span>
-                      <span class="glyphicon glyphicon-star yellow"></span>
-                      <span class="glyphicon glyphicon-star yellow"></span>
-                      <span class="glyphicon glyphicon-star yellow"></span>
-                      <span class="glyphicon glyphicon-star yellow"></span>
-                      <span class="glyphicon glyphicon-star yellow"></span>
-                      <span class="glyphicon glyphicon-star yellow"></span>
-                    </div>   
-                    <center class="ascore">
-                        <h3><b><%=rs.getString("username")%></b></h3>
-                        <br/>
-                        <h4>You have collected</h4>
-                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
-                        <br/>
-                        <p><i>**Collect more star as token for future event**</i></p>
-                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
-                    </center> 
-                </div>
-                </div>
-                </div> <!--close modal-->
-            <%
-                }
-            %>
-            <a href="announ.jsp?videoID=0" class="greenbtn buttonlayout"><span>Announcement</span></a>
             <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout"><span>Feedback</span></a> 
         </div> <!--close column 3.2-->
     </div> <!--close row 3-->

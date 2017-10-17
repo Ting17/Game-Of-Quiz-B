@@ -126,6 +126,47 @@
                 <a onclick="show('divBio')"><h4>Biology</h4></a>
             </div>           
         </div><!--end row 2-->
+        
+        <div class="navvideo">
+            <ul>
+              <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
+              <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
+            <!-- Modal -->
+            <%  
+                rs.previous();
+                if (rs.next()) {
+            %>        
+                <div class="modal fade" id="ascore" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content modalbg">
+                    <!--Content-->
+                    <div class="estrellas">
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                    </div>   
+                    <center class="ascore">
+                        <h3><b><%=rs.getString("username")%></b></h3>
+                        <br/>
+                        <h4>You have collected</h4>
+                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                        <br/>
+                        <p><i>**Collect more star as token for future event**</i></p>
+                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                    </center> 
+                </div>
+                </div>
+                </div> <!--close modal-->
+            <%
+                }
+            %>              
+              <li class="announcement"><a href="announ.jsp?announceID=0">Announcement</a></li>
+            </ul>
+       </div>
     
     <!--Content section-->
     <div class="container">    

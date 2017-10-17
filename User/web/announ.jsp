@@ -40,6 +40,7 @@
             ResultSet result, rs, rst;
             Integer announ, videoID;
             String username, password;
+            Boolean check = false;
         %>
         
         <%-- READ function--%>
@@ -48,7 +49,15 @@
             password = (String)session.getAttribute("pass");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-            videoID = Integer.parseInt(request.getParameter("videoID"));
+            if(request.getParameter("videoID") != null)
+            {
+                 videoID = Integer.parseInt(request.getParameter("videoID"));
+                 check = false;
+            }
+            else
+            {
+                 check = true;
+            }
             
             try{
                 Class.forName("com.mysql.jdbc.Driver");
@@ -106,12 +115,56 @@
         }
     %>   
     
+    <div class="navvideo">
+            <ul>
+              <li class="playmore"><a href="video2.jsp">Video Quiz</a></li>
+              <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
+            <!-- Modal -->
+            <%  
+                rs.previous();
+                if (rs.next()) {
+            %>        
+                <div class="modal fade" id="ascore" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content modalbg">
+                    <!--Content-->
+                    <div class="estrellas">
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                    </div>   
+                    <center class="ascore">
+                        <h3><b><%=rs.getString("username")%></b></h3>
+                        <br/>
+                        <h4>You have collected</h4>
+                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                        <br/>
+                        <p><i>**Collect more star as token for future event**</i></p>
+                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                    </center> 
+                </div>
+                </div>
+                </div> <!--close modal-->
+            <%
+                }
+            %>              
+              <li class="announcement"><a href="mquiz.jsp?announceID=0">More Quiz</a></li>
+            </ul>
+       </div>
+    
     <div class="container ">   
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-12 col-md-9 col-lg-9 videoquestion contentborder"><!--1.2.2.1-->
                 <ol class="breadcrumb breadcrumb-arrow">
                     <li><a href="video2.jsp">Home</a></li>
+                    <%
+                        if(check == false){
+                    %>
             <% 
                 if(videoID ==0){
             %>
@@ -123,6 +176,9 @@
             <%
                 }
             %>
+                    <%
+                        }
+                    %>
                     <li class="active"><span>Announcement</span></li>
                 </ol>
              
@@ -158,9 +214,15 @@
             </div>
                 
             <div class="col-xs-12 col-md-3 col-lg-3 videoquestion link"><!--3.2--> 
+                <%
+                    if(check == false){
+                %>                
                 <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
+                <%
+                    }
+                %>
                 <a href="video2.jsp" class="orangebtn buttonlayout"><span>Back to Main Video Page</span></a>
-                <a data-toggle="modal" data-target="#ascore" class="yellowbtn buttonlayout"><span>Check Accumulated Score</span></a>
+                <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout"><span>Feedback</span></a> 
             <!-- Modal -->
              <%  
                 if (rst.next()) {
@@ -194,7 +256,41 @@
                 }
             %>
             </div> <!--close column 3.2-->
-        </div><!--end column 1.2.3.1-->
+            
+             <!--feedback form-->
+            <div class="col-xs-12 col-md-4 col-lg-3 contentborder link"><!--4.2-->
+                <div class="row"><!--4.2.1--> 
+                    <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
+                        <hr class="normal">
+                        <center>
+                            <h4>Game of Quiz</h4>
+                        </center>
+                        <br/>
+                    </div> <!--close column 4.2.1.1--> 
+                </div> <!--close row 4.2.1--> 
+                <div class="row"><!--4.2.2--> 
+                    <div class="col-xs-12 col-md-12 col-lg-12"><!--4.2.2.1--> 
+                        <center>
+                            <div id="addfeedback" class="collapse">  
+                                <form id="addForm" action="" method="POST"> 
+                                    <h5>FEEDBACK<h5/><hr/>
+                                    <p>Just comment. We listen.</p>
+                                    <textarea name="txtfeedback"></textarea><br/><br/>
+                                    <button type="submit" name="btnAdd">Submit</button>
+                                </form>
+                            </div>
+                        </center>
+                    </div> <!--close column 4.2.2.1--> 
+                </div> <!--close row 4.2.2--> 
+              <div class="row"><!--4.2.1--> 
+                    <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
+
+                        <hr class="normal">
+                    </div> <!--close column 4.2.1.1--> 
+                </div> <!--close row 4.2.1--> 
+            </div><!--end of feedback form & end column 4.2-->
+            
+        </div><!--end column 1.2.3.1-->      
     </div> 
         
     <jsp:include page="footer.jsp"></jsp:include>

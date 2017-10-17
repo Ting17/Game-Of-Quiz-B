@@ -118,9 +118,9 @@
                     <div data-ng-if="btnclicked === 3" class="chestreward">
                     <%
                         Random rand = new Random();
-                        int n1 = rand.nextInt(4)+1;
-                        int n2 = rand.nextInt(4)+1;
-                        int n3 = rand.nextInt(4)+1;
+                        int n1 = rand.nextInt(3)+1;
+                        int n2 = rand.nextInt(3)+1;
+                        int n3 = rand.nextInt(3)+1;
 
                         if(n1==1){
                     %>
@@ -209,9 +209,9 @@
                     <div data-ng-if="btnclicked === 3" class="chestreward">
                     <%
                         Random rand2 = new Random();
-                        int m1 = rand2.nextInt(4)+1;
-                        int m2 = rand2.nextInt(4)+1;
-                        int m3 = rand2.nextInt(4)+1;
+                        int m1 = rand2.nextInt(3)+1;
+                        int m2 = rand2.nextInt(3)+1;
+                        int m3 = rand2.nextInt(3)+1;
 
                         if(m1==1){
                     %>
@@ -296,9 +296,9 @@
                     <div data-ng-if="btnclicked === 3" class="chestreward">
                     <%
                         Random rand3 = new Random();
-                        int o1 = rand3.nextInt(4)+1;
-                        int o2 = rand3.nextInt(4)+1;
-                        int o3 = rand3.nextInt(4)+1;
+                        int o1 = rand3.nextInt(3)+1;
+                        int o2 = rand3.nextInt(3)+1;
+                        int o3 = rand3.nextInt(3)+1;
 
                         if(o1==1){
                     %>

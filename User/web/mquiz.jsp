@@ -40,13 +40,32 @@
             Statement stmt,st;
             ResultSet result,rs; 
             String username,password;
-            Integer quizID, videoID; 
+            Integer quizID, videoID, announceID; 
+            Boolean check = false, check2 = false;
         %>
         <%-- READ function--%>
         <%
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
-            videoID = Integer.parseInt(request.getParameter("videoID"));
+            if(request.getParameter("videoID") != null)
+            {
+                 videoID = Integer.parseInt(request.getParameter("videoID"));
+                 check = false;
+            }
+            else
+            {
+                check = true;
+            }
+            if(request.getParameter("announceID") != null)
+            {
+                 announceID = Integer.parseInt(request.getParameter("announceID"));
+                 check2 = false;
+            }
+            else
+            {
+                check2 = true;
+            }
+            
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
@@ -90,11 +109,55 @@
             <a onclick="show('divBio')"><h4>Biology</h4></a>
         </div>           
     </div><!--end row 2-->
-
+    
+    <div class="navvideo">
+            <ul>
+              <li class="playmore"><a href="video2.jsp">Video Quiz</a></li>
+              <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
+            <!-- Modal -->
+            <%  
+                rs.previous();
+                if (rs.next()) {
+            %>        
+                <div class="modal fade" id="ascore" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content modalbg">
+                    <!--Content-->
+                    <div class="estrellas">
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                        <span class="glyphicon glyphicon-star yellow"></span>
+                    </div>   
+                    <center class="ascore">
+                        <h3><b><%=rs.getString("username")%></b></h3>
+                        <br/>
+                        <h4>You have collected</h4>
+                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                        <br/>
+                        <p><i>**Collect more star as token for future event**</i></p>
+                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                    </center> 
+                </div>
+                </div>
+                </div> <!--close modal-->
+            <%
+                }
+            %>              
+              <li class="announcement"><a href="announ.jsp?videoID=0">Announcement</a></li>
+            </ul>
+       </div>
+    
     <div class="container">
         <div class="col-xs-12 col-md-12 col-lg-12 ">
             <ol class="breadcrumb breadcrumb-arrow">
                     <li><a href="video2.jsp">Home</a></li>
+                    <%
+                        if(check == false){
+                    %>
             <% 
                 if(videoID ==0){
             %>
@@ -106,6 +169,16 @@
             <%
                 }
             %>
+                    <%
+                        }
+                    %>
+                    <%
+                        if(check2 == false) {
+                    %>
+                    <li><a onclick="history.back()" href="#">Announcement</a></li>
+                    <%
+                        }
+                    %>
                     <li class="active"><span>More Quiz</span></li>
             </ol>
         </div>
@@ -137,7 +210,13 @@
         </div> <!--end column 3.1-->
               
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--3.2--> 
+            <%
+                if(check == false){
+            %>
             <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
+            <%
+                }
+            %>
             <a href="video2.jsp" class="orangebtn buttonlayout"><span>Back to Main Video Page</span></a>
         </div><!--close column 3.2-->
     </div> <!--close row 3-->
