@@ -110,7 +110,8 @@
         </div>           
     </div><!--end row 2-->
     
-    <div class="navvideo">
+      <div class="row navvideo"><!--2 b-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
             <ul>
               <li class="playmore"><a href="video2.jsp">Video Quiz</a></li>
               <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
@@ -147,47 +148,44 @@
             <%
                 }
             %>              
-              <li class="announcement"><a href="announ.jsp?videoID=0">Announcement</a></li>
+              <li class="announcement"><a href="announ.jsp">Announcement</a></li>
             </ul>
-       </div>
+        </div>
+    </div>
     
     <div class="container">
-        <div class="col-xs-12 col-md-12 col-lg-12 ">
+
+    <div class="row"><!--3--> 
+        <div class="col-xs-12 col-md-8 col-lg-8 contentborder mques"> <!--3.1--> 
             <ol class="breadcrumb breadcrumb-arrow">
-                    <li><a href="video2.jsp">Home</a></li>
-                    <%
-                        if(check == false){
-                    %>
-            <% 
+                <li><a href="video2.jsp">Home</a></li>
+            <%
+                if(check == false){
+
                 if(videoID ==0){
             %>
-                    <li><a onclick="history.back()" href="#">Quiz Question</a></li>
+                <li><a onclick="history.back()" href="#">Quiz Question</a></li>
             <%
                 } else{
             %>
-                    <li><a onclick="history.back()" href="#">Video Quiz</a></li>
+                <li><a onclick="history.back()" href="#">Video Quiz</a></li>
+            <%
+                }}
+                if(check2 == false) {
+            %>
+                <li><a onclick="history.back()" href="#">Announcement</a></li>
             <%
                 }
             %>
-                    <%
-                        }
-                    %>
-                    <%
-                        if(check2 == false) {
-                    %>
-                    <li><a onclick="history.back()" href="#">Announcement</a></li>
-                    <%
-                        }
-                    %>
-                    <li class="active"><span>More Quiz</span></li>
+                <li class="active"><span>More Quiz</span></li>
             </ol>
-        </div>
-    <div class="row"><!--3--> 
-        <div class="col-xs-12 col-md-8 col-lg-8 contentborder mques"> <!--3.1--> 
+                
             <div class="table-responsive">
                 <table class="table table-stripped table-hover sortable">
                     <thead>
+                       
                         <tr>
+                            
                             <th id="quiz" scope="col">Quiz Without Video</th>
                         </tr>
                     </thead>                      

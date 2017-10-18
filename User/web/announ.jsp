@@ -37,7 +37,7 @@
         <%!
             Connection conn;
             Statement stmt, st, stm;
-            ResultSet result, rs, rst;
+            ResultSet result, rs;
             Integer announ, videoID;
             String username, password;
             Boolean check = false;
@@ -49,14 +49,11 @@
             password = (String)session.getAttribute("pass");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-            if(request.getParameter("videoID") != null)
-            {
-                 videoID = Integer.parseInt(request.getParameter("videoID"));
-                 check = false;
-            }
-            else
-            {
-                 check = true;
+            if(request.getParameter("videoID") != null){
+                videoID = Integer.parseInt(request.getParameter("videoID"));
+                check = false;
+            }else{
+                check = true;
             }
             
             try{
@@ -64,8 +61,6 @@
                 st=conn.createStatement();
                 result = st.executeQuery("SELECT * FROM announcement");
               
-                stm = conn.createStatement();
-                rst = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");       
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");       
                  
@@ -114,10 +109,11 @@
         response.sendRedirect("index.html");
         }
     %>   
-    
-    <div class="navvideo">
+
+    <div class="row navvideo announcemenu"><!--2 b-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
             <ul>
-              <li class="playmore"><a href="video2.jsp">Video Quiz</a></li>
+              <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
               <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
             <!-- Modal -->
             <%  
@@ -152,9 +148,10 @@
             <%
                 }
             %>              
-              <li class="announcement"><a href="mquiz.jsp?announceID=0">More Quiz</a></li>
+              <li class="announcement"><a href="announ.jsp">Announcement</a></li>
             </ul>
-       </div>
+        </div>
+    </div>
     
     <div class="container ">   
         <!--Content section-->
@@ -162,10 +159,9 @@
             <div class="col-xs-12 col-md-9 col-lg-9 videoquestion contentborder"><!--1.2.2.1-->
                 <ol class="breadcrumb breadcrumb-arrow">
                     <li><a href="video2.jsp">Home</a></li>
-                    <%
-                        if(check == false){
-                    %>
-            <% 
+            <%
+                if(check == false){
+                    
                 if(videoID ==0){
             %>
                     <li><a onclick="history.back()" href="#">Quiz Question</a></li>
@@ -174,11 +170,8 @@
             %>
                     <li><a onclick="history.back()" href="#">Video Quiz</a></li>
             <%
-                }
+                }}
             %>
-                    <%
-                        }
-                    %>
                     <li class="active"><span>Announcement</span></li>
                 </ol>
              
@@ -222,74 +215,7 @@
                     }
                 %>
                 <a href="video2.jsp" class="orangebtn buttonlayout"><span>Back to Main Video Page</span></a>
-                <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout"><span>Feedback</span></a> 
-            <!-- Modal -->
-             <%  
-                if (rst.next()) {
-            %>        
-                <div class="modal fade" id="ascore" role="dialog">
-                <div class="modal-dialog">
-                <div class="modal-content modalbg">
-                    <!--Content-->
-                    <div class="estrellas">
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                    </div>   
-                    <center class="ascore">
-                        <h3><b><%=rst.getString("username")%></b></h3>
-                        <br/>
-                        <h4>You have collected</h4>
-                        <h2 class="yellow"><%=rst.getString("result")%> Stars</h2>
-                        <br/>
-                        <p><i>**Collect more star as token for future event**</i></p>
-                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
-                    </center> 
-                </div>
-                </div>
-                </div> <!--close modal-->
-            <%
-                }
-            %>
             </div> <!--close column 3.2-->
-            
-             <!--feedback form-->
-            <div class="col-xs-12 col-md-4 col-lg-3 contentborder link"><!--4.2-->
-                <div class="row"><!--4.2.1--> 
-                    <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
-                        <hr class="normal">
-                        <center>
-                            <h4>Game of Quiz</h4>
-                        </center>
-                        <br/>
-                    </div> <!--close column 4.2.1.1--> 
-                </div> <!--close row 4.2.1--> 
-                <div class="row"><!--4.2.2--> 
-                    <div class="col-xs-12 col-md-12 col-lg-12"><!--4.2.2.1--> 
-                        <center>
-                            <div id="addfeedback" class="collapse">  
-                                <form id="addForm" action="" method="POST"> 
-                                    <h5>FEEDBACK<h5/><hr/>
-                                    <p>Just comment. We listen.</p>
-                                    <textarea name="txtfeedback"></textarea><br/><br/>
-                                    <button type="submit" name="btnAdd">Submit</button>
-                                </form>
-                            </div>
-                        </center>
-                    </div> <!--close column 4.2.2.1--> 
-                </div> <!--close row 4.2.2--> 
-              <div class="row"><!--4.2.1--> 
-                    <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
-
-                        <hr class="normal">
-                    </div> <!--close column 4.2.1.1--> 
-                </div> <!--close row 4.2.1--> 
-            </div><!--end of feedback form & end column 4.2-->
-            
         </div><!--end column 1.2.3.1-->      
     </div> 
         

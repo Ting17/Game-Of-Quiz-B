@@ -127,7 +127,8 @@
             </div>           
         </div><!--end row 2-->
         
-        <div class="navvideo">
+    <div class="row navvideo"><!--2 b-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
             <ul>
               <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
               <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
@@ -164,10 +165,11 @@
             <%
                 }
             %>              
-              <li class="announcement"><a href="announ.jsp?announceID=0">Announcement</a></li>
+              <li class="announcement"><a href="announ.jsp">Announcement</a></li>
             </ul>
-       </div>
-    
+        </div>
+    </div>
+
     <!--Content section-->
     <div class="container">    
         <div class="row"><!--3-->

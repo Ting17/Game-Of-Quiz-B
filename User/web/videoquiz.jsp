@@ -149,9 +149,10 @@
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->
     
-    <div class="navvideo">
-            <ul class="videoquizmenu">
-              <li class="playmore"><a href="mquiz.jsp?videoID=<%=videoID %>">More Quiz</a></li>
+    <div class="row videoquizmenu"><!--2 b-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
+            <ul>
+              <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
               <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
             <!-- Modal -->
             <%  
@@ -186,9 +187,10 @@
             <%
                 }
             %>              
-              <li class="announcement"><a href="announ.jsp?videoID=<%=videoID %>">Announcement</a></li>
+              <li class="announcement"><a href="announ.jsp">Announcement</a></li>
             </ul>
-       </div>
+        </div>
+    </div>
     
 <div class="container"> 
         <%
