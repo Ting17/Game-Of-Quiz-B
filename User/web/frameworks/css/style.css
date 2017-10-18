@@ -201,10 +201,7 @@ video.videopg{
     font-size: 15px;
 }
 
-
-
-
-
+/*breadcrumb*/
 .breadcrumb-arrow {
     padding: 0;
     background-color: #e6e9ed;
@@ -268,11 +265,7 @@ video.videopg{
     border-left: 11px solid #fff;
 }
 
-
-
-
-
-
+/*nav/menubar*/
 .navvideo {
     background-color: #3d5998;
     border-bottom-left-radius: 100px;
@@ -334,8 +327,6 @@ video.videopg{
     -webkit-mask-size: 200%;
     animation: shine 0.7s infinite;
 }
-
-
 
 /*modal for checking accumulate score*/
 .estrellas {

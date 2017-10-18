@@ -175,12 +175,12 @@
                                 <form name="form3">
                                     <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
                                         <label for="A">
-                                            <input type="radio" data-ng-model="checkeds" value="A" id="A" name="multiradio" required/> <%=r.getString("input1") %>
+                                            <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=r.getString("input1") %>
                                         </label>
                                     </div>
                                     <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
                                         <label for="B">
-                                            <input type="radio" data-ng-model="checkeds" value="B" id="B" name="multiradio" /> <%=r.getString("input2") %>
+                                            <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=r.getString("input2") %>
                                         </label>
                                     </div>
                                     <div class="row"><!--2.2.1-->
@@ -210,7 +210,12 @@
                         
         <!-- Show answer -->
         <div data-ng-show="show === 2">
-            <b class="answer">Answer: <%=r.getString("checked")%></b>
+            <div data-ng-if="'<%=r.getString("checked")%>'=== 1">
+                <b class="answer">Answer: <%=r.getString("input1")%></b>
+            </div>
+            <div data-ng-if="'<%=r.getString("checked")%>'=== 2">
+                <b class="answer">Answer: <%=r.getString("input2")%></b>
+            </div>
         </div> <!-- end of showing answer-->       
         </center>         
                             </div> <!--end of User input for two choice selection-->

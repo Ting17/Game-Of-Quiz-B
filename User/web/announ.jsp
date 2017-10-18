@@ -110,8 +110,8 @@
         }
     %>   
 
-    <div class="row navvideo announcemenu"><!--2 b-->
-        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
+    <div class="row navvideo announcemenu"><!--1 b-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1 b-->
             <ul>
               <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
               <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
@@ -150,13 +150,13 @@
             %>              
               <li class="announcement"><a href="announ.jsp">Announcement</a></li>
             </ul>
-        </div>
-    </div>
+        </div><!--close column 1.1 b-->
+    </div><!--close row 1 b-->
     
     <div class="container ">   
         <!--Content section-->
-        <div class="row"><!--1.2.2-->
-            <div class="col-xs-12 col-md-9 col-lg-9 videoquestion contentborder"><!--1.2.2.1-->
+        <div class="row"><!--2-->
+            <div class="col-xs-12 col-md-9 col-lg-9 videoquestion contentborder"><!--2.1-->
                 <ol class="breadcrumb breadcrumb-arrow">
                     <li><a href="video2.jsp">Home</a></li>
             <%
@@ -204,9 +204,9 @@
                 <center >    
                     <div id="pgNum"></div>
                 </center>
-            </div>
+            </div> <!--close column 2.1-->
                 
-            <div class="col-xs-12 col-md-3 col-lg-3 videoquestion link"><!--3.2--> 
+            <div class="col-xs-12 col-md-3 col-lg-3 videoquestion link"><!--2.2--> 
                 <%
                     if(check == false){
                 %>                
@@ -215,8 +215,8 @@
                     }
                 %>
                 <a href="video2.jsp" class="orangebtn buttonlayout"><span>Back to Main Video Page</span></a>
-            </div> <!--close column 3.2-->
-        </div><!--end column 1.2.3.1-->      
+            </div> <!--close column 2.2-->
+        </div><!--end row 2-->      
     </div> 
         
     <jsp:include page="footer.jsp"></jsp:include>

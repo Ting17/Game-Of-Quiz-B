@@ -112,63 +112,63 @@
         }
     %>  
     
-        <div class="row subject"><!--2-->
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1-->
+        <div class="row subject"><!--2 a-->
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1a-->
                 <a onclick="show('divEng')"><h4 >English</h4></a>
             </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2-->
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2a-->
                 <a><h4>Mathematic</h4></a>
             </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3-->
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3a-->
                 <a onclick="show('divSci')"><h4>Technology</h4></a>
             </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4-->
+            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4a-->
                 <a onclick="show('divBio')"><h4>Biology</h4></a>
             </div>           
         </div><!--end row 2-->
         
-    <div class="row navvideo"><!--2 b-->
-        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
-            <ul>
-              <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
-              <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
-            <!-- Modal -->
-            <%  
-                rs.previous();
-                if (rs.next()) {
-            %>        
-                <div class="modal fade" id="ascore" role="dialog">
-                <div class="modal-dialog">
-                <div class="modal-content modalbg">
-                    <!--Content-->
-                    <div class="estrellas">
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                    </div>   
-                    <center class="ascore">
-                        <h3><b><%=rs.getString("username")%></b></h3>
-                        <br/>
-                        <h4>You have collected</h4>
-                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
-                        <br/>
-                        <p><i>**Collect more star as token for future event**</i></p>
-                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
-                    </center> 
-                </div>
-                </div>
-                </div> <!--close modal-->
-            <%
-                }
-            %>              
-              <li class="announcement"><a href="announ.jsp">Announcement</a></li>
-            </ul>
-        </div>
-    </div>
+        <div class="row navvideo"><!--2 b-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
+                <ul>
+                  <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
+                  <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
+                <!-- Modal -->
+                <%  
+                    rs.previous();
+                    if (rs.next()) {
+                %>        
+                    <div class="modal fade" id="ascore" role="dialog">
+                    <div class="modal-dialog">
+                    <div class="modal-content modalbg">
+                        <!--Content-->
+                        <div class="estrellas">
+                            <span class="glyphicon glyphicon-star yellow"></span>
+                            <span class="glyphicon glyphicon-star yellow"></span>
+                            <span class="glyphicon glyphicon-star yellow"></span>
+                            <span class="glyphicon glyphicon-star yellow"></span>
+                            <span class="glyphicon glyphicon-star yellow"></span>
+                            <span class="glyphicon glyphicon-star yellow"></span>
+                            <span class="glyphicon glyphicon-star yellow"></span>
+                        </div>   
+                        <center class="ascore">
+                            <h3><b><%=rs.getString("username")%></b></h3>
+                            <br/>
+                            <h4>You have collected</h4>
+                            <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
+                            <br/>
+                            <p><i>**Collect more star as token for future event**</i></p>
+                            <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
+                        </center> 
+                    </div>
+                    </div>
+                    </div> <!--close modal-->
+                <%
+                    }
+                %>              
+                  <li class="announcement"><a href="announ.jsp">Announcement</a></li>
+                </ul>
+            </div> <!--end column 2.1b-->
+        </div> <!--end row 2 b-->
 
     <!--Content section-->
     <div class="container">    

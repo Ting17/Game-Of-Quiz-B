@@ -95,22 +95,22 @@
     </div><!--end row 1 & end of navigation-->
        
     
-    <div class="row subject"><!--2-->
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1-->
+    <div class="row subject"><!--2 a-->
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1 a-->
             <a onclick="show('divEng')"><h4 >English</h4></a>
         </div>
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2-->
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2 a-->
             <a><h4>Mathematic</h4></a>
         </div>
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3-->
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3 a-->
             <a><h4>History</h4></a>
         </div>
-        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4-->
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4 a-->
             <a onclick="show('divBio')"><h4>Biology</h4></a>
         </div>           
     </div><!--end row 2-->
     
-      <div class="row navvideo"><!--2 b-->
+    <div class="row navvideo"><!--2 b-->
         <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
             <ul>
               <li class="playmore"><a href="video2.jsp">Video Quiz</a></li>
@@ -150,8 +150,8 @@
             %>              
               <li class="announcement"><a href="announ.jsp">Announcement</a></li>
             </ul>
-        </div>
-    </div>
+        </div><!--end column 2.1 b-->
+    </div><!--end row 2 b-->
     
     <div class="container">
 
@@ -183,9 +183,7 @@
             <div class="table-responsive">
                 <table class="table table-stripped table-hover sortable">
                     <thead>
-                       
                         <tr>
-                            
                             <th id="quiz" scope="col">Quiz Without Video</th>
                         </tr>
                     </thead>                      

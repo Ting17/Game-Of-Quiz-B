@@ -138,8 +138,8 @@
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->    
     
-    <div class="row videoquizmenu"><!--2 b-->
-        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
+    <div class="row videoquizmenu"><!--1 b-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1 b-->
             <ul>
               <li class="playmore"><a href="video2.jsp">Video Quiz</a></li>
               <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
@@ -178,8 +178,8 @@
             %>              
               <li class="announcement"><a href="announ.jsp">Announcement</a></li>
             </ul>
-        </div>
-    </div>
+        </div><!--close row 1.1b-->  
+    </div><!--close row 1 b-->  
     
 <div class="container">
         <%  
@@ -187,7 +187,7 @@
         %>
   
     <div class="row"><!--2-->
-        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion "><!--3.1-->
+        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion "><!--2.1-->
             <ol class="breadcrumb-arrow">
                 <li><a href="video2.jsp">Home</a></li>
                 <li><a onclick="history.back()" href="#">More Quiz</a></li>
@@ -206,9 +206,9 @@
         <%
             }
         %>              
-        </div>
+        </div> <!--close column 2.1-->
    
-        <div class="col-xs-12 col-md-4 col-lg-4 videoquestion"><!--3.1-->
+        <div class="col-xs-12 col-md-4 col-lg-4 videoquestion"><!--2.2-->
             <div class="table-responsive">
                 <table class="table table-stripped table-hover questiont" id="tablepaging">
                     <thead>
@@ -290,8 +290,7 @@
                     <%
                         Random rand = new Random();
                         int n1 = rand.nextInt(3)+1;
-                        int n2 = rand.nextInt(3)+1;
-                        int n3 = rand.nextInt(3)+1;
+                        
                         if(n1==1){
                     %>
                         <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
@@ -380,8 +379,7 @@
                     <%
                         Random rand2 = new Random();
                         int m1 = rand2.nextInt(3)+1;
-                        int m2 = rand2.nextInt(3)+1;
-                        int m3 = rand2.nextInt(3)+1;
+                        
                         if(m1==1){
                     %>
                         <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
@@ -429,12 +427,12 @@
                                 <form name="form3">
                                     <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
                                         <label for="A">
-                                            <input type="radio" data-ng-model="checkeds" value="A" id="A" name="multiradio" required/> <%=result.getString("input1") %>
+                                            <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=result.getString("input1") %>
                                         </label>
                                     </div>
                                     <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
                                         <label for="B">
-                                            <input type="radio" data-ng-model="checkeds" value="B" id="B" name="multiradio" /> <%=result.getString("input2") %>
+                                            <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=result.getString("input2") %>
                                         </label>
                                     </div>
                                     <div class="row"><!--2.2.1-->
@@ -465,8 +463,7 @@
                     <%
                         Random rand3 = new Random();
                         int o1 = rand3.nextInt(3)+1;
-                        int o2 = rand3.nextInt(3)+1;
-                        int o3 = rand3.nextInt(3)+1;
+                        
                         if(o1==1){
                     %>
                         <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
@@ -503,7 +500,12 @@
                         
         <!-- Show answer -->
         <div data-ng-show="show === 2">
-            <b class="answer">Answer: <%=result.getString("checked")%></b>
+            <div data-ng-if="'<%=result.getString("checked")%>'=== 1">
+                <b class="answer">Answer: <%=result.getString("input1")%></b>
+            </div>
+            <div data-ng-if="'<%=result.getString("checked")%>'=== 2">
+                <b class="answer">Answer: <%=result.getString("input2")%></b>
+            </div>
         </div> <!-- end of showing answer-->  
                 
         </center>         
@@ -518,8 +520,8 @@
             </tbody>
                 </table>
             </div>
-        </div> <!--close column 3.1-->
-    </div> <!--close row 3-->
+        </div> <!--close column 2.2-->
+    </div> <!--close row 2-->
 
     <div class="row wrap"><!--3--> 
         <!--video description and transcript-->
