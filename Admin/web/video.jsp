@@ -34,10 +34,10 @@
 <body>
     <%!
         Connection conn;
-        Statement stmt, st,st2,st3,st4;
-        ResultSet result, rs, resultq,resultq2,resultq3;
+        Statement stmt, st,st2,st3,st4, st5, st6;
+        ResultSet resultBio, resultQBio, resultEng, resultQEng, resultSci, resultQSci, rs;
         String username,password, videoID,quizID,quizID2,quizID3;
-        Integer count;
+        Integer count = 0;
         Boolean check;
     %>
 
@@ -50,16 +50,22 @@
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             st=conn.createStatement();
-            resultq = st.executeQuery("SELECT * FROM quiz");
+            resultQBio = st.executeQuery("SELECT * FROM quiz");
             
             st2=conn.createStatement();
-            resultq2 = st2.executeQuery("SELECT * FROM quiz");
+            resultQEng = st2.executeQuery("SELECT * FROM quiz");
             
             st3=conn.createStatement();
-            resultq3 = st3.executeQuery("SELECT * FROM quiz");
+            resultQSci = st3.executeQuery("SELECT * FROM quiz");
             
             st4=conn.createStatement();
-            result = st4.executeQuery("SELECT * FROM video");          
+            resultBio = st4.executeQuery("SELECT * FROM video WHERE category = 'Biology' ");  
+            
+            st5=conn.createStatement();
+            resultEng = st5.executeQuery("SELECT * FROM video WHERE category = 'English' ");
+            
+            st6=conn.createStatement();
+            resultSci = st6.executeQuery("SELECT * FROM video WHERE category = 'Science & Techn' ");
                       
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");
@@ -105,28 +111,28 @@
                 <div id="divBio">
                 <h3>Biology</h3>
         <%
-            while(result.next() && (result.getString("category").equalsIgnoreCase("biology"))) {  
+            while(resultBio.next()) {  
         %>
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
                             <video width="100%" controls>
-                                <source src="<%=result.getString("videoPath")%>" type="video/mp4">
-                            </video>
+                                <source src="<%=resultBio.getString("videoPath")%>" type="video/mp4">
+                            </video>    
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
-                            <h4><%=result.getString("videoName") %></h4>
-                            <p><%=result.getString("videoDesc") %></p>
+                            <h4><%=resultBio.getString("videoName") %></h4>
+                            <p><%=resultBio.getString("videoDesc") %></p>
                         </div>  
             <%
-                resultq.first();
+                resultQBio.first();
                 check=false;
   
-                while(resultq.next()) {
-                    videoID = resultq.getString("videoID");
-                    if(result.getString("videoID").equals(videoID)) {
-                        quizID = resultq.getString("quizID");
+                while(resultQBio.next()) {
+                    videoID = resultQBio.getString("videoID");
+                    if(resultBio.getString("videoID").equals(videoID)) {
+                        quizID = resultQBio.getString("quizID");
                         check=true;    
                         break;
                     }
@@ -134,17 +140,17 @@
                 if(check == false){
             %>    
                         <div class="col-xs-2 col-md-2 col-lg-2"> <!--1.2.3.1.1.3-->
-                                <a href="addNewQuiz.jsp?video=<%=result.getString("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                                <a href="addNewQuiz.jsp?video=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
                         </div>                                
             <%
                 }
                 if (check==true) {
             %>
                             <div class="col-xs-2 col-md-2 col-lg-2"> 
-                                    <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=result.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
+                                    <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=resultBio.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
                             </div>                      
                             <div class="col-xs-2 col-md-2 col-lg-2"> 
-                                    <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                                    <a href="playquiz.jsp?id=<%=resultBio.getInt("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
                             </div>   
             <%
                 }
@@ -155,50 +161,48 @@
             }
         %>
                 </div><!--end of divBio-->
-        <%
-            result.previous();
-        %>
+                
                  <div id="divEng" style="display:none;">
                   <h3>English</h3>
         <%
-            while(result.next() && (result.getString("category").equalsIgnoreCase("english"))) {
+            while(resultEng.next() && (resultEng.getString("category").equalsIgnoreCase("english"))) {
                 check=false;
         %>
                 <div class="videowrap">
                     <div class="row"><!--1.2.4.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.4.1.1.1-->
                             <video width="100%" controls>
-                                <source src="<%=result.getString("videoPath") %>" type="video/mp4">
+                                <source src="<%=resultEng.getString("videoPath") %>" type="video/mp4">
                             </video>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1.1.2-->
-                            <h4><%=result.getString("videoName") %></h4>
-                            <p><%=result.getString("videoDesc") %></p>
+                            <h4><%=resultEng.getString("videoName") %></h4>
+                            <p><%=resultEng.getString("videoDesc") %></p>
                         </div>            
                         
                         <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
             <%
-                resultq2.first();
+                resultQEng.first();
                 check=false;
   
-                while(resultq2.next()) {
-                    videoID = resultq2.getString("videoID");
-                    if(result.getString("videoID").equals(videoID)) {
-                        quizID = resultq2.getString("quizID");
+                while(resultQEng.next()) {
+                    videoID = resultQEng.getString("videoID");
+                    if(resultEng.getString("videoID").equals(videoID)) {
+                        quizID = resultQEng.getString("quizID");
                         check=true;    
                         break;
                     }
                 }   
                 if(check == false){
             %>
-                                <a href="addNewQuiz.jsp?video=<%=result.getString("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                                <a href="addNewQuiz.jsp?video=<%=resultEng.getString("videoID")%>&categ=<%=resultEng.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
             <%
                 }
                 if (check==true) {
             %>
-                            <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=result.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
-                            <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                            <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=resultEng.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
+                            <a href="playquiz.jsp?id=<%=resultEng.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
             <%
                 }
             %> 
@@ -210,47 +214,47 @@
         %>
             </div><!--end of divEng-->       
         <%
-            result.previous();
+            resultSci.previous();
         %>
             <div id="divSci" style="display:none;">
                 <h3>Science & Technology</h3>
         <%
-            while(result.next() && (result.getString("category").equalsIgnoreCase("science & techn"))) {
+            while(resultSci.next() && (resultSci.getString("category").equalsIgnoreCase("science & techn"))) {
         %>
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
                             <video width="100%" controls>
-                                <source src="<%=result.getString("videoPath")%>" type="video/mp4">
+                                <source preload="auto" src="<%=resultSci.getString("videoPath")%>" type="video/mp4">
                             </video>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
-                            <h4><%=result.getString("videoName") %></h4>
-                            <p><%=result.getString("videoDesc") %></p>
+                            <h4><%=resultSci.getString("videoName") %></h4>
+                            <p><%=resultSci.getString("videoDesc") %></p>
                         </div>  
                             
                         <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
             <%
-                resultq3.first();
+                resultQSci.first();
                 check=false;
-                while(resultq3.next()) {
-                    videoID = resultq3.getString("videoID");
-                    if(result.getString("videoID").equals(videoID)) {
-                        quizID = resultq3.getString("quizID");
+                while(resultQSci.next()) {
+                    videoID = resultQSci.getString("videoID");
+                    if(resultSci.getString("videoID").equals(videoID)) {
+                        quizID = resultQSci.getString("quizID");
                         check=true;    
                         break;
                     }
                 }   
                 if(check == false){
             %>
-                                <a href="addNewQuiz.jsp?video=<%=result.getString("videoID")%>&categ=<%=result.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                                <a href="addNewQuiz.jsp?video=<%=resultSci.getString("videoID")%>&categ=<%=resultSci.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
             <%
                 }
                 if (check==true) {
             %>
-                            <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=result.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
-                            <a href="playquiz.jsp?id=<%=result.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                            <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=resultSci.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
+                            <a href="playquiz.jsp?id=<%=resultSci.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
             <%
                 }
             %> 
