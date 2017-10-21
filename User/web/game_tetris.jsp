@@ -1,5 +1,5 @@
 <%-- 
-    Document   : tetris
+    Document   : game_tetris
     Created on : Sep 5, 2017, 2:31:52 PM
     Author     : tingting17
 --%>

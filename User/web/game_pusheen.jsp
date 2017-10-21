@@ -1,5 +1,5 @@
 <%-- 
-    Document   : pusheen
+    Document   : game_pusheen
     Created on : July 1, 2017, 12:45:01 AM
     Author     : tingting17
 --%>
@@ -117,7 +117,7 @@
                     <div data-ng-if="food === '<%=x%>'">
                         <img src="resources/img/pusheenimg/pthank.gif" />
                         <br/>
-                        <a class="btn btn-success btn-lg feed" href="quote.jsp">Claim Quote</a>
+                        <a class="btn btn-success btn-lg feed" href="reward_quote.jsp">Claim Quote</a>
                         <a class="btn btn-primary btn-lg feed" href="video2.jsp">Back to Video page</a>
                     </div>
                     

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : videoquestion
+    Document   : quiz_question
     Created on : Apr 29, 2017, 11:59:49 PM
     Author     : tingting17
 --%>
@@ -7,13 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
-<!DOCTYPE html>
 
         <%!
             Connection conn;
-            Statement stmt;
-            ResultSet result;
-            Integer videoID, x=1, y=1, z=1;
+            Statement st;
+            ResultSet result, res;
+            Integer videoID, x=1, y=1, z=1,quizID;
             String username,password,category;
         %>
 
@@ -22,18 +21,21 @@
             username = (String)session.getAttribute("uname");
             password = (String)session.getAttribute("pass");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-            videoID = Integer.parseInt(request.getParameter("id"));
-            category = request.getParameter("categ");
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-             
-                stmt = conn.createStatement();
-                result = stmt.executeQuery("SELECT * FROM question WHERE videoID = '"+videoID +"' LIMIT 5");
-                
-            }catch(ClassNotFoundException cnfe){
-                out.println("Class not Found Execption:-" + cnfe.toString());
-            }catch(SQLException sqle){
-                out.println("SQL Query Exception:- " + sqle);
+            
+            if(request.getParameter("videoID") != null && request.getParameter("videoID")!= ""){ 
+                videoID = Integer.parseInt(request.getParameter("videoID"));
+                quizID = Integer.parseInt(request.getParameter("quizID"));
+                category = request.getParameter("categ");
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    st = conn.createStatement();
+                    result = st.executeQuery("SELECT * FROM question WHERE videoID = '" + videoID + "' AND quizID = '" + quizID + "' LIMIT 5");
+                    
+                }catch(ClassNotFoundException cnfe){
+                    out.println("Class not Found Execption:-" + cnfe.toString());
+                }catch(SQLException sqle){
+                    out.println("SQL Query Exception:- " + sqle);
+                }
             }
         %>
              
@@ -119,16 +121,13 @@
                     <%
                         Random rand = new Random();
                         int n1 = rand.nextInt(3)+1;
-                        int n2 = rand.nextInt(3)+1;
-                        int n3 = rand.nextInt(3)+1;
-
                         if(n1==1){
                     %>
-                        <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                        <a href="gametime.jsp" class="btnbonus">Game Time!!</a>
                     <% 
                         } if(n1==2){
                     %>
-                        <jsp:include page="starcollect3.jsp"></jsp:include>
+                       <jsp:include page="reward_starcollect3.jsp"></jsp:include>  
                     <% 
                         } if(n1==3){
                     %>
@@ -141,7 +140,7 @@
                 
                 <!--star for every question except for the 5th-->
                 <div data-ng-if="<%=x %>%5 !== 0">
-                    <jsp:include page="starcollect.jsp"></jsp:include>  
+                    <jsp:include page="reward_starcollect.jsp"></jsp:include>  
                 </div><!--end of star for every question except for the 5th-->
                 
             </div> <!-- end of correct answer-->
@@ -180,6 +179,7 @@
                                     <center>
                                         <h4>Answer:</h4>
                                         <input type="text" name="answer" data-ng-model="checkeds" size="40%" required/>
+                                        <br/>
                                     </center> 
                                                                                   
                                     <div class="row"><!--2.2.1-->
@@ -210,16 +210,13 @@
                     <%
                         Random rand2 = new Random();
                         int m1 = rand2.nextInt(3)+1;
-                        int m2 = rand2.nextInt(3)+1;
-                        int m3 = rand2.nextInt(3)+1;
-
                         if(m1==1){
                     %>
-                        <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                        <a href="gametime.jsp" class="btnbonus">Game Time!!</a>
                     <% 
                         } if(m1==2){
                     %>
-                        <jsp:include page="starcollect3.jsp"></jsp:include>
+                        <jsp:include page="reward_starcollect3.jsp"></jsp:include>
                     <% 
                         } if(m1==3){
                     %>
@@ -232,7 +229,7 @@
                 
                 <!--star for every question except for the 5th-->
                 <div data-ng-if="<%=y %>%5 !== 0">
-                    <jsp:include page="starcollect.jsp"></jsp:include>  
+                    <jsp:include page="reward_starcollect.jsp"></jsp:include>  
                 </div><!--end of star for every question except for the 5th-->
                 
             </div> <!-- end of correct answer-->
@@ -260,12 +257,12 @@
                                 <form name="form3">
                                     <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
                                         <label for="A">
-                                            <input type="radio" data-ng-model="checkeds" value="A" id="A" name="multiradio" required/> <%=result.getString("input1") %>
+                                            <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=result.getString("input1") %>
                                         </label>
                                     </div>
                                     <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
                                         <label for="B">
-                                            <input type="radio" data-ng-model="checkeds" value="B" id="B" name="multiradio" /> <%=result.getString("input2") %>
+                                            <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=result.getString("input2") %>
                                         </label>
                                     </div>
                                     <div class="row"><!--2.2.1-->
@@ -297,16 +294,13 @@
                     <%
                         Random rand3 = new Random();
                         int o1 = rand3.nextInt(3)+1;
-                        int o2 = rand3.nextInt(3)+1;
-                        int o3 = rand3.nextInt(3)+1;
-
                         if(o1==1){
                     %>
-                        <a href="bonus.jsp" class="btnbonus">Game Time!!</a>
+                        <a href="gametime.jsp" class="btnbonus">Game Time!!</a>
                     <% 
                         } if(o1==2){
                     %>
-                        <jsp:include page="starcollect3.jsp"></jsp:include>
+                        <jsp:include page="reward_starcollect3.jsp"></jsp:include>
                     <% 
                         } if(o1==3){
                     %>
@@ -319,7 +313,7 @@
                 
                 <!--star for every question except for the 5th-->
                 <div data-ng-if="<%=z %>%5 !== 0">
-                    <jsp:include page="starcollect.jsp"></jsp:include>  
+                    <jsp:include page="reward_starcollect.jsp"></jsp:include>  
                 </div><!--end of star for every question except for the 5th-->
                 
             </div> <!-- end of correct answer-->
@@ -336,7 +330,12 @@
                         
         <!-- Show answer -->
         <div data-ng-show="show === 2">
-            <b class="answer">Answer: <%=result.getString("checked")%></b>
+            <div data-ng-if="'<%=result.getString("checked")%>'=== 1">
+                <b class="answer">Answer: <%=result.getString("input1")%></b>
+            </div>
+            <div data-ng-if="'<%=result.getString("checked")%>'=== 2">
+                <b class="answer">Answer: <%=result.getString("input2")%></b>
+            </div>
         </div> <!-- end of showing answer-->  
                 
         </center>         

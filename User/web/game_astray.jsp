@@ -1,5 +1,5 @@
 <%-- 
-    Document   : astray
+    Document   : game_astray
     Created on : Sep 5, 2017, 12:11:34 PM
     Author     : tingting17
 --%>

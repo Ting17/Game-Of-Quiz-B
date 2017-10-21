@@ -1,5 +1,5 @@
 <%-- 
-    Document   : quote
+    Document   : reward_starcollect
     Created on : July 31, 2017, 04:59:49 PM
     Author     : tingting17
 --%>
@@ -7,7 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
-<!DOCTYPE html>
 
         <%!
             Connection conn;

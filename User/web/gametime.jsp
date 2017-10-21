@@ -1,5 +1,5 @@
 <%-- 
-    Document   : bonus
+    Document   : gametime
     Created on : May 11, 2017, 12:45:01 AM
     Author     : tingting17
 --%>
@@ -17,14 +17,12 @@
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Claim Reward</title>
+<title>Game Time</title>
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/rewardstyle.css" rel="stylesheet" />
-
-
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,13 +30,11 @@
 <script src="js/html5shiv.js"></script>
 <script src="js/respond.min.js"></script>
 <![endif]-->
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Claim Reward</title>         
+  
 </head>
 
 <body>
-    
+
     <%
         Random rand = new Random();
         int n = rand.nextInt(5)+1;
@@ -47,23 +43,23 @@
     <%
         if(n==1){
     %>
-    <%@ include file="hangman.jsp"%>
+    <%@ include file="game_hangman.jsp"%>
     <% 
         } if(n==2){
     %>
-    <%@ include file="pusheen.jsp"%>
+    <%@ include file="game_pusheen.jsp"%>
    
     <% 
         } if(n==3){
     %>
-    <%@ include file="quote.jsp"%>
+    <%@ include file="reward_quote.jsp"%>
     <% 
         } if(n==4){
     %>
     <div class="astray"> 
             <div class="game"><!--2.1-->
                 <h1>Ready for a maze game?</h1><br/>
-                <a class="btn btn-success btn-lg" href="astray.jsp">Ready!</a>
+                <a class="btn btn-success btn-lg" href="game_astray.jsp">Ready!</a>
                 <a class="btn btn-primary btn-lg" href="video2.jsp">Back to Video page</a>
             </div>
     </div>
@@ -74,7 +70,7 @@
         <img src="resources/img/tetris.png"/>
         <div class="tetrisf game">
             <h1>Ready for a tetris?</h1><br/>
-            <a class="btn btn-success btn-lg" href="tetris.jsp">Ready!</a>
+            <a class="btn btn-success btn-lg" href="game_tetris.jsp">Ready!</a>
             <a class="btn btn-primary btn-lg" href="video2.jsp">Back to Video page</a>
         </div>
     </div>

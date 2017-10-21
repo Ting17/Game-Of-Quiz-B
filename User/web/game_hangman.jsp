@@ -1,5 +1,5 @@
 <%-- 
-    Document   : hangman
+    Document   : game_hangman
     Created on : Aug 05, 2017, 12:45:01 AM
     Author     : tingting17
 --%>

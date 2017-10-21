@@ -38,9 +38,6 @@
     padding: 1%;
 }
 
-.wrap{
-   margin-top: 1%; 
-}
 
 .interwrap{
   background: #3bafda; /* For browsers that do not support gradients */
@@ -49,12 +46,11 @@
   background: -moz-linear-gradient(right, #3bafda, #CBCCC7); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #3bafda , #D9D9D8); /* Standard syntax */
   color: #000;
+  
 }
 
 .videoquestion{
-   padding-left: 0px;
-   padding-right: 0px; 
-   border: solid 1px #f1f1f1;
+   padding: 0;
    background-color: #fff;
 }
 
@@ -90,7 +86,7 @@
 }
 
 .questiont tbody tr  {
-   min-height: 65vh;
+
 }
 
 video.videoque{  

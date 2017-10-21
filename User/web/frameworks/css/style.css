@@ -13,7 +13,8 @@ body{
     font-size: 20px;
     font-style: italic;
     color: #fff;
-    padding-left: 15%;
+    padding-left: 5%;
+    margin-top: 1%;
 }
 
 .right{
@@ -27,12 +28,10 @@ ul{
 .contentborder{
     border: solid 1px #f1f1f1;
     background-color: #fff;
-   
+    margin: 1% 0;
 }
 
-.contentborder img{
-    width: 100%
-}
+
 
 .pagi{
     margin-top: 3%;
@@ -65,14 +64,11 @@ ul{
 
 
 /*mquiz.jsp*/
-.mques table{
+.quizlist table{
    text-align: center;
    font-size: 20px;
 }
 
-.mques table th{
-   text-align: center;
-}
 
 .playmque {
     background: transparent;
@@ -160,11 +156,7 @@ video.videopg{
     height: 240px;
 }
 
-#divBio{
-    display: none;
-}
-
-#divSci{
+#divBio, #divSci{
     display: none;
 }
 
@@ -202,16 +194,12 @@ video.videopg{
 }
 
 /*breadcrumb*/
-.breadcrumb-arrow {
+.breadcrumb-arrow{
     padding: 0;
     background-color: #e6e9ed;
     width: 100%;
 }
-.breadcrumb-arrow li:first-child a {
-    border-radius: 4px 0 0 4px;
-    -webkit-border-radius: 4px 0 0 4px;
-    -moz-border-radius: 4px 0 0 4px;
-}
+
 .breadcrumb-arrow li, .breadcrumb-arrow li a, .breadcrumb-arrow li span {
     display: inline-block;
 }
@@ -222,7 +210,7 @@ video.videopg{
     padding: 0;
     content: "";
 }
-.breadcrumb-arrow li span {
+.breadcrumb-arrow li span, .breadcrumb-arrow li:first-child a{
     padding: 0 10px;
 }
 .breadcrumb-arrow li a, .breadcrumb-arrow li:not(:first-child) span {
@@ -230,20 +218,17 @@ video.videopg{
     padding: 0 10px 0 25px;
     line-height: 36px;
 }
-.breadcrumb-arrow li:first-child a {
-    padding: 0 10px;
-}
-.breadcrumb-arrow li a {
+.breadcrumb-arrow li a{
     position: relative;
     color: #fff;
     text-decoration: none;
     background-color: #3bafda;
     border: 1px solid #3bafda;
 }
-.breadcrumb-arrow li:first-child a {
+.breadcrumb-arrow li:first-child a{
     padding-left: 10px;
 }
-.breadcrumb-arrow li a:after, .breadcrumb-arrow li a:before {
+.breadcrumb-arrow li a:after, .breadcrumb-arrow li a:before{
     position: absolute;
     top: -1px;
     width: 0;
@@ -252,7 +237,7 @@ video.videopg{
     border-top: 18px solid transparent;
     border-bottom: 18px solid transparent;
 }
-.breadcrumb-arrow li a:before {
+.breadcrumb-arrow li a:before{
     right: -10px;
     z-index: 3;
     border-left-color: #3bafda;
@@ -265,6 +250,10 @@ video.videopg{
     border-left: 11px solid #fff;
 }
 
+
+
+
+
 /*nav/menubar*/
 .navvideo {
     background-color: #3d5998;
@@ -272,39 +261,7 @@ video.videopg{
     border-bottom-right-radius: 100px;
 }
 
-.navvideo ul, .videoquizmenu ul{
-    list-style: none;
-    text-align: center;
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
-    font-size: 18px;
-}
-
-.navvideo li, .videoquizmenu li{
-    margin: 1% 2%;
-    float: left;
-    display: inline-block;
-    margin-right: -4px;
-    border-left: #fff double;
-    width: 30%;
-}
-
-.navvideo li:last-child, .videoquizmenu li:last-child{
-    border-right: #fff double;
-}
- 
-.navvideo a, .videoquizmenu a{
-  text-decoration: none;
-  color: #fff;
-  display: block;
-
-}
- 
-.navvideo a:hover, .videoquizmenu a:hover {
-    font-size: 20px;
-}
-
-.videoquizmenu{
+.quizmenu{
     background-image: url('../../resources/img/parallexbg1.jpg') ;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -314,10 +271,54 @@ video.videopg{
     border-bottom-right-radius: 100px;
 }
 
+.navvideo ul, .quizmenu ul{
+    list-style: none;
+    text-align: center;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    font-size: 18px;
+    margin-left: 2%;
+}
+
+.navvideo li, .quizmenu li{
+    margin: 1% 0 1% 0 ;
+    float: left;
+    display: inline-block;
+    border-left: #fff double;
+    width: 19%;
+}
+
+.navvideo li:last-child, .quizmenu li:last-child{
+    border-right: #fff double;
+}
+ 
+.navvideo a, .quizmenu a{
+  text-decoration: none;
+  color: #fff;
+  display: block;
+
+}
+ 
+.navvideo a:hover, .quizmenu a:hover {
+    font-size: 20px;
+}
+
+.navvideo .active a, .quizmenu .active a{
+    background-color: #3bafda;
+    font-size: 24px;
+    cursor: default;
+}
+
+
 .announcemenu {
     margin-top: -2%;
 }
 
+
+
+
+
+/*modal for checking accumulate score*/
 .glyphicon-star{
     font-size: 40px;
 }
@@ -328,7 +329,6 @@ video.videopg{
     animation: shine 0.7s infinite;
 }
 
-/*modal for checking accumulate score*/
 .estrellas {
     transform: rotate(-103deg);
     margin-top: 50%;
@@ -379,4 +379,10 @@ video.videopg{
   background: linear-gradient(to bottom, #2c3e50, #3498db); /* Standard syntax */
   color: #fff;
   padding: 1%;
+}
+
+
+.logo{
+    color: #fff;
+    padding-left: 5%;
 }

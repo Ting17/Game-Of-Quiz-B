@@ -81,7 +81,7 @@
                 <nav class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <h3>EQUILIBRA</h3>
+                            <h3>Game of Quiz Quiz area</h3>
                         </div>
 
                         <div class="navbar-header"> 
@@ -113,8 +113,9 @@
     <div class="row navvideo announcemenu"><!--1 b-->
         <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1 b-->
             <ul>
-              <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
-              <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
+                <li><a href="video2.jsp">EQUILIBRA Home</a></li>
+                <li><a href="GOQ_home.jsp">More Quiz</a></li>
+                <li><a data-toggle="modal" data-target="#ascore">Check Accumulated Score</a></li>
             <!-- Modal -->
             <%  
                 rs.previous();
@@ -148,7 +149,8 @@
             <%
                 }
             %>              
-              <li class="announcement"><a href="announ.jsp">Announcement</a></li>
+                <li class="active"><a href="announ.jsp">Announcement</a></li>
+                <li><a href="Uguild.jsp">User Guild</a></li>
             </ul>
         </div><!--close column 1.1 b-->
     </div><!--close row 1 b-->
@@ -158,13 +160,13 @@
         <div class="row"><!--2-->
             <div class="col-xs-12 col-md-9 col-lg-9 videoquestion contentborder"><!--2.1-->
                 <ol class="breadcrumb breadcrumb-arrow">
-                    <li><a href="video2.jsp">Home</a></li>
+                    <li><a href="video2.jsp">EQUILIBRA Home</a></li>
             <%
                 if(check == false){
                     
                 if(videoID ==0){
             %>
-                    <li><a onclick="history.back()" href="#">Quiz Question</a></li>
+                    <li><a onclick="history.back()" href="#">Quiz without Video</a></li>
             <%
                 } else{
             %>
@@ -206,15 +208,48 @@
                 </center>
             </div> <!--close column 2.1-->
                 
-            <div class="col-xs-12 col-md-3 col-lg-3 videoquestion link"><!--2.2--> 
+            <div class="col-xs-12 col-md-3 col-lg-3 contentborder link"><!--2.2--> 
+                <center>
+                    <a data-toggle="modal" data-target="#myModal" >
+                        <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
+                    </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    <div class="modal-content catnote">
+                        <center>
+                            <h4 class="modal-title"><b>Thankz for noticing me, Human!!!</b></h4>
+                        </center>
+                        <br/>
+                        <p><b>Cat's Advise 1:</b></p>
+                        <ul>
+                            <li><p>Watch video and try to get the general idea.</p></li>
+                            <li><p>Answer question on the right side.</p></li>
+                            <li><p>Watch again for answer if have any doubt.</p></li>
+                        </ul>
+                        <br/>
+                        <p><b>Cat's Advise 2:</b></p>
+                        <ul>
+                            <li><p>If confident enough go play more quiz, take the challenge.</p></li>
+                            <li><p>If found any mistake, click on feedback button.</p></li>
+                            <li><p>Answer the questions correctly to collect a star.</p></li>
+                            <li><p>Answer the <b>Last</b> question correctly for a <u>random chest reward</u>.</p></li>
+                        </ul>
+                        <br/>    
+                        <div class="catpawn">
+                        <img src="resources/img/catpawn.png">
+                        </div>
+                    </div>
+                    </div>
+                    </div> <!--close modal-->
                 <%
                     if(check == false){
-                %>                
-                <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
+                %>
+                    <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
                 <%
                     }
                 %>
-                <a href="video2.jsp" class="orangebtn buttonlayout"><span>Back to Main Video Page</span></a>
+            </center>
             </div> <!--close column 2.2-->
         </div><!--end row 2-->      
     </div> 

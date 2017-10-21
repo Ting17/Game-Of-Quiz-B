@@ -1,5 +1,5 @@
 <%-- 
-    Document   : videoquiz
+    Document   : quiz_page
     Created on : Apr 29, 2017, 11:59:49 PM
     Author     : tingting17
 --%>
@@ -39,10 +39,10 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt,stm;
-            ResultSet res,rs;
+            Statement stmt,stm,st;
+            ResultSet res,rs,rest;
             String category, username,password;
-            Integer videoID; 
+            Integer videoID, quizID; 
         %>
 
         <%-- READ function for question--%>
@@ -51,16 +51,20 @@
             password = (String)session.getAttribute("pass");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-            if(request.getParameter("id") != null && request.getParameter("id")!= ""){  
-                videoID = Integer.parseInt(request.getParameter("id"));
+            if(request.getParameter("videoID") != null && request.getParameter("videoID")!= ""){  
+                videoID = Integer.parseInt(request.getParameter("videoID"));
+                quizID = Integer.parseInt(request.getParameter("quizID"));
                 category = request.getParameter("categ");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                     stmt=conn.createStatement();
-                    res = stmt.executeQuery("SELECT * FROM video WHERE videoID = '"+ videoID +"'");
+                    res = stmt.executeQuery("SELECT * FROM video WHERE videoID = '" + videoID + "'");
+                     
+                    st=conn.createStatement();
+                    rest = st.executeQuery("SELECT * FROM video WHERE videoID = '" + videoID + "'");
                     
                     stm = conn.createStatement();
-                    rs = stm.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");
+                    rs = stm.executeQuery("SELECT * FROM user WHERE username='" + username + "' and password='" + password + "'");
        
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
@@ -71,12 +75,13 @@
                 if(request.getParameter("btnAdd") != null){
                     try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("INSERT INTO feedback(videoID, username, feedback, rdate) VALUES(?,?,?,NOW())");
+                    pstmt = conn.prepareStatement("INSERT INTO feedback(videoID, quizID, username, feedback, rdate) VALUES(?,?,?,?,NOW())");
                     pstmt.setInt(1,videoID);
-                    pstmt.setString(2,username);
-                    pstmt.setString(3,request.getParameter("txtfeedback"));
+                    pstmt.setInt(2,quizID);
+                    pstmt.setString(3,username);
+                    pstmt.setString(4,request.getParameter("txtfeedback"));
                     pstmt.executeUpdate();
-                    response.sendRedirect("./videoquiz.jsp?id=" + videoID + "&categ=" + category);
+                    response.sendRedirect("./quiz_page.jsp?videoID=" + videoID + "&quizID=" + quizID + "&categ=" + category);
                     }catch(ClassNotFoundException cnfe){
                         out.println("Class not Found Execption:-" + cnfe.toString());
                     }catch(SQLException sqle){
@@ -84,7 +89,7 @@
                     }  
                 }  
             }else{
-                response.sendRedirect("./index.html");
+                response.sendRedirect("./EQ_home");
             }
         %>
         
@@ -93,45 +98,13 @@
     <div class="row" id="top"><!--1--> 
         <div class="col-xs-12 col-md-12 col-lg-12 parallax"> <!--1.1--> 
             <div class="row"><!--1.1.1--> 
-                <div class="col-xs-7 col-md-7 col-lg-7 title"><!--1.1.1.1--> 
+                <div class="col-xs-3 col-md-3 col-lg-3 logo"><!--1.1.1.2--> 
+                    <h2>Game Of Quiz</h2>
+                </div> <!--close column 1.1.1.2-->
+                
+                <div class="col-xs-6 col-md-6 col-lg-6 title"><!--1.1.1.1--> 
                     <p>"Push yourself because no one else is going to do it for you"</p>
                 </div> <!--close column 1.1.1.1-->
-                
-                <div class="col-xs-2 col-md-2 col-lg-2"><!--1.1.1.2--> 
-                    <a data-toggle="modal" data-target="#myModal" >
-                        <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
-                    </a>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                    <div class="modal-content catnote">
-                        <center>
-                            <h4 class="modal-title"><b>Thankz for noticing me, Human!!!</b></h4>
-                        </center>
-                        <br/>
-                        <p><b>Cat's Advise 1:</b></p>
-                        <ul>
-                            <li><p>Watch video and try to get the general idea.</p></li>
-                            <li><p>Answer question on the right side.</p></li>
-                            <li><p>Watch again for answer if have any doubt.</p></li>
-                        </ul>
-                        <br/>
-                        <p><b>Cat's Advise 2:</b></p>
-                        <ul>
-                            <li><p>If confident enough go play more quiz, take the challenge.</p></li>
-                            <li><p>If found any mistake, click on feedback button.</p></li>
-                            <li><p>Answer the questions correctly to collect a star.</p></li>
-                            <li><p>Answer the <b>Last</b> question correctly for a <u>random chest reward</u>.</p></li>
-                        </ul>
-                        <br/>    
-                        <div class="catpawn">
-                        <img src="resources/img/catpawn.png">
-                        </div>
-                    </div>
-                    </div>
-                    </div> <!--close modal-->
-                </div> <!--close column 1.1.1.2-->
                 
                 <!--Translate function; google traslate-->
                 <div class="col-xs-3 col-md-3 col-lg-3"> <!--1.1.1.3-->
@@ -149,14 +122,14 @@
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->
     
-    <div class="row videoquizmenu"><!--1 b-->
+    <div class="row quizmenu"><!--1 b-->
         <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1 b-->
             <ul>
-              <li class="playmore"><a href="mquiz.jsp">More Quiz</a></li>
-              <li class="checkscore"><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
+                <li><a href="video2.jsp">EQUILIBRA Home</a></li>
+                <li><a href="GOQ_home.jsp?videoID=<%=videoID %>">More Quiz</a></li>
+                <li><a data-toggle="modal" data-target="#ascore">Check Accumulated Score</a></li>
             <!-- Modal -->
             <%  
-                rs.previous();
                 if (rs.next()) {
             %>        
                 <div class="modal fade" id="ascore" role="dialog">
@@ -187,36 +160,61 @@
             <%
                 }
             %>              
-              <li class="announcement"><a href="announ.jsp">Announcement</a></li>
+                <li><a href="announ.jsp?videoID=<%=videoID %>">Announcement</a></li>
+                <li><a href="Uguild.jsp">User Guild</a></li>
             </ul>
         </div> <!--close column 1.1b-->
     </div> <!--close row 1 b-->
     
-<div class="container"> 
-        <%
-            while(res.next() ) {
-        %>
-    <div class="row vwrap"><!--2--> 
-        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion contentborder"><!--2.1--> 
+<div class="container">     
+    <div class="row"><!--2--> 
+        <div class="col-xs-12 col-md-8 col-lg-8 videoquestion "><!--2.1--> 
             <ol class="breadcrumb-arrow">
-                <li><a href="video2.jsp">Home</a></li>
+                <li><a href="video2.jsp">EQUILIBRA Home</a></li>
                 <li class="active"><span>Video Quiz</span></li>
             </ol>
-            <video class="videoque" controls>
-                <source src="<%=res.getString("videoPath")%>" type="video/mp4">
-            </video>
-        </div>
         
+        <%
+            if(videoID == 0) {     
+        %>
+            <div class="parallax title nonote">
+                <center>No video for now....</center>
+            </div>
+        <%    
+            }else {    
+                while(rest.next() ) {
+        %>
+            <div class="row"><!--2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12">
+                    <video class="videoque" controls>
+                        <source src="<%=rest.getString("videoPath")%>" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        <%    
+            }}
+        %>
+        </div>
+            
         <div class="col-xs-12 col-md-4 col-lg-4 videoquestion" ><!--2.2--> 
-            <jsp:include page="videoquestion.jsp"></jsp:include>
+            <jsp:include page="quiz_question.jsp"></jsp:include>
         </div> 
     </div> <!--close row 2-->
     
-    <div class="row wrap"><!--3--> 
-        <!--video description and transcript-->
-        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1-->
-            <div class="row"><!--3.1.1--> 
-                <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--3.1.1.1--> 
+    <div class="row"><!--3.1.1--> 
+        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1.1--> 
+    <%
+            if(videoID == 0) {     
+        %>
+            <center>
+                <h4><i>No note for now....</i></h4>
+            </center>
+        <%    
+            }else {    
+                while(res.next() ) { 
+        %>
+            <div class="row interwrap"><!--3.1.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12"><!--3.1.1.1--> 
                     <h3><%=res.getString("videoName") %></h3>
                     <h5>Category << <%=res.getString("category") %> >></h5>
                     <hr/>
@@ -224,7 +222,7 @@
             </div><!--close row 3.1.1-->  
             
             <div class="row"><!--3.1.2--> 
-                <div class="col-xs-12 col-md-12 col-lg-12 wrap2"><!--3.1.2.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 wrap2" contentborder><!--3.1.2.1--> 
                     <p class="videodesc"><%=res.getString("videoDesc") %></p>        
                     <a data-toggle="collapse" data-target="#transcript"><button class="btn btn-default btn-sm right" title="click here for transcript">Transcript</button></a>
                     <div id="transcript" class="collapse">  
@@ -232,18 +230,57 @@
                        <p><%=res.getString("transcript") %></p>
                     </div>
                 </div> <!--close column 3.1.2.1--> 
-            </div> <!--close row 3.1.2--> 
-        </div> <!--end of video description and transcript and end of column 3.1-->
-        <%
-           }
-        %>
-        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
-            <a href="video2.jsp" class="redbtn buttonlayout"><span>Back to Main Video Page</span></a>        
-            <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout"><span>Feedback</span></a> 
-        </div> <!--close column 3.2-->
-    </div> <!--close row 3-->
+            </div> <!--close row 3.1.2-->   
+        <%    
+            }}
+        %>     
+        
+                   
+   
+        </div>
+                   
+        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link">
+            <center>
+                <a data-toggle="modal" data-target="#myModal" >
+                    <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
+                </a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                    <div class="modal-content catnote">
+                        <center>
+                            <h4 class="modal-title"><b>Thankz for noticing me, Human!!!</b></h4>
+                        </center>
+                        <br/>
+                        <p><b>Cat's Advise 1:</b></p>
+                        <ul>
+                            <li><p>Watch video and try to get the general idea.</p></li>
+                            <li><p>Answer question on the right side.</p></li>
+                            <li><p>Watch again for answer if have any doubt.</p></li>
+                        </ul>
+                        <br/>
+                        <p><b>Cat's Advise 2:</b></p>
+                        <ul>
+                            <li><p>If confident enough go play more quiz, take the challenge.</p></li>
+                            <li><p>If found any mistake, click on feedback button.</p></li>
+                            <li><p>Answer the questions correctly to collect a star.</p></li>
+                            <li><p>Answer the <b>Last</b> question correctly for a <u>random chest reward</u>.</p></li>
+                        </ul>
+                        <br/>    
+                        <div class="catpawn">
+                        <img src="resources/img/catpawn.png">
+                        </div>
+                    </div>
+                    </div>
+                    </div> <!--close modal-->
+                    
+                <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout" title="Once click, scroll down for form"><span>Feedback</span></a> 
+            </center>
+        </div> <!--close row 3-->           
+    </div>                
+  
                   
-    <div class="row wrap"><!--4-->
+    <div class="row"><!--4-->
         <!--more video-->
         <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--4.1--> 
             <div class="row"><!--4.1.1--> 
@@ -259,15 +296,15 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                           <jsp:include page="table.jsp"></jsp:include>
+                           <jsp:include page="relatedVideo.jsp"></jsp:include>
                         </div>
 
                         <div class="item">
-                            <jsp:include page="table.jsp"></jsp:include>
+                            <jsp:include page="relatedVideo.jsp"></jsp:include>
                         </div>  
 
                         <div class="item">
-                            <jsp:include page="table.jsp"></jsp:include>
+                            <jsp:include page="relatedVideo.jsp"></jsp:include>
                         </div>
                     </div>
 
@@ -318,9 +355,9 @@
                     </center>
                 </div> <!--close column 4.2.2.1--> 
             </div> <!--close row 4.2.2--> 
-          <div class="row"><!--4.2.1--> 
+            
+            <div class="row"><!--4.2.1--> 
                 <div class="col-xs-12 col-md-12 col-lg-12 interwrap"><!--4.2.1.1-->
-                    
                     <hr class="normal">
                 </div> <!--close column 4.2.1.1--> 
             </div> <!--close row 4.2.1--> 
