@@ -190,9 +190,8 @@
                 <div class="videowrap">       
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <video class="videopg" controls>
-                                <source src="<%=resultBio.getString("videoPath")%>" type="video/mp4">
-                            </video>
+                            <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -230,9 +229,8 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <video class="videopg" controls>
-                                <source src="<%=resultEng.getString("videoPath") %>" type="video/mp4">
-                            </video>
+                            <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -271,9 +269,8 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <video class="videopg" controls>
-                                <source src="<%=resultSci.getString("videoPath") %>" type="video/mp4">
-                            </video>
+                            <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->

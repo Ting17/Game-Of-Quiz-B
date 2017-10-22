@@ -116,9 +116,8 @@
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
-                            <video width="100%" controls>
-                                <source src="<%=resultBio.getString("videoPath")%>" type="video/mp4">
-                            </video>    
+                            <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
@@ -126,7 +125,6 @@
                             <p><%=resultBio.getString("videoDesc") %></p>
                         </div>  
             <%
-                resultQBio.first();
                 check=false;
   
                 while(resultQBio.next()) {
@@ -165,15 +163,14 @@
                  <div id="divEng" style="display:none;">
                   <h3>English</h3>
         <%
-            while(resultEng.next() && (resultEng.getString("category").equalsIgnoreCase("english"))) {
+            while(resultEng.next()) {
                 check=false;
         %>
                 <div class="videowrap">
                     <div class="row"><!--1.2.4.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.4.1.1.1-->
-                            <video width="100%" controls>
-                                <source src="<%=resultEng.getString("videoPath") %>" type="video/mp4">
-                            </video>
+                            <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1.1.2-->
@@ -183,7 +180,6 @@
                         
                         <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
             <%
-                resultQEng.first();
                 check=false;
   
                 while(resultQEng.next()) {
@@ -213,20 +209,17 @@
             }
         %>
             </div><!--end of divEng-->       
-        <%
-            resultSci.previous();
-        %>
+
             <div id="divSci" style="display:none;">
                 <h3>Science & Technology</h3>
         <%
-            while(resultSci.next() && (resultSci.getString("category").equalsIgnoreCase("science & techn"))) {
+            while(resultSci.next()) {
         %>
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
-                            <video width="100%" controls>
-                                <source preload="auto" src="<%=resultSci.getString("videoPath")%>" type="video/mp4">
-                            </video>
+                            <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
@@ -236,7 +229,6 @@
                             
                         <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
             <%
-                resultQSci.first();
                 check=false;
                 while(resultQSci.next()) {
                     videoID = resultQSci.getString("videoID");
