@@ -41,7 +41,7 @@ function Pager(tableName, itemsPerPage) {
         this.showRecords(from, to);
     };
     
-     this.pagination2 = function(pagerName2, pgNum2) {
+     this.pagination = function(pagerName2, pgNum2) {
         if (! this.inited) {
             alert("not inited");
             return;

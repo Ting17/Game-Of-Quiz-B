@@ -36,8 +36,8 @@
 <body>
         <%!
             Connection conn;
-            Statement stmt,stm, st,st2,st3,st4;
-            ResultSet result,resultq,resultq2,resultq3,rs;
+            Statement stmt,st,st2,st3,st4,st5,st6;
+            ResultSet resultBio,resultQBio,resultEng,resultQEng,resultSci,resultQSci,rs;
             String username,password, videoID;
             Integer userID;
             Boolean check = false;
@@ -55,16 +55,22 @@
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
             st=conn.createStatement();
-            resultq = st.executeQuery("SELECT * FROM quiz");
+            resultQBio = st.executeQuery("SELECT * FROM quiz");
             
             st2=conn.createStatement();
-            resultq2 = st2.executeQuery("SELECT * FROM quiz");
+            resultQEng = st2.executeQuery("SELECT * FROM quiz");
             
             st3=conn.createStatement();
-            resultq3 = st3.executeQuery("SELECT * FROM quiz");
+            resultQSci = st3.executeQuery("SELECT * FROM quiz");
             
-            stm=conn.createStatement();
-            result = stm.executeQuery("SELECT * FROM video");
+            st4=conn.createStatement();
+            resultBio = st4.executeQuery("SELECT * FROM video WHERE category = 'Biology'");
+            
+            st5=conn.createStatement();
+            resultEng = st5.executeQuery("SELECT * FROM video WHERE category = 'English'");
+            
+            st6=conn.createStatement();
+            resultSci = st6.executeQuery("SELECT * FROM video WHERE category = 'Science & Techn'");
             
             stmt = conn.createStatement();
             rs = stmt.executeQuery("select * from user where username='" + username + "' and password='" + password + "'");
@@ -181,27 +187,25 @@
                 <div id="divBio">
                 <h2>Biology</h2>
             <%
-                result.previous();
-                while(result.next() && (result.getString("category").equalsIgnoreCase("biology"))) {
+                while(resultBio.next() && (resultBio.getString("category").equalsIgnoreCase("biology"))) {
             %>
                 <div class="videowrap">       
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
                             <video class="videopg" controls>
-                                <source src="<%=result.getString("videoPath")%>" type="video/mp4">
+                                <source src="<%=resultBio.getString("videoPath")%>" type="video/mp4">
                             </video>
-                        </div>
+                        </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
-                            <h3><%=result.getString("videoName") %></h3>
-                            <p><%=result.getString("videoDesc") %></p>
-                        </div>  
+                            <h3><%=resultBio.getString("videoName") %></h3>
+                            <p><%=resultBio.getString("videoDesc") %></p>
+                        </div> <!--close column 3.1.1.2-->
                 <%
-                    resultq.first();
                     check=false;
-                    while(resultq.next()) {
-                        videoID = resultq.getString("videoID");
-                        if(result.getString("videoID").equals(videoID)) {
+                    while(resultQBio.next()) {
+                        videoID = resultQBio.getString("videoID");
+                        if(resultBio.getString("videoID").equals(videoID)) {
                             check=true;    
                             break;
                         }
@@ -209,8 +213,8 @@
                     if(check == true){
                 %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
-                            <a href="quiz_page.jsp?videoID=<%=resultq.getInt("videoID")%>&quizID=<%=resultq.getInt("quizID")%>&categ=<%=resultq.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
-                        </div>
+                            <a href="quiz_page.jsp?videoID=<%=resultQBio.getString("videoID")%>&quizID=<%=resultQBio.getString("quizID")%>&categ=<%=resultQBio.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
+                        </div> <!--close column 3.1.1.3-->
                 <%
                     }
                 %>
@@ -224,27 +228,25 @@
                 <div id="divEng">
                   <h2>English</h2>
             <%
-                result.previous();
-                while(result.next() && (result.getString("category").equalsIgnoreCase("english"))) {
+                while(resultEng.next() && (resultEng.getString("category").equalsIgnoreCase("english"))) {
             %>
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
                             <video class="videopg" controls>
-                                <source src="<%=result.getString("videoPath") %>" type="video/mp4">
+                                <source src="<%=resultEng.getString("videoPath") %>" type="video/mp4">
                             </video>
-                        </div>
+                        </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
-                            <h3><%=result.getString("videoName") %></h3> 
-                            <p><%=result.getString("videoDesc") %></p>
-                        </div>            
+                            <h3><%=resultEng.getString("videoName") %></h3> 
+                            <p><%=resultEng.getString("videoDesc") %></p>
+                        </div> <!--close column 3.1.1.2-->         
                 <%
-                    resultq2.first();
                     check=false;
-                    while(resultq2.next()) {
-                        videoID = resultq2.getString("videoID");
-                        if(result.getString("videoID").equals(videoID)) {
+                    while(resultQEng.next()) {
+                        videoID = resultQEng.getString("videoID");
+                        if(resultEng.getString("videoID").equals(videoID)) {
                             check=true;    
                             break;
                         }
@@ -252,12 +254,12 @@
                     if(check == true){
                 %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
-                            <a href="quiz_page.jsp?videoID=<%=resultq2.getInt("videoID")%>&quizID=<%=resultq2.getInt("quizID")%>&categ=<%=resultq2.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
-                        </div>
+                            <a href="quiz_page.jsp?videoID=<%=resultQEng.getString("videoID")%>&quizID=<%=resultQEng.getString("quizID")%>&categ=<%=resultQEng.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
+                        </div> <!--close column 3.1.1.3-->
                 <%
                     }
                 %>
-                    </div><!--end row 1.2.3.1.1-->
+                    </div><!--end row 3.1.1-->
                 </div><!--close video wrap-->
             <%
                 }
@@ -267,27 +269,26 @@
                 <div id="divSci">
                   <h2>Science & Technology</h2>
             <%
-                result.previous();
-                while(result.next() && (result.getString("category").equalsIgnoreCase("science & techn"))) {
+                while(resultSci.next() && (resultSci.getString("category").equalsIgnoreCase("science & techn"))) {
             %>
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
                             <video class="videopg" controls>
-                                <source src="<%=result.getString("videoPath") %>" type="video/mp4">
+                                <source src="<%=resultSci.getString("videoPath") %>" type="video/mp4">
                             </video>
-                        </div>
+                        </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
-                            <h3><%=result.getString("videoName") %></h3> 
-                            <p><%=result.getString("videoDesc") %></p>
-                        </div>            
+                            <h3><%=resultSci.getString("videoName") %></h3> 
+                            <p><%=resultSci.getString("videoDesc") %></p>
+                        </div> <!--close column 3.1.1.2-->
+            
                 <%
-                    resultq3.first();
                     check=false;
-                    while(resultq3.next()) {
-                        videoID = resultq3.getString("videoID");
-                        if(result.getString("videoID").equals(videoID)) {
+                    while(resultQSci.next()) {
+                        videoID = resultQSci.getString("videoID");
+                        if(resultSci.getString("videoID").equals(videoID)) {
                             check=true;    
                             break;
                         }
@@ -295,12 +296,12 @@
                     if(check == true){
                 %>
                         <div class="col-xs-12 col-md-2 col-lg-2 quizplay"><!--3.1.1.3-->
-                            <a href="quiz_page.jsp?videoID=<%=resultq3.getInt("videoID")%>&quizID=<%=resultq3.getInt("quizID")%>&categ=<%=resultq3.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
-                        </div>
+                            <a href="quiz_page.jsp?videoID=<%=resultQSci.getString("videoID")%>&quizID=<%=resultQSci.getString("quizID")%>&categ=<%=resultQSci.getString("category")%>" class="btn-lg btnplay">Play quiz</a>
+                        </div> <!--close column 3.1.1.3-->
                 <%
                     }
                 %>
-                    </div><!--end row 1.2.3.1.1-->
+                    </div><!--end row 3.1.1-->
                 </div><!--close video wrap-->
             <%
                 }

@@ -94,16 +94,15 @@
              
                                     <!-- button -->   
                                     <div class="row button"><!--2.2.2-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--2.2.2.1-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.2.1-->
                                             <a class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form1.$invalid" onClick="checkansSound()">Check</a>
                                         </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2..2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.2.2-->
                                             <a class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</a>
                                         </div> 
                                     </div> <!--close row 2.2.2--> 
                                 </form>                                  
         <center>   
-            
         <!-- check answer-->
         <div data-ng-show="show ===1">
             <!-- correct -->
@@ -113,29 +112,7 @@
                 
                 <!--chest box for 5th question-->
                 <div data-ng-if="<%=x %>%5 === 0">
-                    <button class="chestbtn" onclick="changeImage1()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
-                    <button class="chestbtn" onclick="changeImage2()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
-                    <button class="chestbtn" onclick="changeImage3()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
-
-                    <div data-ng-if="btnclicked === 3" class="chestreward">
-                    <%
-                        Random rand = new Random();
-                        int n1 = rand.nextInt(3)+1;
-                        if(n1==1){
-                    %>
-                        <a href="gametime.jsp" class="btnbonus">Game Time!!</a>
-                    <% 
-                        } if(n1==2){
-                    %>
-                       <jsp:include page="reward_starcollect3.jsp"></jsp:include>  
-                    <% 
-                        } if(n1==3){
-                    %>
-                        <p>Too bad. Try Again Next Time</p>
-                    <% 
-                        }
-                    %>
-                    </div> 
+                    <jsp:include page="gameChest.jsp"></jsp:include> 
                 </div><!-- end of chest box for 5th question-->
                 
                 <!--star for every question except for the 5th-->
@@ -158,8 +135,7 @@
         <!-- Show answer -->
         <div data-ng-show="show === 2">
             <b class="answer">Answer: <%=result.getString("checked")%></b>
-        </div> <!-- end of showing answer-->  
-                
+        </div> <!-- end of showing answer-->       
         </center> 
                             </div> <!--end of multiple choice format-->
 
@@ -178,8 +154,7 @@
                                     
                                     <center>
                                         <h4>Answer:</h4>
-                                        <input type="text" name="answer" data-ng-model="checkeds" size="40%" required/>
-                                        <br/>
+                                        <input type="text" name="answer" data-ng-model="checkeds" required/>                                        <br/>
                                     </center> 
                                                                                   
                                     <div class="row"><!--2.2.1-->
@@ -191,91 +166,64 @@
                                         </div> 
                                     </div> <!--close row 2.2.1-->                 
                                 </form>
-        <center>          
-                    
+        <center>                    
         <!-- check answer-->
         <div data-ng-show="show === 1">
             <!-- correct -->
             <div data-ng-if="checkeds === '<%=result.getString("checked")%>'" >
                 <span class="yellow"><h3>Correct</h3></span>
-                <hr class="correct yellow">
-                
+                <hr class="correct">
                 <!--chest box for 5th question-->
-                <div data-ng-if="<%=y %>%5 === 0">
-                    <button class="chestbtn" onclick="changeImage1()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
-                    <button class="chestbtn" onclick="changeImage2()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
-                    <button class="chestbtn" onclick="changeImage3()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
-
-                    <div data-ng-if="btnclicked === 3" class="chestreward">
-                    <%
-                        Random rand2 = new Random();
-                        int m1 = rand2.nextInt(3)+1;
-                        if(m1==1){
-                    %>
-                        <a href="gametime.jsp" class="btnbonus">Game Time!!</a>
-                    <% 
-                        } if(m1==2){
-                    %>
-                        <jsp:include page="reward_starcollect3.jsp"></jsp:include>
-                    <% 
-                        } if(m1==3){
-                    %>
-                        <p>Too bad. Try Again Next Time</p>
-                    <% 
-                        }
-                    %>
-                    </div> 
+                <div data-ng-if="<%=z %>%5 === 0">
+                    <jsp:include page="gameChest.jsp"></jsp:include> 
                 </div><!-- end of chest box for 5th question-->
-                
+
                 <!--star for every question except for the 5th-->
-                <div data-ng-if="<%=y %>%5 !== 0">
+                <div data-ng-if="<%=z %>%5 !== 0">
                     <jsp:include page="reward_starcollect.jsp"></jsp:include>  
                 </div><!--end of star for every question except for the 5th-->
-                
-            </div> <!-- end of correct answer-->
-            <%
-                y++;
-            %>
-                         
+            </div>
+                                
             <!-- incorrect -->
             <div data-ng-if="checkeds !== '<%=result.getString("checked")%>'">
                 <h3>Incorrect</h3>
                 <hr class="normal">
-            </div> <!-- end of incorrect answer-->
-        </div> <!-- end of check answer-->        
+            </div> 
+        </div>
                         
         <!-- Show answer -->
         <div data-ng-show="show === 2">
             <b class="answer">Answer: <%=result.getString("checked")%></b>
-        </div> <!-- end of showing answer-->  
-                
-        </center>         
+        </div>                
+        </center>        
                             </div> <!--end of Fill in the Blank -->
 
                             <!-- User input for two choice selection -->
                             <div data-ng-if="'<%=result.getString("type")%>' === '2C'">
                                 <form name="form3">
-                                    <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
-                                        <label for="A">
-                                            <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=result.getString("input1") %>
-                                        </label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
-                                        <label for="B">
-                                            <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=result.getString("input2") %>
-                                        </label>
-                                    </div>
                                     <div class="row"><!--2.2.1-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
+                                        <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
+                                            <label for="A">
+                                                <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=result.getString("input1") %>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
+                                            <label for="B">
+                                                <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=result.getString("input2") %>
+                                            </label>
+                                        </div>
+                                    </div><!--close row 2.2.1-->
+                                            
+                                    <div class="row"><!--2.2.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.2.1--> 
                                             <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form3.$invalid" onClick="checkansSound()">Check</button>
                                         </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.2.2-->
                                             <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
                                         </div> 
-                                    </div> <!--close row 2.2.1-->                 
+                                    </div> <!--close row 2.2.2-->                 
                                 </form>
-        <center>          
-                    
+        <center>      
         <!-- check answer-->
         <div data-ng-show="show === 1">
             <!-- correct -->
@@ -285,30 +233,7 @@
                 
                 <!--chest box for 5th question-->
                 <div data-ng-if="<%=z %>%5 === 0">
-                    <center>
-                    <button class="chestbtn" onclick="changeImage1()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange1" src="resources/img/chestclosed.png"></button>
-                    <button class="chestbtn" onclick="changeImage2()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange2" src="resources/img/chestclosed.png"></button>
-                    <button class="chestbtn" onclick="changeImage3()" data-ng-click="btnclicked = 3"><img id="imgClickAndChange3" src="resources/img/chestclosed.png"></button>
-                    </center>
-                    <div data-ng-if="btnclicked === 3" class="chestreward">
-                    <%
-                        Random rand3 = new Random();
-                        int o1 = rand3.nextInt(3)+1;
-                        if(o1==1){
-                    %>
-                        <a href="gametime.jsp" class="btnbonus">Game Time!!</a>
-                    <% 
-                        } if(o1==2){
-                    %>
-                        <jsp:include page="reward_starcollect3.jsp"></jsp:include>
-                    <% 
-                        } if(o1==3){
-                    %>
-                        <p>Too bad. Try Again Next Time</p>
-                    <% 
-                        }
-                    %>
-                    </div> 
+                    <jsp:include page="gameChest.jsp"></jsp:include> 
                 </div><!-- end of chest box for 5th question-->
                 
                 <!--star for every question except for the 5th-->
@@ -330,14 +255,13 @@
                         
         <!-- Show answer -->
         <div data-ng-show="show === 2">
-            <div data-ng-if="'<%=result.getString("checked")%>'=== 1">
+            <div data-ng-if="'<%=result.getString("checked")%>'=== '1'">
                 <b class="answer">Answer: <%=result.getString("input1")%></b>
             </div>
-            <div data-ng-if="'<%=result.getString("checked")%>'=== 2">
+            <div data-ng-if="'<%=result.getString("checked")%>'=== '2'">
                 <b class="answer">Answer: <%=result.getString("input2")%></b>
             </div>
-        </div> <!-- end of showing answer-->  
-                
+        </div> <!-- end of showing answer-->      
         </center>         
                             </div> <!--end of User input for two choice selection-->
   

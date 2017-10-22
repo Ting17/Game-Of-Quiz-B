@@ -39,10 +39,10 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt,stm,st;
-            ResultSet res,rs,rest;
-            String category, username,password;
-            Integer videoID, quizID; 
+            Statement stmt,stm,st,s;
+            ResultSet res,rs,rest,result;
+            String category, username,password,videoID,quizID;
+     
         %>
 
         <%-- READ function for question--%>
@@ -52,8 +52,8 @@
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             if(request.getParameter("videoID") != null && request.getParameter("videoID")!= ""){  
-                videoID = Integer.parseInt(request.getParameter("videoID"));
-                quizID = Integer.parseInt(request.getParameter("quizID"));
+                videoID = request.getParameter("videoID");
+                quizID = request.getParameter("quizID"); 
                 category = request.getParameter("categ");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
@@ -63,6 +63,9 @@
                     st=conn.createStatement();
                     rest = st.executeQuery("SELECT * FROM video WHERE videoID = '" + videoID + "'");
                     
+                    s=conn.createStatement();
+                    result = s.executeQuery("SELECT * FROM quiz WHERE videoID = '" + videoID + "' and quizID = '" + quizID + "'");
+ 
                     stm = conn.createStatement();
                     rs = stm.executeQuery("SELECT * FROM user WHERE username='" + username + "' and password='" + password + "'");
        
@@ -76,8 +79,8 @@
                     try{
                     Class.forName("com.mysql.jdbc.Driver");
                     pstmt = conn.prepareStatement("INSERT INTO feedback(videoID, quizID, username, feedback, rdate) VALUES(?,?,?,?,NOW())");
-                    pstmt.setInt(1,videoID);
-                    pstmt.setInt(2,quizID);
+                    pstmt.setString(1,videoID);
+                    pstmt.setString(2,quizID);
                     pstmt.setString(3,username);
                     pstmt.setString(4,request.getParameter("txtfeedback"));
                     pstmt.executeUpdate();
@@ -171,18 +174,26 @@
         <div class="col-xs-12 col-md-8 col-lg-8 videoquestion "><!--2.1--> 
             <ol class="breadcrumb-arrow">
                 <li><a href="video2.jsp">EQUILIBRA Home</a></li>
-                <li class="active"><span>Video Quiz</span></li>
+                <li class="active">
+                <div data-ng-if="'<%=videoID %>' === '0'">
+                    <span>Quiz without Video</span>
+                </div>
+
+                <div data-ng-if="'<%=videoID %>' !== '0'">
+                    <span>Video Quiz</span>
+                </div>
+                </li>
             </ol>
-        
-        <%
-            if(videoID == 0) {     
-        %>
+            
+        <div data-ng-if="'<%=videoID %>' === '0'">
             <div class="parallax title nonote">
                 <center>No video for now....</center>
             </div>
+        </div>
+            
+        <div data-ng-if="'<%=videoID %>' !== '0'">   
         <%    
-            }else {    
-                while(rest.next() ) {
+            while(rest.next() ) {
         %>
             <div class="row"><!--2--> 
                 <div class="col-xs-12 col-md-12 col-lg-12">
@@ -192,54 +203,72 @@
                 </div>
             </div>
         <%    
-            }}
+            }
         %>
         </div>
+        </div> <!--close column 2.1--> 
             
         <div class="col-xs-12 col-md-4 col-lg-4 videoquestion" ><!--2.2--> 
             <jsp:include page="quiz_question.jsp"></jsp:include>
-        </div> 
+        </div> <!--close column 2.2--> 
     </div> <!--close row 2-->
     
-    <div class="row"><!--3.1.1--> 
-        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1.1--> 
-    <%
-            if(videoID == 0) {     
-        %>
-            <center>
-                <h4><i>No note for now....</i></h4>
-            </center>
+    <div class="row"><!--3--> 
+        <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1--> 
+        
+        <div data-ng-if="'<%=videoID %>' === '0'">    
         <%    
-            }else {    
-                while(res.next() ) { 
-        %>
+           while(result.next() ) { 
+        %>      
             <div class="row interwrap"><!--3.1.1--> 
                 <div class="col-xs-12 col-md-12 col-lg-12"><!--3.1.1.1--> 
+                    <h3><%=result.getString("quizTopic") %></h3>
+                    <h5>Category << <%=result.getString("category") %> >></h5>
+                    <hr/>
+                </div><!--close column 3.1.1.1--> 
+            </div><!--close row 3.1.1--> 
+            
+            <div class="row interwrap"><!--3.1.2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12"><!--3.1.2.1--> 
+                    <center>
+                        <h4><i>No note for now....</i></h4>
+                    </center>
+                </div><!--close column 3.1.2.1--> 
+            </div><!--close row 3.1.2-->                 
+        <%    
+            }
+        %>  
+        </div>
+        
+        <div data-ng-if="'<%=videoID %>' !== '0'">    
+        <%    
+            while(res.next() ) { 
+        %> 
+            <div class="row interwrap"><!--3.1.1.1--> 
+                <div class="col-xs-12 col-md-12 col-lg-12"><!--3.1.1.1.1--> 
                     <h3><%=res.getString("videoName") %></h3>
                     <h5>Category << <%=res.getString("category") %> >></h5>
                     <hr/>
-                </div><!--close column 3.1.1.1--> 
-            </div><!--close row 3.1.1-->  
+                </div><!--close column 3.1.1.1.1--> 
+            </div><!--close row 3.1.1.1-->  
             
-            <div class="row"><!--3.1.2--> 
-                <div class="col-xs-12 col-md-12 col-lg-12 wrap2" contentborder><!--3.1.2.1--> 
+            <div class="row"><!--3.1.1.2--> 
+                <div class="col-xs-12 col-md-12 col-lg-12 wrap2" contentborder><!--3.1.1.2.1--> 
                     <p class="videodesc"><%=res.getString("videoDesc") %></p>        
                     <a data-toggle="collapse" data-target="#transcript"><button class="btn btn-default btn-sm right" title="click here for transcript">Transcript</button></a>
                     <div id="transcript" class="collapse">  
                         <hr/>
                        <p><%=res.getString("transcript") %></p>
                     </div>
-                </div> <!--close column 3.1.2.1--> 
-            </div> <!--close row 3.1.2-->   
+                </div> <!--close column 3.1.1.2.1--> 
+            </div><!--close row 3.1.1.2-->   
         <%    
-            }}
-        %>     
-        
+            }
+        %>    
+        </div>         
+        </div><!--close column 3.1-->
                    
-   
-        </div>
-                   
-        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link">
+        <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 
             <center>
                 <a data-toggle="modal" data-target="#myModal" >
                     <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
@@ -276,10 +305,9 @@
                     
                 <a data-toggle="collapse" data-target="#addfeedback" class="bluebtn buttonlayout" title="Once click, scroll down for form"><span>Feedback</span></a> 
             </center>
-        </div> <!--close row 3-->           
-    </div>                
-  
-                  
+        </div> <!--close column 3.2-->           
+    </div> <!--close row 3-->                
+            
     <div class="row"><!--4-->
         <!--more video-->
         <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--4.1--> 

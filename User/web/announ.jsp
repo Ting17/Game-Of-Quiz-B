@@ -178,7 +178,7 @@
                 </ol>
              
                 <div class="table-responsive">
-                <table class="table" id="tablepaging2">
+                <table class="table" id="tablepaging">
                     <thead>
                         <tr>
                             <th id="announ" scope="col">Announcement</th>
@@ -194,7 +194,7 @@
                                 <%=result.getString("udate") %>
                                 <br/><br/><br/>
                                 <%=result.getString("content") %>
-                                <hr/>
+                                <hr class="blue"/>
                             </td>
                         </tr>
         <%
@@ -204,7 +204,7 @@
                 </table>
                 </div>
                 <center >    
-                    <div id="pgNum"></div>
+                    <div id="pgNum2"></div>
                 </center>
             </div> <!--close column 2.1-->
                 
@@ -251,7 +251,7 @@
                 %>
             </center>
             </div> <!--close column 2.2-->
-        </div><!--end row 2-->      
-    </div> 
+        </div><!--close row 2-->      
+    </div> <!--end container--> 
         
     <jsp:include page="footer.jsp"></jsp:include>

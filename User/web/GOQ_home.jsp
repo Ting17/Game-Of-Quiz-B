@@ -39,8 +39,8 @@
             Connection conn;
             Statement stmt,st;
             ResultSet result,rs; 
-            String username,password;
-            Integer quizID, videoID, announceID; 
+            String username,password,quizID;
+            Integer videoID, announceID; 
             Boolean check = false, check2 = false;
         %>
         <%-- READ function--%>
@@ -175,23 +175,23 @@
     </div><!--end row 2 b-->
     
     <div class="container">
-
     <div class="row"><!--3--> 
         <div class="col-xs-12 col-md-8 col-lg-8 contentborder quizlist videoquestion"> <!--3.1--> 
             <ol class="breadcrumb breadcrumb-arrow">
                 <li><a href="video2.jsp">EQUILIBRA Home</a></li>
-            <%
+           <%
                 if(check == false){
-
-                if(videoID == 0){
+                    
+                if(videoID ==0){
             %>
-                <li><a onclick="history.back()" href="#">Quiz without Video</a></li>
+                    <li><a onclick="history.back()" href="#">Quiz without Video</a></li>
             <%
                 } else{
             %>
-                <li><a onclick="history.back()" href="#">Video Quiz</a></li>
+                    <li><a onclick="history.back()" href="#">Video Quiz</a></li>
             <%
                 }}
+        
                 if(check2 == false) {
             %>
                 <li><a onclick="history.back()" href="#">Announcement</a></li>
@@ -211,21 +211,17 @@
                     <tbody>   
                     <%  
                         while(result.next()) {
-                            quizID = result.getInt("quizID");
+                            quizID = result.getString("quizID");
                     %>
                         <tr>
                             <td headers="quiz" class="quiz">
-                        <%  
-                            if(result.getInt("videoID") != 0){
-                        %>
-                        <a href="quiz_page.jsp?videoID=0&quizID=<%=quizID%>&categ=<%=result.getString("category")%>" title="<%=result.getString("category") %>" class="playmque"><span class="glyphicon glyphicon-facetime-video"> <%=result.getString("quizTopic") %></span></a>
-                        <% 
-                            }else{
-                        %>
-                            <a href="quiz_page.jsp?videoID=<%=result.getInt("videoID")%>&quizID=<%=quizID%>&categ=<%=result.getString("category")%>" title="<%=result.getString("category") %>" class="playmque"><span><%=result.getString("quizTopic") %></span></a>
-                        <% 
-                            }
-                        %>
+                                <div data-ng-if="'<%=result.getString("videoID")%>' !== '0'">
+                                    <a href="quiz_page.jsp?videoID=<%=result.getString("videoID")%>&quizID=<%=quizID%>&categ=<%=result.getString("category")%>" title="<%=result.getString("category") %>" class="playmque"><span class="glyphicon glyphicon-facetime-video"> <%=result.getString("quizTopic") %></span></a>
+                                </div> 
+                                
+                                <div data-ng-if="'<%=result.getString("videoID")%>' === '0'">
+                                    <a href="quiz_page.jsp?videoID=0&quizID=<%=quizID%>&categ=<%=result.getString("category")%>" title="<%=result.getString("category") %>" class="playmque"><span><%=result.getString("quizTopic") %></span></a>
+                                </div>
                             </td>
                         </tr>
                     <%
@@ -273,7 +269,7 @@
             <%
                 if(check == false){
             %>
-            <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
+                <a onclick="history.back()" class="redbtn buttonlayout"><span>Back</span></a>
             <%
                 }
             %>
