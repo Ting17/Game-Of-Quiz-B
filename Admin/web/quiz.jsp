@@ -164,6 +164,8 @@
                     <input name="txtID" class="form-control" required/>
                     <label>Quiz Topic:</label>
                     <input name="txtQuiz" class="form-control" required/>
+                    <label>Note/Video Transcript:</label>
+                    <textarea name="txtNote" class="form-control"></textarea>
                     
                 <div class="form-group">  
                     <label>Category:</label>

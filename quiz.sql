@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2017 at 06:58 AM
+-- Generation Time: Oct 24, 2017 at 09:40 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -65,9 +65,7 @@ CREATE TABLE IF NOT EXISTS `announcement` (
 --
 
 INSERT INTO `announcement` (`announID`, `announcement`, `content`, `adminID`, `cdate`, `udate`) VALUES
-(1, 'Greeting', '<p>Hi Guys!</p>\r\n\r\n<h1><strong>Its Beta Testing Time!!!!</strong></h1>\r\n\r\n<h3>Have you done the testing?&nbsp;If not go ahead and spend some time&nbsp;play with it. &nbsp;</h3>\r\n\r\n<p>Remember to&nbsp;fill in feedback form.&nbsp;The Swinburne team will come and collect it&nbsp;on&nbsp;<strong><em>6 October 2017</em></strong>.</p>\r\n', 1, '2017-09-18', '2017-09-28'),
-(2, 'dfgh', 'fnh', 1, '2017-09-18', '2017-09-18'),
-(3, 'bgfhn', 'gfbhns', 1, '2017-09-18', '2017-09-18');
+(1, 'Greeting', '<p>Hi Guys!</p>\r\n\r\n<h1><strong>Its Beta Testing Time!!!!</strong></h1>\r\n\r\n<h3>Have you done the testing?&nbsp;If not go ahead and spend some time&nbsp;play with it. &nbsp;</h3>\r\n\r\n<p>Remember to&nbsp;fill in feedback form.&nbsp;The Swinburne team will come and collect it&nbsp;on&nbsp;<strong><em>6 October 2017</em></strong>.</p>\r\n', 1, '2017-09-18', '2017-09-28');
 
 -- --------------------------------------------------------
 
@@ -90,9 +88,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 --
 
 INSERT INTO `feedback` (`feedbackID`, `videoID`, `quizID`, `username`, `feedback`, `rdate`) VALUES
-(1, 6, 6, 'TING TING', 'Dr. Seldon found bug!!! Sjarah Question found in Nelson Mandela video, ', '2017-09-18'),
-(2, 0, 1, 'Ting Ting', 'rdbgfnh', '2017-10-22'),
-(3, 0, 1, 'Ting Ting', 'wadsfgh', '2017-10-22');
+(1, 6, 6, 'TING TING', 'Dr. Seldon found bug!!! Sjarah Question found in Nelson Mandela video, ', '2017-09-18');
 
 -- --------------------------------------------------------
 
@@ -196,6 +192,7 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `quizTopic` varchar(50) NOT NULL,
   `category` varchar(50) NOT NULL,
   `videoID` int(100) NOT NULL,
+  `note` varchar(10000) NOT NULL,
   `cdate` date NOT NULL,
   `udate` date NOT NULL,
   `adminID` int(11) NOT NULL,
@@ -206,22 +203,15 @@ CREATE TABLE IF NOT EXISTS `quiz` (
 -- Dumping data for table `quiz`
 --
 
-INSERT INTO `quiz` (`quizID`, `quizTopic`, `category`, `videoID`, `cdate`, `udate`, `adminID`) VALUES
-('1', 'SPM Sejarah', 'His', 0, '2017-08-25', '2017-09-22', 1),
-('10', 'Mathematics A++', 'Math', 0, '2017-09-07', '2017-09-07', 2),
-('2', 'General English Quiz', 'English', 0, '2017-08-25', '2017-10-22', 1),
-('4', 'Series: Wall Story', 'English', 4, '2017-06-20', '2017-10-22', 1),
-('5', 'Martin Luther King Jr.', 'English', 5, '2017-06-20', '2017-10-23', 1),
-('6', 'Remembering Nelson Mandele', 'English', 6, '2017-08-22', '2017-08-22', 1),
-('7', 'Inside Grandhog Day', 'English', 7, '2017-08-22', '2017-10-23', 1),
-('8', 'The IT Girls', 'English', 8, '2017-06-20', '2017-09-26', 1),
-('fn', 'n', 'Eng', 0, '2017-10-24', '2017-10-24', 1),
-('sb', 'bbbb', 'Eng', 0, '2017-10-24', '2017-10-24', 1),
-('sbdbn', 'bbbbntnet', 'Eng', 0, '2017-10-24', '2017-10-24', 1),
-('sbdbntyn', 'bbbbntnettny', 'Eng', 0, '2017-10-24', '2017-10-24', 1),
-('tm', 'tm', 'Eng', 0, '2017-10-24', '2017-10-24', 1),
-('tynt', 'nyt', 'Eng', 0, '2017-10-24', '2017-10-24', 1),
-('yumyum', 'yumuy', 'Eng', 0, '2017-10-24', '2017-10-24', 1);
+INSERT INTO `quiz` (`quizID`, `quizTopic`, `category`, `videoID`, `note`, `cdate`, `udate`, `adminID`) VALUES
+('1', 'SPM Sejarah', 'His', 0, '', '2017-08-25', '2017-09-22', 1),
+('10', 'Mathematics A++', 'Math', 0, '', '2017-09-07', '2017-09-07', 2),
+('2', 'General English Quiz', 'English', 0, '', '2017-08-25', '2017-10-22', 1),
+('4', 'Series: Wall Story', 'English', 4, '', '2017-06-20', '2017-10-22', 1),
+('5', 'Martin Luther King Jr.', 'English', 5, '', '2017-06-20', '2017-10-23', 1),
+('6', 'Remembering Nelson Mandele', 'English', 6, '', '2017-08-22', '2017-08-22', 1),
+('7', 'Inside Grandhog Day', 'English', 7, '', '2017-08-22', '2017-10-23', 1),
+('8', 'The IT Girls', 'English', 8, '', '2017-06-20', '2017-09-26', 1);
 
 -- --------------------------------------------------------
 
