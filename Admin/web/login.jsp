@@ -120,9 +120,11 @@
             </div>
         </div><!--end row 1.2.2-->
     <%
+            session.setAttribute("aid",rs.getInt("adminID"));
         }else {
-            out.println(request.getAttribute("errorMessage"));
-            response.sendRedirect("index.html");
+            String msg="Incorrect username or password";
+            request.getSession().setAttribute("msg", msg);
+            response.sendRedirect("index.jsp");
         }
     %> 
     

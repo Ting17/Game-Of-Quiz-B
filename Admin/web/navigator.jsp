@@ -54,7 +54,7 @@
                                 </table>
                                 </form>
                             </li> 
-                            <li><a href='index.html'>Log out</a></li>
+                            <li><a href='index.jsp'>Log out</a></li>
                         </ul>  
                     </div><!--end navigation collapse-->        
                     </div><!--close container-->

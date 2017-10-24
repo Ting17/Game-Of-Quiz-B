@@ -8,7 +8,7 @@
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
-<html>
+<html data-ng-app="myApp">
 <head>
                 
 <!-- Description: Game of Quiz -->
@@ -86,7 +86,6 @@
         %>
         
         <jsp:include page="navigator.jsp"></jsp:include>
-        
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->
@@ -96,7 +95,7 @@
                 <a class="glyphicon glyphicon-plus-sign" href="#addquiz?quizID=<%=quizID%>&videoID=<%=videoID%>" data-toggle="collapse" data-target="#addquiz"> New Quiz</a>
             </div>
         </div><!--end row 1.2.2-->
-        
+
         <div class="row"><!--1.2.3-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
                 <div class="table-responsive">
@@ -162,9 +161,9 @@
                     <hr class="hreffect"/>
                 <form id="addForm" action="addQuiz.jsp" method="POST">
                     <label>Quiz ID:</label>
-                    <input name="txtID" class="form-control"/>
+                    <input name="txtID" class="form-control" required/>
                     <label>Quiz Topic:</label>
-                    <input name="txtQuiz" class="form-control"/>
+                    <input name="txtQuiz" class="form-control" required/>
                     
                 <div class="form-group">  
                     <label>Category:</label>
@@ -203,7 +202,7 @@
                 </div>
                 <div class="right">
                     <button class="btn btn-primary" type="submit" name="btnAdd" id="btnAdd">Add Quiz</button>
-                 </div>
+                </div>
                     <hr class="hreffect"/>
                 </form>
                 </div><!--close collapse--> 

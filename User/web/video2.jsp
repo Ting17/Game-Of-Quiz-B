@@ -104,7 +104,7 @@
                         <div class="navbar-collapse collapse" id="navbar-to-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a>HI  <%=rs.getString("username")%></a></li>
-                                <li><a href='index.html'>Log out</a></li>
+                                <li><a href='index.jsp'>Log out</a></li>
                             </ul> 
                         </div><!--end navigation collapse-->        
                     </div><!--close container-->
@@ -113,8 +113,7 @@
         </div><!--end row 1 & end of navigation-->
     <%
         }else  {
-            out.println(request.getAttribute("errorMessage"));
-        response.sendRedirect("index.html");
+            response.sendRedirect("index.jsp");
         }
     %>  
     

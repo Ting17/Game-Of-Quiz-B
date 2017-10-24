@@ -1,9 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : Oct 24, 2017, 10:48:01 AM
+    Author     : tingting17
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 <head>       
 <meta charset="UTF-8">       
@@ -35,6 +37,9 @@ and open the template in the editor.
         
         <div class="col-xs-5 col-md-5 col-lg-5 "><!--1.2--> 
             <center class="loginwrap">
+            <!--error message-->
+            <p>${msg}</p>
+            
             <h1>Login to your account</h1>
             <form method="post" action="login.jsp">
             <fieldset>

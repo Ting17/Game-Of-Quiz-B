@@ -1,9 +1,11 @@
+<%-- 
+    Document   : index.jsp
+    Created on : Oct 24, 2017, 10:24:53 AM
+    Author     : tingting17
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 <head>       
 <meta charset="UTF-8">       
@@ -30,11 +32,16 @@ and open the template in the editor.
 <body>   
    
     <div class="row"><!--1--> 
+
         <div class="col-xs-7 col-md-7 col-lg-7 landing"><!--1.1--> 
         </div>
         
         <div class="col-xs-5 col-md-5 col-lg-5 "><!--1.2--> 
             <center class="loginwrap">
+            
+            <!--error message-->
+            <p>${msg}</p>
+
             <h1>Login to your account</h1>
             <form method="post" action="EQ_home.jsp">
             <fieldset>

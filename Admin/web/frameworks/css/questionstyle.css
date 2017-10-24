@@ -25,6 +25,9 @@
 /*wrap up answer container and buttons*/
 .container2{
     padding: 2%;
+    text-align: center;
+    align-content: center;
+    margin: 0% auto;
     border-width: 5px;
     border-style: solid;
     -webkit-border-image: 

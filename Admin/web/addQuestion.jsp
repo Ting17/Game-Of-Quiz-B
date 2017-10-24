@@ -23,6 +23,8 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
+<link href="frameworks/css/questionstyle.css" rel="stylesheet" />
+
 <!-- Rich Text -->
 <script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
@@ -140,7 +142,6 @@
                         <span class="lefttab"><input type="radio" name="txttype" value="2C" data-ng-click="show = 2" /> Two Choice Selection</span>
                         <span class="lefttab"><input type="radio" name="txttype" value="BL" data-ng-click="show = 3" /> Fill in Blank</span>
                     <br/><br/>
-                            
                     <!--Multiple Choice-->
                     <div data-ng-if="show===1">
                         <div class="row">

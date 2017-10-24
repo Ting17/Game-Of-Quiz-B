@@ -83,8 +83,7 @@
             </div>
     <%
         }else {
-            out.println("Invalid password");
-            response.sendRedirect("index.html");
+            response.sendRedirect("index.jsp");
         }
     %>
         
