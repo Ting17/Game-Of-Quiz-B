@@ -40,14 +40,14 @@
             PreparedStatement pstmt;
             Statement stmt, stmt2,st;
             ResultSet result, rs,res;
-            Integer quizID, videoID, z=1, y=1;
-            String username, password, category;
+            Integer quizID, z=1, y=1;
+            String username, password, category,videoID;
         %>
         
        <%
         username = (String)session.getAttribute("uname");
         password = (String)session.getAttribute("pass");
-        videoID = Integer.parseInt(request.getParameter("id"));
+        videoID = request.getParameter("videoID");
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
@@ -96,9 +96,7 @@
         %>
     <div class="row wrap"><!--1.2.1--> 
         <div class="col-xs-12 col-md-7 col-lg-7 videoquestion"><!--1.2.1.1--> 
-            <video class="videoque" controls>
-                <source src="<%=res.getString("videoPath")%>" type="video/mp4">
-            </video>
+            <iframe class="qvideo" src="<%=res.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
         </div>
         
         <div class="col-xs-12 col-md-5 col-lg-5 videoquestion" ><!--1.2.1.2--> 
@@ -111,7 +109,6 @@
         %>
 
 
- 
     <!-- pagination caller; java--> 
     <script src="frameworks/js/paginationCaller1.js"></script> 
     

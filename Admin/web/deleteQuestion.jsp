@@ -13,21 +13,22 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Integer questionID, quizID, videoID;
+            Integer questionID;
+            String quizID, videoID;
         %>
         <!--delete function remove question-->
         <%
             if(request.getParameter("question") != null && request.getParameter("question")!= ""){
                 questionID = Integer.parseInt(request.getParameter("question"));
-                quizID = Integer.parseInt(request.getParameter("quiz"));
-                videoID = Integer.parseInt(request.getParameter("video"));
+                quizID = request.getParameter("quizID");
+                videoID = request.getParameter("videoID");
                 
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-                    pstmt = conn.prepareStatement("DELETE FROM question WHERE questionID = '" +questionID+ "'and quizID='" + quizID + "'and videoID='" + videoID + "'");
+                    pstmt = conn.prepareStatement("DELETE FROM question WHERE questionID = '" +questionID+ "'and quizID='" + quizID + "'");
                     pstmt.executeUpdate();
-                    response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);
+                    response.sendRedirect("./question.jsp?quizID=" + quizID + "&videoID=" + videoID);
                 
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());

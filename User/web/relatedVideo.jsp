@@ -48,9 +48,7 @@
             <td>
                 <div class="row">
                     <div class="col-xs-12 col-md-12 col-lg-12">
-                        <video class="videopg">
-                            <source src="<%=result.getString("videoPath")%>" type="video/mp4">
-                        </video>
+                       <iframe src="<%=result.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                         <div class="carousel-caption">
                             <h3><%=result.getString("videoName") %></h3>
                             <a href="quiz_page.jsp?videoID=<%=result.getInt("videoID")%>&quizID=<%=result.getInt("videoID")%>&categ=<%=result.getString("category")%>" class="btn btn-primary">Watch Now</a>
@@ -59,7 +57,7 @@
                 </div>
             </td>
             
-               <%
+        <%
             }
         %>    
             

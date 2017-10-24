@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
   
             <a href="video.jsp" class="tabselect">Videos <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="quiz.jsp" class="tabselect">Quizzes <span class="glyphicon glyphicon-menu-right"></span></a>

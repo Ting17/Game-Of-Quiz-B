@@ -116,8 +116,7 @@
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
-                            <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen>
-                            </iframe>
+                            <iframe src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
@@ -138,17 +137,17 @@
                 if(check == false){
             %>    
                         <div class="col-xs-2 col-md-2 col-lg-2"> <!--1.2.3.1.1.3-->
-                                <a href="addNewQuiz.jsp?video=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                                <a href="addNewQuiz.jsp?videoID=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
                         </div>                                
             <%
                 }
                 if (check==true) {
             %>
                             <div class="col-xs-2 col-md-2 col-lg-2"> 
-                                    <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=resultBio.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
+                                    <a href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=resultBio.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
                             </div>                      
                             <div class="col-xs-2 col-md-2 col-lg-2"> 
-                                    <a href="playquiz.jsp?id=<%=resultBio.getInt("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                                    <a href="playquiz.jsp?videoID=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
                             </div>   
             <%
                 }
@@ -160,7 +159,7 @@
         %>
                 </div><!--end of divBio-->
                 
-                 <div id="divEng" style="display:none;">
+                <div id="divEng" style="display:none;">
                   <h3>English</h3>
         <%
             while(resultEng.next()) {
@@ -169,8 +168,7 @@
                 <div class="videowrap">
                     <div class="row"><!--1.2.4.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.4.1.1.1-->
-                            <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen>
-                            </iframe>
+                            <iframe src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1.1.2-->
@@ -181,7 +179,6 @@
                         <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
             <%
                 check=false;
-  
                 while(resultQEng.next()) {
                     videoID = resultQEng.getString("videoID");
                     if(resultEng.getString("videoID").equals(videoID)) {
@@ -192,13 +189,13 @@
                 }   
                 if(check == false){
             %>
-                                <a href="addNewQuiz.jsp?video=<%=resultEng.getString("videoID")%>&categ=<%=resultEng.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                                <a href="addNewQuiz.jsp?videoID=<%=resultEng.getString("videoID")%>&categ=<%=resultEng.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
             <%
                 }
                 if (check==true) {
             %>
-                            <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=resultEng.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
-                            <a href="playquiz.jsp?id=<%=resultEng.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                            <a href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=resultEng.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
+                            <a href="playquiz.jsp?videoID=<%=resultEng.getString("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
             <%
                 }
             %> 
@@ -208,9 +205,9 @@
         <%
             }
         %>
-            </div><!--end of divEng-->       
+                </div><!--end of divEng-->       
 
-            <div id="divSci" style="display:none;">
+                <div id="divSci" style="display:none;">
                 <h3>Science & Technology</h3>
         <%
             while(resultSci.next()) {
@@ -218,8 +215,7 @@
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
-                            <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen>
-                            </iframe>
+                            <iframe src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                         </div>
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
@@ -240,13 +236,13 @@
                 }   
                 if(check == false){
             %>
-                                <a href="addNewQuiz.jsp?video=<%=resultSci.getString("videoID")%>&categ=<%=resultSci.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                                <a href="addNewQuiz.jsp?videoID=<%=resultSci.getString("videoID")%>&categ=<%=resultSci.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
             <%
                 }
                 if (check==true) {
             %>
-                            <a href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=resultSci.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
-                            <a href="playquiz.jsp?id=<%=resultSci.getInt("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
+                            <a href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=resultSci.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
+                            <a href="playquiz.jsp?videoID=<%=resultSci.getString("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
             <%
                 }
             %> 
@@ -261,18 +257,14 @@
             </div><!--end column 1.2.4.1-->
         </div><!--end row 1.2.4--> 
 
-    
-       
-                           
+                       
             
 <script>
     var currentDiv = document.getElementById("divBio");
     function show(divID) {
         var div = document.getElementById(divID);
-
         currentDiv.style.display = "none";
         div.style.display = "block";
-
         currentDiv = div;
     }
 </script>
@@ -280,5 +272,3 @@
     
     <!-- footer -->
     <jsp:include page="footer.jsp"></jsp:include>
-
-

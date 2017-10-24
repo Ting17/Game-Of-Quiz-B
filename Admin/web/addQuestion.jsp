@@ -39,9 +39,9 @@
             Connection conn;
             PreparedStatement pstmt;
             ResultSet result,res, rs;
-            Integer quizID,videoID,adminID;
+            Integer adminID;
             Statement stmt, st;
-            String username,password,questionID;
+            String username,password,questionID,quizID,videoID;
         %>
         
         <%-- READ function & CREATE function--%>
@@ -51,9 +51,9 @@
             adminID = (Integer)session.getAttribute("aid");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-            if(request.getParameter("quiz") != null && request.getParameter("quiz")!= "" ){  
-                quizID = Integer.parseInt(request.getParameter("quiz"));
-                videoID = Integer.parseInt(request.getParameter("video"));
+            if(request.getParameter("quizID") != null && request.getParameter("quizID")!= "" ){  
+                quizID = request.getParameter("quizID");
+                videoID = request.getParameter("videoID");
                 
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");
@@ -65,8 +65,8 @@
                     try{
                         Class.forName("com.mysql.jdbc.Driver");
                         pstmt = conn.prepareStatement("INSERT INTO question(quizID, videoID, question, type, input1, input2, input3, input4, checked, cdate, udate,adminID) VALUES(?,?,?,?,?,?,?,?,?,NOW(),NOW(),?)");
-                        pstmt.setInt(1, quizID);
-                        pstmt.setInt(2, videoID);
+                        pstmt.setString(1, quizID);
+                        pstmt.setString(2, videoID);
                         pstmt.setString(3,request.getParameter("txtquestion"));
                         pstmt.setString(4,request.getParameter("txttype"));
                         pstmt.setString(5,request.getParameter("txtinput1"));
@@ -76,7 +76,7 @@
                         pstmt.setString(9,request.getParameter("txtchecked"));
                         pstmt.setInt(10,adminID);
                         pstmt.executeUpdate();
-                        response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);           
+                        response.sendRedirect("./question.jsp?quizID=" + quizID + "&videoID=" + videoID);           
                     }catch(ClassNotFoundException cnfe){
                         out.println("Class not Found Execption:-" + cnfe.toString());
                     }catch(SQLException sqle){
@@ -84,7 +84,7 @@
                     }
                 } 
             }else{
-                response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);
+                response.sendRedirect("./question.jsp?quizID=" + quizID + "&videoID=" + videoID);
             }
         %>
         
@@ -111,7 +111,7 @@
         <%  if (res.next()) {
         %>
                 <b>Quiz:</b> 
-                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Question List</a> > Add New Question
+                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Question List</a> > Add New Question
         <%
             }
         %>
@@ -137,7 +137,7 @@
                         <em>Select a type for question and continue</em>
                         <br/>
                         <span><input type="radio" name="txttype" value="MC" data-ng-click="show = 1" /> Multiple choice</span>
-                        <span class="lefttab"><input type="radio" name="txttype" value="2C" data-ng-click="show = 2" /> True or false</span>
+                        <span class="lefttab"><input type="radio" name="txttype" value="2C" data-ng-click="show = 2" /> Two Choice Selection</span>
                         <span class="lefttab"><input type="radio" name="txttype" value="BL" data-ng-click="show = 3" /> Fill in Blank</span>
                     <br/><br/>
                             
@@ -212,7 +212,7 @@
                                 
                         <br/>
                         <button type="submit" name="btnAdd" class="btn btn-primary">Save</button>
-                        <a class="btn btn-primary" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Cancel</a>
+                        <a class="btn btn-primary" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Cancel</a>
                     </div><!--end column 1.2.3.1.2.1-->
                 </div><!--end row 1.2.3.1.2-->
                 </div> <!--close container 2--> 
@@ -221,4 +221,9 @@
 
         </div><!--end row 1.2.3 & end of content section-->
 
+<script>
+    CKEDITOR.replace('txtquestion');
+</script>
+
+        
         <jsp:include page="footer.jsp"></jsp:include>

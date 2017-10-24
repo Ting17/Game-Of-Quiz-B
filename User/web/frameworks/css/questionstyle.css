@@ -6,11 +6,6 @@
     background-attachment: fixed;
     background-position: center;
     background-size: cover;   
-   
-}
-
-.parallax img{
-    padding-left: 15%;
 }
 
 .catnote{
@@ -19,15 +14,12 @@
     background-color: #FDEFE6;
     color: #000;
 }
-
 .catnote ul{
     list-style-type: circle;
 }
-  
 .catpawn{
     margin-left:80%;
 }
-
 .catpawn img{
     margin-top: -20%;
     width:80%; 
@@ -38,7 +30,6 @@
     padding: 1%;
 }
 
-
 .interwrap{
   background: #3bafda; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(left, #3bafda , #D9D9D8); /* For Safari 5.1 to 6.0 */
@@ -46,7 +37,6 @@
   background: -moz-linear-gradient(right, #3bafda, #CBCCC7); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to right, #3bafda , #D9D9D8); /* Standard syntax */
   color: #000;
-  
 }
 
 .videoquestion{
@@ -54,12 +44,10 @@
    background-color: #fff;
 }
 
-
 .link{
    margin-left: 1%;
    margin-right: -1%;
 } 
-
 .link a{
    width: 100%;
    margin: 2% 1% 2% 1%;
@@ -74,20 +62,16 @@
 }
 
 
-/*videoquestion.jsp*/
-.questiont thead th, .lol{
+/*quiz_question.jsp*/
+.questiont thead th{
    background-color: #000080;
    font-size: 14px;
    color: white;
 }
-
 .questiont tbody tr td {
    background-color: #f1f1f1;
 }
 
-video.videoque{  
-    width: 100%;
-}
 
 /*Pagination*/
 .pg-normal {
@@ -97,11 +81,9 @@ video.videoque{
     border-radius: 5px;
     padding: 8px 16px;
 }
- 
 .pg-normal:hover:not(.active) {
     background-color: #ddd;
 }
-
 .pg-selected {
     font-weight: bold;
     text-decoration: underline;
@@ -109,6 +91,7 @@ video.videoque{
     border-radius: 5px;
     padding: 8px 16px;
 }
+
 
 /*wrap up for question*/
 .questioncontainer{
@@ -178,7 +161,6 @@ video.videoque{
 .full-width1{
     padding-right: 0px;
 }
-
 .full-width2{
     padding-left: 0px;
 }
@@ -200,7 +182,6 @@ video.videoque{
 .glyphicon-star{
     font-size: 40px;
 }
-
 .glyphicon-star:hover{
     -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
     -webkit-mask-size: 200%;
@@ -240,9 +221,6 @@ input{
     color: #000;  
 }
 
-.useranswer{
-    margin-bottom: 5%;
-}
 
 /*not working with IE browser*/
 /*animation for font*/
@@ -263,52 +241,6 @@ input{
     75% { color: #c71f00; }
     90% { color: #bdb280; }
     100% { color: #39f; }
-}
-
-/*button animation*/
-.buttonlayout { 
-    text-align: center;
-    padding: 8px 26px; 
-    display: inline-block;  
-    border-radius: 6px; 
-    border: solid rgba(0,0,0,0.2); 
-    border-width: 1px 1px 5px; 
-    box-shadow: 0 5px 0 rgba(0,0,0,0.1), inset 0 0 3px rgba(255,255,255,0.3); 
-    cursor: pointer; 
-    transition: 0.4s ease; 
-}
-
-.buttonlayout:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 6px 0 rgba(0,0,0,0.1), inset 0 0 1px rgba(255,255,255,0.4); 
-    border-bottom-width: 8px; 
-}
-
-.buttonlayout:active { 
-    transform:translateY(4px); 
-    box-shadow:0 2px 0 rgba(0,0,0,0.1), inset 0 0 5px rgba(255,255,255,0.4); 
-    border-bottom-width:2px; 
-    transition:0.1s ease; 
-}
-
-.redbtn { 
-    background: hsl(8,59%,59%); 
-    color: #fff; 
-    text-shadow: -1px -1px 1px rgba(0,0,0,0.1); 
-}
-.orangebtn { 
-    background: hsl(41,76%,65%); 
-}
-.yellowbtn { 
-    background: hsl(50,81%,65%); 
-    color: #000; 
-}
-.greenbtn { 
-    background: hsl(104,51%,62%); 
-}
-.bluebtn { 
-    background: hsl(176,59%,59%); 
-    color: #fff; 
 }
 
 .chestbtn{
@@ -365,62 +297,4 @@ div.congrats {
 	-ms-transform: scale(1);
 	transform: scale(1);
   }
-}
-
-
-/*modal for checking accumulate score*/
-.estrellas {
-    transform: rotate(-103deg);
-    margin-top: 50%;
-    margin-right: 85%;
-}
-
-.estrellas span {
-    position: absolute;
-    bottom: 0;
-    left: 0%;
-    height: 260px;
-    text-align: center;
-    line-height: 70px;
-    transform-origin: bottom center;
-}
-
-.estrellas span:nth-of-type(1)  {
-  transform: rotate(25deg);
-}
-.estrellas span:nth-of-type(2)  {
-  transform: rotate(51deg);
-}
-.estrellas span:nth-of-type(3)  {
-  transform: rotate(78deg);
-}
-.estrellas span:nth-of-type(4)  {
-  transform: rotate(103deg);
-}
-.estrellas span:nth-of-type(5)  {
-  transform: rotate(129deg);
-}
-.estrellas span:nth-of-type(6)  {
-  transform: rotate(154deg);
-}
-.estrellas span:nth-of-type(7)  {
-  transform: rotate(180deg);
-}
-
-.ascore{
-    margin-top: -15%;
-}
-
-.modalbg{
-  background: #4CA1AF; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(bottom, #4CA1AF , #C4E0E5); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom, #C4E0E5, #4CA1AF); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom, #C4E0E5, #4CA1AF); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom, #2c3e50, #3498db); /* Standard syntax */
-  color: #fff;
-  padding: 1%;
-}
-
-.announ{
-    padding: 2%;
 }

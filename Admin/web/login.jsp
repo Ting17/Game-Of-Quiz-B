@@ -43,12 +43,10 @@
     <%
         username = request.getParameter("username");    
         password = request.getParameter("password");
-        
      
         session.setAttribute("uname",username);
         session.setAttribute("pass",password);
       
-        
         try{
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
@@ -92,16 +90,9 @@
             <div id="circle">
                 <a href="profile.jsp" id="profile"><%=rs.getString("username")%></a>
             </div>
-     <%
-           session.setAttribute("aid",rs.getInt("adminID"));
-        }else  {
-            out.println(request.getAttribute("errorMessage"));
-        response.sendRedirect("index.html");
-        }
-    %>   
-  
+      
         <jsp:include page="navigator.jsp"></jsp:include>            
-       
+        
         <!--Content section-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->
@@ -128,7 +119,13 @@
                 </div> 
             </div>
         </div><!--end row 1.2.2-->
-  
+    <%
+        }else {
+            out.println(request.getAttribute("errorMessage"));
+            response.sendRedirect("index.html");
+        }
+    %> 
+    
         <div class="row"><!--1.2.3-->
             <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1--> 
         <%  
@@ -141,7 +138,6 @@
                     <div class="panel-heading"><h4>Total Videos</h4></div>
                     <div class="panel-body"><%=count1%></div>
                 </div>
-        
         <%  
             Integer count4=0;
             while(result4.next()) {
@@ -152,7 +148,6 @@
                     <div class="panel-heading"><h4>Total User</h4></div>
                     <div class="panel-body"><%=count4%></div>
                 </div>
-                
             </div><!--end column 1.2.3.1-->
  
             <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.2-->
@@ -166,7 +161,6 @@
                     <div class="panel-heading"><h4>Total Quizzes</h4></div>
                     <div class="panel-body"><%=count2%></div>
                 </div>
-        
         <%  
             Integer count5=0;
             while(result5.next()) {
@@ -177,7 +171,6 @@
                     <div class="panel-heading"><h4>Total User Feedback</h4></div>
                     <div class="panel-body"><%=count5%></div>
                 </div>
-                
             </div><!--end column 1.2.3.2-->
  
             <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.3-->
@@ -191,7 +184,6 @@
                     <div class="panel-heading"><h4>Total Rewards</h4></div>
                     <div class="panel-body"><%=count3%></div>
                 </div>
-                
         <%  
             Integer count6=0;
             while(result6.next()) {
@@ -206,5 +198,3 @@
         </div><!--end row 1.2.3 & end of content section--> 
         
     <jsp:include page="footer.jsp"></jsp:include>
-
-

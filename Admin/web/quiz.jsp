@@ -38,8 +38,8 @@
             Connection conn;
             Statement stmt, st, stm,stat;
             ResultSet result, rs, res, rst;
-            Integer quizID, videoID,adminID;
-            String username, password, video;
+            Integer adminID;
+            String username, password, video,quizID, videoID; 
             String temp;
         %>
         
@@ -93,7 +93,7 @@
                 <h2>Quiz List</h2>
             </div>
             <div class="col-xs-6 col-md-6 col-lg-6 right"><!--1.2.2.2-->
-                <a class="glyphicon glyphicon-plus-sign" href="#addquiz?quiz=<%=quizID%>&video=<%=videoID%>" data-toggle="collapse" data-target="#addquiz"> New Quiz</a>
+                <a class="glyphicon glyphicon-plus-sign" href="#addquiz?quizID=<%=quizID%>&videoID=<%=videoID%>" data-toggle="collapse" data-target="#addquiz"> New Quiz</a>
             </div>
         </div><!--end row 1.2.2-->
         
@@ -118,8 +118,8 @@
                 <%
                     Integer quizNo = 1;
                     while(result.next()) {
-                        quizID = result.getInt("quizID");
-                        videoID = result.getInt("videoID");
+                        quizID = result.getString("quizID");
+                        videoID = result.getString("videoID");
                           
                         stat=conn.createStatement();
                         res = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
@@ -127,16 +127,14 @@
                 %>
                         <tr>
                             <td headers="no"><%=quizNo%></td>
-                            <td headers="quiz"><a href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>"><%=result.getString("quizTopic") %></a></td>
+                            <td headers="quiz"><a href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>"><%=result.getString("quizTopic") %></a></td>
                             <td headers="cato"><%=result.getString("category") %></td>
-                            <td headers="vid"><%=result.getString("videoID") %></td>
+                            <td headers="vid"><%=videoID %></td>
                             <td headers="adddate"><%=result.getString("cdate") %></td>
                             <td headers="updatedate"><%=result.getString("udate") %></td>  
-                      
                             <td headers="luBY"><%=res.getString("username") %></td> 
-                     
-                            <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateQuiz.jsp?quiz=<%=quizID%>&video=<%=videoID%>"></a></td>
-                            <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteQuiz.jsp?quiz=<%=quizID%>" onclick="return confirm('Once confirm, this topic <%=result.getString("quizTopic") %> will be removed. Confirm to delete?')"></a></td>
+                            <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>"></a></td>
+                            <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteQuiz.jsp?quizID=<%=quizID%>" onclick="return confirm('Once confirm, this topic <%=result.getString("quizTopic") %> will be removed. Confirm to delete?')"></a></td>
                         </tr>     
                 <%
                         quizNo++;
@@ -163,10 +161,10 @@
                     <p>5. Click <b>Add Quiz</b> button to add quiz.</p>
                     <hr class="hreffect"/>
                 <form id="addForm" action="addQuiz.jsp" method="POST">
+                    <label>Quiz ID:</label>
+                    <input name="txtID" class="form-control"/>
                     <label>Quiz Topic:</label>
                     <input name="txtQuiz" class="form-control"/>
-                    <label>Note/Video Transcript:</label>
-                    <textarea name="txtNote" class="form-control"></textarea>
                     
                 <div class="form-group">  
                     <label>Category:</label>
@@ -197,7 +195,7 @@
                 <%
                     while(rst.next()) { 
                 %>                
-                        <option value="<%=rst.getInt("videoID")%>"><%=rst.getString("videoName")%></option>                        
+                        <option value="<%=rst.getString("videoID")%>"><%=rst.getString("videoName")%></option>                        
                 <% 
                     }
                 %>

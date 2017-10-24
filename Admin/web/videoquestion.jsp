@@ -13,13 +13,13 @@
             Connection c;
             Statement s;
             ResultSet r;
-            Integer vID;
+            String vID;
         %>
 
         <%-- read function --%>    
         <%
             
-            vID = Integer.parseInt(request.getParameter("id"));
+            vID = request.getParameter("videoID");
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             try{
                 Class.forName("com.mysql.jdbc.Driver");
@@ -35,7 +35,7 @@
              
                     
     <div class="table-responsive">
-        <table class="table table-stripped table-hover sortable questiont" id="tablepaging">
+        <table class="table table-stripped table-hover sortable" id="tablepaging">
             <thead>
                 <tr>
                     <th>
@@ -57,7 +57,7 @@
                             <h4><%=r.getString("question") %></h4>
                             <div data-ng-if="'<%=r.getString("type")%>' === 'MC'"><p class="right type" title="It's Multiple Choice">MC</p></div>
                             <div data-ng-if="'<%=r.getString("type")%>' === 'BL'"><p class="right type" title="Fill in the Blank with choices below">BL</p></div>
-                            <div data-ng-if="'<%=r.getString("type")%>' === '2C'"><p class="right type" title="It's two choice selection">2C</p></div>
+                            <div data-ng-if="'<%=r.getString("type")%>' === '2C'"><p class="right type" title="It's Two choice selection">2C</p></div>
                         </div> 
 
                         <div class="container2">
@@ -119,7 +119,6 @@
         </div> <!-- end of showing answer-->     
         </center> 
                             </div> <!--end of multiple choice format-->
-
                             
                             <!-- Format for Fill in the Blank -->
                             <div data-ng-if="'<%=r.getString("type")%>' === 'BL'">
@@ -210,10 +209,10 @@
                         
         <!-- Show answer -->
         <div data-ng-show="show === 2">
-            <div data-ng-if="'<%=r.getString("checked")%>'=== 1">
+            <div data-ng-if="'<%=r.getString("checked")%>'=== '1'">
                 <b class="answer">Answer: <%=r.getString("input1")%></b>
             </div>
-            <div data-ng-if="'<%=r.getString("checked")%>'=== 2">
+            <div data-ng-if="'<%=r.getString("checked")%>'=== '2'">
                 <b class="answer">Answer: <%=r.getString("input2")%></b>
             </div>
         </div> <!-- end of showing answer-->       

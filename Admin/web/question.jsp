@@ -37,8 +37,8 @@
             Connection conn;
             PreparedStatement pstmt;
             ResultSet result,res,rs;
-            Integer quizID, questionNo, videoID;
-            String username,password,questionID,title;
+            Integer questionNo;
+            String username,password,questionID,title,quizID,videoID;
             Statement stmt, st;
         %>
         
@@ -48,9 +48,9 @@
             password = (String)session.getAttribute("pass");
 
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
-            if(request.getParameter("quiz") != null && request.getParameter("quiz")!= ""){  
-                quizID = Integer.parseInt(request.getParameter("quiz"));
-                videoID = Integer.parseInt(request.getParameter("video"));
+            if(request.getParameter("quizID") != null && request.getParameter("quizID")!= ""){  
+                quizID = request.getParameter("quizID");
+                videoID = request.getParameter("videoID");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                     pstmt = conn.prepareStatement("SELECT * FROM question WHERE quizID ='" + quizID+"'");
@@ -109,7 +109,7 @@
                 <h2>Question List</h2>
             </div>
             <div class="col-xs-6 col-md-6 col-lg-6 right"><!--1.2.3.2-->
-                <a class="glyphicon glyphicon-plus-sign" href="addQuestion.jsp?quiz=<%=quizID%>&video=<%=videoID%>"> New Question</a>
+                <a class="glyphicon glyphicon-plus-sign" href="addQuestion.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>"> New Question</a>
             </div>
         </div><!--end row 1.2.3 -->
             
@@ -131,22 +131,21 @@
         <%
             questionNo = 1;
             while(result.next()) {
-                quizID = result.getInt("quizID");
-                if(result.getString("type").equals("M")){
+                if(result.getString("type").equals("MC")){
                     title="Multiple-Choice";
-                }else if(result.getString("type").equals("B")){
+                }else if(result.getString("type").equals("BL")){
                     title="Fill-in-Blank";
                 }else{
-                    title="True-or-False";
+                    title="2-Choice-Selection";
                 }
         %>
                         <tr>
                             <td headers="no"><%=questionNo%></td>
                             <td headers="quez"><%=result.getString("question") %></td>
                             <td headers="typeq" class="tdcenter" title=<%=title%>><%=result.getString("type") %></td>
-                            <td headers="more" class="tdcenter"><a class="glyphicon glyphicon-eye-open" href="showQuestion.jsp?question=<%=result.getInt("questionID")%>&quiz=<%=result.getInt("quizID")%>&video=<%=videoID%>"></a></td>
-                            <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateQuestion.jsp?question=<%=result.getInt("questionID")%>&quiz=<%=result.getInt("quizID")%>&video=<%=videoID%>"></a></td>
-                            <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteQuestion.jsp?question=<%=result.getInt("questionID")%>&quiz=<%=result.getInt("quizID")%>&video=<%=videoID%>" onclick="return confirm('Once confirm, question <%=result.getInt("questionID")+1 %> will be removed. Confirm to delete?')"></a></td>
+                            <td headers="more" class="tdcenter"><a class="glyphicon glyphicon-eye-open" href="showQuestion.jsp?question=<%=result.getInt("questionID")%>&quizID=<%=quizID%>&videoID=<%=videoID%>"></a></td>
+                            <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateQuestion.jsp?question=<%=result.getInt("questionID")%>&quizID=<%=quizID%>&videoID=<%=videoID%>"></a></td>
+                            <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteQuestion.jsp?question=<%=result.getInt("questionID")%>&quizID=<%=quizID%>&videoID=<%=videoID%>" onclick="return confirm('Once confirm, question <%=result.getInt("questionID")+1 %> will be removed. Confirm to delete?')"></a></td>
                         </tr>
         <%
                 questionNo++;

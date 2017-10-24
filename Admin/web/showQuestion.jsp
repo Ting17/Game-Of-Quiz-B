@@ -34,8 +34,8 @@
             Connection conn;
             PreparedStatement pstmt;
             ResultSet result,res,rs,ress;
-            Integer questionNo,quizID,videoID; 
-            String username,password;
+            Integer questionNo; 
+            String username,password,quizID,videoID;
             Statement stmt, st,stat;
         %>
         
@@ -46,8 +46,8 @@
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             if(request.getParameter("question") != null && request.getParameter("question")!= ""){  
                 questionNo = Integer.parseInt(request.getParameter("question"));
-                quizID = Integer.parseInt(request.getParameter("quiz"));
-                videoID = Integer.parseInt(request.getParameter("video"));
+                quizID = request.getParameter("quizID");
+                videoID = request.getParameter("videoID");
                  
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
@@ -92,7 +92,7 @@
         <%  if (res.next()) {
         %>
                 <b>Quiz:</b> 
-                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Question List</a> > Preview
+                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Question List</a> > Preview
         <%
             }
         %>
@@ -119,7 +119,7 @@
             <div class="container2"> 
         <!-- Format for multiple choice -->
         <%
-            if(result.getString("type").equals("M")){
+            if(result.getString("type").equals("MC")){
         %>     
                 <ul class="answercontainer">
                     <li class="rowinput" ><%=result.getString("input1") %></li>
@@ -129,7 +129,7 @@
                 </ul>
         <!-- Format for Fill in the Blank -->
         <%
-            }else if(result.getString("type").equals("B")){
+            }else if(result.getString("type").equals("BL")){
         %>
                 <ul class="choice answercontainer">
                     <li>
@@ -140,8 +140,18 @@
                     </li>
                 </ul>  
         <%
+            }else{
+        %>
+                <ul>
+                    <li>
+                        <span><%=result.getString("input1") %></span>
+                        <span class="lefttab"><%=result.getString("input2") %></span>
+                    </li>
+                </ul>  
+        <%
             }
         %> 
+             
                 
             <!-- Show answer -->
             <div class="checkshowanswer">
@@ -164,7 +174,7 @@
                 <p><b>Last Updated By:</b> <%=ress.getString("username") %></p>
                 <p><b>Question:</b> <%=result.getString("question") %></p>
         <%
-            }if(result.getString("type").equals("M")){
+            }if(result.getString("type").equals("MC")){
         %> 
                 <p><b>Question type:</b> Multiple Choice</p>
                 <b>Multiple Choices:</b>
@@ -175,7 +185,7 @@
                     <li>D. <%=result.getString("input4") %></li>
                 </ul>
         <%
-            }else if(result.getString("type").equals("B")){
+            }else if(result.getString("type").equals("BL")){
         %>
                 <p><b>Question type: </b>Fill in the Blank</p>
                 <b>Choices:</b>
@@ -188,7 +198,11 @@
         <%
             }else{
         %>
-                <p><b>Question type:</b> True or False</p>    
+                <p><b>Question type:</b> 2 Choice Selection</p>    
+                <ul>
+                    <li><%=result.getString("input1") %></li>
+                    <li><%=result.getString("input2") %></li>
+                </ul>
         <%
             }
         %>
@@ -196,9 +210,9 @@
                 <hr/>
                 <center>
                 <div class="form-group">
-                    <a class="btn btn-primary" href="updateQuestion.jsp?question=<%=result.getInt("questionID")%>&quiz=<%=quizID%>&video=<%=videoID%>">Edit</a>
-                    <a class="btn btn-primary" href="deleteQuestion.jsp?question=<%=result.getInt("questionID")%>&quiz=<%=quizID%>" onclick="return confirm('Once confirm, question <%=result.getInt("questionID")+1%> will be removed. Confirm to delete?')"> Delete</a>
-                    <a class="btn btn-primary" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Back</a>
+                    <a class="btn btn-primary" href="updateQuestion.jsp?question=<%=result.getInt("questionID")%>&quizID=<%=quizID%>&videoID=<%=videoID%>">Edit</a>
+                    <a class="btn btn-primary" href="deleteQuestion.jsp?question=<%=result.getInt("questionID")%>&quizID=<%=quizID%>" onclick="return confirm('Once confirm, question <%=result.getInt("questionID")+1%> will be removed. Confirm to delete?')"> Delete</a>
+                    <a class="btn btn-primary" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Back</a>
                 </div>
                 </center>
             </div><!--end column 1.2.4.2-->   

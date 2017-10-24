@@ -25,8 +25,8 @@
             Connection conn;
             Statement stmt, st, stm,stat;
             ResultSet result, rs, res, rst;
-            Integer quizID, videoID=null,adminID;
-            String username, password, category="", videoname;
+            Integer quizID,adminID;
+            String username, password, category="", videoname, videoID;
         %>
         
         <%-- READ function--%>
@@ -35,7 +35,7 @@
             password = (String)session.getAttribute("pass");
             adminID = (Integer)session.getAttribute("aid");
             
-            videoID = Integer.parseInt(request.getParameter("video"));
+            videoID = request.getParameter("videoID");
             category = request.getParameter("categ");
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
@@ -79,10 +79,8 @@
             if(category.equalsIgnoreCase("Science ")){
                 category = "Science & Technology";
             }
-        %>
-        <%
             while(rst.next()){
-                if(rst.getString("videoID").equals(Integer.toString(videoID))){
+                if(rst.getString("videoID").equals(videoID)){
                     videoname = rst.getString("videoName");
                 }   
             }
@@ -99,6 +97,8 @@
                     <hr class="hreffect"/>
                 <form id="addForm" action="addQuiz.jsp" method="POST">
                     <h3>Category: <%=category%></h3>
+                    <label>Quiz ID:</label>
+                    <input name="txtID" class="form-control"/>
                     <label>Quiz Topic:</label>
                     <input name="txtQuiz" class="form-control"/>
                     <label>Note/Video Transcript:</label>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="right">
                     <button class="btn btn-primary" type="submit" name="btnAdd" id="btnAdd">Add Quiz</button>
-                 </div>
+                </div>
                     <hr class="hreffect"/>
                 </form>
                 </div><!--close collapse--> 

@@ -35,11 +35,10 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt, stm, st, stat;
-            ResultSet result, rs, res, re, ress, rst;
-            Integer quizID, videoID, adminID;
-            String username, password, videoPath, videoName, videoNamecheck;
-            boolean checkvideo;
+            Statement stmt, stm, st, stat,s; 
+            ResultSet result, rs, res, re, rst;
+            Integer adminID;
+            String username, password,quizID, videoID;
         %>
         
         <%-- READ & UPDATE function--%>
@@ -50,20 +49,24 @@
             
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
-            if(request.getParameter("quiz") != null && request.getParameter("quiz")!= ""){  
-                quizID = Integer.parseInt(request.getParameter("quiz"));
-                videoID = Integer.parseInt(request.getParameter("video"));
+            if(request.getParameter("quizID") != null && request.getParameter("quizID")!= ""){  
+                quizID = request.getParameter("quizID");
+                videoID = request.getParameter("videoID");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
-                    pstmt = conn.prepareStatement("SELECT * FROM quiz WHERE quizID = ?");
-                    pstmt.setInt(1,quizID);
-                    result = pstmt.executeQuery();
+                    
+                    s=conn.createStatement();
+                    result = s.executeQuery("SELECT * FROM quiz WHERE quizID ='" + quizID + "'"); 
                     result.first();
+
                     stm=conn.createStatement();
                     res = stm.executeQuery("SELECT * FROM video");
                     
                     st=conn.createStatement();
                     re = st.executeQuery("SELECT * FROM video where videoID ='" + videoID +"'");
+                    
+                    stat=conn.createStatement();
+                    rst = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'"); 
                     
                     stmt = conn.createStatement();
                     rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");
@@ -76,7 +79,7 @@
             } 
             
             if(request.getParameter("btnUpd")!=null){
-                quizID = Integer.parseInt(request.getParameter("hiddenId"));
+                quizID = request.getParameter("hiddenId");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
                     pstmt = conn.prepareStatement("UPDATE quiz SET quizTopic = ?, category = ?, videoID = ?, udate = NOW(), adminID = ? WHERE quizID = ?");
@@ -84,7 +87,7 @@
                     pstmt.setString(2,request.getParameter("txtCate"));
                     pstmt.setString(3,request.getParameter("txtVideo"));
                     pstmt.setInt(4,adminID);
-                    pstmt.setInt(5,quizID);
+                    pstmt.setString(5,quizID);
            
                     pstmt.executeUpdate();
                     response.sendRedirect("./quiz.jsp");
@@ -95,8 +98,6 @@
                     out.println("SQL Query Exception:- " + sqle);
                 }
             }
-            
-            
         %>
         
 
@@ -116,6 +117,14 @@
 
         <jsp:include page="navigator.jsp"></jsp:include>  
         
+        <!--breadcrumb-->
+        <div class="row"><!--1.2.2-->
+            <div class="col-xs-12 col-md-12 col-lg-12 "><!--1.2.2.1-->
+                <b>Quiz:</b> 
+                <a onclick="history.back()"><%=result.getString("quizTopic")%></a> > Update
+            </div><!--end column-->
+        </div><!--end row & end of breadcrumb-->
+        
         <!--content section-->
         <div class="row"><!--1.2.3-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
@@ -129,10 +138,7 @@
             <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1-->
                 <p class="right">(Original)</p>
         <%
-            stat=conn.createStatement();
-            rst = stat.executeQuery("select * from admin where adminID ='" + result.getInt("adminID") + "'");       
             while(rst.next()) {
-                checkvideo = false;
         %> 
                 <p>Created on: <b><%=result.getString("cdate") %></b></p>
                 <p>Last updated on: <b><%=result.getString("udate") %></b></p>
@@ -140,33 +146,18 @@
                 <p>Current Quiz title: <b><%=result.getString("quizTopic")%></b></p>
                 <p>Category: <b><%=result.getString("category")%></b></p>
         <%
-                while(re.next()) {
-                    if(videoID == 0){
-                        checkvideo = false;
-                    }
-                    else {
-                        videoName = re.getString("videoName");
-                        checkvideo = true;
-                    }
-                }
             }   
-            res.first();
-            while(res.next()) {
-                videoNamecheck = res.getString("videoName");
-                if(res.getString("videoName").equals(videoName)) {
-                    videoPath = res.getString("videoPath");
-                    break;
-                }
-            }   
-            if(checkvideo == true){
+            if(re.next()) {
         %>
-               <p>Video related to this quiz:<a href="<%=videoPath%>" class="video_layer" target="_blank"><b><%=videoName%></b></a></p> 
+               <p>Video related to this quiz:<a href="<%=re.getString("videoPath")%>" class="video_layer" target="_blank"><b><%=re.getString("videoName")%></b></a></p> 
                 <script>
                 $('.video_layer').colorbox({iframe:true});
                 </script>     
                 <%
                     }
                 %>
+                
+                
             </div><!--end column 1.2.4.1-->
     <script>
         jQuery('.youtube-player').each(function(){
@@ -220,7 +211,7 @@
                 <%
                     while(res.next()) { 
                 %>                
-                        <option value="<%=res.getInt("videoID")%>"><%=res.getString("videoName")%></option>
+                        <option value="<%=res.getString("videoID")%>"><%=res.getString("videoName")%></option>
                 <% 
                     }
                 %>
@@ -231,7 +222,7 @@
                     <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Quiz</button>
                     <a class="btn btn-danger" href="quiz.jsp">Cancel</a>
                     <button class="btn btn-warning" type="reset">Reset</button>
-                    <a class="btn btn-success" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Go to this quiz questions <span class="glyphicon glyphicon-arrow-right"></span></a>          
+                    <a class="btn btn-success" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Go to this quiz questions <span class="glyphicon glyphicon-arrow-right"></span></a>          
                 </div>  
                 </form>
             </div><!--end column 1.2.4.2-->

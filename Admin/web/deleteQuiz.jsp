@@ -14,12 +14,12 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Integer quizID;
+            String quizID;
         %>
         <!--delete function remove Quizr-->
         <%
-            if(request.getParameter("quiz") != null && request.getParameter("quiz")!= ""){
-                quizID = Integer.parseInt(request.getParameter("quiz"));
+            if(request.getParameter("quizID") != null && request.getParameter("quizID")!= ""){
+                quizID = request.getParameter("quizID");
   
                 try{
                     Class.forName("com.mysql.jdbc.Driver");

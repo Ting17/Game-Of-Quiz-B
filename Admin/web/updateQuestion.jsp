@@ -37,8 +37,8 @@
             PreparedStatement pstmt;
             Statement stmt,st;
             ResultSet result,res,rs;
-            Integer quizID,questionno,videoID,adminID;
-            String username,password;
+            Integer questionno,adminID;
+            String username,password,videoID,quizID;
             
         %>
         
@@ -50,8 +50,8 @@
            
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             questionno = Integer.parseInt(request.getParameter("question"));
-            quizID = Integer.parseInt(request.getParameter("quiz"));
-            videoID = Integer.parseInt(request.getParameter("video"));
+            quizID = request.getParameter("quizID");
+            videoID = request.getParameter("videoID");
                 
             if(request.getParameter("question") != null && request.getParameter("question")!= ""){                 
                 try{
@@ -87,7 +87,7 @@
                     pstmt.setString(6,request.getParameter("txtchecked"));
                     pstmt.setInt(7, adminID);
                     pstmt.executeUpdate();
-                    response.sendRedirect("./question.jsp?quiz=" + quizID + "&video=" + videoID);
+                    response.sendRedirect("./question.jsp?quizID=" + quizID + "&videoID=" + videoID);
                     return;
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
@@ -114,7 +114,7 @@
         %>
         
         <jsp:include page="navigator.jsp"></jsp:include>
-        
+
         <!--breadcrumb-->
         <div class="row"><!--1.2.2-->
             <div class="col-xs-12 col-md-12 col-lg-12 "><!--1.2.2.1-->
@@ -122,17 +122,17 @@
             if (res.next()) {
         %>
                 <b>Quiz:</b> 
-                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Question List</a> > Update
+                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Question List</a> > Update
         <%
             }
-        %>
+        %>   
             </div><!--end column-->
         </div><!--end row & end of breadcrumb-->
-            
+         
         <!--Content section-->
          <div class="row"><!--1.2.3-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
-                <h2>Update <%=res.getString("quizTopic")%> Question <%=result.getInt("questionID")+1%></h2>
+                <h2>Update Question(ID): <%=questionno+1%></h2>
                 <i>Press "Update Question" to commit</i>
                 <hr/>
             </div><!--end column 1.2.3.1-->
@@ -144,7 +144,7 @@
 
                 <!--display quiz question-->
                 <div id="<%=result.getInt("questionID") %>" class="questioncontainer">
-                    <h3> Question <%=result.getInt("questionID")+1%></h3> <hr/>
+                    <h4> Question </h4> <hr/>
                     <h4><%=result.getString("question") %></h4>
                 </div>
 
@@ -254,7 +254,7 @@
                     <div class="form-group">
                         <br/>
                         <button class="btn btn-primary" type="submit" name="btnUpd" id="btnUpd">Update Question</button>
-                        <a class="btn btn-primary" href="question.jsp?quiz=<%=quizID%>&video=<%=videoID%>">Cancel</a>
+                        <a class="btn btn-primary" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Cancel</a>
                         <button class="btn btn-primary" type="reset">Reset</button>
                     </div>   
                 </form>        

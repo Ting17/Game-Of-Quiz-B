@@ -12,8 +12,8 @@
             Connection conn;
             Statement st;
             ResultSet result, res;
-            Integer videoID, x=1, y=1, z=1,quizID;
-            String username,password,category;
+            Integer x=1, y=1, z=1;
+            String username,password,category,quizID,videoID;
         %>
 
         <%-- read function --%>    
@@ -23,8 +23,8 @@
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
             if(request.getParameter("videoID") != null && request.getParameter("videoID")!= ""){ 
-                videoID = Integer.parseInt(request.getParameter("videoID"));
-                quizID = Integer.parseInt(request.getParameter("quizID"));
+                videoID = request.getParameter("videoID");
+                quizID = request.getParameter("quizID");
                 category = request.getParameter("categ");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
