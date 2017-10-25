@@ -92,7 +92,7 @@
                     }  
                 }  
             }else{
-                response.sendRedirect("./EQ_home.jsp");
+                response.sendRedirect("./EQ_home");
             }
         %>
         
@@ -197,7 +197,7 @@
         %>
             <div class="row"><!--2--> 
                 <div class="col-xs-12 col-md-12 col-lg-12">
-                    <iframe class="qvideo" src="<%=rest.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                    <iframe  width="100%" height="315" src="<%=rest.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         <%    

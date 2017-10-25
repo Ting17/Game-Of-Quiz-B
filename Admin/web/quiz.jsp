@@ -109,6 +109,7 @@
                             <th id="adddate" scope="col">Created on</th>
                             <th id="updatedate" scope="col">Last Updated</th>
                             <th id="luBY" scope="col">Last Updated by</th>
+                            <th id="more" scope="col" class="tdcenter">Preview</th>
                             <th id="edit" scope="col" class="tdcenter">Edit</th>
                             <th id="del" scope="col" class="tdcenter">Delete</th>
                         </tr>
@@ -132,6 +133,7 @@
                             <td headers="adddate"><%=result.getString("cdate") %></td>
                             <td headers="updatedate"><%=result.getString("udate") %></td>  
                             <td headers="luBY"><%=res.getString("username") %></td> 
+                            <td headers="more" class="tdcenter"><a class="glyphicon glyphicon-eye-open" href="showQuiz.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>"></a></td>                            
                             <td headers="edit" class="tdcenter"><a class="glyphicon glyphicon-edit" href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>"></a></td>
                             <td headers="del" class="tdcenter"><a class="glyphicon glyphicon-trash" href="deleteQuiz.jsp?quizID=<%=quizID%>" onclick="return confirm('Once confirm, this topic <%=result.getString("quizTopic") %> will be removed. Confirm to delete?')"></a></td>
                         </tr>     

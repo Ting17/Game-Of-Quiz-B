@@ -1,7 +1,7 @@
 <%-- 
-    Document   : updateQuiz
-    Created on : Apr 25, 2017, 10:48:31 PM
-    Author     : tingting17
+    Document   : showQuiz
+    Created on : Oct 24, 2017, 10:48:31 PM
+    Author     : Kevin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,8 +22,6 @@
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
 <!-- StyleSheet -->
 <link href="frameworks/css/style.css" rel="stylesheet" />
-<!-- Rich Text -->
-<script src="frameworks/ckeditor_4.7.2_standard/ckeditor/ckeditor.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -88,7 +86,7 @@
                     pstmt.setString(1, request.getParameter("txtName1"));
                     pstmt.setString(2,request.getParameter("txtCate"));
                     pstmt.setString(3,request.getParameter("txtVideo"));
-                    pstmt.setString(4,request.getParameter("txtQuiz"));
+                    pstmt.setString(4,request.getParameter("txtNote"));
                     pstmt.setInt(5,adminID);
                     pstmt.setString(6,quizID);
            
@@ -124,122 +122,68 @@
         <div class="row"><!--1.2.2-->
             <div class="col-xs-12 col-md-12 col-lg-12 "><!--1.2.2.1-->
                 <b>Quiz:</b> 
-                <a onclick="history.back()"><%=result.getString("quizTopic")%></a> > Update
+                <a onclick="history.back()"><%=result.getString("quizTopic")%></a> > Preview
             </div><!--end column-->
         </div><!--end row & end of breadcrumb-->
         
         <!--content section-->
         <div class="row"><!--1.2.3-->
             <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
-                <h2>Update Quiz</h2>
-                <i>Press "Update Quiz" to commit</i>
+                <h2>Quiz Details</h2>
                 <hr/>
             </div><!--end column 1.2.3.1-->
         </div><!--end row 1.2.3-->
         
         <div class="row"><!--1.2.4-->
-            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1-->
-                <p class="right">(Original)</p>
-        <%
-            while(rst.next()) {
-        %> 
-                <p>Created on: <b><%=result.getString("cdate") %></b></p>
-                <p>Last updated on: <b><%=result.getString("udate") %></b></p>
-                <p>Last updated by: <b><%=rst.getString("username") %></b></p>
-                <p>Current Quiz title: <b><%=result.getString("quizTopic")%></b></p>
-                <p>Category: <b><%=result.getString("category")%></b></p>
-        <%
-            }   
-            if(re.next()) {
-        %>
-               <p>Video related to this quiz:<a href="<%=re.getString("videoPath")%>" class="video_layer" target="_blank"><b><%=re.getString("videoName")%></b></a></p> 
-                <script>
-                $('.video_layer').colorbox({iframe:true});
-                </script>     
-                <%
-                    }
-                %>
-                <p>Note/Transcript:</p>
+            
+            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.2-->
+                <p class="right">(Quiz Note)</p>
+                <p>Quiz Note/Transcript:</p>
                 <div class="note">
                     <p><b><%=result.getString("note")%></b></p>
                 </div>
-                
-            </div><!--end column 1.2.4.1-->
-    <script>
-        jQuery('.youtube-player').each(function(){
-            jQuery(this).on('click', '.youtube-link-start', function(){
-                jQuery(this).parent().addClass('active');
-                var loc = $(this).siblings('iframe').attr('src');
-                var startloc = loc + "?autoplay=1";
-                $(this).siblings('iframe').attr('src', startloc);
-            });
-            jQuery(this).on('click', '.youtube-link-stop', function(){
-                jQuery(this).parent().removeClass('active');
-                var loc = $(this).siblings('iframe').attr('src');
-                var stoploc = loc.replace("?autoplay=1", "");
-                $(this).siblings('iframe').attr('src', stoploc);
-            });
-        });
-    </script>
-            <div class="col-xs-6 col-md-6 col-lg-6 border"><!--1.2.4.2-->
-                <p>(Update here)</p>
-                
-                <form id="updForm" action="" method="POST">
-                    <input type="hidden" name="hiddenId" id="hiddenId" value="<%=quizID%>"/>
-                    <label>Update quiz title:</label>
-                    <input type="text" name="txtName1" id="txtName" value="<%=result.getString("quizTopic")%>" size="40"/><br/><br/>
-                    <label>Category:</label>
-                    
-                    <select name="txtCate">
-                        <optgroup label="Language">
-                            <option value="English">English</option>
-                            <option value="BM">Bahasa Malaysia</option>
-                            <option value="Mand">Mandarin</option>
-                        </optgroup>
-                        <optgroup label="Sains">
-                            <option value="Sains">Sains</option>
-                            <option value="Bio">Biology</option>
-                        </optgroup>
-                        <optgroup label="Math">
-                            <option value="Math">Mathematic</option>
-                            <option value="AddMath">Additional Math</option>
-                            <option value="MathT">Math T</option>
-                        </optgroup>
-                        <optgroup label="Other">
-                            <option value="Geography">Geography</option>
-                            <option value="History">History</option>
-                        </optgroup>
-                    </select><br/><br/>
-                    
-                    <label>Video related to this quiz:</label>
-                    <select name="txtVideo">
-                        <option value="0">none</option>
-                <%
-                    while(res.next()) { 
-                %>                
-                        <option value="<%=res.getString("videoID")%>"><%=res.getString("videoName")%></option>
-                <% 
-                    }
-                %>
-                    </select><br/><br/>
-                    
-                    <label>Note/Transcript:</label>
-                    <textarea name="txtQuiz" class="form-control"><%=result.getString("note") %></textarea>
-                    
-                <div class="form-group">
-                    <br/><br/>
-                    <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Quiz</button>
-                    <a class="btn btn-danger" href="quiz.jsp">Cancel</a>
-                    <button class="btn btn-warning" type="reset">Reset</button>
-                    <a class="btn btn-success" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Go to this quiz questions <span class="glyphicon glyphicon-arrow-right"></span></a>          
-                </div>  
-                </form>
             </div><!--end column 1.2.4.2-->
+            
+            <div class="col-xs-6 col-md-6 col-lg-6 border"><!--1.2.4.1-->
+                <p class="right">(Quiz Details)</p>
+            <%
+                while(rst.next()) {
+            %> 
+                    <p>Created on: <b><%=result.getString("cdate") %></b></p>
+                    <p>Last updated on: <b><%=result.getString("udate") %></b></p>
+                    <p>Last updated by: <b><%=rst.getString("username") %></b></p>
+                    <p>Current Quiz title: <b><%=result.getString("quizTopic")%></b></p>
+                    <p>Category: <b><%=result.getString("category")%></b></p>
+            <%
+                }   
+                if(re.next()) {
+            %>
+                   <p>Video related to this quiz:<a href="<%=re.getString("videoPath")%>" class="video_layer" target="_blank"><b><%=re.getString("videoName")%></b></a></p> 
+                    <script>
+                    $('.video_layer').colorbox({iframe:true});
+                    </script>     
+                    <%
+                        }
+                    %>
+
+                </div><!--end column 1.2.4.1-->
+        <script>
+            jQuery('.youtube-player').each(function(){
+                jQuery(this).on('click', '.youtube-link-start', function(){
+                    jQuery(this).parent().addClass('active');
+                    var loc = $(this).siblings('iframe').attr('src');
+                    var startloc = loc + "?autoplay=1";
+                    $(this).siblings('iframe').attr('src', startloc);
+                });
+                jQuery(this).on('click', '.youtube-link-stop', function(){
+                    jQuery(this).parent().removeClass('active');
+                    var loc = $(this).siblings('iframe').attr('src');
+                    var stoploc = loc.replace("?autoplay=1", "");
+                    $(this).siblings('iframe').attr('src', stoploc);
+                });
+            });
+        </script>
         </div><!--end row 1.2.4 & end of content section-->
      
-        <script>
-            CKEDITOR.replace('txtQuiz');
-        </script>
-        
     <jsp:include page="footer.jsp"></jsp:include>
    

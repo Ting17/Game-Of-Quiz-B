@@ -27,7 +27,7 @@
                 pstmt.setString(2,request.getParameter("password"));
                 pstmt.setString(3,request.getParameter("result"));
                 pstmt.executeUpdate();
-                response.sendRedirect("./index.jsp");
+                response.sendRedirect("./index.html");
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){

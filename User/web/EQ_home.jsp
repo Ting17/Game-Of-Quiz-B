@@ -105,7 +105,7 @@
                     <div class="navbar-collapse collapse" id="navbar-to-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a>HI  <%=rs.getString("username")%></a></li>
-                            <li><a href='index.jsp'>Log out</a></li>
+                            <li><a href='index.html'>Log out</a></li>
                         </ul> 
                     </div><!--end navigation collapse-->        
                 </div><!--close container-->
@@ -114,9 +114,8 @@
     </div><!--end row 1 & end of navigation-->
     <%
         }else  {
-            String msg="Incorrect username or password";
-            request.getSession().setAttribute("msg", msg);
-            response.sendRedirect("index.jsp");
+            out.println(request.getAttribute("errorMessage"));
+            response.sendRedirect("index.html");
         }
     %>  
     
@@ -193,7 +192,8 @@
                 <div class="videowrap">       
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <iframe src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -232,7 +232,8 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <iframe src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -271,7 +272,8 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <iframe src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                            <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen>
+                            </iframe>
                         </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
