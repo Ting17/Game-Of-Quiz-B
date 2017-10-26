@@ -33,7 +33,7 @@
                 pstmt.setInt(6,adminID);
                 pstmt.executeUpdate();
                 
-                response.sendRedirect("./quiz.jsp");
+                response.sendRedirect("./quizlist.jsp");
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){

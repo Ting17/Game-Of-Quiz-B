@@ -26,7 +26,7 @@
                     conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
                     pstmt = conn.prepareStatement("DELETE FROM quiz WHERE quizID = '" +quizID+ "'");
                     pstmt.executeUpdate();
-                    response.sendRedirect("./quiz.jsp");
+                    response.sendRedirect("./quizlist.jsp");
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){

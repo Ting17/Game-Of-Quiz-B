@@ -96,7 +96,7 @@
         <%  if (res.next()) {
         %>
                 <b>Quiz:</b> 
-                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > Question List
+                <a href="quizlist.jsp"><%=res.getString("quizTopic")%></a> > Question List
         <%
             }
         %>

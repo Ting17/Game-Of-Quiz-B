@@ -91,7 +91,7 @@
                     pstmt.setString(6,quizID);
            
                     pstmt.executeUpdate();
-                    response.sendRedirect("./quiz.jsp");
+                    response.sendRedirect("./quizlist.jsp");
                 
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
@@ -165,7 +165,16 @@
                     <%
                         }
                     %>
-
+                    
+                    <hr/>
+                    <center>
+                    <div class="form-group">
+                        <a class="btn btn-primary" href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Edit</a>
+                        <a class="btn btn-primary" href="deleteQuiz.jsp?quizID=<%=quizID%>" onclick="return confirm('Once confirm, this topic <%=result.getString("quizTopic") %> will be removed. Confirm to delete?')"> Delete</a>
+                        <a class="btn btn-primary" href="quizlist.jsp">Back</a>
+                    </div>
+                    </center>
+                    
                 </div><!--end column 1.2.4.1-->
         <script>
             jQuery('.youtube-player').each(function(){
@@ -183,6 +192,8 @@
                 });
             });
         </script>
+        
+        
         </div><!--end row 1.2.4 & end of content section-->
      
     <jsp:include page="footer.jsp"></jsp:include>

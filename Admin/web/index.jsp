@@ -41,7 +41,7 @@
             <p>${msg}</p>
             
             <h1>Login to your account</h1>
-            <form method="post" action="login.jsp">
+            <form method="post" action="home.jsp">
             <fieldset>
                 <input type="text" class="login" name="username" value="" placeholder="Username" required><br/>
                 <input type="password" class="login" name="password" value="" placeholder="password" required/><br/>

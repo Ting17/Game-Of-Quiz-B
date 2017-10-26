@@ -7,12 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
   
             <a href="video.jsp" class="tabselect">Videos <span class="glyphicon glyphicon-menu-right"></span></a>
-            <a href="quiz.jsp" class="tabselect">Quizzes <span class="glyphicon glyphicon-menu-right"></span></a>
+            <a href="quizlist.jsp" class="tabselect">Quizzes <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="quote.jsp" class="tabselect">Quotes <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="user.jsp" class="tabselect">User Profiles <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="feedback.jsp" class="tabselect">Content Feedback <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="announ.jsp" class="tabselect">Announcements <span class="glyphicon glyphicon-menu-right"></span></a>
-            <a href="guide.jsp" class="tabselect">User Guide <span class="glyphicon glyphicon-menu-right"></span></a>
+            <a href="guide.jsp" class="tabselect">Admin Guide <span class="glyphicon glyphicon-menu-right"></span></a>
         </div><!--end column 1.1 & close tab-->
         
         <div class="col-xs-10 col-md-10 col-lg-10"><!--1.2--> 

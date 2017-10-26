@@ -192,8 +192,22 @@
                 <div class="videowrap">       
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen>
-                            </iframe>
+                            <%
+                                if(resultBio.getString("videoPath").contains("embed")){
+                            %>
+                                <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                            <%
+                                }
+                            %>
+                            <%
+                                if(resultBio.getString("videoPath").contains("resources")){
+                            %>
+                                <video width="100%" controls>
+                                    <source src="<%=resultBio.getString("videoPath")%>" type="video/mp4">
+                                </video>  
+                            <%
+                                }
+                            %>
                         </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -232,8 +246,22 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen>
-                            </iframe>
+                            <%
+                                if(resultEng.getString("videoPath").contains("embed")){
+                            %>
+                                <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                            <%
+                                }
+                            %>
+                            <%
+                                if(resultEng.getString("videoPath").contains("resources")){
+                            %>
+                                <video width="100%" controls>
+                                    <source src="<%=resultEng.getString("videoPath")%>" type="video/mp4">
+                                </video>  
+                            <%
+                                }
+                            %>
                         </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -272,8 +300,22 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen>
-                            </iframe>
+                            <%
+                                if(resultSci.getString("videoPath").contains("embed")){
+                            %>
+                                <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                            <%
+                                }
+                            %>
+                            <%
+                                if(resultSci.getString("videoPath").contains("resources")){
+                            %>
+                                <video width="100%" controls>
+                                    <source src="<%=resultSci.getString("videoPath")%>" type="video/mp4">
+                                </video>  
+                            <%
+                                }
+                            %>
                         </div> <!--close column 3.1.1.1-->
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->

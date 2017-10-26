@@ -93,7 +93,7 @@
                     pstmt.setString(6,quizID);
            
                     pstmt.executeUpdate();
-                    response.sendRedirect("./quiz.jsp");
+                    response.sendRedirect("./quizlist.jsp");
                 
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
@@ -229,7 +229,7 @@
                 <div class="form-group">
                     <br/><br/>
                     <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Quiz</button>
-                    <a class="btn btn-danger" href="quiz.jsp">Cancel</a>
+                    <a class="btn btn-danger" href="quizlist.jsp">Cancel</a>
                     <button class="btn btn-warning" type="reset">Reset</button>
                     <a class="btn btn-success" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Go to this quiz questions <span class="glyphicon glyphicon-arrow-right"></span></a>          
                 </div>  

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2017 at 04:48 PM
+-- Generation Time: Oct 26, 2017 at 10:40 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -279,7 +279,7 @@ CREATE TABLE `video` (
 INSERT INTO `video` (`videoID`, `videoName`, `videoDesc`, `category`, `videoPath`, `transcript`) VALUES
 ('1', 'Biology Ep1', 'What do flowers, goldfish and us have in common? What are we made up of? Watch to know more!', 'Biology', 'https://www.youtube.com/embed/uvMqc4dIhlM', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('10', 'FixAndroid', 'I use an HTC Wildfire S that has been over -cahrged and this Tutorial has work with nearly any Overcharged Android Phone. 2 Very simple ways that will fix your phone without needing to give it ti a Repair Store.', 'Science & Techn', 'https://www.youtube.com/embed/UzRXbzN6Vo8', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
-('2', 'Biology Ep2', 'Why is salt used to preserved foods? What happens when some food are soaked in concentrated solution? Watch to know more!', 'Biology', 'https://www.youtube.com/embed/mGKTQ5Tsmgs', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
+('2', 'Biology Ep2', 'Why is salt used to preserved foods? What happens when some food are soaked in concentrated solution? Watch to know more!', 'Biology', 'resources/vid/BiologiEp2.mp4', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('3', 'Biology Ep3', 'How to remove tough stains from clothes? What does the detergent do to remove the tough stains? Watch to find out!', 'Biology', 'https://www.youtube.com/embed/ZkV5NFHLd1o', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('4', 'Series: Wall Stories', 'In our series on the 20th anniversary of the fall of the Berlin Wall,we this time visit the East Side Gallery where artists used some of the Berlin Wall as a canvas. One of them is Thierry Noir. We al', 'English', 'https://www.youtube.com/embed/HvEnsbE3hqI', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('5', 'Martin Luther King Jr.', 'A short biography of Dr. Martin Luther King, Jr. He is widely considered the most influential leader of the American civil rights movement. He fought to overturn Jim Crow segregation laws and eliminat', 'English', 'https://www.youtube.com/embed/P7JkL4bKVKo', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),

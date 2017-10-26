@@ -113,7 +113,7 @@
         <%  if (res.next()) {
         %>
                 <b>Quiz:</b> 
-                <a href="quiz.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Question List</a> > Add New Question
+                <a href="quizlist.jsp"><%=res.getString("quizTopic")%></a> > <a href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Question List</a> > Add New Question
         <%
             }
         %>

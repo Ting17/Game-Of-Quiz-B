@@ -95,9 +95,23 @@
         %>
     <div class="row wrap"><!--1.2.1--> 
         <div class="col-xs-12 col-md-7 col-lg-7 videoquestion"><!--1.2.1.1--> 
-            <iframe class="qvideo" src="<%=res.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-        </div>
-        
+                            <%
+                                if(res.getString("videoPath").contains("embed")){
+                            %>
+                                <iframe class="qvideo" src="<%=res.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                            <%
+                                }
+                            %>
+                            <%
+                                if(res.getString("videoPath").contains("resources")){
+                            %>
+                                <video width="100%" controls>
+                                    <source src="<%=res.getString("videoPath")%>" type="video/mp4">
+                                </video>  
+                            <%
+                                }
+                            %>        
+        </div>        
         <div class="col-xs-12 col-md-5 col-lg-5 videoquestion" ><!--1.2.1.2--> 
             <%@ include file="videoquestion.jsp"%>
         </div> 
