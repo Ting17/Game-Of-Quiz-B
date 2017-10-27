@@ -12,8 +12,8 @@
             Connection conn;
             Statement st;
             ResultSet result, res;
-            Integer videoID, x=1, y=1, z=1,quizID;
-            String username,password,category;
+            Integer x=1, y=1, z=1;
+            String username,password,category,quizID,videoID;
         %>
 
         <%-- read function --%>    
@@ -23,8 +23,8 @@
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             
             if(request.getParameter("videoID") != null && request.getParameter("videoID")!= ""){ 
-                videoID = Integer.parseInt(request.getParameter("videoID"));
-                quizID = Integer.parseInt(request.getParameter("quizID"));
+                videoID = request.getParameter("videoID");
+                quizID = request.getParameter("quizID");
                 category = request.getParameter("categ");
                 try{
                     Class.forName("com.mysql.jdbc.Driver");
@@ -152,7 +152,7 @@
                                         </li>
                                     </ul>
                                     
-                                    <center>
+                                    <center class="inputans">
                                         <h4>Answer:</h4>
                                         <input type="text" name="answer" data-ng-model="checkeds" required/>                                        <br/>
                                     </center> 
@@ -202,12 +202,12 @@
                             <div data-ng-if="'<%=result.getString("type")%>' === '2C'">
                                 <form name="form3">
                                     <div class="row"><!--2.2.1-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
+                                        <div class="col-xs-6 col-md-6 col-lg-6 twocs"><!--2.2.1.1--> 
                                             <label for="A">
                                                 <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=result.getString("input1") %>
                                             </label>
                                         </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
+                                        <div class="col-xs-6 col-md-6 col-lg-6 twocs"><!--2.2.1.2--> 
                                             <label for="B">
                                                 <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=result.getString("input2") %>
                                             </label>

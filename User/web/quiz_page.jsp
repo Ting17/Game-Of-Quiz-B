@@ -39,8 +39,8 @@
         <%!
             Connection conn;
             PreparedStatement pstmt;
-            Statement stmt,stm,st,s;
-            ResultSet res,rs,rest,result;
+            Statement stmt,st,s;
+            ResultSet res,rest,result;
             String category, username,password,videoID,quizID;
      
         %>
@@ -65,10 +65,7 @@
                     
                     s=conn.createStatement();
                     result = s.executeQuery("SELECT * FROM quiz WHERE videoID = '" + videoID + "' and quizID = '" + quizID + "'");
- 
-                    stm = conn.createStatement();
-                    rs = stm.executeQuery("SELECT * FROM user WHERE username='" + username + "' and password='" + password + "'");
-       
+        
                 }catch(ClassNotFoundException cnfe){
                     out.println("Class not Found Execption:-" + cnfe.toString());
                 }catch(SQLException sqle){
@@ -92,7 +89,7 @@
                     }  
                 }  
             }else{
-                response.sendRedirect("./EQ_home");
+                response.sendRedirect("./EQ_home.jsp");
             }
         %>
         
@@ -101,16 +98,16 @@
     <div class="row" id="top"><!--1--> 
         <div class="col-xs-12 col-md-12 col-lg-12 parallax"> <!--1.1--> 
             <div class="row"><!--1.1.1--> 
-                <div class="col-xs-3 col-md-3 col-lg-3 logo"><!--1.1.1.2--> 
+                <div class="col-xs-12 col-md-3 col-lg-3 logo"><!--1.1.1.2--> 
                     <h2>Game Of Quiz</h2>
                 </div> <!--close column 1.1.1.2-->
                 
-                <div class="col-xs-6 col-md-6 col-lg-6 title"><!--1.1.1.1--> 
+                <div class="col-xs-12 col-md-6 col-lg-6 title"><!--1.1.1.1--> 
                     <p>"Push yourself because no one else is going to do it for you"</p>
                 </div> <!--close column 1.1.1.1-->
                 
                 <!--Translate function; google traslate-->
-                <div class="col-xs-3 col-md-3 col-lg-3"> <!--1.1.1.3-->
+                <div class="col-xs-12 col-md-3 col-lg-3"> <!--1.1.1.3-->
                     <div id="google_translate_element"></div>
 
                     <script type="text/javascript">
@@ -125,49 +122,36 @@
         </div> <!--close column 1.1-->
     </div> <!--close row 1-->
     
-    <div class="row quizmenu"><!--1 b-->
-        <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1 b-->
-            <ul>
-                <li><a href="video2.jsp">EQUILIBRA Home</a></li>
-                <li><a href="GOQ_home.jsp?videoID=<%=videoID %>">More Quiz</a></li>
-                <li><a data-toggle="modal" data-target="#ascore">Check Accumulated Score</a></li>
-            <!-- Modal -->
-            <%  
-                if (rs.next()) {
-            %>        
-                <div class="modal fade" id="ascore" role="dialog">
-                <div class="modal-dialog">
-                <div class="modal-content modalbg">
-                    <!--Content-->
-                    <div class="estrellas">
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                        <span class="glyphicon glyphicon-star yellow"></span>
-                    </div>   
-                    <center class="ascore">
-                        <h3><b><%=rs.getString("username")%></b></h3>
-                        <br/>
-                        <h4>You have collected</h4>
-                        <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
-                        <br/>
-                        <p><i>**Collect more star as token for future event**</i></p>
-                        <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
-                    </center> 
-                </div>
-                </div>
-                </div> <!--close modal-->
-            <%
-                }
-            %>              
-                <li><a href="announ.jsp?videoID=<%=videoID %>">Announcement</a></li>
-                <li><a href="Uguild.jsp">User Guild</a></li>
-            </ul>
-        </div> <!--close column 1.1b-->
-    </div> <!--close row 1 b-->
+    <!--Game of Quiz menu bar-->
+    <div class="row"><!--2 a-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 a-->
+            <nav class="navbar quizmenu borderbottom">
+                <div class="container-fluid">
+                    <div class="navbar-header"> 
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button> 
+                    </div> 
+  
+                    <div class="navbar-collapse collapse" id="navbar-to-collapse">
+                        <ul class="nav nav-justified">
+                            <li><a href="video2.jsp">EQUILIBRA Home</a></li>
+                            <li><a href="quizlist_user.jsp?videoID=<%=videoID%>">Quiz List</a></li>
+                            <li><a data-toggle="modal" data-target="#ascore" >Check Total Score</a></li>
+                        
+                            <li><a href="announ.jsp?videoID=<%=videoID%>">Announcement</a></li>
+                            <li><a href="Uguide.jsp?videoID=<%=videoID%>">User Guide</a></li>
+                        </ul> 
+                    </div><!--end navigation collapse-->        
+                </div><!--close container-fluid-->
+            </nav>
+        </div><!--end column 2.1 a-->
+    </div><!--end of Game of Quiz menu bar & row 2 a-->
+    
+    <jsp:include page="checkscore.jsp"></jsp:include>  
     
 <div class="container">     
     <div class="row"><!--2--> 
@@ -186,7 +170,7 @@
             </ol>
             
         <div data-ng-if="'<%=videoID %>' === '0'">
-            <div class="parallax title nonote">
+            <div class="parallax title nonote qvideo"> 
                 <center>No video for now....</center>
             </div>
         </div>
@@ -197,7 +181,7 @@
         %>
             <div class="row"><!--2--> 
                 <div class="col-xs-12 col-md-12 col-lg-12">
-                    <iframe  width="100%" height="315" src="<%=rest.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="qvideo" src="<%=rest.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         <%    
@@ -214,7 +198,7 @@
     <div class="row"><!--3--> 
         <div class="col-xs-12 col-md-8 col-lg-8 contentborder"><!--3.1--> 
         
-        <div data-ng-if="'<%=videoID %>' === '0'">    
+        
         <%    
            while(result.next() ) { 
         %>      
@@ -225,45 +209,28 @@
                     <hr/>
                 </div><!--close column 3.1.1.1--> 
             </div><!--close row 3.1.1--> 
-            
-            <div class="row interwrap"><!--3.1.2--> 
-                <div class="col-xs-12 col-md-12 col-lg-12"><!--3.1.2.1--> 
-                    <center>
-                        <h4><i>No note for now....</i></h4>
-                    </center>
-                </div><!--close column 3.1.2.1--> 
-            </div><!--close row 3.1.2-->                 
-        <%    
-            }
-        %>  
-        </div>
-        
-        <div data-ng-if="'<%=videoID %>' !== '0'">    
-        <%    
-            while(res.next() ) { 
-        %> 
-            <div class="row interwrap"><!--3.1.1.1--> 
-                <div class="col-xs-12 col-md-12 col-lg-12"><!--3.1.1.1.1--> 
-                    <h3><%=res.getString("videoName") %></h3>
-                    <h5>Category << <%=res.getString("category") %> >></h5>
-                    <hr/>
-                </div><!--close column 3.1.1.1.1--> 
-            </div><!--close row 3.1.1.1-->  
-            
+ 
             <div class="row"><!--3.1.1.2--> 
                 <div class="col-xs-12 col-md-12 col-lg-12 wrap2" contentborder><!--3.1.1.2.1--> 
-                    <p class="videodesc"><%=res.getString("videoDesc") %></p>        
+                    <div data-ng-if="'<%=videoID %>' !== '0'">
+        <%    
+           while(res.next() ) { 
+        %>  
+                    <p class="videodesc"><%=res.getString("videoDesc") %></p>  
+        <%    
+           }
+        %>  
+                    </div>  
                     <a data-toggle="collapse" data-target="#transcript"><button class="btn btn-default btn-sm right" title="click here for transcript">Transcript</button></a>
                     <div id="transcript" class="collapse">  
                         <hr/>
-                       <p><%=res.getString("transcript") %></p>
+                        <p><%=result.getString("note") %></p>      
                     </div>
                 </div> <!--close column 3.1.1.2.1--> 
             </div><!--close row 3.1.1.2-->   
         <%    
             }
         %>    
-        </div>         
         </div><!--close column 3.1-->
                    
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"><!--3.2--> 

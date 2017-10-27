@@ -30,9 +30,19 @@ ul{
     margin: 1% 0;
 }
 
+.logo{
+    color: #fff;
+    padding-left: 5%;
+}
+
+hr.blue{
+    border-top: 1px solid #3498db;;
+    width: 80%;
+}
 
 
-/*index.html*/
+
+/*index.jsp*/
 .landing{
     opacity: 0.9;
     height: 768px;
@@ -56,7 +66,7 @@ ul{
 }
 
 
-/*GOQ_home.jsp*/
+/*quizlist_user.jsp*/
 .quizlist table{
    text-align: center;
    font-size: 20px;
@@ -70,14 +80,12 @@ ul{
     transition: all 0.5s;
     cursor: pointer;
 }
-
 .playmque span {
     cursor: pointer;
     display: inline-block;
     position: relative;
     transition: 0.5s;
 }
-
 .playmque span:after {
     content: '\00bb';
     position: absolute;
@@ -86,56 +94,87 @@ ul{
     right: -20px;
     transition: 0.5s;
 }
-
 .playmque:hover span {
     padding-right: 25px;
 }
-
 .playmque:hover span:after {
     opacity: 1;
     right: 0;
 }
 
 
-/*video.jsp*/
-/*navigation*/
-.navbar{
+/*EQ_home.jsp & quizlist_home.jsp*/
+/*navigation 1*/
+.banner{
     background-color: #175fb4;
     padding: 2%;
 }
-
-.navbar-header{
+.banner h3, .banner a{
     padding-left: 5%;
-}
-
-.navbar, .nav.navbar-nav.navbar-right li a{
     color: #fff;
-    font: 15px serif;
 }
 
-.nav.navbar-nav.navbar-right li a:hover {
-    font-size: 20px;
+.menu{
+    background-color: #3d5998;
 }
-
-.navbar-header .navbar-toggle .icon-bar {
+.navbar li{
+    border-left: #fff double;
+    text-align: center;
+}
+.navbar li:last-child{
+    border-right: #fff double;
+}
+.navbar-toggle .icon-bar {
     background-color: #fff;
 }
-
 .navbar-toggle:hover .icon-bar {
     border: 1px solid #FFFF00;
 }
 
-.subject {
-    margin-top: -2%;
-    background-color: #3d5998;
-    text-align: center;
+.nav.nav-justified li a{
+    color: #fff;
+}
+.nav.nav-justified li a:hover{
+    color: #000;
 }
 
+.active a{
+    background-color: #3bafda;
+    font-size: 18px;
+    cursor: default;
+}
+
+.quizmenu{
+    background-image: url('../../resources/img/parallexbg1.jpg') ;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover; 
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
+
+.announcemenu {
+    margin-top: -2%;
+}
+
+.subject {
+    margin-top: -6%;
+    padding-top: 6%;
+    background-color: #3d5998;
+    text-align: center;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+}
 .subject a{
     text-decoration: none;
     color: #fff;
     cursor: pointer;
-    background-color: #FFCA28;
+}
+
+.borderbottom {
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
 }
 
 .border{
@@ -143,9 +182,13 @@ ul{
     margin-top: -1%;
 }
 
-video.videopg{  
+iframe{  
     width: 100%;
     height: 240px;
+}
+.qvideo{
+    width: 100%;
+    height: 480px;
 }
 
 #divBio, #divSci{
@@ -158,7 +201,6 @@ video.videopg{
     margin: 2% 0;
     font-size: 15px;
 }
-
 .videowrap p{
     margin-top: 5%;
 }
@@ -245,70 +287,10 @@ video.videopg{
 }
 
 
-/*nav/menubar*/
-.navvideo {
-    background-color: #3d5998;
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
-}
-
-.quizmenu{
-    background-image: url('../../resources/img/parallexbg1.jpg') ;
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover; 
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
-}
-
-.navvideo ul, .quizmenu ul{
-    list-style: none;
-    text-align: center;
-    border-bottom-left-radius: 100px;
-    border-bottom-right-radius: 100px;
-    font-size: 18px;
-    margin-left: 2%;
-}
-
-.navvideo li, .quizmenu li{
-    margin: 1% 0 1% 0 ;
-    float: left;
-    display: inline-block;
-    border-left: #fff double;
-    width: 19%;
-}
-
-.navvideo li:last-child, .quizmenu li:last-child{
-    border-right: #fff double;
-}
- 
-.navvideo a, .quizmenu a{
-  text-decoration: none;
-  color: #fff;
-  display: block;
-
-}
- 
-.navvideo a:hover, .quizmenu a:hover {
-    font-size: 20px;
-}
-
-.navvideo .active a, .quizmenu .active a{
-    background-color: #3bafda;
-    font-size: 24px;
-    cursor: default;
-}
-
-.announcemenu {
-    margin-top: -2%;
-}
-
 /*modal for checking accumulate score*/
 .glyphicon-star{
     font-size: 40px;
 }
-
 .glyphicon-star:hover{
     -webkit-mask-image: linear-gradient(-75deg, rgba(0,0,0,.6) 30%, #000 50%, rgba(0,0,0,.6) 70%);
     -webkit-mask-size: 200%;
@@ -320,7 +302,6 @@ video.videopg{
     margin-top: 50%;
     margin-right: 85%;
 }
-
 .estrellas span {
     position: absolute;
     bottom: 0;
@@ -330,7 +311,6 @@ video.videopg{
     line-height: 70px;
     transform-origin: bottom center;
 }
-
 .estrellas span:nth-of-type(1)  {
   transform: rotate(25deg);
 }
@@ -367,18 +347,50 @@ video.videopg{
   padding: 1%;
 }
 
-.logo{
-    color: #fff;
-    padding-left: 5%;
+/*button animation*/
+.buttonlayout { 
+    text-align: center;
+    padding: 8px 26px; 
+    display: inline-block;  
+    border-radius: 6px; 
+    border: solid rgba(0,0,0,0.2); 
+    border-width: 1px 1px 5px; 
+    box-shadow: 0 5px 0 rgba(0,0,0,0.1), inset 0 0 3px rgba(255,255,255,0.3); 
+    cursor: pointer; 
+    transition: 0.4s ease; 
+}
+.buttonlayout:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 0 rgba(0,0,0,0.1), inset 0 0 1px rgba(255,255,255,0.4); 
+    border-bottom-width: 8px; 
+}
+.buttonlayout:active { 
+    transform:translateY(4px); 
+    box-shadow:0 2px 0 rgba(0,0,0,0.1), inset 0 0 5px rgba(255,255,255,0.4); 
+    border-bottom-width:2px; 
+    transition:0.1s ease; 
 }
 
-
-
-hr.blue{
-    border-top: 1px solid #3498db;;
-    width: 80%;
+.redbtn { 
+    background: hsl(8,59%,59%); 
+    color: #fff; 
+    text-shadow: -1px -1px 1px rgba(0,0,0,0.1); 
+}
+.orangebtn { 
+    background: hsl(41,76%,65%); 
+}
+.yellowbtn { 
+    background: hsl(50,81%,65%); 
+    color: #000; 
+}
+.greenbtn { 
+    background: hsl(104,51%,62%); 
+}
+.bluebtn { 
+    background: hsl(176,59%,59%); 
+    color: #fff; 
 }
 
-.announ{
-    border: solid 1px #C4E0E5;
+.guide{
+    padding:0 2%;
 }

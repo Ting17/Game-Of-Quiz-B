@@ -4,13 +4,6 @@ function Pager(tableName, itemsPerPage) {
     this.currentPage = 1;
     this.pages = 0;
     this.inited = false;
-    this.rows = document.getElementById(tableName).rows;
-    this.records = (this.rows.length - 1);
-    
-    this.init = function() {
-        this.pages = Math.ceil(this.records / itemsPerPage);
-        this.inited = true;
-    };
     
     this.showRecords = function(from, to) {
         var rows = document.getElementById(tableName).rows;
@@ -40,21 +33,38 @@ function Pager(tableName, itemsPerPage) {
         var to = from + itemsPerPage - 1;
         this.showRecords(from, to);
     };
-    
-     this.pagination = function(pagerName2, pgNum2) {
+
+    this.prev = function() {
+        if (this.currentPage > 1)
+            this.showPage(this.currentPage - 1);
+    };
+
+    this.next = function() {
+        if (this.currentPage < this.pages) {
+            this.showPage(this.currentPage + 1);
+        }
+    };
+
+    this.init = function() {
+        var rows = document.getElementById(tableName).rows;
+        var records = (rows.length - 1);
+        this.pages = Math.ceil(records / itemsPerPage);
+        this.inited = true;
+    };
+
+    this.pagination = function(pagerName, pgNum) {
         if (! this.inited) {
             alert("not inited");
             return;
         }
 
-        var element = document.getElementById(pgNum2);
-        var pagerHtml = '<span onclick="' + pagerName2 + '.prev();" class="pg-normal"> « Prev </span> | ';
+        var element = document.getElementById(pgNum);
+        var pagerHtml = '<span onclick="' + pagerName + '.prev();" class="pg-normal"> « Prev </span> | ';
             for (var page = 1; page <= this.pages; page++) 
-               pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName2 + '.showPage(' + page + ');">' + page + '</span> | ';
-            pagerHtml += '<span onclick="'+pagerName2+'.next();" class="pg-normal"> Next »</span>';            
+               pagerHtml += '<span id="pg' + page + '" class="pg-normal" onclick="' + pagerName + '.showPage(' + page + ');">' + page + '</span> | ';
+            pagerHtml += '<span onclick="'+pagerName+'.next();" class="pg-normal"> Next »</span>';            
 
             element.innerHTML = pagerHtml;
+            this.inited = true;
     };
 }
-
-

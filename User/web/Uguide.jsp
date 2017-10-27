@@ -1,6 +1,6 @@
 <%-- 
-    Document   : announ
-    Created on : Sep 3, 2017, 1:34:54 PM
+    Document   : Uguide
+    Created on : Oct 26, 2017, 11:49:11 PM
     Author     : tingting17
 --%>
 
@@ -16,7 +16,7 @@
 <!-- Last update: 2017-->
     
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Announcement</title>
+<title>User Guide</title>
 <meta name="viewport" content="width=device-width, initialscale=1.0"/>
 <!-- Bootstrap -->
 <link href="frameworks/css/bootstrap.min.css" rel="stylesheet" />
@@ -80,9 +80,18 @@
         <div class="col-xs-12 col-md-12 col-lg-12 banner"><!--1.1-->
             <div class="row">
                 <div class="col-xs-12 col-md-10 col-lg-10"><h3>EQUILIBRA</h3></div>
-                <div class="col-xs-12 col-md-1 col-lg-1"><a>HI  <%=rs.getString("username")%></a></div>
+                <div class="col-xs-12 col-md-1 col-lg-1">
+                    <a>HI  <%=rs.getString("username")%></a>
+                    <div id="google_translate_element"></div>
+                    <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                    }
+                    </script>
+                    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                </div>
                 <div class="col-xs-12 col-md-1 col-lg-1"><a href='index.jsp'>Log out</a></div>
-            </div>
+            </div>  
         </div><!--end column 1.1-->
     </div><!--end row 1 & end of navigation-->
     <%
@@ -109,9 +118,9 @@
                         <ul class="nav nav-justified">
                             <li><a href="video2.jsp">EQUILIBRA Home</a></li>
                             <li><a href="quizlist_user.jsp">Quiz List</a></li>
-                            <li><a data-toggle="modal" data-target="#ascore" >Check Total Score</a></li>       
-                            <li class="active"><a href="announ.jsp">Announcement</a></li>
-                            <li><a href="Uguide.jsp">User Guide</a></li>
+                            <li><a data-toggle="modal" data-target="#ascore" >Check Total Score</a></li>
+                            <li><a href="announ.jsp">Announcement</a></li>
+                            <li class="active"><a href="Uguide.jsp">User Guide</a></li>
                         </ul> 
                     </div><!--end navigation collapse-->        
                 </div><!--close container-fluid-->
@@ -119,8 +128,8 @@
         </div><!--end column 2.1 a-->
     </div><!--end of Game of Quiz menu bar & row 2 a-->
    
-    <jsp:include page="checkscore.jsp"></jsp:include>     
-
+    <jsp:include page="checkscore.jsp"></jsp:include>       
+    
     <div class="container ">   
         <!--Content section-->
         <div class="row"><!--2-->
@@ -140,38 +149,48 @@
             <%
                 }}
             %>
-                    <li class="active"><span>Announcement</span></li>
+                    <li class="active"><span>User Guide</span></li>
                 </ol>
+             
+                <div class="guide">
+                    <h3><b>User Guide</b></h3>
+                    <p>We encourage you to <span class="yellow">explore</span> around. So here is some basic guide to experience Game Of Quiz.</p>
                     
-                <div class="table-responsive">
-                <table class="table" id="tablepaging">
-                    <thead>
-                        <tr>
-                            <th id="announ" scope="col">Announcement</th>
-                        </tr>
-                    </thead>                      
-                    <tbody>      
-        <%
-            while(result.next()) { 
-        %>
-                        <tr>
-                            <td class="announ">
-                                <h4><b><%=result.getString("announcement") %></b></h4>
-                                <%=result.getString("udate") %>
-                                <br/><br/><br/>
-                                <%=result.getString("content") %>
-                                <hr class="blue"/>
-                            </td>
-                        </tr>
-        <%
-            }
-        %>
-                    </tbody>
-                </table>
-                </div>
-                <center >    
-                    <div id="pgNum2"></div>
-                </center>
+                    <a data-toggle="collapse" data-target="#1" ><h4>Step 1 Chose your topic</h4></a>
+                    <div id="1" class="collapse">
+                        <hr/>
+                        <p>1. You can choose quizzes based on video in <b>Equilibra home page<b> or either quiz with video or quiz without video in <b>Quiz List page</b>.</p>
+                        <p>2. In <b>Quiz List page</b> <span class="glyphicon glyphicon-facetime-video"></span> represent the quiz with video.</p>        
+                        <hr class="hreffect"/>
+                    </div><!--close collapse--> 
+                
+                    <a data-toggle="collapse" data-target="#2"><h4>Step 2 Look for instructions/rules</h4></a>
+                    <div id="2" class="collapse"> 
+                        <hr/>
+                        <p>1. Look for Pusheen for instructions/rules <img src="resources/img/cat.gif"/></p>
+                        <p>2. Read the note to know how to collect star and claim "game time".</p>
+                        <p>3. Stars will be your token for future event; "game time" is for your minute break.</p>
+                        <hr class="hreffect"/>
+                    </div><!--close collapse--> 
+                
+                    <a data-toggle="collapse" data-target="#3"><h4>Step 3 Sent your feedback based on quiz you attend <i>(optional)</i></h4></a>
+                    <div id="3" class="collapse"> 
+                        <hr/>
+                        <p>1. Look for feedback button under Pusheen <img src="resources/img/cat.gif"/></p>
+                        <p>2. Click it and feedback form will show just right below it.</p>
+                        <p>3. Submit your feedback based on the quiz you attending <u>ONLY</u>. You can write anything. Eg: Error/mistake found</p>
+                        <hr class="hreffect"/>
+                    </div><!--close collapse-->
+                
+                    <a data-toggle="collapse" data-target="#4"><h4>Step 4 Attend other quizzes or watch other videos else Logout your account</h4></a>
+                    <div id="4" class="collapse">
+                        <hr/>
+                        <p>1. You are encourage to attend other quizzes or other videos to gain more knowledge or as entertainment</p>
+                        <p>2. Related video and video quizzes are sort based on category you currently answering. It is located right on top of footer (You can find it easily, for sure). You can watch related video or answer related video quiz.</p>
+                        <p>3. Remember to Logout your account. Make it as a practice. You can logout through <b>Equilibra home page</b>, <b>Quiz list page</b>, <b>Announcement page</b> or <b>this page (User Guide).</b></p>
+                        <hr class="hreffect"/>
+                    </div><!--close collapse--> 
+                </div>  
             </div> <!--close column 2.1-->
                 
             <div class="col-xs-12 col-md-3 col-lg-3 contentborder link"><!--2.2--> 

@@ -34,9 +34,13 @@
 <!-- Configuration -->
 <script src="frameworks/js/gameOQ.js"></script>   
 
-<!-- Configuration -->
-<script src="frameworks/js/paginationCaller.js"></script> 
-<script src="frameworks/js/paginationCaller2.js"></script>   
+<!-- Pagination -->
+<script src="frameworks/js/paginationCaller_question.js"></script> 
+<script src="frameworks/js/paginationCaller_announ.js"></script>   
+<script src="frameworks/js/paginationCaller_quizlist.js"></script>  
+
+<!-- Sort table -->
+<script src="frameworks/js/sorttable.js"></script> 
 
 </body>
 </html>

@@ -84,99 +84,66 @@
     <%  
         if (rs.next()) {
     %>
-        <div class="row" id="top"><!--1-->
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.1-->
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <h3>EQUILIBRA</h3>
-                        </div>
-
-                        <div class="navbar-header"> 
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button> 
-                        </div>
-
-                        <div class="navbar-collapse collapse" id="navbar-to-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a>HI  <%=rs.getString("username")%></a></li>
-                                <li><a href='index.html'>Log out</a></li>
-                            </ul> 
-                        </div><!--end navigation collapse-->        
-                    </div><!--close container-->
-                </nav>
-            </div><!--end column 1.1-->
-        </div><!--end row 1 & end of navigation-->
+    <div class="row" id="top"><!--1-->
+        <div class="col-xs-12 col-md-12 col-lg-12 banner"><!--1.1-->
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-10"><h3>EQUILIBRA</h3></div>
+                <div class="col-xs-12 col-md-1 col-lg-1"><a>HI  <%=rs.getString("username")%></a></div>
+                <div class="col-xs-12 col-md-1 col-lg-1"><a href='index.jsp'>Log out</a></div>
+            </div>
+        </div><!--end column 1.1-->
+    </div><!--end row 1 & end of navigation-->
     <%
         }else  {
-            out.println(request.getAttribute("errorMessage"));
-        response.sendRedirect("index.html");
+            response.sendRedirect("index.jsp");
         }
     %>  
     
-        <div class="row subject"><!--2 a-->
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1a-->
-                <a onclick="show('divEng')"><h4 >English</h4></a>
-            </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2a-->
-                <a><h4>Mathematic</h4></a>
-            </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3a-->
-                <a onclick="show('divSci')"><h4>Technology</h4></a>
-            </div>
-            <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4a-->
-                <a onclick="show('divBio')"><h4>Biology</h4></a>
-            </div>           
-        </div><!--end row 2-->
-        
-        <div class="row navvideo"><!--2 b-->
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 b-->
-                <ul>
-                    <li class="active"><a href="video2.jsp">EQUILIBRA Home</a></li>
-                    <li><a href="GOQ_home.jsp">More Quiz</a></li>
-                    <li><a data-toggle="modal" data-target="#ascore" >Check Accumulated Score</a></li>
-                <!-- Modal -->
-                <%  
-                    rs.previous();
-                    if (rs.next()) {
-                %>        
-                    <div class="modal fade" id="ascore" role="dialog">
-                    <div class="modal-dialog">
-                    <div class="modal-content modalbg">
-                        <!--Content-->
-                        <div class="estrellas">
-                            <span class="glyphicon glyphicon-star yellow"></span>
-                            <span class="glyphicon glyphicon-star yellow"></span>
-                            <span class="glyphicon glyphicon-star yellow"></span>
-                            <span class="glyphicon glyphicon-star yellow"></span>
-                            <span class="glyphicon glyphicon-star yellow"></span>
-                            <span class="glyphicon glyphicon-star yellow"></span>
-                            <span class="glyphicon glyphicon-star yellow"></span>
-                        </div>   
-                        <center class="ascore">
-                            <h3><b><%=rs.getString("username")%></b></h3>
-                            <br/>
-                            <h4>You have collected</h4>
-                            <h2 class="yellow"><%=rs.getString("result")%> Stars</h2>
-                            <br/>
-                            <p><i>**Collect more star as token for future event**</i></p>
-                            <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Ok!</button> <br/>
-                        </center> 
-                    </div>
-                    </div>
-                    </div> <!--close modal-->
-                <%
-                    }
-                %>              
-                    <li><a href="announ.jsp">Announcement</a></li>
-                    <li><a href="Uguild.jsp">User Guild</a></li>
-                </ul>
-            </div> <!--end column 2.1b-->
-        </div> <!--end row 2 b-->
+    <!--Game of Quiz menu bar-->
+    <div class="row"><!--2 a-->
+        <div class="col-xs-12 col-md-12 col-lg-12"><!--2.1 a-->
+            <nav class="navbar menu">
+                <div class="container-fluid">
+                    <div class="navbar-header"> 
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-to-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button> 
+                    </div> 
+  
+                    <div class="navbar-collapse collapse" id="navbar-to-collapse">
+                        <ul class="nav nav-justified">
+                            <li class="active"><a href="video2.jsp">EQUILIBRA Home</a></li>
+                            <li><a href="quizlist_user.jsp">Quiz List</a></li>
+                            <li><a data-toggle="modal" data-target="#ascore" >Check Total Score</a></li>      
+                            <li><a href="announ.jsp">Announcement</a></li>
+                            <li><a href="Uguide.jsp">User Guide</a></li>
+                        </ul> 
+                    </div><!--end navigation collapse-->        
+                </div><!--close container-fluid-->
+            </nav>
+        </div><!--end column 2.1 a-->
+    </div><!--end of Game of Quiz menu bar & row 2 a-->
+    
+    <jsp:include page="checkscore.jsp"></jsp:include>  
+    
+    <!--subject/category-->
+    <div class="row subject borderbottom"><!--2 b-->
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.1 b-->
+            <a onclick="show('divEng')"><h4>English</h4></a>
+        </div>
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.2 b-->
+            <a><h4>Mathematic</h4></a>
+        </div>
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.3 b-->
+            <a onclick="show('divSci')"><h4>Technology</h4></a>
+        </div>
+        <div class="col-xs-3 col-md-3 col-lg-3 border"><!--2.4 b-->
+            <a onclick="show('divBio')"><h4>Biology</h4></a>
+        </div>     
+    </div><!--end of subject/category row 2 b-->   
 
     <!--Content section-->
     <div class="container">    
@@ -190,22 +157,7 @@
                 <div class="videowrap">       
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <%
-                                if(resultBio.getString("videoPath").contains("embed")){
-                            %>
-                                <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-                            <%
-                                }
-                            %>
-                            <%
-                                if(resultBio.getString("videoPath").contains("resources")){
-                            %>
-                                <video width="100%" controls>
-                                    <source src="<%=resultBio.getString("videoPath")%>" type="video/mp4">
-                                </video>  
-                            <%
-                                }
-                            %>
+                            <iframe src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -243,22 +195,7 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <%
-                                if(resultEng.getString("videoPath").contains("embed")){
-                            %>
-                                <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-                            <%
-                                }
-                            %>
-                            <%
-                                if(resultEng.getString("videoPath").contains("resources")){
-                            %>
-                                <video width="100%" controls>
-                                    <source src="<%=resultEng.getString("videoPath")%>" type="video/mp4">
-                                </video>  
-                            <%
-                                }
-                            %>
+                            <iframe src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
@@ -297,22 +234,7 @@
                 <div class="videowrap">
                     <div class="row"><!--3.1.1-->
                         <div class="col-xs-12 col-md-4 col-lg-4"><!--3.1.1.1-->
-                            <%
-                                if(resultSci.getString("videoPath").contains("embed")){
-                            %>
-                                <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-                            <%
-                                }
-                            %>
-                            <%
-                                if(resultSci.getString("videoPath").contains("resources")){
-                            %>
-                                <video width="100%" controls>
-                                    <source src="<%=resultSci.getString("videoPath")%>" type="video/mp4">
-                                </video>  
-                            <%
-                                }
-                            %>
+                            <iframe src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
                         </div>
 
                         <div class="col-xs-12 col-md-6 col-lg-6"><!--3.1.1.2-->
