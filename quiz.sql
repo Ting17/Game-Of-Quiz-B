@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2017 at 10:40 AM
+-- Generation Time: Oct 27, 2017 at 07:20 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -282,7 +282,7 @@ INSERT INTO `video` (`videoID`, `videoName`, `videoDesc`, `category`, `videoPath
 ('2', 'Biology Ep2', 'Why is salt used to preserved foods? What happens when some food are soaked in concentrated solution? Watch to know more!', 'Biology', 'resources/vid/BiologiEp2.mp4', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('3', 'Biology Ep3', 'How to remove tough stains from clothes? What does the detergent do to remove the tough stains? Watch to find out!', 'Biology', 'https://www.youtube.com/embed/ZkV5NFHLd1o', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('4', 'Series: Wall Stories', 'In our series on the 20th anniversary of the fall of the Berlin Wall,we this time visit the East Side Gallery where artists used some of the Berlin Wall as a canvas. One of them is Thierry Noir. We al', 'English', 'https://www.youtube.com/embed/HvEnsbE3hqI', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
-('5', 'Martin Luther King Jr.', 'A short biography of Dr. Martin Luther King, Jr. He is widely considered the most influential leader of the American civil rights movement. He fought to overturn Jim Crow segregation laws and eliminat', 'English', 'https://www.youtube.com/embed/P7JkL4bKVKo', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
+('5', 'Martin Luther King Jr.', 'A short biography of Dr. Martin Luther King, Jr. He is widely considered the most influential leader of the American civil rights movement. He fought to overturn Jim Crow segregation laws and eliminat', 'English', 'resources/vid/MartinLutherKingJr.mp4', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('6', 'Remembering Nelson Mandela', 'Former South African President Nelson Mandela has died at the age of 95 after a long illness. People around the world are mourning the loss of the country\'s first black president. VOA\'s Deborah Block ', 'English', '//www.dailymotion.com/embed/video/x65ofm9', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('7', 'Inside Groundhog Day', 'Tim Beggy goes behind the scenes at Groundhog Day as we visit the Groundhog Capitol of the world: Punxsutawney, Pennsylvania.', 'English', 'https://www.youtube.com/embed/XpgMQztk_WA', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
 ('8', 'The IT Girls', 'In this special report from Silicon Valley, Leila Makki speaks to five females about breaking down the barriers for women in tech. Interviews with:\nNatalie Quizon, User Experience & Design Lead, Orang', 'English', 'https://www.youtube.com/embed/wwQ3duaucjE', 'Currently there is no transcript for this quiz. \n\nTranscript coming soon.'),
