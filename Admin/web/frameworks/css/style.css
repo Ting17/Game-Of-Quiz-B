@@ -388,3 +388,30 @@ table.sortable thead {
     border-color: #66cdaa;
     padding: 15px;
 }
+
+.catguide{
+    width: auto;
+}
+
+.catpawn{
+    margin-left:80%;
+}
+.catpawn img{
+    margin-top: -20%;
+    width:80%; 
+    height:80%; 
+}
+
+.catnote{
+    text-align: left;
+    padding: 3%;
+    background-color: #FDEFE6;
+    color: #000;
+}
+.catnote ul{
+    list-style-type: circle;
+}
+
+.yellow{
+    color: #FFCA28;
+}

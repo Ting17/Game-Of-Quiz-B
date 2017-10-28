@@ -13,6 +13,7 @@
             <a href="feedback.jsp" class="tabselect">Content Feedback <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="announ.jsp" class="tabselect">Announcements <span class="glyphicon glyphicon-menu-right"></span></a>
             <a href="guide.jsp" class="tabselect">Admin Guide <span class="glyphicon glyphicon-menu-right"></span></a>
+            <a href="Uguide.jsp" class="tabselect">User Guide <span class="glyphicon glyphicon-menu-right"></span></a>
         </div><!--end column 1.1 & close tab-->
         
         <div class="col-xs-10 col-md-10 col-lg-10"><!--1.2--> 
