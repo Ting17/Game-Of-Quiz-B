@@ -83,8 +83,18 @@
     <div class="row" id="top"><!--1-->
         <div class="col-xs-12 col-md-12 col-lg-12 banner"><!--1.1-->
             <div class="row">
-                <div class="col-xs-12 col-md-10 col-lg-10"><h3>EQUILIBRA</h3></div>
-                <div class="col-xs-12 col-md-1 col-lg-1"><a>HI  <%=rs.getString("username")%></a></div>
+                <div class="col-xs-12 col-md-10 col-lg-10"><h3>Game Of Quiz Area</h3></div>
+                <div class="col-xs-12 col-md-1 col-lg-1">
+                    <a>HI  <%=rs.getString("username")%></a>
+                    <div id="google_translate_element"></div>
+                    <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                    }
+                    </script>
+                    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                </div>
                 <div class="col-xs-12 col-md-1 col-lg-1"><a href='index.jsp'>Log out</a></div>
             </div>
         </div><!--end column 1.1-->
@@ -188,38 +198,7 @@
               
         <div class="col-xs-12 col-md-4 col-lg-4 contentborder link"> <!--3.2--> 
             <center>
-                <a data-toggle="modal" data-target="#myModal" >
-                    <img src="resources/img/cat.gif" class="cat" alt="click me" title="click me" onClick="meowSound()"/> <!-- image obtained from http://misstingtingwu.blogspot.my/ -->
-                </a>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog">
-                    <div class="modal-content catnote">
-                        <center>
-                            <h4 class="modal-title"><b>Thankz for noticing me, Human!!!</b></h4>
-                        </center>
-                        <br/>
-                        <p><b>Cat's Advise 1:</b></p>
-                        <ul>
-                            <li><p>Watch video and try to get the general idea.</p></li>
-                            <li><p>Answer question on the right side.</p></li>
-                            <li><p>Watch again for answer if have any doubt.</p></li>
-                        </ul>
-                        <br/>
-                        <p><b>Cat's Advise 2:</b></p>
-                        <ul>
-                            <li><p>If confident enough go play more quiz, take the challenge.</p></li>
-                            <li><p>If found any mistake, click on feedback button.</p></li>
-                            <li><p>Answer the questions correctly to collect a star.</p></li>
-                            <li><p>Answer the <b>Last</b> question correctly for a <u>random chest reward</u>.</p></li>
-                        </ul>
-                        <br/>    
-                        <div class="catpawn">
-                        <img src="resources/img/catpawn.png">
-                        </div>
-                    </div>
-                    </div>
-                    </div> <!--close modal-->
+                <jsp:include page="quiz_advise.jsp"></jsp:include>  
             <%
                 if(check == false){
             %>

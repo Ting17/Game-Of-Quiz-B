@@ -394,3 +394,7 @@ iframe{
 .guide{
     padding:0 2%;
 }
+
+video, iframe{
+    width: 100%;
+}

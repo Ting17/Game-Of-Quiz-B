@@ -181,22 +181,17 @@
         %>
             <div class="row"><!--2--> 
                 <div class="col-xs-12 col-md-12 col-lg-12">
-                            <%
-                                if(rest.getString("videoPath").contains("embed")){
-                            %>
-                                <iframe class="qvideo" src="<%=rest.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-                            <%
-                                }
-                            %>
-                            <%
-                                if(rest.getString("videoPath").contains("resources")){
-                            %>
-                                <video width="100%" controls>
-                                    <source src="<%=rest.getString("videoPath")%>" type="video/mp4">
-                                </video>  
-                            <%
-                                }
-                            %>
+            <%
+                if(rest.getString("videoPath").contains("embed")){
+            %>
+                    <iframe class="qvideo" src="<%=rest.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+            <%
+                }else{
+            %>
+                    <video controls><source src="<%=rest.getString("videoPath")%>" type="video/mp4"></video>  
+            <%
+                }
+            %>
                 </div>
             </div>
         <%    
