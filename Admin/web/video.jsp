@@ -123,7 +123,7 @@
                     <%
                         }else{
                     %>
-                            <video controls><source src="<%=resultBio.getString("videoPath")%>" type="video/mp4"></video>  
+                            <video controls width="100%"><source src="<%=resultBio.getString("videoPath")%>" type="video/mp4"></video>  
                     <%
                         }
                     %>
@@ -181,7 +181,7 @@
                     <%
                         }else{
                     %>
-                            <video controls><source src="<%=resultEng.getString("videoPath")%>" type="video/mp4"></video>  
+                            <video controls width="100%"><source src="<%=resultEng.getString("videoPath")%>" type="video/mp4"></video>  
                     <%
                         }
                     %>
@@ -237,7 +237,7 @@
                     <%
                         }else{
                     %>
-                            <video controls><source src="<%=resultSci.getString("videoPath")%>" type="video/mp4"></video>  
+                            <video controls width="100%"><source src="<%=resultSci.getString("videoPath")%>" type="video/mp4"></video>  
                     <%
                         }
                     %>
