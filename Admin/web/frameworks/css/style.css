@@ -46,6 +46,7 @@ table.sortable thead {
     cursor: default;
 }
 
+
 /* Style the tab in navigation.jsp */
 .tab {
     padding: 1%;
@@ -68,12 +69,6 @@ table.sortable thead {
 }
 
 /*Pagination*/
-.pagi{
-    margin-top: 3%;
-    background-color: #f1f1f1;
-    padding: 1%;
-}
-
 .pg-normal {
     color: #0000FF;
     text-decoration: none;
@@ -179,26 +174,6 @@ table.sortable thead {
     padding: 2%;
 }
 
-/*wrap up answer container and buttons*/
-.container2{
-    padding: 2%;
-    text-align: center;
-    align-content: center;
-    margin: 0% auto;
-    border-width: 5px;
-    border-style: solid;
-    -webkit-border-image: 
-      -webkit-gradient(linear, 0 0, 0 100%, from(#3d5998), to(rgba(0, 0, 0, 0))) 1 100%;
-    -webkit-border-image: 
-      -webkit-linear-gradient(#3d5998, rgba(0, 0, 0, 0)) 1 100%;
-    -moz-border-image:
-      -moz-linear-gradient(#3d5998, rgba(0, 0, 0, 0)) 1 100%;    
-    -o-border-image:
-      -o-linear-gradient(#3d5998, rgba(0, 0, 0, 0)) 1 100%;
-    border-image:
-      linear-gradient(to bottom, #3d5998, rgba(0, 0, 0, 0)) 1 100%;
-}
-
 .container3{
     text-align: center;
     width: 80%;
@@ -209,7 +184,7 @@ table.sortable thead {
 .answercontainer{
     padding: 0px;
     text-align: left;
-    font-size:20px;
+    font-size:14px;
 }
 
 .choice{
@@ -261,11 +236,20 @@ table.sortable thead {
     margin-top: 5%;
 }
 
-.btncreate, .btnlog, .btngoq{
+.btnlog{
     border-width: 0;
     background-color: rgba(53, 134, 227, 0.3);
     color: #000000;
     font-size: 16px;
+}
+
+.videobtn{
+    border-width: 0;
+    background-color: rgba(53, 134, 227, 0.3);
+    color: #000000;
+    font-size: 14px;
+    width: 100%;
+    margin: 4%;
 }
 
 
@@ -279,139 +263,43 @@ table.sortable thead {
     padding-left: 7%;
 }
 
-.videobtn{
-    border-width: 0;
-    background-color: rgba(53, 134, 227, 0.3);
-    color: #000000;
-    font-size: 14px;
-    width: 100%;
-    margin: 4%;
-}
 
-.questiont thead th, .lol{
-   background-color: #000080;
-   font-size: 14px;
-   color: white;
-}
-
+/*addnewquiz.jsp*/
 .newheader{
     text-align: center;
     color: #337ab7;
 }
 
-.video-link {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: white;
-    background-color: #f03;
-    box-shadow: 0 5px 10px -3px rgba(0,0,0,.5);
-}
 
-/* --- */
-.player {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,1);
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,.65) 0%, rgba(0,0,0,1) 100%);
-    background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,.65) 0%, rgba(0,0,0,1) 100%);
-    background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,.65) 0%, rgba(0,0,0,1) 100%);
-    background: radial-gradient(center, ellipse cover, rgba(0,0,0,.65) 0%,rgba(0,0,0,1) 100%);
-
-    opacity: 0;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.player__video {
-    position: relative;
-    top: 50%;
-    left: 50%; 
-    width: auto;
-    max-width: 75%;
-    background-color: #fff;
-    box-shadow: 0 0 50px rgba(0,0,0,.95);
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-}
-
-.js--show-video { opacity: 1; }
-
-.video-filler {
-    display: block;
-    width: 100%;
-}
-
-.video-close {
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    right: -30px;
-    padding: 5px 10px;
-    border: none;
-    outline: none;
-    border-radius: 0 50% 50% 0;
-    cursor: pointer;
-    font-size: 24px;
-    color: #000;
-    background-color: #fff;
-    box-shadow: 0 0 20px rgba(0,0,0,.75);
-}
-
-.video-iframe {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 10px solid #fff;
-}
-
-
+/*addquestion.jsp*/
 .wrap3{
     margin: 3% 1% 0% 1%;
 }
 
+video, iframe{
+    width: 100%;
+}
+
+.qvideo{
+    width: 100%;
+    height: 480px;
+}
+
+
 .note{
-    background-color: #fff277;
     font-family: Palatino Linotype;
     width: 100%;
     border-style: solid;
     border-width: medium;
     border-radius: 12px;
-    border-color: #66cdaa;
+    border-color: #ccc;
     padding: 15px;
-}
-
-.catguide{
-    width: auto;
-}
-
-.catpawn{
-    margin-left:80%;
-}
-.catpawn img{
-    margin-top: -20%;
-    width:80%; 
-    height:80%; 
-}
-
-.catnote{
-    text-align: left;
-    padding: 3%;
-    background-color: #FDEFE6;
-    color: #000;
-}
-.catnote ul{
-    list-style-type: circle;
 }
 
 .yellow{
     color: #FFCA28;
+ } 
+ 
+.cat{
+    width: 8%;
 }

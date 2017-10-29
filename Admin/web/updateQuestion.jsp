@@ -8,7 +8,7 @@
 <%@page import="java.sql.*" %>
 <%@page import="java.util.*" %>
 <!DOCTYPE html>
-<html>
+<html data-ng-app="myApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- Description: Game of Quiz -->
@@ -126,8 +126,8 @@
         <%
             }
         %>   
-            </div><!--end column-->
-        </div><!--end row & end of breadcrumb-->
+            </div><!--end column 1.2.2.1-->
+        </div><!--end row 1.2.2 & end of breadcrumb-->
          
         <!--Content section-->
          <div class="row"><!--1.2.3-->
@@ -159,7 +159,9 @@
                         <li class="rowinput" ><%=result.getString("input3") %></li>
                         <li class="rowinput" ><%=result.getString("input4") %></li>
                     </ul>
-
+                    <center>
+                        <p><b>Answer: </b> <%=result.getString("checked")%><br/></p>
+                    </center>
             <!-- Format for Fill in the Blank -->
             <%
                 }else if(result.getString("type").equals("BL")){
@@ -172,21 +174,29 @@
                             <span class="lefttab"><%=result.getString("input4") %></span>
                         </li>
                     </ul>
+                    <center>
+                        <p><b>Answer: </b> <%=result.getString("checked")%><br/></p>
+                    </center>
             <%
                 }else if(result.getString("type").equals("2C")){
             %>
-                    <ul class="answercontainer">
-                        <li class="rowinput" ><%=result.getString("input1") %></li>
-                        <li class="rowinput" ><%=result.getString("input2") %></li>
-                    </ul>
+                    <center>
+                    <ul>
+                        <li>
+                            <span><%=result.getString("input1") %></span>
+                            <span class="lefttab"><%=result.getString("input2") %></span>
+                        </li>
+                    </ul> 
+                    <div data-ng-if="'<%=result.getString("checked")%>'=== '1'">
+                        <b class="answer">Answer: <%=result.getString("input1")%></b>
+                    </div>
+                    <div data-ng-if="'<%=result.getString("checked")%>'=== '2'">
+                        <b class="answer">Answer: <%=result.getString("input2")%></b>
+                    </div>
+                    </center>
             <%
                 }
             %> 
-
-                <!-- Show answer -->
-                <div class="checkshowanswer">
-                    <p><b>Answer: </b> <%=result.getString("checked")%><br/></p>
-                </div>
                 </div><!--close container2-->         
             </div><!--end column 1.2.4.1-->
             

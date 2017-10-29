@@ -117,8 +117,8 @@
         <%
             }
         %>
-            </div><!--end column-->
-        </div><!--end row & end of breadcrumb-->
+            </div><!--end column 1.2.2.1-->
+        </div><!--end row 1.2.2 & end of breadcrumb-->
             
         <!--Content section-->
         <div class="row"><!--1.2.3-->
@@ -134,18 +134,16 @@
                     </div>
 
                 <div class="container2">
-                <div class="row"><!--1.2.3.1.2--> 
-                    <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1.2.1--> 
-                        <em>Select a type for question and continue</em>
-                        <br/>
-                        <span><input type="radio" name="txttype" value="MC" data-ng-click="show = 1" /> Multiple choice</span>
-                        <span class="lefttab"><input type="radio" name="txttype" value="2C" data-ng-click="show = 2" /> Two Choice Selection</span>
-                        <span class="lefttab"><input type="radio" name="txttype" value="BL" data-ng-click="show = 3" /> Fill in Blank</span>
+                    <em>Select a type for question and continue</em>
+                    <br/>
+                    <span><input type="radio" name="txttype" value="MC" data-ng-click="show = 1" /> Multiple choice</span>
+                    <span class="lefttab"><input type="radio" name="txttype" value="2C" data-ng-click="show = 2" /> Two Choice Selection</span>
+                    <span class="lefttab"><input type="radio" name="txttype" value="BL" data-ng-click="show = 3" /> Fill in Blank</span>
                     <br/><br/>
                     <!--Multiple Choice-->
                     <div data-ng-if="show===1">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div class="row"><!--1.2.3.1.1-->
+                            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1.1.1-->
                                 <p><i>Fill in rows below for A, B, C, D</i></p>
                                 <p><i>Fill in the right answer in answer column</i></p>
                                 <input class="form-control" type="text" id="a" name="txtinput1" placeholder="A"/>
@@ -155,11 +153,11 @@
                             </div>
                         </div>
                         <!-- answer -->
-                        <div class="row wrap3"><!--1.2.3.1.2.1.1--> 
-                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
+                        <div class="row wrap3"><!--1.2.3.1.2--> 
+                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1--> 
                                 <p><b>Answer:</b></p> 
                             </div>
-                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2--> 
+                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.2--> 
                                 <p><input class="form-control" type="text" name="txtchecked" placeholder="A? B? C? D?"/></p>
                             </div>
                         </div>
@@ -167,8 +165,8 @@
                      
                     <!--2 choice selection-->
                     <div data-ng-if="show===2">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 col-lg-12">
+                        <div class="row"><!--1.2.3.1.1-->
+                            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1.1.1-->
                                 <p><i>Fill in the first row (1) and second row (2) below; it can be True or False, Yes or No,etc....</i></p>
                                 <p><i>Fill in the right answer in answer column</i></p>
                                 <input class="form-control" type="text" id="a" name="txtinput1" placeholder="True? Yes? etc..."/>
@@ -178,11 +176,11 @@
                             </div>
                         </div>
                         <!-- answer -->
-                        <div class="row wrap3"><!--1.2.3.1.2.1.1--> 
-                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
+                        <div class="row wrap3"><!--1.2.3.1.2--> 
+                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1--> 
                                 <p><b>Answer:</b></p> 
                             </div>
-                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2--> 
+                            <div class="col-xs-8 col-md-8 col-lg-8"><!-<!--1.2.3.1.2.2--> 
                                 <p><input class="form-control" type="text" name="txtchecked" placeholder="1? 2?"/></p>
                             </div>
                         </div>
@@ -190,8 +188,8 @@
                     
                     <!--Fill in Blank-->
                     <div data-ng-if="show===3">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-12 col-lg-12 wrap3">
+                        <div class="row"><!--1.2.3.1.1-->
+                            <div class="col-xs-12 col-md-12 col-lg-12 wrap3"><!--1.2.3.1.1.1-->
                                 <p><i>Fill in rows below for Choice 1, 2, 3, 4.</i></p>
                                 <p><i>Fill in the right answer in answer column</i></p>
                                 <input class="form-control" type="text" id="a" name="txtinput1" placeholder="Choice 1"/>
@@ -201,25 +199,22 @@
                             </div>
                         </div>
                         <!-- answer -->
-                        <div class="row wrap3"><!--1.2.3.1.2.1.1--> 
-                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1.1.1--> 
+                        <div class="row wrap3"><!--1.2.3.1.2--> 
+                            <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.2.1--> 
                                 <p><b>Answer:</b></p> 
                             </div>
-                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.1.1.2--> 
+                            <div class="col-xs-8 col-md-8 col-lg-8"><!--1.2.3.1.2.2--> 
                                 <p><input class="form-control" type="text" name="txtchecked" placeholder="1? 2? 3? 4?"/></p>
                             </div>
                         </div>
                     </div><!--end of Fill in Blank-->
                                 
-                        <br/>
-                        <button type="submit" name="btnAdd" class="btn btn-primary">Save</button>
-                        <a class="btn btn-primary" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Cancel</a>
-                    </div><!--end column 1.2.3.1.2.1-->
-                </div><!--end row 1.2.3.1.2-->
+                    <br/>
+                    <button type="submit" name="btnAdd" class="btn btn-primary">Save</button>
+                    <a class="btn btn-primary" href="question.jsp?quizID=<%=quizID%>&videoID=<%=videoID%>">Cancel</a>
                 </div> <!--close container 2--> 
                 </form>
             </div><!--end column 1.2.3.1-->   
-
         </div><!--end row 1.2.3 & end of content section-->
 
 <script>

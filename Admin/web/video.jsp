@@ -116,29 +116,25 @@
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
-                            <%
-                                if(resultBio.getString("videoPath").contains("embed")){
-                            %>
-                                <iframe width="100%" src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-                            <%
-                                }
-                            %>
-                            <%
-                                if(resultBio.getString("videoPath").contains("resources")){
-                            %>
-                                <video width="100%" controls>
-                                    <source src="<%=resultBio.getString("videoPath")%>" type="video/mp4">
-                                </video>  
-                            <%
-                                }
-                            %>    
-                                
-                        </div>
+                    <%
+                        if(resultBio.getString("videoPath").contains("embed")){
+                    %>
+                            <iframe src="<%=resultBio.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                    <%
+                        }else{
+                    %>
+                            <video controls><source src="<%=resultBio.getString("videoPath")%>" type="video/mp4"></video>  
+                    <%
+                        }
+                    %>
+                        </div><!-- close column 1.2.3.1.1.1-->
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
                             <h4><%=resultBio.getString("videoName") %></h4>
                             <p><%=resultBio.getString("videoDesc") %></p>
-                        </div>  
+                        </div> <!-- close column 1.2.3.1.1.2-->
+                        
+                        <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
             <%
                 check=false;
   
@@ -152,22 +148,16 @@
                 }   
                 if(check == false){
             %>    
-                        <div class="col-xs-2 col-md-2 col-lg-2"> <!--1.2.3.1.1.3-->
-                                <a href="addNewQuiz.jsp?videoID=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
-                        </div>                                
+                            <a href="addNewQuiz.jsp?videoID=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>         
             <%
-                }
-                if (check==true) {
+                }if (check==true) {
             %>
-                            <div class="col-xs-2 col-md-2 col-lg-2"> 
-                                    <a href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=resultBio.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
-                            </div>                      
-                            <div class="col-xs-2 col-md-2 col-lg-2"> 
-                                    <a href="playquiz.jsp?videoID=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
-                            </div>   
+                            <a href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=resultBio.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
+                            <a href="playquiz.jsp?videoID=<%=resultBio.getString("videoID")%>&categ=<%=resultBio.getString("category")%>"><button class="btn-lg videobtn">Take quiz</button></a>
             <%
                 }
-            %>     
+            %>             
+                        </div> <!--close column 1.2.4.1.1.3--> 
                     </div> <!-- end of row 1.2.3.1.1-->
                 </div>  
         <%
@@ -182,32 +172,27 @@
                 check=false;
         %>
                 <div class="videowrap">
-                    <div class="row"><!--1.2.4.1.1-->
-                        <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.4.1.1.1-->
-                            <%
-                                if(resultEng.getString("videoPath").contains("embed")){
-                            %>
-                                <iframe width="100%" src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-                            <%
-                                }
-                            %>
-                            <%
-                                if(resultEng.getString("videoPath").contains("resources")){
-                            %>
-                                <video width="100%" controls>
-                                    <source src="<%=resultEng.getString("videoPath")%>" type="video/mp4">
-                                </video>  
-                            <%
-                                }
-                            %>
-                        </div>
+                    <div class="row"><!--1.2.3.1.1-->
+                        <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
+                    <%
+                        if(resultEng.getString("videoPath").contains("embed")){
+                    %>
+                            <iframe src="<%=resultEng.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                    <%
+                        }else{
+                    %>
+                            <video controls><source src="<%=resultEng.getString("videoPath")%>" type="video/mp4"></video>  
+                    <%
+                        }
+                    %>
+                        </div> <!--close column 1.2.3.1.1.1-->
 
-                        <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.4.1.1.2-->
+                        <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
                             <h4><%=resultEng.getString("videoName") %></h4>
                             <p><%=resultEng.getString("videoDesc") %></p>
-                        </div>            
+                        </div> <!--close column 1.2.3.1.1.2-->       
                         
-                        <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
+                        <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.3.1.1.3-->
             <%
                 check=false;
                 while(resultQEng.next()) {
@@ -220,18 +205,17 @@
                 }   
                 if(check == false){
             %>
-                                <a href="addNewQuiz.jsp?videoID=<%=resultEng.getString("videoID")%>&categ=<%=resultEng.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                            <a href="addNewQuiz.jsp?videoID=<%=resultEng.getString("videoID")%>&categ=<%=resultEng.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
             <%
-                }
-                if (check==true) {
+                }if (check==true) {
             %>
                             <a href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=resultEng.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
                             <a href="playquiz.jsp?videoID=<%=resultEng.getString("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
             <%
                 }
             %> 
-                        </div>
-                    </div><!--end of row 1.2.4.1.1-->
+                        </div> <!--close column 1.2.3.1.1.3-->
+                    </div><!--end of row 1.2.3.1.1-->
                 </div>      
         <%
             }
@@ -246,30 +230,25 @@
                 <div class="videowrap">       
                     <div class="row"><!--1.2.3.1.1-->
                         <div class="col-xs-4 col-md-4 col-lg-4"><!--1.2.3.1.1.1-->
-                            <%
-                                if(resultSci.getString("videoPath").contains("embed")){
-                            %>
-                                <iframe width="100%" src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
-                            <%
-                                }
-                            %>
-                            <%
-                                if(resultSci.getString("videoPath").contains("resources")){
-                            %>
-                                <video width="100%" controls>
-                                    <source src="<%=resultSci.getString("videoPath")%>" type="video/mp4">
-                                </video>  
-                            <%
-                                }
-                            %>
-                        </div>
+                    <%
+                        if(resultSci.getString("videoPath").contains("embed")){
+                    %>
+                            <iframe src="<%=resultSci.getString("videoPath")%>" frameborder="0" allowfullscreen></iframe>
+                    <%
+                        }else{
+                    %>
+                            <video controls><source src="<%=resultSci.getString("videoPath")%>" type="video/mp4"></video>  
+                    <%
+                        }
+                    %>
+                        </div><!--close column 1.2.3.1.1.1-->
 
                         <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1.1.2-->
                             <h4><%=resultSci.getString("videoName") %></h4>
                             <p><%=resultSci.getString("videoDesc") %></p>
-                        </div>  
+                        </div><!--close column 1.2.3.1.1.2-->
                             
-                        <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.4.1.1.3-->
+                        <div class="col-xs-2 col-md-2 col-lg-2"><!--1.2.3.1.1.3-->
             <%
                 check=false;
                 while(resultQSci.next()) {
@@ -282,28 +261,24 @@
                 }   
                 if(check == false){
             %>
-                                <a href="addNewQuiz.jsp?videoID=<%=resultSci.getString("videoID")%>&categ=<%=resultSci.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
+                            <a href="addNewQuiz.jsp?videoID=<%=resultSci.getString("videoID")%>&categ=<%=resultSci.getString("category")%>"><button class="btn-lg videobtn"><span>Create quiz</span></button></a>
             <%
-                }
-                if (check==true) {
+                }if (check==true) {
             %>
                             <a href="updateQuiz.jsp?quizID=<%=quizID%>&videoID=<%=resultSci.getString("videoID")%>"><button class="btn-lg videobtn">Edit quiz</button></a>
                             <a href="playquiz.jsp?videoID=<%=resultSci.getString("videoID")%>"><button class="btn-lg videobtn">Take quiz</button></a>
             <%
                 }
             %> 
-                        </div>
+                        </div><!--close column 1.2.3.1.1.3-->
                     </div> <!-- end of row 1.2.3.1.1-->
                 </div>
         <%
             }
         %>
                 </div><!--end of divSci-->
-            
-            </div><!--end column 1.2.4.1-->
-        </div><!--end row 1.2.4--> 
-
-                       
+            </div><!--end column 1.2.3.1-->
+        </div><!--end row 1.2.3-->                    
             
 <script>
     var currentDiv = document.getElementById("divBio");

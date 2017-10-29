@@ -107,17 +107,17 @@
         <jsp:include page="navigator.jsp"></jsp:include>  
         
         <!--content section-->
-        <div class="row"><!--1.2.3-->
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.3.1-->
+        <div class="row"><!--1.2.2-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.2.1-->
                 <h2>Update Quote</h2>
                 <i>Press "Update Quote" to commit</i>
                 <hr/>
-            </div><!--end column 1.2.3.1-->
-        </div><!--end row 1.2.3-->
+            </div><!--end column 1.2.2.1-->
+        </div><!--end row 1.2.2-->
         
         
-        <div class="row"><!--1.2.2--> 
-            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.1-->  
+        <div class="row"><!--1.2.3--> 
+            <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.3.1-->  
                 <p class="right">(Original)</p>
                 
                 <p>Created on: <b><%=result.getString("cdate") %></b></p>
@@ -133,9 +133,9 @@
         %>
                 <p>Current Quote:</p>
                 <b><%=result.getString("reward")%></b>
-            </div>
+            </div><!--end column 1.2.3.1-->
      
-            <div class="col-xs-6 col-md-6 col-lg-6 border"><!--1.2.4.2-->
+            <div class="col-xs-6 col-md-6 col-lg-6 border"><!--1.2.3.2-->
                 <p>(Update here)</p>
                 <form id="updForm" action="" method="POST">
                     <input type="hidden" name="hiddenId" id="hiddenId" value="<%=rewardID%>"/>
@@ -143,7 +143,7 @@
                     <textarea name="txtReward"><%=result.getString("reward")%></textarea>
                     <button class="btn btn-primary" name="btnUpd" id="btnUpd">Update Quote</button>
                 </form>     
-            </div><!--end column 1.2.3.1-->
+            </div><!--end column 1.2.3.2-->
         </div><!--end row 1.2.3 & end of content section-->                        
 
     <script>

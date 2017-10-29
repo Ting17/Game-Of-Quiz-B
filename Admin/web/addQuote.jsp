@@ -17,7 +17,7 @@
             Integer adminID;
         %>
         
-        <%-- CREATE function for reward--%>
+        <%-- CREATE function for quote as reward--%>
         <%
             adminID = (Integer)session.getAttribute("aid");
             

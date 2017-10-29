@@ -35,8 +35,7 @@
 <body>
         <%!
             Connection conn;
-            PreparedStatement pstmt;
-            Statement stmt, stat;
+            Statement stmt, stat, st;
             ResultSet result,rs, rst;
             String username,password;
         %>
@@ -49,8 +48,8 @@
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             try{
                 Class.forName("com.mysql.jdbc.Driver");
-                stmt=conn.createStatement();
-                result = stmt.executeQuery("SELECT * FROM reward");
+                st=conn.createStatement();
+                result = st.executeQuery("SELECT * FROM reward");
                 
                 stmt = conn.createStatement();
                 rs = stmt.executeQuery("select * from admin where username='" + username + "' and password='" + password + "'");
@@ -129,7 +128,6 @@
                     }}
                 %>
                     </tbody>
-                   
                 </table>       
                 <center class="pagi">    
                     <div id="pgNum"></div>

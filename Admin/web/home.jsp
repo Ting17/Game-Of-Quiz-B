@@ -1,5 +1,5 @@
 <%-- 
-    Document   : login
+    Document   : home
     Created on : Jun 13, 2017, 7:43:12 PM
     Author     : tingting17
 --%>

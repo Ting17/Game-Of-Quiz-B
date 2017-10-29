@@ -18,7 +18,6 @@
 
         <%-- read function --%>    
         <%
-            
             vID = request.getParameter("videoID");
             c = DriverManager.getConnection("jdbc:mysql://localhost:3306/quiz","root","");
             try{
@@ -64,38 +63,38 @@
                             <!-- Format for multiple choice -->
                             <div data-ng-if="'<%=r.getString("type")%>' === 'MC'">
                                 <form name="form1">
-                                    <div class="row"><!--2.2.1--> 
-                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice "><!--2.2.1.1--> 
+                                    <div class="row"><!--1.2.2.2.1--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice "><!--1.2.2.2.1.1--> 
                                             <label for="A">
                                                 A <input type="radio" data-ng-model="checkeds" value="A" id="A" name="multiradio" required/> <%=r.getString("input1") %>
                                             </label>
                                         </div>
-                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.2--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--1.2.2.2.1.2--> 
                                             <label for="B">
                                                 B <input type="radio" data-ng-model="checkeds" value="B" id="B" name="multiradio" /> <%=r.getString("input2") %>
                                             </label>
                                         </div>
-                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.3--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--1.2.2.2.1.3--> 
                                             <label for="C">
                                                 C <input type="radio" data-ng-model="checkeds" value="C" id="C" name="multiradio" /> <%=r.getString("input3") %>
                                             </label>
                                         </div>
-                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--2.2.1.4--> 
+                                        <div class="col-xs-12 col-md-12 col-lg-12 multichoice"><!--1.2.2.2.1.4--> 
                                             <label for="D">
                                                 D <input type="radio" data-ng-model="checkeds" value="D" id="D" name="multiradio" /> <%=r.getString("input4") %>
                                             </label>
                                         </div>
-                                    </div> <!--close row 2.2.1-->
+                                    </div> <!--close row 1.2.2.2.1-->
              
                                     <!-- button -->   
-                                    <div class="row button"><!--2.2.2-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--2.2.2.1-->
+                                    <div class="row button"><!--1.2.2.2.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1" ><!--1.2.2.2.2.1-->
                                             <a class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form1.$invalid" onClick="checkansSound()">Check</a>
                                         </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2..2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--1.2.2.2.2.2-->
                                             <a class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</a>
                                         </div> 
-                                    </div> <!--close row 2.2.2--> 
+                                    </div> <!--close row 1.2.2.2.2--> 
                                 </form>                                  
         <center>  
         <!-- check answer-->
@@ -137,14 +136,14 @@
                                         <input type="text" name="answer" data-ng-model="checkeds" size="40%" required/>
                                     </center> 
                                                                                   
-                                    <div class="row"><!--2.2.1-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
+                                    <div class="row"><!--1.2.2.2.1-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--1.2.2.2.1.1--> 
                                             <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form2.$invalid" onClick="checkansSound()">Check</button>
                                         </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--1.2.2.2.1.2-->
                                             <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
                                         </div> 
-                                    </div> <!--close row 2.2.1-->                 
+                                    </div> <!--close row 1.2.2.2.1-->                 
                                 </form>
         <center>          
         <!-- check answer-->
@@ -172,24 +171,26 @@
                             <!-- User input for two choice selection -->
                             <div data-ng-if="'<%=r.getString("type")%>' === '2C'">
                                 <form name="form3">
-                                    <div class="col-xs-6 col-md-6 col-lg-6 "><!--2.2.1.1--> 
-                                        <label for="A">
-                                            <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=r.getString("input1") %>
-                                        </label>
-                                    </div>
-                                    <div class="col-xs-6 col-md-6 col-lg-6"><!--2.2.1.2--> 
-                                        <label for="B">
-                                            <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=r.getString("input2") %>
-                                        </label>
-                                    </div>
-                                    <div class="row"><!--2.2.1-->
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--2.2.1.1--> 
+                                    <div class="row"><!--1.2.2.2.1--> 
+                                        <div class="col-xs-6 col-md-6 col-lg-6 "><!--1.2.2.2.1.1--> 
+                                            <label for="A">
+                                                <input type="radio" data-ng-model="checkeds" value="1" id="A" name="multiradio" required/> <%=r.getString("input1") %>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-6 col-md-6 col-lg-6"><!--1.2.2.2.1.2--> 
+                                            <label for="B">
+                                                <input type="radio" data-ng-model="checkeds" value="2" id="B" name="multiradio" /> <%=r.getString("input2") %>
+                                            </label>
+                                        </div>
+                                    </div> <!--close row 1.2.2.2.1-->
+                                    <div class="row"><!--1.2.2.2.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width1"><!--1.2.2.2.2.1--> 
                                             <button class="btn btn-primary btn-lg givecheckbutton" data-ng-click="show = 1" data-ng-disabled="form3.$invalid" onClick="checkansSound()">Check</button>
                                         </div>
-                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--2.2.1.2-->
+                                        <div class="col-xs-6 col-md-6 col-lg-6 full-width2"><!--1.2.2.2.2.2-->
                                             <button class="btn btn-danger btn-lg givecheckbutton" data-ng-click="show = 2" onClick="giveupSound()">Give Up</button>  
                                         </div> 
-                                    </div> <!--close row 2.2.1-->                 
+                                    </div> <!--close row 1.2.2.2.2-->                 
                                 </form>
         <center>                      
         <!-- check answer-->
@@ -218,7 +219,6 @@
         </div> <!-- end of showing answer-->       
         </center>         
                             </div> <!--end of User input for two choice selection-->
-  
                         </div> <!--close container2-->
                     </td>
                 </tr>    

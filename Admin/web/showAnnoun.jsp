@@ -87,9 +87,8 @@
     %>
                 <b>Announcement</b> 
                 <a href="announ.jsp"><%=result.getString("announcement")%></a>
-    
-            </div><!--end column-->
-        </div><!--end row & end of breadcrumb-->
+            </div><!--end column 1.2.2.1-->
+        </div><!--end row 1.2.2& end of breadcrumb-->
             
         <!--Content section-->
         <div class="row"><!--1.2.3-->

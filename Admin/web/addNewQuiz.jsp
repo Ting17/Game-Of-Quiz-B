@@ -23,8 +23,8 @@
     <body>
         <%!
             Connection conn;
-            Statement stmt, st, stm,stat;
-            ResultSet result, rs, res, rst;
+            Statement stmt, st, stm;
+            ResultSet result, rs, rst;
             Integer quizID,adminID;
             String username, password, category="", videoname, videoID;
         %>
@@ -82,14 +82,18 @@
             while(rst.next()){
                 if(rst.getString("videoID").equals(videoID)){
                     videoname = rst.getString("videoName");
+        %>
+        
+        <div class="row"><!--1.2.2-->
+            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.2.1-->
+                <div id="addquiz"> 
+                    <hr class="hreffect"/>
+                    <a href="<%=rst.getString("videoPath")%>" class="video_layer" target="_blank"><h1 class="newheader"><%=videoname%> <span class="glyphicon glyphicon-facetime-video"></span></h1></a>
+        <%
+                        
                 }   
             }
         %>
-        <div class="row"><!--1.2.4-->
-            <div class="col-xs-12 col-md-12 col-lg-12"><!--1.2.4.1-->
-                <div id="addquiz"> 
-                    <hr class="hreffect"/>
-                    <h1 class="newheader"><%=videoname%></h1>
                     <h3><u>New Quiz</u></h3>
                     <p>1. Fill in <b>Quiz Topic.</b></p>
                     <p>2. Fill in <b>Note/Video Transcript</b>. (Optional)</p>
@@ -123,14 +127,27 @@
                     <hr class="hreffect"/>
                 </form>
                 </div><!--close collapse--> 
-            </div><!--end column 1.2.4.1-->
-        </div><!--end row 1.2.4 & end of content section-->
+            </div><!--end column 1.2.2.1-->
+        </div><!--end row 1.2.2 & end of content section-->
         
-        <script>
+    <script>
             CKEDITOR.replace('txtNote');
-        </script>    
-        
-    <!-- pagination caller; java--> 
-    <script src="frameworks/js/paginationCaller.js"></script>  
-    
+ 
+            $('.video_layer').colorbox({iframe:true});
+   
+            jQuery('.youtube-player').each(function(){
+            jQuery(this).on('click', '.youtube-link-start', function(){
+                jQuery(this).parent().addClass('active');
+                var loc = $(this).siblings('iframe').attr('src');
+                var startloc = loc + "?autoplay=1";
+                $(this).siblings('iframe').attr('src', startloc);
+            });
+            jQuery(this).on('click', '.youtube-link-stop', function(){
+                jQuery(this).parent().removeClass('active');
+                var loc = $(this).siblings('iframe').attr('src');
+                var stoploc = loc.replace("?autoplay=1", "");
+                $(this).siblings('iframe').attr('src', stoploc);
+            });
+        });
+    </script>
     <jsp:include page="footer.jsp"></jsp:include>

@@ -16,7 +16,7 @@
             PreparedStatement pstmt;
             String quizID;
         %>
-        <!--delete function remove Quizr-->
+        <!--delete function remove Quiz-->
         <%
             if(request.getParameter("quizID") != null && request.getParameter("quizID")!= ""){
                 quizID = request.getParameter("quizID");

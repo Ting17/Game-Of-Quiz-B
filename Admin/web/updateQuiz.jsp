@@ -60,7 +60,6 @@
                     s=conn.createStatement();
                     result = s.executeQuery("SELECT * FROM quiz WHERE quizID ='" + quizID + "'"); 
                     result.first();
-
                     stm=conn.createStatement();
                     res = stm.executeQuery("SELECT * FROM video");
                     
@@ -125,8 +124,8 @@
             <div class="col-xs-12 col-md-12 col-lg-12 "><!--1.2.2.1-->
                 <b>Quiz:</b> 
                 <a onclick="history.back()"><%=result.getString("quizTopic")%></a> > Update
-            </div><!--end column-->
-        </div><!--end row & end of breadcrumb-->
+            </div><!--end column 1.2.2.1-->
+        </div><!--end row 1.2.2 & end of breadcrumb-->
         
         <!--content section-->
         <div class="row"><!--1.2.3-->
@@ -163,7 +162,6 @@
                 <div class="note">
                     <p><b><%=result.getString("note")%></b></p>
                 </div>
-                
             </div><!--end column 1.2.4.1-->
     <script>
         jQuery('.youtube-player').each(function(){
@@ -242,4 +240,3 @@
         </script>
         
     <jsp:include page="footer.jsp"></jsp:include>
-   
