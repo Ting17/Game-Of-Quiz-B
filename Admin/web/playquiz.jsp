@@ -101,7 +101,7 @@
         <%
             }else{
         %>
-            <video controls><source src="<%=res.getString("videoPath")%>" type="video/mp4"></video>  
+            <video controls width="100%"><source src="<%=res.getString("videoPath")%>" type="video/mp4"></video>  
         <%
             }
         %>        
